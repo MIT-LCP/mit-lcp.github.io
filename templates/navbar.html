@@ -1,0 +1,29 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><img src="{{ url_for('static', filename='images/lcp_logo.png') }}" style="height:25px;width:25px" alt="Laboratory for Computational Physiology"></a>
+      <a class="navbar-brand" href="index.html">Laboratory for Computational Physiology</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="People">People</a></li>
+        <li class="dropdown">
+<!--           <a href="Projects" class="dropdown-toggle">Projects <b class="caret"></b></a> -->
+          <a href="#" class="dropdown-toggle">Projects <b class="caret"></b></a>
+
+           <ul class="dropdown-menu">
+            <li><a href="CCI">Critical Care</a></li>
+            <li><a href="PhysioNet">PhysioNet</a></li>
+          </ul>
+        </li>
+        <li><a href="Publications">Publications</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Laboratory for Computational Physiology{% endblock %}
+{% block head2 %}{% endblock %}
+{% block content %}
+
+  <div class="container about">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+        <div class="feature_header text-center">
+          <h3 class="feature_title">Critical Care Informatics</h3>
+          <div class="divider"></div>
+        </div>
+      </div>  <!-- Col-md-12 End -->
+    </div>
+    <div class='row'>
+      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+      <img src="{{ url_for('static', filename='images/mimic.png') }}" class="img-responsive" style="height:350px;width:auto;float:left;padding:25px 15px 15px 0px;">
+
+      <p>Patients in hospital intensive care units (ICUs) are physiologically fragile and unstable, generally have life-threatening conditions, and require close monitoring and rapid therapeutic interventions. They are connected to an array of equipment and monitors, and are carefully attended by the clinical staff. Staggering amounts of data are collected daily on each patient in an ICU: multi-channel waveform data sampled hundreds of times each second, vital sign time series updated each second or minute, alarms and alerts, lab results, imaging results, records of medication and fluid administration, staff notes and more. Petabytes of data are captured daily during care delivery in the country’s ICUs; however, most of these data are not used to generate evidence or to discover new knowledge. The technology now exists to collect, archive and organize finely detailed ICU data, resulting in research resources of enormous potential.</p>
+
+      <p>The objective of this project is to improve health care through the generation of new clinical knowledge and new monitoring technology and decision support through the application of data science and machine learning technology to large collections of critical care data.</p>
+
+      <p>Over the past decade, LCP, Philips Healthcare and Beth Israel Deaconess Medical Center (BIDMC), with support from the National Institute of Biomedical Imaging and Bioinformatics, have built and maintained the <strong>Medical Information Mart for Intensive Care </strong>(MIMIC) database. This public-access database now holds detailed clinical data from over 60,000 patient stays in BIDMC intensive care units, including waveform data (continuous multi-channel recordings of physiologic signals and vital signs) for a subset of these stays. We have meticulously de-identified the data and freely shared them with the research community via the PhysioNet web site. MIMIC is an unparalleled research resource; thousands of credentialed researchers from more than 70 countries have free access to the clinical and physiologic data under data use agreements. This worldwide community includes academic, clinical, and industrial investigators and is growing by over 50% per year. In addition, thousands of investigators, educators, and students have used the waveform data, which we have made freely available to all without restriction. More information concerning MIMIC can be found at <a href="http://mimic.mit.edu" target="_blank">http://mimic.mit.edu</a>, together with extensive documentation on the data.</p>
+
+      <p>More recently, in 2015 Philips and LCP launched a new initiative that gives our laboratory access to the largest data sources available on critical care with close to 3 million ICU admissions from across the US. LCP serves as the academic research hub for the initiative, and will provide and maintain access, as well as help educate researchers on the database and offer a platform for collaboration.</p>
+
+      <p>Clinical databases such as MIMIC provide a unique opportunity to evaluate both practice variation and the impact of diagnostic and treatment decisions on patient outcomes. Critically ill patients are an ideal population for database investigations because the clinical value of many treatments and interventions they receive is unproven, and high-quality data supporting or discouraging specific practices is relatively sparse. In addition, significant practice variation exists in the ICU; decisions are often based on clinician training and knowledge and local ICU culture. MIMIC presents an opportunity to examine which diagnostic and therapeutic interventions impact clinical outcomes in the real world setting.</p>
+
+      <p>We typically form teams consisting of clinicians (nurses, doctors, pharmacists) and scientists (database engineers, modelers, epidemiologists) who translate the questions into study designs, perform the modeling and the analysis and publish their findingsThe studies fall into the following broad categories: identification and interrogation of practice variation, predictive modeling of clinical outcomes within patient subsets, and comparative effectiveness research on diagnostic tests and therapeutic interventions.</p>
+
+      <p>This project is funded by the National Institute of Biomedical Imaging and BioEngineering (NIBIB) under grant R01-EB017205.</p>
+
+      </div>
+    </div>
+  </div>
+<br>
+
+{% endblock %}

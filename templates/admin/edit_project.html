@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratory for Computational Physiology</title>
+  <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='dist/cropper.css') }}" />
+  {% include 'header.html'%}
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='dist/cropper.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/up_file.js') }}"></script>
+
+</head>
+<body data-spy="scroll" data-target=".navbar-fixed-top" style="padding-top: 50px;">
+  {% include 'navbar.html'%}
+  <!-- - - - - - - - - - - - - - - - - - - - - - - START OF NEWS - - - - - - - - - - - - - - - - - - - - - - -->
+  {% if Error %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>{{Error}}</strong>
+  </div>
+  {% endif%}
+  <div class="container">
+    <div class="row feature_header text-center">
+      <h3 class="feature_title"> {{Project[1]}} </h3>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <form method='POST' action='new_project' enctype="multipart/form-data" id='EditUser{{Project[0]}}'>
+          <input type="hidden" name="P_new" value="0">
+          <input type="hidden" name="PID" value="{{Project[0]}}">
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Project Title:</label>
+            <div class='col-sm-10'>
+              <input type='text' class='form-control' required name='p_name' value='{{Project[1]}}'>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Project Abstract:</label>
+            <div class='col-sm-10'>
+              <textarea class='form-control' required name='p_desc'>{{Project[2]}}</textarea>
+            </div>
+          </div>
+<!--"PID", p_name, p_desc, p_email, p_contact, submitting_user, active_p, display_p -->
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Contact Person:</label>
+            <div class='col-sm-10'>
+              <input type='text' class='form-control' required name='p_contact' value='{{Project[4]}}'>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Email:</label>
+            <div class='col-sm-10'>
+              <input type='email' class='form-control' required name='p_email' value='{{Project[3]}}'>
+            </div>
+          </div>
+          {% if Admin %}
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Hidden from the website:</label>
+            <div class='col-sm-10'>
+              <select class='form-control' name='display_p'>
+                {% if Project[7] %}
+                <option value='true' selected>True</option>
+                <option value='false'>False</option>
+                {% else %}
+                <option value='true'>True</option>
+                <option value='false' selected>False</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+          {% endif %}
+          <button type='submit' class='btn btn-primary pull-right js-crop-and-upload'>Submit</button>
+          <a class='btn btn-danger pull-left' href='dashboard'>Back</a>
+        </form>
+      </div>
+    </div>
+  </div>
+<br><br>
+<!-- - - - - - - - - - - - - - - - - - - - - - - END OF NEWS - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - START OF FOOTER  - - - - - - - - - - - - - - - - - - - - - - -->
+{% include 'footer.html'%}
+<!-- - - - - - - - - - - - - - - - - - - - - - - END OF FOOTER - - - - - - - - - - - - - - - - - - - - - - -->
+
+<script type="text/javascript">
+  $('ul.nav li.dropdown').hover(function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(0);
+  }, function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeOut(200);
+  });
+</script>
+
+</body>
+</html>

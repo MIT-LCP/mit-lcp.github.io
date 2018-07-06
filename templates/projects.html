@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Laboratory for Computational Physiology{% endblock %}
+{% block head2 %}{% endblock %}
+{% block content %}
+
+  <div class="container about">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="feature_header text-center">
+        {% if Projects %}
+          <h3 class="feature_title"><b>LCP</b> research projects</h3>
+          <div class="divider"></div>
+        {% else %}
+          <h3 class="feature_title">Page under construction</h3>
+          <div class="divider"></div>
+        {% endif %}
+        </div>
+      </div> 
+    </div>
+    <div class='row'>
+      <div class="col-md-12">
+      {% if Projects %}
+        {# START - First wrapper #}
+        <div class="list-group">
+        {% for project in Projects %}
+          <a data-toggle="modal" data-target="#project_{{project[0]}}" class="list-group-item"><font style="cursor: pointer; display: block; font-size: 1.17em; font-weight: bold;">{{project[1]}}</font><font class="font-italic">{{project[4]}} - {{project[8]}}</a>
+          <div id="project_{{project[0]}}" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">{{project[1]}}</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Description: {{project[2]}}</p>
+                  <p>Contact person: {{project[4]}}</p>
+                  <p>Email: {{project[3]}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        {# END - First wrapper #}
+        {# START - Second wrapper #}
+        <div class="wrapper center-block">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            {% for project in Projects %}
+            <div class="panel panel-default">
+              <div class="panel-heading active" style="cursor: pointer;" role="tab button" id="project-heading-{{loop.index}}" data-toggle="collapse" data-parent="#accordion" href="#project-collapse-{{loop.index}}" aria-expanded="false" aria-controls="project-collapse-{{loop.index}}">
+                <font style="display: block; font-size: 1.17em; font-weight: bold; color: #000000 !important;">{{project[1]}}</font><font style='font-family:Arial, Helvetica, sans-serif !important;'>{{project[4]}} - {{project[8]}} </font>
+              </div>
+              <div id="project-collapse-{{loop.index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="project-heading-{{loop.index}}">
+                <div class="panel-body">
+                  <p>Description: {{project[2]}}</p>
+                  <p>Contact: {{project[4]}} - {{project[3]}}</p>
+                  <p>Last updated: {{project[8]}}</p>
+                  <br>
+                  <p>Description: {{project[2]}}</p>
+                  <p>Contact: {{project[4]}}</p>
+                  <p>Email: {{project[3]}}</p>
+                  <p>Last updated: {{project[8]}}</p>
+                </div>
+              </div>
+            </div>
+              {% endfor %}
+          </div>
+        </div>
+        {# END - Second wrapper #}
+
+      {% endif %} 
+      </div>
+    </div>
+  </div>
+<br>
+{% endblock %}

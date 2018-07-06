@@ -1,0 +1,42 @@
+# Felipe Torres
+# July 18, 2018
+
+A bit of information of the contents of this directory
+
+There are some key files in this folders.
+change.py - Takes as input three different lcp_references.html files and changes them to the version in the website
+config.py - Has the connection to Postgres 
+main.py   - The actual application file
+Postgres.py - All the postgres functions
+
+From NGINX the web application used to serve the files instead of apache/httpd, there are several IMPORTANT files that must NOT be touched.
+/etc/uwsgi.sockets/lcp_uwsgi.sock - Auto generated file by lcp_website.service
+wsgi_lcp.ini  - The reference file that the lcp_website.service takes to serve the application
+wsgi.py - The actual calling the application used by main.ini
+main_nginx.conf - The nginx configuration file
+
+drwxrwxr-x+  6 kpierce publicusers   4096 Jul 18 14:51 .
+drwxrwxr-x+  7 kpierce publicusers    134 Jul 17 20:06 ..
+-rwxrwxr-x+  1 kpierce publicusers  16594 Jul 17 22:13 change.py
+-rw-rwxr--+  1 kpierce publicusers  10779 Jul 17 16:33 change.pyc
+-rwxrwxr--+  1 kpierce publicusers    511 Jul 16 15:28 config.py
+-rw-rwxr--+  1 kpierce publicusers   1432 Jul 16 15:42 config.pyc
+drwxrwxr-x+  8 kpierce publicusers    166 Jul 16 15:28 .git
+-rw-rwxr--+  1 kpierce publicusers 201326 Jul 17 11:38 lcp_references.html
+-rw-rwxr--+  1 ftorres ftorres        429 Jul 18 11:37 main_nginx.conf
+-rwxrwxr-x+  1 kpierce publicusers  39965 Jul 18 14:26 main.py
+-rw-r--r--.  1 ftorres nginx        22724 Jul 18 14:45 main.pyc
+drwxrwxr-x+  2 ftorres ftorres        130 Jul 18 14:51 old_config
+-rwxrwxr--+  1 kpierce publicusers  38445 Jul 16 15:28 Postgres.py
+-rw-rwxr--+  1 kpierce publicusers  12879 Jul 16 15:42 Postgres.pyc
+-rw-rwxr--+  1 kpierce publicusers 391081 Jul 17 11:38 publications.html
+-rw-rwxr--+  1 ftorres ftorres       2376 Jul 18 11:17 Readme
+-rw-rwxr--+  1 kpierce publicusers     55 Jul 16 15:28 requirements.txt
+-rw-rwxr--+  1 kpierce publicusers     64 Jul 17 20:19 shasum.references
+drwxrwxr--+ 10 kpierce publicusers    127 Jul 17 10:05 static
+drwxrwxr--+  4 kpierce publicusers   4096 Jul 17 16:13 templates
+-rw-rwxr--+  1 uwsgi   nginx          323 Jul 18 14:33 wsgi_lcp.ini
+-rw-rwxr--+  1 ftorres ftorres        192 Jul 18 13:20 wsgi.py
+-rw-rwxr--+  1 root    root           277 Jul 18 13:46 wsgi.pyc
+
+

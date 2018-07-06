@@ -1,0 +1,34 @@
+<div class="wrapper center-block">
+  <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+    
+    <div class="panel panel-success">
+      <div class="panel-heading active" role="tab" id="headingFive">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            <h3 align='center'>Projects</h3>
+          </a>
+        </h4>
+      </div>
+      <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr> <th>Project Title</th> <th>Contact</th> <th>Email</th> <th>Hidden from website</th> <th>Edit</th> </tr>
+            </thead>
+            <tbody>
+            {% for item in Projects %}
+              {% if item[7] == true %}
+              <tr > <td>{{item[1]}}</td> <td>{{item[4]}}</td> <td>{{item[3]}}</td> <td>{{item[7]}}</td> <td><a href="Edit_Project_{{item[0]}}" class='btn btn-warning'>Edit Project</a></td> </tr> 
+              {% else %}
+              <tr class="warning"> <td>{{item[1]}}</td> <td>{{item[4]}}</td> <td>{{item[3]}}</td> <td>{{item[7]}}</td> <td><a href="Edit_Project_{{item[0]}}" class='btn btn-warning'>Edit Project</a></td> </tr> 
+              {% endif %}
+            {% endfor %} 
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--             self.cur.execute("""SELECT "PID", p_name, p_desc, p_email, p_contact, submitting_user, active_p, display_p FROM "Lab"."Projects" ORDER BY "PID" """) -->

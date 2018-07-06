@@ -1,0 +1,175 @@
+<div class="wrapper center-block">
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading active" role="tab" id="headingOne">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            <h3 align='center'>Alumni</h3>
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+        {% for item in Personel['Alumni'] %}
+          {% if loop.index is divisibleby(4) %}<div class='row'>{% endif %}
+          {% if (item[8] == Logged_User[0] or Logged_User[1]) %}
+            <div class='col-md-3'>
+              <div class='panel panel-default' style="margin-bottom: 20px !important;">
+                <div class='panel-heading'>
+                  <h4><i class='fa fa-fw fa-check'></i>{{item[2]}}</h4>
+                </div>
+                <div class='panel-body'>
+                  <a class='btn btn-primary' data-toggle="modal" data-target="#VUser{{item[0]}}">User Info</a>
+                  <a href="Edit_User_{{item[0]}}" class='btn btn-warning pull-right'>Edit User</a>
+                </div>
+              </div>
+            </div>
+          {% else %}
+          <div class='col-md-3'>
+            <div class='panel panel-default' style="margin-bottom: 20px;">
+              <div class='panel-heading'>
+                <h4><i class='fa fa-fw fa-check'></i>{{item[2]}}</h4>
+              </div>
+              <div class='panel-body'>
+                <a class='btn btn-primary' data-toggle="modal" data-target="#VUser{{item[0]}}">User Info</a>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% include 'admin/View_User_info.html'%}
+          {% if loop.index is divisibleby(4) %}</div>{% endif %}
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading active" role="tab" id="headingTwo">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <h3 align='center'>UROP</h3>
+          </a>
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
+        {% for item in Personel['UROP'] %}
+          {% if loop.index is divisibleby(4) %}<div class='row'>{% endif %}
+          {% if (item[8] == Logged_User[0] or Logged_User[1]) %}
+            <div class='col-md-3'>
+              <div class='panel panel-default' style="margin-bottom: 20px !important;">
+                <div class='panel-heading'>
+                  <h4><i class='fa fa-fw fa-check'></i>{{item[2]}}</h4>
+                </div>
+                <div class='panel-body'>
+                  <a class='btn btn-primary' data-toggle="modal" data-target="#VUser{{item[0]}}">User Info</a>
+                  <a href="Edit_User_{{item[0]}}" class='btn btn-warning pull-right'>Edit User</a>
+                </div>
+              </div>
+            </div>
+          {% else %}
+          <div class='col-md-3'>
+            <div class='panel panel-default' style="margin-bottom: 20px;">
+              <div class='panel-heading'>
+                <h4><i class='fa fa-fw fa-check'></i>{{item[2]}}</h4>
+              </div>
+              <div class='panel-body'>
+                <a class='btn btn-primary' data-toggle="modal" data-target="#VUser{{item[0]}}">User Info</a>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% include 'admin/View_User_info.html'%}
+          {% if loop.index is divisibleby(4) %}</div>{% endif %}
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading active" role="tab" id="headingThree">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <h3 align='center'>Affiliate</h3>
+          </a>
+        </h4>
+      </div>
+      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="panel-body">
+        {% for item in Personel['Affiliate'] %}
+          {% if loop.index is divisibleby(4) %}<div class='row'>{% endif %}
+          {% if (item[8] == Logged_User[0] or Logged_User[1]) %}
+            <div class='col-md-3'>
+              <div class='panel panel-default' style="margin-bottom: 20px !important;">
+                <div class='panel-heading'>
+                  <h4><i class='fa fa-fw fa-check'></i>{{item[2]}}</h4>
+                </div>
+                <div class='panel-body'>
+                  <a class='btn btn-primary' data-toggle="modal" data-target="#VUser{{item[0]}}">User Info</a>
+                  <a href="Edit_User_{{item[0]}}" class='btn btn-warning pull-right'>Edit User</a>
+                </div>
+              </div>
+            </div>
+          {% else %}
+          <div class='col-md-3'>
+            <div class='panel panel-default' style="margin-bottom: 20px;">
+              <div class='panel-heading'>
+                <h4><i class='fa fa-fw fa-check'></i>{{item[2]}}</h4>
+              </div>
+              <div class='panel-body'>
+                <a class='btn btn-primary' data-toggle="modal" data-target="#VUser{{item[0]}}">User Info</a>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% include 'admin/View_User_info.html'%}
+          {% if loop.index is divisibleby(4) %}</div>{% endif %}
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading active" role="tab" id="headingFour">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            <h3 align='center'>Other</h3>
+          </a>
+        </h4>
+      </div>
+      <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+        <div class="panel-body">
+        {% for item in Personel['Other'] %}
+          {% if loop.index is divisibleby(4) %}<div class='row'>{% endif %}
+          {% if (item[8] == Logged_User[0] or Logged_User[1]) %}
+            <div class='col-md-3'>
+              <div class='panel panel-default' style="margin-bottom: 20px !important;">
+                <div class='panel-heading'>
+                  <h4><i class='fa fa-fw fa-check'></i>{{item[2]}}</h4>
+                </div>
+                <div class='panel-body'>
+                  <a class='btn btn-primary' data-toggle="modal" data-target="#VUser{{item[0]}}">User Info</a>
+                  <a href="Edit_User_{{item[0]}}" class='btn btn-warning pull-right'>Edit User</a>
+                </div>
+              </div>
+            </div>
+          {% else %}
+          <div class='col-md-3'>
+            <div class='panel panel-default' style="margin-bottom: 20px;">
+              <div class='panel-heading'>
+                <h4><i class='fa fa-fw fa-check'></i>{{item[2]}}</h4>
+              </div>
+              <div class='panel-body'>
+                <a class='btn btn-primary' data-toggle="modal" data-target="#VUser{{item[0]}}">User Info</a>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% include 'admin/View_User_info.html'%}
+          {% if loop.index is divisibleby(4) %}</div>{% endif %}
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

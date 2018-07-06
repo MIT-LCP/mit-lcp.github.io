@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /login
+Disallow: /Login
+Disallow: /login.html
+Disallow: /Login.html
+Disallow: /Authenticate
+Disallow: /User_List
+Disallow: /new_project
+Disallow: /dashboard
+Disallow: /dashboard.html
+Disallow: /Edit_Project_*
+Disallow: /Edit_User_*
+Disallow: /Submit_User

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratory for Computational Physiology</title>
+  <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='dist/cropper.css') }}" />
+  {% include 'header.html'%}
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='dist/cropper.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/up_file.js') }}"></script>
+
+</head>
+<body data-spy="scroll" data-target=".navbar-fixed-top" style="padding-top: 37px;">
+  {% include 'navbar.html'%}
+  <!-- - - - - - - - - - - - - - - - - - - - - - - START OF NEWS - - - - - - - - - - - - - - - - - - - - - - -->
+  {% if Error %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>{{Error}}</strong>
+  </div>
+  {% endif%}
+  <div class="container">
+    <div class="row feature_header text-center">
+      <h3 class="feature_title"> {{Person[2]}} </h3>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <form method='POST' action='Submit_User' enctype="multipart/form-data" id='EditUser{{Person[0]}}'>
+          <input type="hidden" name="New_User" value="0">
+          <input type="hidden" name="UID" value="{{Person[0]}}">
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Full Name:</label>
+            <div class='col-sm-10'>
+              <input type='text' class='form-control' required name='FName' value='{{Person[2]}}'>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Email:</label>
+            <div class='col-sm-10'>
+              <input type='email' class='form-control' required name='Email' value='{{Person[6]}}'>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Status on the Lab:</label>
+            <div class='col-sm-10'>
+              <select class='form-control' required name='Status'>
+                <option>{{Person[3] | safe}}</option>
+              </select>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Hidden from the website:</label>
+            <div class='col-sm-10'>
+              <select class='form-control' name='Hidden'>{{Person[10] | safe}}</select>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Picture:</label>
+            <div class='col-sm-3'>
+              <img src="{{url_for('static', filename='images/'+Person[4])}}" class="img-responsive"><br>
+              <input type='file' class='form-control' name='picture' id='picture' OnCHange='readURL(this);'>
+            </div>
+            <div class='col-sm-7' id='crop_pic' style='display:none;'>
+              <h4 class="modal-title" align='center'>Crop the photo</h4>
+              <img src="" id="image" alt="your image" style="max-width: 100%;">
+
+              <input id="id_x" name="x" type="hidden">
+              <input id="id_y" name="y" type="hidden">
+              <input id="id_width" name="width" type="hidden">
+              <input id="id_height" name="height" type="hidden">
+
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Bio:</label>
+            <div class='col-sm-10'>
+              <textarea type="text" class='form-control' name='Bio' rows="10">{{Person[1]}}</textarea>
+            </div>
+          </div>
+          <button type='submit' class='btn btn-primary pull-right js-crop-and-upload'>Submit</button>
+          <a class='btn btn-danger pull-left' href='dashboard'>Back</a>
+        </form>
+      </div>
+    </div>
+  </div>
+<br><br>
+<!-- - - - - - - - - - - - - - - - - - - - - - - END OF NEWS - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - START OF FOOTER  - - - - - - - - - - - - - - - - - - - - - - -->
+{% include 'footer.html'%}
+<!-- - - - - - - - - - - - - - - - - - - - - - - END OF FOOTER - - - - - - - - - - - - - - - - - - - - - - -->
+
+<script type="text/javascript">
+  $('ul.nav li.dropdown').hover(function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(0);
+  }, function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeOut(200);
+  });
+</script>
+
+</body>
+</html>

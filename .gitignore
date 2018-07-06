@@ -1,0 +1,7 @@
+config.py
+__pycache__/
+old_config/
+.DS_Store
+*.py[cod]
+*.pyc 
+

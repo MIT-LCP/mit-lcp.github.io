@@ -1,0 +1,55 @@
+        <div class='modal fade' id='VUser{{item[0]}}' role='dialog'>
+          <div class='modal-dialog modal-lg'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h4 class='modal-title text-center'>{{item[2]}}</h4>
+                <form name='ViewUser'>
+              </div>
+              <div class='modal-body'>
+                <div class='form-group row'>
+                  <label class='col-sm-2 col-form-label'>Full Name:</label>
+                  <div class='col-sm-10'>
+                    <input type='text' readonly class='form-control' name='FName' value='{{item[2]}}'>
+                  </div>
+                </div>
+                <div class='form-group row'>
+                  <label class='col-sm-2 col-form-label'>Status on the Lab:</label>
+                  <div class='col-sm-10'>
+                    <input type='text' readonly class='form-control' name='Status' value='{{item[3]}}'>
+                  </div>
+                </div>
+                <div class='form-group row'>
+                  <label class='col-sm-2 col-form-label'>Picture:</label>
+                  <div class='col-sm-3'>
+                    <img src="{{url_for('static', filename='images/'+item[4])}}" class="img-responsive" style="max-height: 250px;">
+                  </div>
+                  <div class='col-sm-7'>
+                  </div>
+                </div>
+                <div class='form-group row'>
+                  <label class='col-sm-2 col-form-label'>Email:</label>
+                  <div class='col-sm-10'>
+                    <input readonly type='email' class='form-control' name='Email' value='{{item[6]}}'>
+                  </div>
+                </div>
+                <div class='form-group row'>
+                  <label class='col-sm-2 col-form-label'>Bio:</label>
+                  <div class='col-sm-10'>
+                    <textarea type="text" class='form-control' name='Bio' readonly rows="10">{{item[1]}}</textarea>
+                  </div>
+                </div>
+                <div class='form-group row'>
+                  <label class='col-sm-2 col-form-label'>Hidden:</label>
+                  <div class='col-sm-10'>
+                    <input type='text' readonly class='form-control' name='Hidden' value='{{item[10]}}'>
+                  </div>
+                </div>
+              </div>
+              <div class='modal-footer'>
+                </form>
+                <button type='button' class='btn btn-danger pull-right' data-dismiss='modal'>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
