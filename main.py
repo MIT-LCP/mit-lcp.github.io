@@ -1,14 +1,8 @@
 from flask import Flask, render_template, redirect, request, session, Session#,  escape, url_for, jsonify, Session, g
-from apscheduler.schedulers.background import BackgroundScheduler
-from flask_pam.token_storage import DictStorage
-from werkzeug.exceptions import HTTPException
 from werkzeug.utils import secure_filename
-#from werkzeug import secure_filename
 from datetime import timedelta, datetime, date
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from flask_pam.token import JWT
-from flask_pam import Auth
 from smtplib import SMTP
 from uuid import uuid4
 from Postgres import *
@@ -18,7 +12,7 @@ from re import sub
 import simplepam, logging, traceback, random, string, sys, re, os, difflib
 
 # Change the logger output file and schema
-logging.basicConfig(filename='/var/log/flask/lcp_website.log', level=logging.DEBUG, format='{%(pathname)s:%(lineno)d} %(levelname)s - %(message)s')
+logging.basicConfig(filename='/var/log/flask/lcp_website.log', level=logging.DEBUG, format='{%(asctime)s - %(pathname)s:%(lineno)d} %(levelname)s - %(message)s')
 
 app = Flask(__name__) # Add the debug if you are running debugging mode
 
@@ -39,26 +33,26 @@ sys.setdefaultencoding('utf-8')
 ADMIN = ["ftorres", "rgmark", "kpierce"]
 Project_Admin = ["ftorres", "rgmark", "kperice", "alistairewj", "tpollard"]
 
-def cron_job():
-    '''
-    This function verifies the times of al the projects submitted to the LCP website, and every 60 days will send a 
-    recordatory email, to check if the information is up to date. This function will be executed by a background scheduler 
-    or a cronjob.
-    '''
-    projects = Project_Model().GetAll()
-    for item in projects:
-        time = item[8] - date.today()
-        if time.days % 60 == 0 and time.days > 1:
-            Content = "Hi %s,\nThere is a project in the LCP website that has you as the contact person." % item[1]
-            Content += "There have passed %s days since the project was last updated.\n\n" % time.days
-            Content += "Please log in the server here: https://lcp.mit.edu/dashboard to edit the project.\n\n"
-            Content += "Thanks!"
-            send_email("LCP project email warning" , Content, 'noreply@lcp.mit.edu', [item[3]])
+# def cron_job():
+#     '''
+#     This function verifies the times of al the projects submitted to the LCP website, and every 60 days will send a 
+#     recordatory email, to check if the information is up to date. This function will be executed by a background scheduler 
+#     or a cronjob.
+#     '''
+#     projects = Project_Model().GetAll()
+#     for item in projects:
+#         time = item[8] - date.today()
+#         if time.days % 60 == 0 and time.days > 1:
+#             Content = "Hi %s,\nThere is a project in the LCP website that has you as the contact person." % item[1]
+#             Content += "There have passed %s days since the project was last updated.\n\n" % time.days
+#             Content += "Please log in the server here: https://lcp.mit.edu/dashboard to edit the project.\n\n"
+#             Content += "Thanks!"
+#             send_email("LCP project email warning" , Content, 'noreply@lcp.mit.edu', [item[3]])
 
-# This is a scheduler that will execute the cron_job function, The interval for every check is 14 hours
-sched = BackgroundScheduler(daemon=True)
-sched.add_job(cron_job,trigger='interval',seconds=50000, name='emailing_test', id='cron_sched')
-sched.start()
+# # This is a scheduler that will execute the cron_job function, The interval for every check is 14 hours
+# sched = BackgroundScheduler(daemon=True)
+# sched.add_job(cron_job,trigger='interval',seconds=50000, name='emailing_test', id='cron_sched')
+# sched.start()
 
 ####################################################################################################################################
 def send_email(Subject, Content, sender, rec=None):
@@ -81,6 +75,8 @@ def send_html_email(Subject, Content, html_Content, sender, rec=None):
     # Create message container - the correct MIME type is multipart/alternative.
     msg = MIMEMultipart('alternative')
     recipients = ['ftorres@mit.edu'] #, 'kpierce@mit.edu'] # must be a list
+    if rec != None:
+        recipients = rec
     msg['Subject'] = Subject
     msg['From'] = sender
     msg['To'] = ', '.join(recipients)
@@ -116,11 +112,8 @@ def Checkout_form(Vars):
     send_email(Subject='LCP checkout form - ' + Vars['email'], Content=Content, sender=Vars['email'], rec=['ftorres@mit.edu', 'kpierce@mit.edu'])
     app.logger.info("Sent a email for the checkout form")
     if Result != True:
-        file = open(app.root_path + '/Error.log','a')
-        file.write(Content)
-        file.close()
+        app.logger.error("There was an error in the postgres insert of the Checkout_form\n{0}\n{1}".format(Content, str(Result)))
         send_email("There was an error in the Checkout form line insert", Result, 'noreply@lcp.mit.edu')
-        app.logger.error("There was an error in the postgres function of the chekout form, the error is:\n{0}".format(Result))
         return Result, False
     else:
         return Content, True
@@ -138,14 +131,15 @@ def Registration_form(Vars, request):
     Picture = 'missing.jpg'
     if request.files.get("Picture"):
         f = request.files['Picture']
-        Picture = secure_filename(f.filename)
+        Picture = secure_filename(f.filename) #
         if secure_filename(f.filename).split('.')[-1] in EXT:
-            if path.isfile(Image_Path + secure_filename(f.filename)):
+            # if path.isfile(Image_Path + secure_filename(f.filename)):
+            if path.isfile(app.config['UPLOAD_FOLDER'] + secure_filename(f.filename)):
                 f.filename = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(12)) + '.' + secure_filename(f.filename).split('.')[-1] 
-                f.save(Image_Path + secure_filename(f.filename))
+                f.save(app.config['UPLOAD_FOLDER'] + secure_filename(f.filename))
                 Picture = secure_filename(f.filename)
             else:
-                f.save(Image_Path + secure_filename(f.filename))
+                f.save(app.config['UPLOAD_FOLDER'] + secure_filename(f.filename))
         else:
             print(" -- WRONG FILE EXTENSION -- ")
             app.logger.error(" -- WRONG FILE EXTENSION -- ")
@@ -155,12 +149,8 @@ def Registration_form(Vars, request):
     send_email(Subject='LCP registration form - ' + Vars['email'], Content=Content, sender=Vars['email'], rec=['ftorres@mit.edu', 'kpierce@mit.edu'])
     app.logger.info("Sent a email for the checkin form")
     if Result != True:
-        file = open(app.root_path + '/Error.log','a')
-        file.write(Content)
-        file.write(str(Result))
-        file.close()
+        app.logger.error("There was an error in the postgres insert of the Registration_form\n{0}\n{1}".format(Content, str(Result)))
         send_email("There was an error in the Checkin form line insert", Result, 'noreply@lcp.mit.edu')
-        app.logger.error("There was an error in the postgres function of the chekin form, the error is:\n{0}".format(Result))
         return Result, False
     else:
         return Content, True
@@ -302,7 +292,7 @@ def internal_server_error(error):
     send_email("Internal Server Error - Flask LCP", Content, 'noreply_error@lcp.mit.edu')
     if 'Username' in session:
         Content += "\n\nThe user tha triggered this error is: %s\n\nThanks!" % session['Username']
-    send_email("Internal Server Error - Flask LCP", Content, 'noreply_error@lcp.mit.edu')
+    send_email("Internal Server Error - Flask LCP - {0}".format(request.path), Content, 'noreply_error@lcp.mit.edu')
 
     return render_template('500.html')#, 404
 ####################################################################################################################################
@@ -449,12 +439,13 @@ def Authenticate():
     if request.method == 'GET':
         return redirect('login')
     Username = re.sub(r"[!@#$%^&*()_+\[\]{}:\"?><,/\'\;~` ]", '', request.form.get('Username', None))
-    Success = Auth(Username, request.form.get('Password', None))
-    if Success:
-        return redirect('dashboard')
-    else:
-        session["ERROR"] = "Incorrect login or password."
-        return redirect('login')
+    if Username != None and request.form.get('Password', None) != None:
+        Success = Auth(Username, request.form.get('Password', None))
+        if Success:
+            return redirect('dashboard')
+    session["ERROR"] = "Incorrect login or password."
+    return redirect('login')
+
 ####################################################################################################################################
 ####################################################################################################################################
 @app.route("/User_List")
@@ -718,172 +709,3 @@ if __name__ == "__main__":#RUN THE APP in port 8000
     app.jinja_env.auto_reload = True
     app.run(host='0.0.0.0', port=8082, threaded=True)#, debug=True)
     
-
-# auth = Auth(DictStorage, JWT, 60, 600, app) # Python method to authenticate against the system
-
-################################################################################################
-# - From this point forward, the things defined are NOT used, and have no use BUT DONT DELTE - #
-# - From this point forward, the things defined are NOT used, and have no use BUT DONT DELTE - #
-# - From this point forward, the things defined are NOT used, and have no use BUT DONT DELTE - #
-# - From this point forward, the things defined are NOT used, and have no use BUT DONT DELTE - #
-# - From this point forward, the things defined are NOT used, and have no use BUT DONT DELTE - #
-################################################################################################
-
-# from werkzeug.wsgi import DispatcherMiddleware
-# from email.mime.text import MIMEText
-# from datetime import datetime
-# from smtplib import SMTP
-# import json, ldap
-
-# ####################################################################################################################################
-# @app.route('/.well-known/acme-challenge/<token_value>')
-# def letsencrpyt(token_value):
-#     """
-#     Function to allow ssl verification by certbot
-#     """
-#     with open('.well-known/acme-challenge/{}'.format(token_value)) as f:
-#         answer = f.readline().strip()
-#     return answer
-
-# app.permanent_session_lifetime = timedelta(seconds=3000)
-# app.secret_key = 'mf}7WwDxTm8ik}ipULrYgSWzfxutj|zDo1n(h+abvE&$aM)?O$8R>qUtE)?CyOQ)*6YwADN!IHLy+TE^K1>>1^riVxme**JBH!+N'
-# app.TEMPLATES_AUTO_RELOAD = True
-# Upload_locations = "lcp/static/images/"
-
-
-# def resize_image(request):
-#     '''
-#     This function takes the 4 values of the picture to crop it.
-#     All of the images will be reshapped as a 200x200 
-#     '''
-#     x = float(request.form.get('x', None))
-#     y = float(request.form.get('y', None))
-#     w = float(request.form.get('width', None))
-#     h = float(request.form.get('height', None))
-#     f = request.files['Image']
-
-#     image = Image.open(f)
-#     cropped_image = image.crop((x, y, w+x, h+y))
-#     resized_image = cropped_image.resize((200, 200), Image.ANTIALIAS)
-#     resized_image.save(Upload_locations + secure_filename(f.filename))
-#     return secure_filename(f.filename)
-
-# ####################################################################################################################################
-# def Normalize_utf8(Array):
-#     Array = list(Array)
-#     for indx, item in enumerate(Array):
-#         Array[indx] = list(item)
-#         for indx2, item2 in enumerate(item):
-#             if item2:
-#                 try:
-#                     Array[indx][indx2] = item2.decode('utf-8')
-#                 except:
-#                     pass
-#     return Array
-# ####################################################################################################################################
-
-#     @app.route("/dashboard2")
-# @app.route("/Dashboard2.html")
-# @app.route("/dashboard2.html")
-# def Dashboard2():
-#     if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
-#         session['ERROR'] = "Please authenticate."
-#         return redirect('login')
-#     session.permanent = True
-#     E = S = P_Output = ''
-#     if 'ERROR' in session:
-#         E = session['ERROR']
-#         session.pop('ERROR', None)
-#     elif 'SUCCESS' in session:
-#         S = session['SUCCESS']
-#         session.pop('SUCCESS', None)
-
-
-#     ADMIN       = ["ftorres", "rgmark", "kperice"]
-#     UserModel   = Personel_Model()
-#     People      = Normalize_utf8(UserModel.GetAll())
-#     Logged_User = [session['Username'], False]
-#     People = Normalize_utf8(UserModel.GetAll())
-#     Personel = {"General":[],'Alumni':[],"UROP":[],"Affiliate":[],"Other":[]}
-#                 # 1, 2, 3, 5... 4......... 6..........7.............8
-#     if session['Username'] in ADMIN:
-#         Logged_User = [session['Username'], True]
-# #START OF PEOPLE
-#     for indx, item in enumerate(People):
-#         People[indx] = list(item)
-#         if item[10] == True:
-#             People[indx].append("""<option value="True" selected>True</option><option value="False">False</option>""")
-#             People[indx][10] = """<option value="True" selected>True</option>"""
-#         else:
-#             People[indx].append("""<option value="True">True</option><option value="False" selected>False</option>""")
-#             People[indx][10] = """<option value="False" selected>False</option>"""
-#         if item[3] == 1 or item[3] == "1":
-#             People[indx].append("<option value='1' selected> -- General -- </option><option value='2'> -- Collaborating Researcher -- </option><option value='3'> -- Visiting Colleague -- </option><option value='4'> -- Alumni -- </option><option value='5'> -- Graduate Student -- </option><option value='6'> -- UROP -- </option><option value='7'> -- Research Affiliate -- </option><option value='8'> -- Other -- </option>")
-#             People[indx][3] = "<option value='1'> -- General -- </option>"
-#             Personel['General'].append(People[indx])
-#         elif item[3] == 2 or item[3] == "2":
-#             People[indx][3] = "<option value='2'> -- Collaborating Researcher -- </option>"
-#             People[indx].append("<option value='1'> -- General -- </option><option value='2' selected> -- Collaborating Researcher -- </option><option value='3'> -- Visiting Colleague -- </option><option value='4'> -- Alumni -- </option><option value='5'> -- Graduate Student -- </option><option value='6'> -- UROP -- </option><option value='7'> -- Research Affiliate -- </option><option value='8'> -- Other -- </option>")
-#             Personel['General'].append(People[indx])
-#         elif item[3] == 3 or item[3] == "3":
-#             People[indx][3] = "<option value='3'> -- Visiting Colleague -- </option>"
-#             People[indx].append("<option value='1'> -- General -- </option><option value='2'> -- Collaborating Researcher -- </option><option value='3' selected> -- Visiting Colleague -- </option><option value='4'> -- Alumni -- </option><option value='5'> -- Graduate Student -- </option><option value='6'> -- UROP -- </option><option value='7'> -- Research Affiliate -- </option><option value='8'> -- Other -- </option>")
-#             Personel['General'].append(People[indx])
-#         elif item[3] == 4 or item[3] == "4":
-#             People[indx][3] = "<option value='4'> -- Alumni -- </option>"
-#             People[indx].append("<option value='1'> -- General -- </option><option value='2'> -- Collaborating Researcher -- </option><option value='3'> -- Visiting Colleague -- </option><option value='4' selected> -- Alumni -- </option><option value='5'> -- Graduate Student -- </option><option value='6'> -- UROP -- </option><option value='7'> -- Research Affiliate -- </option><option value='8'> -- Other -- </option>")
-#             Personel['Alumni'].append(People[indx])
-#         elif item[3] == 5 or item[3] == "5":
-#             People[indx][3] = "<option value='5'> -- Graduate Student -- </option>"
-#             People[indx].append("<option value='1'> -- General -- </option><option value='2'> -- Collaborating Researcher -- </option><option value='3'> -- Visiting Colleague -- </option><option value='4'> -- Alumni -- </option><option value='5' selected> -- Graduate Student -- </option><option value='6'> -- UROP -- </option><option value='7'> -- Research Affiliate -- </option><option value='8'> -- Other -- </option>")
-#             Personel['General'].append(People[indx])
-#         elif item[3] == 6 or item[3] == "6":
-#             People[indx][3] = "<option value='6'> -- UROP -- </option>"
-#             People[indx].append("<option value='1'> -- General -- </option><option value='2'> -- Collaborating Researcher -- </option><option value='3'> -- Visiting Colleague -- </option><option value='4'> -- Alumni -- </option><option value='5'> -- Graduate Student -- </option><option value='6' selected> -- UROP -- </option><option value='7'> -- Research Affiliate -- </option><option value='8'> -- Other -- </option>")
-#             Personel['UROP'].append(People[indx])
-#         elif item[3] == 7 or item[3] == "7":
-#             People[indx][3] = "<option value='7'> -- Affiliate Researcher -- </option>"
-#             People[indx].append("<option value='1'> -- General -- </option><option value='2'> -- Collaborating Researcher -- </option><option value='3'> -- Visiting Colleague -- </option><option value='4'> -- Alumni -- </option><option value='5'> -- Graduate Student -- </option><option value='6'> -- UROP -- </option><option value='7' selected> -- Research Affiliate -- </option><option value='8'> -- Other -- </option>")
-#             Personel['Affiliate'].append(People[indx])
-#         else:
-#             People[indx][3] = "<option value='8'> -- Other -- </option>"
-#             People[indx].append("<option value='1'> -- General -- </option><option value='2'> -- Collaborating Researcher -- </option><option value='3'> -- Visiting Colleague -- </option><option value='4'> -- Alumni -- </option><option value='5'> -- Graduate Student -- </option><option value='6'> -- UROP -- </option><option value='7'> -- Research Affiliate -- </option><option value='8' selected> -- Other -- </option>")
-#             Personel['Other'].append(People[indx])
-#         P_Output += "<option value='%s'>%s</option>" % (item[0], item[2])
-#     return render_template('dashboard.html', Error=E, Success=S, Users=People, Logged_User=Logged_User)
-
-# def ldap_server():
-#     import socket, random;
-#     server = ['192.168.99.113', '192.168.1.164', '192.168.100.100']
-#     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#     result = -1
-#     count = 0
-#     while result != 0 and count < len(server):
-#         count += 1
-#         random_choice = random.choice(server)
-#         result = sock.connect_ex((random_choice, 389))
-#     if result == 0:
-#        return random_choice
-#     else:
-#        print("ERROR, NO LDAP SERVER FOUND!!!")
-
-# def Normalize_utf8(Array):
-#     Array = list(Array)
-#     for indx, item in enumerate(Array):
-#         Array[indx] = list(item)
-#         for indx2, item2 in enumerate(item):
-#             if item2:
-#                 try:
-#                     Array[indx][indx2] = item2.decode('utf-8')
-#                 except:
-#                     pass
-#     return Array
-
-# def Normalize_dic_utf8(Dictionary):
-#     for key in Dictionary.keys():
-#         try:
-#             Dictionary[key] = Dictionary[key].decode('utf-8')
-#         except:
-#             pass
-#     return Dictionary
-
