@@ -707,5 +707,5 @@ def Submit_User():
 if __name__ == "__main__":#RUN THE APP in port 8000
     # Once the templates are edited, this is needed to refresh the HTML automaticly
     app.jinja_env.auto_reload = True
-    app.run(host='0.0.0.0', port=8082, threaded=True)#, debug=True)
+    app.run(host='0.0.0.0', port=8083, threaded=True)#, debug=True)
     
