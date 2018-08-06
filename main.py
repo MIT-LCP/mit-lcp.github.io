@@ -31,7 +31,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 ADMIN = ["ftorres", "rgmark", "kpierce"]
-Project_Admin = ["ftorres", "rgmark", "kperice", "alistairewj", "tpollard"]
+Project_Admin = ["ftorres", "rgmark", "kpierce", "alistairewj", "tpollard"]
 
 # def cron_job():
 #     '''
