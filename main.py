@@ -9,7 +9,7 @@ from Postgres import *
 from PIL import Image
 from os import path
 from re import sub
-import simplepam, logging, traceback, random, string, sys, re, os, difflib
+import simplepam, logging, traceback, random, string, sys, re, os, difflib, imghdr
 
 # Change the logger output file and schema
 logging.basicConfig(filename='/var/log/flask/lcp_website.log', level=logging.DEBUG, format='{%(asctime)s - %(pathname)s:%(lineno)d} %(levelname)s - %(message)s')
@@ -32,27 +32,6 @@ sys.setdefaultencoding('utf-8')
 
 ADMIN = ["ftorres", "rgmark", "kpierce"]
 Project_Admin = ["ftorres", "rgmark", "kpierce", "alistairewj", "tpollard"]
-
-# def cron_job():
-#     '''
-#     This function verifies the times of al the projects submitted to the LCP website, and every 60 days will send a 
-#     recordatory email, to check if the information is up to date. This function will be executed by a background scheduler 
-#     or a cronjob.
-#     '''
-#     projects = Project_Model().GetAll()
-#     for item in projects:
-#         time = item[8] - date.today()
-#         if time.days % 60 == 0 and time.days > 1:
-#             Content = "Hi %s,\nThere is a project in the LCP website that has you as the contact person." % item[1]
-#             Content += "There have passed %s days since the project was last updated.\n\n" % time.days
-#             Content += "Please log in the server here: https://lcp.mit.edu/dashboard to edit the project.\n\n"
-#             Content += "Thanks!"
-#             send_email("LCP project email warning" , Content, 'noreply@lcp.mit.edu', [item[3]])
-
-# # This is a scheduler that will execute the cron_job function, The interval for every check is 14 hours
-# sched = BackgroundScheduler(daemon=True)
-# sched.add_job(cron_job,trigger='interval',seconds=50000, name='emailing_test', id='cron_sched')
-# sched.start()
 
 ####################################################################################################################################
 def send_email(Subject, Content, sender, rec=None):
@@ -103,13 +82,13 @@ def Checkout_form(Vars):
     '''
     Checkout form function that will be called in the submittion of the 'info/submit'
     '''
-    SUBJECT = 'LCP checkout form - ' + Vars['email'] 
-    Content = "\nLastname: %s\nFirstname: %s\nEnd date: %s\n" % (Vars['lastname'], Vars['firstname'], Vars['enddate'])
-    Content += "Archive location:\nMachine name: %s\nFilepath: %s\nSpecial instructions: %s\nNew preferred e-mail address: %s\nValid from (date): %s\n" % (Vars['machine'], Vars['filepath'], Vars['instructions'], Vars['email'], Vars['email-when'])
-    Content += "New office address: %s\nValid from (date): %s\nNew home address: %s\nNew telephone number(s): %s\nAnything else: %s\n" % (Vars['office-address'], Vars['office-when'], Vars['home-address'], Vars['phone'], Vars['extra'])
+    SUBJECT = 'LCP checkout form - {0}'.format(Vars['email'] )
+    Content = "\nLastname: {0}\nFirstname: {1}\nEnd date: {2}\n".format(Vars['lastname'], Vars['firstname'], Vars['enddate'])
+    Content += "Archive location:\nMachine name: {0}\nFilepath: {1}\nSpecial instructions: {2}\nNew preferred e-mail address: {3}\nValid from (date): {4}\n".format(Vars['machine'], Vars['filepath'], Vars['instructions'], Vars['email'], Vars['email-when'])
+    Content += "New office address: {0}\nValid from (date): {1}\nNew home address: {2}\nNew telephone number(s): {3}\nAnything else: {4}\n" % (Vars['office-address'], Vars['office-when'], Vars['home-address'], Vars['phone'], Vars['extra'])
 
     Result = SimpleModel().Insert_line_exit(Vars)
-    send_email(Subject='LCP checkout form - ' + Vars['email'], Content=Content, sender=Vars['email'], rec=['ftorres@mit.edu', 'kpierce@mit.edu'])
+    send_email(Subject='LCP checkout form - {0}'.format(Vars['email']), Content=Content, sender=Vars['email'], rec=['ftorres@mit.edu', 'kpierce@mit.edu'])
     app.logger.info("Sent a email for the checkout form")
     if Result != True:
         app.logger.error("There was an error in the postgres insert of the Checkout_form\n{0}\n{1}".format(Content, str(Result)))
@@ -123,19 +102,18 @@ def Registration_form(Vars, request):
     '''
     Checkin form function that will be called in the submittion of the 'info/submit'
     '''
-    SUBJECT = 'LCP registration form - ' + Vars['email']
-    Content = "\nFull Name: %s\n\nStart date: %s\nMIT username: %s\nLCP username: %s\n" % (Vars['firstname'] + " " + Vars['lastname'], Vars['startdate'], Vars['username'], Vars['lcp_username'])
-    Content += "MIT ID number: %s\nPreferred e-mail address: %s\nOffice address: %s\nHome address: %s\nTelephone number(s): %s\nEmergency contact: %s\n" % (Vars['id'], Vars['email'], Vars['office-address'], Vars['home-address'], Vars['phone'], Vars['emergency-contact'])
+    SUBJECT = 'LCP registration form - {0}'.format(Vars['email'])
+    Content = "\nFull Name: {0}\n\nStart date: {1}\nMIT username: {2}\nLCP username: {3}\n".format(Vars['firstname'] + " " + Vars['lastname'], Vars['startdate'], Vars['username'], Vars['lcp_username'])
+    Content += "MIT ID number: {0}\nPreferred e-mail address: {1}\nOffice address: {2}\nHome address: {3}\nTelephone number(s): {4}\nEmergency contact: {5}\n".format(Vars['id'], Vars['email'], Vars['office-address'], Vars['home-address'], Vars['phone'], Vars['emergency-contact'])
     
     EXT = set(['gif', 'jpg', 'jpeg', 'png'])
     Picture = 'missing.jpg'
     if request.files.get("Picture"):
         f = request.files['Picture']
         Picture = secure_filename(f.filename) #
-        if secure_filename(f.filename).split('.')[-1] in EXT:
-            # if path.isfile(Image_Path + secure_filename(f.filename)):
+        if imghdr.what(secure_filename(f.filename)) in EXT:
             if path.isfile(app.config['UPLOAD_FOLDER'] + secure_filename(f.filename)):
-                f.filename = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(12)) + '.' + secure_filename(f.filename).split('.')[-1] 
+                f.filename = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(12)) + '.' +  imghdr.what(secure_filename(f.filename))
                 f.save(app.config['UPLOAD_FOLDER'] + secure_filename(f.filename))
                 Picture = secure_filename(f.filename)
             else:
@@ -144,9 +122,9 @@ def Registration_form(Vars, request):
             print(" -- WRONG FILE EXTENSION -- ")
             app.logger.error(" -- WRONG FILE EXTENSION -- ")
 
-    Content += "\nCurrent project(s) in LCP: %s\nFocus of research: %s\nBio: %s\nPicture:%s\nEHS training date: %s\nHuman studies training date: %s\nAnything else: %s\n" % (Vars['research'], Vars['Other'], Vars['Bio'], Picture, Vars['ehs_training'], Vars['human_studies_training'], Vars['extra'])
+    Content += "\nCurrent project(s) in LCP: {0}\nFocus of research: {1}\nBio: {2}\nPicture:{3}\nEHS training date: {4}\nHuman studies training date: {5}\nAnything else: {6}\n".format(Vars['research'], Vars['Other'], Vars['Bio'], Picture, Vars['ehs_training'], Vars['human_studies_training'], Vars['extra'])
     Result = SimpleModel().Insert_line_reg(Vars, Picture)
-    send_email(Subject='LCP registration form - ' + Vars['email'], Content=Content, sender=Vars['email'], rec=['ftorres@mit.edu', 'kpierce@mit.edu'])
+    send_email(Subject='LCP registration form - {0}'.format(Vars['email']), Content=Content, sender=Vars['email'], rec=['ftorres@mit.edu', 'kpierce@mit.edu'])
     app.logger.info("Sent a email for the checkin form")
     if Result != True:
         app.logger.error("There was an error in the postgres insert of the Registration_form\n{0}\n{1}".format(Content, str(Result)))
@@ -211,12 +189,12 @@ def show_diff(text, n_text):
         if opcode == 'equal':
             output.append(seqm.a[a0:a1])
         elif opcode == 'insert':
-            output.append("<font color=red>^" + seqm.b[b0:b1] + "</font>")
+            output.append("<font color=red>^{0}</font>".format(seqm.b[b0:b1]))
         elif opcode == 'delete':
-            output.append("<font color=blue>^" + seqm.a[a0:a1] + "</font>")
+            output.append("<font color=blue>^{0}</font>".format(seqm.a[a0:a1]))
         elif opcode == 'replace':
             # seqm.a[a0:a1] -> seqm.b[b0:b1]
-            output.append("<font color=green>^" + seqm.b[b0:b1] + "</font>")
+            output.append("<font color=green>^{0}</font>".format(seqm.b[b0:b1]))
         else:
             raise RuntimeError, "unexpected opcode"
     return ''.join(output)
@@ -286,12 +264,11 @@ def internal_server_error(error):
     app.logger.error(str(error))
     tb = str(traceback.format_exc())
     Content = "Hi,\n\nThere was a internal server error on the Flask app running the LCP website.\n"
-    Content += "The time of this error is: %s\n" % (datetime.now())
-    Content += "The error messege is: %s\n" % str(error.message)
-    Content += "Error traceback:\n%s" % tb
+    Content += "The time of this error is: {0}\n".format(datetime.now())
+    Content += "The error messege is: {0}\nError traceback:\n{1}".format(str(error.message), tb)
     send_email("Internal Server Error - Flask LCP", Content, 'noreply_error@lcp.mit.edu')
     if 'Username' in session:
-        Content += "\n\nThe user tha triggered this error is: %s\n\nThanks!" % session['Username']
+        Content += "\n\nThe user tha triggered this error is: {0}\n\nThanks!".format(session['Username'])
     send_email("Internal Server Error - Flask LCP - {0}".format(request.path), Content, 'noreply_error@lcp.mit.edu')
 
     return render_template('500.html')#, 404
@@ -397,14 +374,14 @@ def people():#render the index page information
             pass
         elif item[3] in [1, 3, 5, 7]: #check the number value before this function
             Bio = ""                  # This here is to display the Bio and the top banner witht he names
-            IDs += "<li><a href='#%s'>%s</a></li>" % (item[0], item[2])
+            IDs += "<li><a href='#{0}'>{1}</a></li>".format(item[0], item[2])
             if item[1]:
                 if "\n" in item[1] and item[1] != None:
                     Bio_Array = item[1].split("\n")
                     for line in Bio_Array:
-                        Bio += "<p>" + line + "</p>"
+                        Bio += "<p>{0}</p>".format(line)
                 else:
-                    Bio = "<p style='margin:0 0 0 0;'>" + item[1] + "</p>"
+                    Bio = "<p style='margin:0 0 0 0;'>{0}</p>".format(item[1])
             else:
                 Bio = ""
             if item[3] == 1:
@@ -576,7 +553,7 @@ def project(id):
         session['ERROR'] = "Please authenticate."
         return redirect('login')
 
-    app.logger.info('The user %s is trying to edit a project ID %s' % (session['Username'], id))
+    app.logger.info('The user {0} is trying to edit a project ID {1}'.format(session['Username'], id))
     session.permanent = True
 
     E = S = P_Output = ''
@@ -604,7 +581,7 @@ def user(id):
     if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
         session['ERROR'] = "Please authenticate."
         return redirect('login')
-    app.logger.info('The user %s is trying to edit the profile id %s' % (session['Username'], id))
+    app.logger.info('The user {0} is trying to edit the profile id {1}'.format(session['Username'], id))
     session.permanent = True
     E = S = P_Output = ''
     if 'ERROR' in session:
@@ -614,7 +591,7 @@ def user(id):
         S = session['SUCCESS']
         session.pop('SUCCESS', None)
     Person = Personel_Model().GetAllByID(id)
-    ADMIN = ["ftorres", "rgmark", "kperice"]
+
     if session['Username'] not in ADMIN and Person[8] != session['Username']:
         return redirect('dashboard')
 
