@@ -7,9 +7,9 @@ from smtplib import SMTP
 from uuid import uuid4
 from Postgres import *
 from PIL import Image
-from os import path
+from os import path, remove
 from re import sub
-import simplepam, logging, traceback, random, string, sys, re, os, difflib, imghdr
+import simplepam, logging, traceback, random, string, sys, re, os, difflib
 
 # Change the logger output file and schema
 logging.basicConfig(filename='/var/log/flask/lcp_website.log', level=logging.DEBUG, format='{%(asctime)s - %(pathname)s:%(lineno)d} %(levelname)s - %(message)s')
@@ -111,13 +111,15 @@ def Registration_form(Vars, request):
     if request.files.get("Picture"):
         f = request.files['Picture']
         Picture = secure_filename(f.filename) #
-        if imghdr.what(secure_filename(f.filename)) in EXT:
-            if path.isfile(app.config['UPLOAD_FOLDER'] + secure_filename(f.filename)):
-                f.filename = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(12)) + '.' +  imghdr.what(secure_filename(f.filename))
-                f.save(app.config['UPLOAD_FOLDER'] + secure_filename(f.filename))
-                Picture = secure_filename(f.filename)
-            else:
-                f.save(app.config['UPLOAD_FOLDER'] + secure_filename(f.filename))
+        if Picture.split('.')[-1] in EXT:  #secure_filename(f.filename)split('.')[-1].
+            if path.isfile(app.config['UPLOAD_FOLDER'] + Picture):
+                try:
+                    remove(app.config['UPLOAD_FOLDER'] + Picture)
+                except:
+                    pass
+            f.filename = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(12)) + '.' +  Picture.split('.')[-1]
+            Picture = secure_filename(f.filename)
+            f.save(app.config['UPLOAD_FOLDER'] + secure_filename(f.filename))
         else:
             print(" -- WRONG FILE EXTENSION -- ")
             app.logger.error(" -- WRONG FILE EXTENSION -- ")
