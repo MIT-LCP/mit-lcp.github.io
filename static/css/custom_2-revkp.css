@@ -60,12 +60,14 @@
 .feature_title{
     position:relative;
     padding-bottom:0.625em;
+    padding-bottom:0em;
 /*    color:#EE3B24!important;*/
     color:#B41805 !important;
     width: 65%;
-    margin: 0.625em auto;
+    margin: 1.0em auto .4em;
     font-size: 2.5em;
     line-height: 3.125em;
+    line-height: 1.2em;
 /*    text-transform:uppercase;*/
 }
 .feature_title2{
@@ -96,8 +98,8 @@
       cursor: pointer;
 }
 .feature_content i{
-    font-size:3.75em;
-    line-height: 3.75em;
+/*    font-size:3.75em;
+    line-height: 3.75em; */
     z-index:3;
     position: relative;
      -webkit-transition: all .4s ease .1s;
@@ -199,8 +201,8 @@ background: #000;
     display:inline-block;
     text-align:center;
     margin: 0 auto;
-    height:5.625em !important;
-    width:10.3125em !important;
+    height:90px !important;
+    width:165px !important;
 }
 @media{
     .projects_logo img{ 
@@ -208,8 +210,8 @@ background: #000;
     display:inline-block;
     text-align:center;
     left: 25%;
-    height:5.625em !important;
-    width:10.3125em !important;
+    height:90px !important;
+    width:165px !important;
     }
 }
 #news_1 {
@@ -234,8 +236,8 @@ background: #000;
     display:inline-block;
     text-align:center;
     left: 25%;
-    height:5.625em !important;
-    width:10.3125em !important;
+    height:90px !important;
+    width:165px !important;
     }
 }
 
@@ -356,3 +358,14 @@ background: #000;
   } 
  a {color: #337ab7;}
 
+ /* added by KP to override bootstrap styles */
+.col-md-3 {
+    width: 25%;
+    padding: 2em;
+    margin: 0;
+}
+
+.row {
+    margin: 0;
+    width: 100%;
+}
