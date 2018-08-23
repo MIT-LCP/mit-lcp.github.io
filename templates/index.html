@@ -7,14 +7,14 @@
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="feature_header text-center">
-            <h3 class="feature_title">Laboratory for Computational Physiology</h3>
+            <h3 class="feature_title" align='center'>Laboratory for Computational Physiology</h3>
           </div>
         </div>  <!-- Col-md-12 End -->
       </div>
       <div class="row">
         <div class="main_feature text-center">
           <div class="col-md-12 col-xs-12 col-sm-12">
-            <div class="feature_content2">
+            <div class="feature_content2" align='center'>
               <p>The Laboratory for Computational Physiology (LCP), under the direction of Professor Roger Mark, conducts research aimed at improving health care through the generation of new knowledge, monitoring technology and clinical decision support by applying physiological signal processing, data science and machine learning technology to large collections of critical care data.  The laboratory’s investigators include clinicians, computer and data scientists, electrical engineers, and biostatisticians.   Current LCP research comprises two major projects, Critical Care Informatics and PhysioNet. See the “Projects” page for more detailed information.</p>
             </div>
           </div>
@@ -29,38 +29,34 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="feature_header text-center">
-<!--             <h3 class="feature_title" style="padding-bottom:10px;">Our Projects</h3>
- -->            <div class="divider"></div>
+          <div class="feature_header">
+            <div class="divider"></div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="main_feature text-center">
-          <div class="col-md-2 col-xs-2 col-sm-2"></div>
-          <div class="col-md-3 col-xs-3 col-sm-3">
-            <div class="feature_content">
-              <a href="Physionet"><i class="fa fa-desktop"></i></a>
-              <h5>Physionet</h5>
-              <a href="Physionet">One of the world’s largest, most comprehensive, and most widely used repositories of freely available recorded physiologic signals and high resolution clinical ICU data.</a>
-            </div>
+      <div class="row text-center">
+        <div class="col-md-2 col-xs-2 col-sm-2"></div>
+        <div class="col-md-3 col-xs-3 col-sm-3">
+          <div class="feature_content" align='center'>
+            <a href="Physionet"><i class="fa fa-desktop"></i></a>
+            <h5>Physionet</h5>
+            <a href="Physionet">One of the world’s largest, most comprehensive, and most widely used repositories of freely available recorded physiologic signals and high resolution clinical ICU data.</a>
           </div>
-          <div class="col-md-3 col-xs-3 col-sm-3">
-            <div class="feature_content">
-              <a href="CCI"><i class="fa fa-database"></i></a>
-              <h5>Critical Care Informatics</h5>
-              <a href="CCI" style="text-align:center;">Two databases of hospitals intensive care units (ICUs) with 250,000+ admissions, publicly available to improve health care.</a>
-            </div>
-          </div>
-          <div class="col-md-3 col-xs-3 col-sm-3">
-            <div class="feature_content">
-              <a href="#"><i class="fa fa-list-alt"></i></a>
-              <h5>Other projects</h5>
-              <a href="#" style="text-align:center;">List of completed and ongoing projects.</a>
-            </div>            
-          </div> 
-
         </div>
+        <div class="col-md-3 col-xs-3 col-sm-3">
+          <div class="feature_content" align='center'>
+            <a href="CCI"><i class="fa fa-database"></i></a>
+            <h5>Critical Care Informatics</h5>
+            <a href="CCI" style="text-align:center;">Two databases of hospitals intensive care units (ICUs) with 250,000+ admissions, publicly available to improve health care.</a>
+          </div>
+        </div>
+        <div class="col-md-3 col-xs-3 col-sm-3">
+          <div class="feature_content" align='center'>
+            <a href="#"><i class="fa fa-list-alt"></i></a>
+            <h5>Other projects</h5>
+            <a href="#" style="text-align:center;">List of completed and ongoing projects.</a>
+          </div>            
+        </div> 
       </div>
     </div> 
   </section><br>
@@ -71,13 +67,13 @@
       <div class="row">
         <div class="col-md-3 col-sm-3 col-lg-3 col-xm-3"></div>
         <div class="col-md-2 col-sm-2 col-lg-2 col-xm-2 affiliate_logo">
-          <img class="img-responsive" alt="[MIT photo logo]" style="margin:1em 0;" src="{{url_for('static', filename='images/mit.png')}}" >
+          <img class="img-responsive" alt="[MIT photo logo]" style="margin:1em 0;width:100%;height:auto;" src="{{url_for('static', filename='images/mit.png')}}" >
         </div>
         <div class="col-md-2 col-sm-2 col-lg-2 col-xm-2 affiliate_logo">
-          <img class="img-responsive" alt="[IMES photo logo]" style="margin:1em 0;" src="{{url_for('static', filename='images/imes.png')}}" >
+          <img class="img-responsive" alt="[IMES photo logo]" style="margin:1em 0;width:100%;height:auto;" src="{{url_for('static', filename='images/imes.png')}}" >
         </div>
         <div class="col-md-2 col-sm-2 col-lg-2 col-xm-2 affiliate_logo">
-          <img class="img-responsive" alt="[HST photo logo]" style="margin:1em 0;" src="{{url_for('static', filename='images/hst-logo.png')}}" >
+          <img class="img-responsive" alt="[HST photo logo]" style="margin:1em 0;width:100%;height:auto;" src="{{url_for('static', filename='images/hst-logo.png')}}" >
         </div>
         <div class="col-md-3"></div>
       </div>
@@ -89,8 +85,7 @@
 {% endblock %}
 
 {% block js %}
-  <script src="{{ url_for('static', filename='js/maps.js') }}"></script>
-AIzaSyBYMh_PkKbQrVXBQqFpopgH4fwgtDKCXEw  
+  <script src="{{ url_for('static', filename='js/maps.js') }}"></script>  
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYMh_PkKbQrVXBQqFpopgH4fwgtDKCXEw&callback=initMap&language=en&region=US"  async defer></script> 
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3MX-gpOmdZfGRbza35YQbFEBuQA8Vs34&callback=initMap&language=en&region=US" -->
 {% endblock %}

@@ -4,4 +4,5 @@ old_config/
 .DS_Store
 *.py[cod]
 *.pyc 
-
+*/.DS_Store
+*/*/.DS_Store

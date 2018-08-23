@@ -1,29 +1,29 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+ <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
       <a class="navbar-brand" href="index.html"><img src="{{ url_for('static', filename='images/lcp_logo.png') }}" style="height: 36.3px;margin-top: -6px;" alt="Laboratory for Computational Physiology"></a>
       <a class="navbar-brand" href="index.html">Laboratory for Computational Physiology</a>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="People">People</a></li>
-        <li class="dropdown">
-<!--           <a href="Projects" class="dropdown-toggle">Projects <b class="caret"></b></a> -->
-          <a href="#" class="dropdown-toggle">Projects <b class="caret"></b></a>
-
-           <ul class="dropdown-menu">
-            <li><a href="CCI">Critical Care</a></li>
-            <li><a href="PhysioNet">PhysioNet</a></li>
-          </ul>
+    <div class="navbar">
+      <ul class="nav navbar-nav" align='right'>
+        <li class="nav-item"><a class="nav-link" href="People">People</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="ProjectsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Projects </a>
+          <div class="dropdown-menu" aria-labelledby="ProjectsDropdown" x-placement="bottom-start">
+            <a class="dropdown-item" href="PhysioNet">PhysioNet</a>
+            <a class="dropdown-item" href="CCI">Critical Care</a>
+          </div>
         </li>
-        <li><a href="Publications">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="Publications">Publications</a></li>
       </ul>
-    </div><!--/.nav-collapse -->
+    </div>
   </div>
 </nav>
+<!--
+<a href="Projects" class="dropdown-toggle">Projects <b class="caret"></b></a> 
+
+
+ style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);"
+
+-->
+

@@ -131,41 +131,41 @@ def File_Change(File_Content):
         else:
           print 'key', key
 
-  Side_Tab = """<li><a data-toggle="tab" id="ALL_tab" href="#ALL">All</a></li>"""
   Head_tag = """<center><a href="#journalall">Journal articles</a> | <a href="#conferencesall">Conference  presentations</a> | 
   <a href="#booksall">Books and book chapters</a> | <a href="#thesesall">Theses</a></center>"""
-  Content  = """<div id="ALL" class="tab-pane fade">%s%s</div>\n""" % (Head_tag, temp1)
-
+  Content  = """<div id="ALL" class="container tab-pane fade">{0}{1}</div>\n""".format(Head_tag, temp1)
+# Setting the content of the years
   for key, value in Years.iteritems():
-      Head_tag = """<center><a href="#journal%s">Journal articles</a> | <a href="#conferences%s">Conference  presentations</a> | 
-      <a href="#books%s">Books and book chapters</a> | <a href="#theses%s">Theses</a></center>""" % (key, key, key, key)
+      Head_tag = """<center><a href="#journal{}">Journal articles</a> | <a href="#conferences{}">Conference  presentations</a> | 
+      <a href="#books{}">Books and book chapters</a> | <a href="#theses{}">Theses</a></center>""".format(key, key, key, key)
       if key == Current_Year:
           if Years[Current_Year] != "":
-              Content += """<div id="%s" class="tab-pane fade in active">%s%s</div>\n""" % (key, Head_tag, value)
+              Content += """<div id="P_{0}" class="container tab-pane active">{1}{2}</div>\n""".format(key, Head_tag, value)
           else:
-              Content += """<div id="%s" class="tab-pane fade">%s%s</div>\n""" % (key, Head_tag, value)
+              Content += """<div id="P_{0}" class="container tab-pane fade">{1}{2}</div>\n""".format(key, Head_tag, value)
       elif key == 'ALL':
           pass
           # Content += """<div id="%s" class="tab-pane fade">%s%sUnder development</div>\n""" % (key, Head_tag, value)
       else:
           if Years[Current_Year] == "" and key == Current_Year -1:
-              Content += """<div id="%s" class="tab-pane fade in active">%s%s</div>\n""" % (key, Head_tag, value)
+              Content += """<div id="P_{0}" class="container tab-pane active">{1}{2}</div>\n""".format(key, Head_tag, value)
           else:
-              Content += """<div id="%s" class="tab-pane fade">%s%s</div>\n""" % (key, Head_tag, value)
+              Content += """<div id="P_{0}" class="container tab-pane fade">{1}{2}</div>\n""".format(key, Head_tag, value)
 
           # Content += """<div id="%s" class="tab-pane fade">%s%sUnder development</div>\n""" % (key, Head_tag, value)
-
+# Setting the sidebar with the years
+  Side_Tab = """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="ALL_tab" href="#ALL">All</a></li>"""
   for item in reversed(range(2003, Current_Year+1)):
       if item == Current_Year:
           if Years[Current_Year] != "":
-              Side_Tab += """<li class="active"><a data-toggle="tab" href="#%s">%s</a></li>\n""" % (item, item)
+              Side_Tab += """<li class="nav-item"><a class="nav-link active" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
           else:
-              Side_Tab += """<li><a data-toggle="tab" href="#%s" class="btn disabled">%s</a></li>\n""" % (item, item)
+              Side_Tab += """<li class="nav-item"><a class="nav-link btn disabled" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
       else:
           if Years[Current_Year] == "" and item == Current_Year -1:
-              Side_Tab += """<li class="active"><a data-toggle="tab"  href="#%s">%s</a></li>\n""" % (item, item)
+              Side_Tab += """<li class="nav-item"><a class="nav-link active" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
           else:
-              Side_Tab += """<li><a data-toggle="tab" id="%s_tab" href="#%s">%s</a></li>\n""" % (item, item, item)
+              Side_Tab += """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
   # Head = "<center>"+ File_Content[0].replace("""| <a href="#theses">Theses</a>""", """<!--| <a href="#theses">Theses</a>-->""") + "</center>"
   File_Content[0] = File_Content[0].replace("""<a href="#journal">""", """<center><a href="#journal">""").replace("""<a href="#theses">Theses</a>""", """<a href="#theses">Theses</a></center>""").replace("""\r\n\r\n<p>\r\n(A separate listing of PhysioNet tutorials is available at <a href="http://physionet.org/tutorials/" target="_blank" >http://physionet.org/tutorials/</a>.)\r\n</p>\r\n\r\n""","").replace("\r","").replace("\n","").replace("<br>","").replace("< br>","").replace("<br >","").replace("<br />","").replace("""<center><a href="#journal">Journal articles</a> | <a href="#conferences">Conference  presentations</a> | <a href="#books">Books and book chapters</a> | <a href="#theses">Theses</a></center>""","")
 
@@ -229,6 +229,13 @@ def File_Change(File_Content):
     border-right: 1px solid #ddd;
     border-bottom: transparent !important;
   }
+/*  .tabs-left { max-width:100% }*/  
+  .tab-pane { width:100% }
+
+  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    border: 1px solid #ddd !important;
+    border-right-color: transparent !important;
+  }
 
   a {color: #202123;}
   </style>
@@ -251,8 +258,8 @@ def File_Change(File_Content):
       </div>
     </div>
     <div class='row'>
-      <div class="col-md-1">
-      <ul class="nav nav-tabs tabs-left">%s</ul>
+      <div class="col-md-1 tabs-left">
+      <ul class="nav nav-tabs" id="Publications" role="tablist">%s</ul>
       </div>
       <div class="col-md-10">
       <div class="tab-content">%s""" % (Head, Side_Tab, Content)
@@ -279,7 +286,7 @@ File_SHA = sha256(open("/var/www/vhosts/lcp.mit.edu/Flask/templates/lcp_referenc
 SHA = open("/var/www/vhosts/lcp.mit.edu/Flask/shasum.references", 'r').read()
 
 
-if (SHA != File_SHA or SHA != Download_SHA or Download_SHA != File_SHA):
+if (SHA != File_SHA or SHA != Download_SHA or Download_SHA != File_SHA) or True:
   open("/var/www/vhosts/lcp.mit.edu/Flask/shasum.references", 'w').write(File_SHA)
 
   Recent, Content = File_Change(Edited_File)

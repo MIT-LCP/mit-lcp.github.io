@@ -19,7 +19,7 @@
           <ul class='people'>{{IDs | safe}}</ul>
           {% for item in Person %}
 	         <div class="container bootstrap snippet">
-            <div class="profile card">
+            <div class="profile">
               <div class="profile-body">
                 <div class="profile-bio"  id="{{item[0]}}">
                   <div class="row">
@@ -44,7 +44,7 @@
         <div id="Visiting_List">
           {% for item in Visiting %}
             <div class="container bootstrap snippet">
-              <div class="profile card">
+              <div class="profile">
                 <div class="profile-body">
                   <div class="profile-bio"  id="{{item[0]}}">
                     <div class="row">
@@ -69,7 +69,7 @@
         <div id="Affiliate_List">
           {% for item in Aff %}
             <div class="container bootstrap snippet">
-              <div class="profile card">
+              <div class="profile">
                 <div class="profile-body">
                   <div class="profile-bio"  id="{{item[0]}}">
                     <div class="row">
@@ -92,13 +92,13 @@
         <div id="Colaborators_List">
           {% for item in Colab %}
             <div class="container bootstrap snippet">
-              <div class="profile card">
+              <div class="profile">
                 <div class="profile-body">
                   <div class="profile-bio"  id="{{item[0]}}"><div class="row"><div class="col-md-10 col-lg-10 col-sm-10 col-xm-10"><h2 style="margin:0 0 0 0;">{{item[2]}}</h2><!--<hr>--><a href="{{item[1]}}" style="color:blue;">{{item[1]}}</a></div></div></div></div></div></div>
           {% endfor %} 
         </div>
     </div> 
-  </section><br>
+  </section>
 
 {% endblock %}
 
