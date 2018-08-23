@@ -247,7 +247,7 @@ def File_Change(File_Content):
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="feature_header text-center">
-          <h3 class="feature_title"><b>Publications</b></h3>
+          <h3 class="feature_title">Publications</h3>
           <div class="divider"></div>
         </div>
       </div>  <!-- Col-md-12 End -->

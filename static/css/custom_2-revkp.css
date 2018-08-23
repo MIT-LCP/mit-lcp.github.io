@@ -26,9 +26,10 @@
     color: #9E9E9E; 
 }
 
+/*
 .about{
     padding-top:1.875em;
-}
+}*/
 
 .new_image{
     height:12.5em;
@@ -80,9 +81,9 @@
     padding-top: 2.5em;
     text-transform:uppercase;
 }
-.feature_header {
+/*.feature_header {
     padding-top: 1.25em;
-}
+}*/
 /*.main_feature{
     margin: 2.5em 0em;
 }*/
