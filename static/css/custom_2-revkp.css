@@ -101,8 +101,8 @@
 /*    font-size:3.75em;
     line-height: 3.75em; */
     z-index:3;
-    position: relative;
-     -webkit-transition: all .4s ease .1s;
+/*    position: relative;
+*/     -webkit-transition: all .4s ease .1s;
     -o-transition: all .4s ease .1s;
     transition: all .4s ease .1s;
     display: block;
