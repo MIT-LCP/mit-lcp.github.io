@@ -1,15 +1,22 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
- <div class="container">
-    <div class="navbar-header">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ -->
+  <div class="container">
+    <div class="navbar">
       <a class="navbar-brand" href="index.html"><img src="{{ url_for('static', filename='images/lcp_logo.png') }}" style="height: 36.3px;margin-top: -6px;" alt="Laboratory for Computational Physiology"></a>
       <a class="navbar-brand" href="index.html">Laboratory for Computational Physiology</a>
     </div>
-    <div class="navbar">
-      <ul class="nav navbar-nav" align='right'>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+       <ul class="nav navbar-nav">
         <li class="nav-item"><a class="nav-link" href="People">People</a></li>
+
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="ProjectsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Projects </a>
-          <div class="dropdown-menu" aria-labelledby="ProjectsDropdown" x-placement="bottom-start">
+          <a class="nav-link dropdown-toggle" href="#" id="ProjectsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects </a>
+          <div class="dropdown-content dropdown-menu" aria-labelledby="ProjectsDropdown" x-placement="bottom-start">
             <a class="dropdown-item" href="PhysioNet">PhysioNet</a>
             <a class="dropdown-item" href="CCI">Critical Care</a>
           </div>
@@ -19,11 +26,3 @@
     </div>
   </div>
 </nav>
-<!--
-<a href="Projects" class="dropdown-toggle">Projects <b class="caret"></b></a> 
-
-
- style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);"
-
--->
-
