@@ -15,121 +15,120 @@
 <div class="container">
 
 	<form method="POST" action="/info/submit" id="LCP-FORM" enctype="multipart/form-data">
+	<input name="Registration_form" type="hidden" value="True">
 
-	<div class="row">
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Last name(s):</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><input name="lastname" required class="form-control"  size="40"></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>First name(s):</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><input name="firstname" required class="form-control"  size="40"></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Start date in LCP:</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10">
+			<div class='input-group date' id='datetimepicker1'>
+				<input name="startdate" class="form-control"  size="40">
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-calendar"></span>
+				</span>
+            </div>
+        </div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>MIT username:</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><input name="username" class="form-control"  size="40"></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>MIT ID number:</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><input name="id" class="form-control"  size="15"></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>LCP username:</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><input name="lcp_username" class="form-control"  size="40"></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Preferred e-mail address:</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><input type="email" required name="email" class="form-control"  size="40"></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Office address:</b></font><br>(MIT building and room number, or complete off-campus address.)</em></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="office-address" rows="4" class="form-control"  cols="40">E25-505</textarea></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Home address:</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="home-address" rows="6" class="form-control"  cols="40"></textarea></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Telephone number(s):</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="phone" required rows="2" class="form-control"  cols="40"></textarea></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Emergency contact:</b></font><br>(Name, phone number(s), address, and e-mail address of a person to contact in case of emergency.)</div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="emergency-contact" required rows="6" class="form-control"  cols="40"></textarea></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Current project(s) in LCP:</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><input type="text" name="Other" class="form-control"  size="34"></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Focus of research:</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="research" class="form-control"  rows="2" cols="40"></textarea></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>BIO:</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="Bio" class="form-control"  rows="4" cols="40"></textarea></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Picture:</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><input type="file" name="Picture" class="form-control" accept="image/*"></div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>EHS registration and training completed on (date):</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10">
+			<div class='input-group date' id='datetimepicker2'>
+				<input name="ehs_training" class="form-control" size="40">
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-calendar"></span>
+				</span>
+            </div>
+        </div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Human studies training completed on (date):</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10">
+			<div class='input-group date' id='datetimepicker3'>
+				<input name="human_studies_training" class="form-control" size="40">
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-calendar"></span>
+				</span>
+            </div>
+        </div>
+	</div>
+	<div class="form-group row">
+		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Anything else?</b></font></div>
+		<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="extra" class="form-control"  rows="4" cols="40"></textarea></div>
+	</div>
+	<div class="form-group row">
+		<input type="submit" value="Submit" class="btn btn-primary col-md-2 col-sm-2 col-lg-2 col-xl-2">
+		<div class='col-md-8 col-sm-8 col-lg-8 col-xl-8'></div>
+		<input type="reset" value="Reset"  class="btn btn-danger col-md-2 col-sm-2 col-lg-2 col-xl-2">
+	</div>
 
-		<div class="form-group row">
-			<input name="Registration_form" type="hidden" value="True">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Last name(s):</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><input name="lastname" required class="form-control"  size="40"></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>First name(s):</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><input name="firstname" required class="form-control"  size="40"></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Start date in LCP:</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10">
-				<div class='input-group date' id='datetimepicker1'>
-					<input name="startdate" class="form-control"  size="40">
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-calendar"></span>
-					</span>
-	            </div>
-	        </div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>MIT username:</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><input name="username" class="form-control"  size="40"></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>MIT ID number:</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><input name="id" class="form-control"  size="15"></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>LCP username:</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><input name="lcp_username" class="form-control"  size="40"></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Preferred e-mail address:</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><input type="email" required name="email" class="form-control"  size="40"></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Office address:</b></font><br>(MIT building and room number, or complete off-campus address.)</em></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="office-address" rows="4" class="form-control"  cols="40">E25-505</textarea></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Home address:</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="home-address" rows="6" class="form-control"  cols="40"></textarea></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Telephone number(s):</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="phone" required rows="2" class="form-control"  cols="40"></textarea></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Emergency contact:</b></font><br>(Name, phone number(s), address, and e-mail address of a person to contact in case of emergency.)</div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="emergency-contact" required rows="6" class="form-control"  cols="40"></textarea></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Current project(s) in LCP:</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><input type="text" name="Other" class="form-control"  size="34"></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Focus of research:</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="research" class="form-control"  rows="2" cols="40"></textarea></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>BIO:</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="Bio" class="form-control"  rows="4" cols="40"></textarea></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Picture:</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><input type="file" name="Picture" class="form-control" accept="image/*"></div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>EHS registration and training completed on (date):</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10">
-				<div class='input-group date' id='datetimepicker2'>
-					<input name="ehs_training" class="form-control" size="40">
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-calendar"></span>
-					</span>
-	            </div>
-	        </div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Human studies training completed on (date):</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10">
-				<div class='input-group date' id='datetimepicker3'>
-					<input name="human_studies_training" class="form-control" size="40">
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-calendar"></span>
-					</span>
-	            </div>
-	        </div>
-		</div>
-		<div class="form-group row">
-			<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Anything else?</b></font></div>
-			<div class="col-lg-10 col-md-10 col-sm-10"><textarea name="extra" class="form-control"  rows="4" cols="40"></textarea></div>
-		</div>
-		<div class="form-group row">
-			<input type="submit" value="Submit" class="btn btn-primary pull-right">
-			<input type="reset" value="Reset"  class="btn btn-danger pull-left">
-		</div>
+	<script>
+		$('#LCP-FORM').on('keyup keypress', function(e) {
+		  var keyCode = e.keyCode || e.which;
+		  if (keyCode === 13) { 
+		    e.preventDefault();
+		    return false;
+		  }
+		});
+		$('#datetimepicker1').datepicker();
+		$('#datetimepicker2').datepicker();
+		$('#datetimepicker3').datepicker();
 
-		<script>
-			$('#LCP-FORM').on('keyup keypress', function(e) {
-			  var keyCode = e.keyCode || e.which;
-			  if (keyCode === 13) { 
-			    e.preventDefault();
-			    return false;
-			  }
-			});
-			$('#datetimepicker1').datepicker();
-			$('#datetimepicker2').datepicker();
-			$('#datetimepicker3').datepicker();
-
-		</script>
+	</script>
 
 	</form>
 </div>
