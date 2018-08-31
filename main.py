@@ -1,7 +1,8 @@
 from flask import Flask, render_template, redirect, request, session, Session#,  escape, url_for, jsonify, Session, g
-from werkzeug.utils import secure_filename
+from logging.handlers import RotatingFileHandler
 from datetime import timedelta, datetime, date
 from email.mime.multipart import MIMEMultipart
+from werkzeug.utils import secure_filename
 from email.mime.text import MIMEText
 from smtplib import SMTP
 from uuid import uuid4
@@ -12,7 +13,11 @@ from re import sub
 import simplepam, logging, traceback, random, string, sys, re, os, difflib
 
 # Change the logger output file and schema
-logging.basicConfig(filename='/var/log/flask/lcp_website.log', level=logging.DEBUG, format='{%(asctime)s - %(pathname)s:%(lineno)d} %(levelname)s - %(message)s')
+
+formatter = logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
+handler = RotatingFileHandler('/var/log/flask/lcp_website.log', maxBytes=10000000, backupCount=2)
+handler.setLevel(logging.DEBUG)
+handler.setFormatter(formatter)
 
 app = Flask(__name__) # Add the debug if you are running debugging mode
 
@@ -644,7 +649,7 @@ def Submit_User():
 
         Person_Info = {'Full_Name': request.form.get('FName', "None").replace("'","''"), 'Username': request.form.get('Username', "None").replace("'","''").rstrip(), 'Status': request.form.get('Status', "None"), 'Email': request.form.get('Email', "None"), 'Bio': request.form.get('Bio', "None").replace("'","''"), 'UID': request.form.get('UID', "None"), 'Food': request.form.get('Food', "False"), 'Hidden': request.form.get('Hidden', "False", ), 'y':request.form.get("y"), 'x': request.form.get("x"), 'height': request.form.get("height"), 'width': request.form.get("width")}
         Model = Personel_Model()
-
+        Success = "empty"
         if request.files.get("picture"):
             if Person_Info["y"] and Person_Info["x"] and Person_Info["height"] and Person_Info["width"]:
                 filename = resize_image(request)
@@ -675,16 +680,17 @@ def Submit_User():
     else:
         return redirect('/dashboard')
 
-    if 'Success' in globals() and (Success == 1 or Success == True):
+    if (Success == 1 or Success == True):
         session['SUCCESS'] = "The update was successfully done."
         return redirect('dashboard')
     else:
+        app.logger.error(Success)
         session['ERROR'] = "There was an error, please try again."
         return redirect('dashboard')
 
 
-if __name__ == "__main__":#RUN THE APP in port 8000
+if __name__ == "__main__":#RUN THE APP in port 8083
     # Once the templates are edited, this is needed to refresh the HTML automaticly
     app.jinja_env.auto_reload = True
-    app.run(host='0.0.0.0', port=8083, threaded=True, debug=True)
+    app.run(host='0.0.0.0', port=8083, threaded=True)#, debug=True)
     
