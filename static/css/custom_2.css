@@ -17,11 +17,10 @@
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
-/*
-.links{
-    text-decoration: underline;
-    cursor: pointer;
-}*/
+
+.form-group{
+    margin-bottom: 1rem !important;
+}
 .footer_menu1 ul li a{
     color: #9E9E9E; 
 }
@@ -78,12 +77,6 @@
     padding-top: 40px;
     text-transform:uppercase;
 }
-/*.feature_header {
-    padding-top: 20px;
-}*/
-/*.main_feature{
-    margin: 40px 0px;
-}*/
 
 .feature_content:hover .feature_content:after{
     border:2px solid#fff!important;
@@ -183,6 +176,9 @@ background: #000;
 }
 
 /* ========================================== Affiliates Area ========================================== */
+#dashboard{
+    background: #f2f2f2;
+}
 
 .projects_logo img{ 
     position:relative;

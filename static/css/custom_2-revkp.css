@@ -362,7 +362,6 @@ background: #000;
  /* added by KP to override bootstrap styles */
 .col-md-3 {
     width: 25%;
-    padding: 2em;
     margin: 0;
 }
 

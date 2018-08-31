@@ -8,7 +8,7 @@
   <script type="text/javascript" src="{{ url_for('static', filename='js/up_file.js') }}"></script>
  -->
 </head>
-<body data-spy="scroll" data-target=".navbar-fixed-top" style="padding-top: 50px;">
+<body data-spy="scroll" data-target=".navbar-fixed-top" >
   {% include 'navbar.html'%}
   <!-- - - - - - - - - - - - - - - - - - - - - - - START OF NEWS - - - - - - - - - - - - - - - - - - - - - - -->
   {% if Error %}
@@ -19,7 +19,7 @@
     <strong>{{Error}}</strong>
   </div>
   {% endif%}
-  <section id="projects">
+  <section id="dashboard">
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -96,35 +96,35 @@
       </div>
       <div class="col-md-12">
         <div id="Users_List">
+          <div class='row'>
         {% for item in Personel['General'] %}
-          {% if loop.index is divisibleby(4) %}<div class='row'>{% endif %}
           {% if (item[8] == Logged_User[0] or Logged_User[1]) %}
-            <div class='col-md-3'>
-              <div class='panel panel-default' style="margin-bottom: 20px !important;">
-                <div class='panel-heading'>
-                  <h4><i class='fa fa-fw fa-check'></i>{{item[2]}}</h4>
+            <div class='col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3' style='padding:;'>
+              <div class='card' style="margin-bottom: 20px !important;">
+                <div class='card-header'>
+                  <h4 align='center'>{{item[2]}}</h4>
                 </div>
-                <div class='panel-body'>
-                  <a class='btn btn-primary' data-toggle="modal" data-target="#VUser{{item[0]}}">User Info</a>
-                  <a href="Edit_User_{{item[0]}}" class='btn btn-warning pull-right'>Edit User</a>
+                <div class='card-body'>
+                  <a class='btn btn-primary' data-toggle="modal" data-target="#VUser{{item[0]}}">User info</a>
+                  <a href="Edit_User_{{item[0]}}" class='btn btn-warning pull-right'>Edit user</a>
                 </div>
               </div>
             </div>
           {% else %}
-          <div class='col-md-3'>
-            <div class='panel panel-default' style="margin-bottom: 20px;">
-              <div class='panel-heading'>
-                <h4><i class='fa fa-fw fa-check'></i>{{item[2]}}</h4>
+          <div class='col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3'>
+            <div class='card' style="margin-bottom: 20px;">
+              <div class='card-header'>
+                <h4>{{item[2]}}</h4>
               </div>
-              <div class='panel-body'>
-                <a class='btn btn-primary' data-toggle="modal" data-target="#VUser{{item[0]}}">User Info</a>
+              <div class='card-body'>
+                <a class='btn btn-primary' data-toggle="modal" data-target="#VUser{{item[0]}}">User info</a>
               </div>
             </div>
           </div>
           {% endif %}
           {% include 'admin/View_User_info.html' %}
-          {% if loop.index is divisibleby(4) %}</div>{% endif %}
           {% endfor %}
+        </div>
         </div>
       </div>
     </div>
