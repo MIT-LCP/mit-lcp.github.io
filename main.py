@@ -14,10 +14,9 @@ import simplepam, logging, traceback, random, string, sys, re, os, difflib
 
 # Change the logger output file and schema
 
-formatter = logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
 handler = RotatingFileHandler('/var/log/flask/lcp_website.log', maxBytes=10000000, backupCount=2)
 handler.setLevel(logging.DEBUG)
-handler.setFormatter(formatter)
+handler.setFormatter(logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s"))
 
 app = Flask(__name__) # Add the debug if you are running debugging mode
 
@@ -30,6 +29,9 @@ app.config.update(
         )
 
 app.jinja_env.auto_reload = True
+
+app.logger.addHandler(handler)
+app.logger.setLevel(logging.DEBUG)
 
 # Flask by default doesnt accept special characters like accents, to allow them we have to reload flask app as UTF-8
 reload(sys)
