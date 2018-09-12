@@ -3,7 +3,16 @@
 
 <head>
 	<title>LCP registration form</title>
-	{% include 'info/header.html'%}
+
+	<link rel="icon" href="{{ url_for('static', filename='images/lcp_logo.png') }}" />
+	<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='dist/cropper.css') }}" />
+	{% include 'header.html'%}
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='dist/cropper.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/up_file.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-datepicker.js') }}"></script>
+
 </head>
 
 <body>
@@ -82,7 +91,19 @@
 	</div>
 	<div class="form-group row">
 		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>Picture:</b></font></div>
-		<div class="col-lg-10 col-md-10 col-sm-10"><input type="file" name="Picture" class="form-control" accept="image/*"></div>
+		<div class="col-lg-3 col-md-3 col-sm-3">
+			<input type="file" name="Picture" id='picture' OnCHange='readURL(this);' class="form-control" accept="image/*">
+		</div>
+<!-- -->
+        <div class='col-sm-7' id='crop_pic' style='display:none;'>
+			<h4 class="modal-title" align='center'>Crop the photo</h4>
+			<img src="" id="image" alt="your image" style="max-width: 100%;">
+			<input id="id_x" name="x" type="hidden">
+			<input id="id_y" name="y" type="hidden">
+			<input id="id_width" name="width" type="hidden">
+			<input id="id_height" name="height" type="hidden">
+        </div>
+<!-- -->
 	</div>
 	<div class="form-group row">
 		<div class="col-lg-2 col-md-2 col-sm-2"><font size="3"><b>EHS registration and training completed on (date):</b></font></div>

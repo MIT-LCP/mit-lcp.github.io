@@ -625,7 +625,7 @@ def user(id):
     else:
         Person[3] = "<option value='1'> -- General -- </option><option value='2'> -- Collaborating Researcher -- </option><option value='3'> -- Visiting Colleague -- </option><option value='4'> -- Alumni -- </option><option value='5'> -- Graduate Student -- </option><option value='6'> -- UROP -- </option><option value='7'> -- Research Affiliate -- </option><option value='8' selected> -- Other -- </option>"
 
-    return render_template('edit.html', Error=E, Success=S, Logged_User=session['Username'], Person=Person)
+    return render_template('admin/edit.html', Error=E, Success=S, Logged_User=session['Username'], Person=Person)
 
 ####################################################################################################################################
 # 1. General
