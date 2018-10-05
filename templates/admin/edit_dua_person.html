@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratory for Computational Physiology</title>
+  {% include 'header.html'%}
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+
+</head>
+<body data-spy="scroll" data-target=".navbar-fixed-top" style="padding-top: 37px;">
+  {% include 'navbar.html'%}
+  <!-- - - - - - - - - - - - - - - - - - - - - - - START OF NEWS - - - - - - - - - - - - - - - - - - - - - - -->
+  {% if Error %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>{{Error}}</strong>
+  </div>
+  {% endif%}
+  <div class="container">
+    <div class="row feature_header text-center">
+      <h1 class="feature_title"> {{Person[2]}} </h1>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <form method='POST' action=''>
+          <input type="hidden" name="UID" required value="{{Person[10]}}">
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>First Name:</label>
+            <div class='col-sm-10'>
+              <input type='text' class='form-control' required name='FName' value='{{Person[0]}}'>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Last Name:</label>
+            <div class='col-sm-10'>
+              <input type='text' class='form-control' required name='LName' value='{{Person[1]}}'>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Email:</label>
+            <div class='col-sm-10'>
+              <input type='email' class='form-control' required name='Email' value='{{Person[2]}}'>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Google Email:</label>
+            <div class='col-sm-10'>
+              <input type='email' class='form-control' name='GEmail' value='{{Person[8]}}'>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>AWS:</label>
+            <div class='col-sm-10'>
+              <input type='text' class='form-control' name='AWS' value='{{Person[7]}}'>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>MIMIC approval date:</label>
+            <div class='col-sm-10'>
+              <input type='text' class='form-control' id='mimic_date' required name='MIMIC_A' value='{{Person[4]}}'>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>eICU approval date:</label>
+            <div class='col-sm-10'>
+              <input type='text' class='form-control' id='eicu_date' name='eicu_A' value='{{Person[5]}}' placeholder="MM/DD/YYYY">
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Other info:</label>
+            <div class='col-sm-10'>
+              <input type='text' class='form-control' name='Other' value='{{Person[9]}}'>
+            </div>
+          </div>
+          <button type='submit' id='submit' class='btn btn-primary pull-right'>Submit</button>
+          <a class='btn btn-danger pull-left' href='duas'>Back</a>
+        </form>
+      </div>
+    </div>
+  </div>
+<br><br>
+<!-- - - - - - - - - - - - - - - - - - - - - - - END OF NEWS - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - START OF FOOTER  - - - - - - - - - - - - - - - - - - - - - - -->
+{% include 'footer.html'%}
+<!-- - - - - - - - - - - - - - - - - - - - - - - END OF FOOTER - - - - - - - - - - - - - - - - - - - - - - -->
+
+<script type="text/javascript">
+  $('ul.nav li.dropdown').hover(function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(0);
+  }, function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeOut(200);
+  });
+
+  $("#mimic_date").on("keyup", function() {
+      date = $('#mimic_date').val()
+      string = date.split("/");
+      if(string[0] < 12 && string[0] > 0){
+        if(string[1] < 31 && string[1] > 0){
+          if(string[2] > 1900 && string[2].toString().length == 4){
+            $('#mimic_date').css("border", "1px solid rgb(206, 212, 218)");
+            $('#submit').prop('disabled', false);
+          }else{
+            $('#mimic_date').css("border", "5px solid red");
+            $('#submit').prop('disabled', true);
+          }
+        }else{ 
+            $('#mimic_date').css("border", "5px solid red");
+            $('#submit').prop('disabled', true);
+          }
+      }else if(date == ''){
+        $('#mimic_date').css("border", "1px solid rgb(206, 212, 218)");
+        $('#submit').prop('disabled', false);
+      }else{ 
+        $('#mimic_date').css("border", "5px solid red");
+        $('#submit').prop('disabled', true);
+      }
+    });
+
+
+  $('#eicu_date').on("keyup", function() {
+      date = $('#eicu_date').val()
+      string = date.split("/");
+      if(string[0] <= 12 && string[0] > 0){
+        if(string[1] <= 31 && string[1] > 0){
+          if(string[2] > 1900 && string[2].toString().length == 4){
+            $('#eicu_date').css("border", "1px solid rgb(206, 212, 218)");
+            $('#submit').prop('disabled', false);
+          }else{
+            $('#eicu_date').css("border", "5px solid red");
+            $('#submit').prop('disabled', true);
+          }
+        }else{ 
+            $('#eicu_date').css("border", "5px solid red");
+            $('#submit').prop('disabled', true);
+          }
+      }else if(date == ''){
+        $('#eicu_date').css("border", "1px solid rgb(206, 212, 218)");
+        $('#submit').prop('disabled', false);
+      }else{ 
+        $('#eicu_date').css("border", "5px solid red");
+        $('#submit').prop('disabled', true);
+      }
+    });
+
+</script>
+
+</body>
+</html>

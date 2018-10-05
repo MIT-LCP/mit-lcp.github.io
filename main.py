@@ -186,6 +186,14 @@ def Auth(Username, Password):
         app.logger.error('Incorrect password or username: %s Error: %s' % (Username, str(result)))
         return False
 
+def is_Date(date_string):
+    date_format = '%m/%d/%Y'
+    try:
+        date_obj = datetime.strptime(date_string, date_format)
+        return True
+    except:
+        return False
+
 def show_diff(text, n_text):
     """
     http://stackoverflow.com/a/788780
@@ -690,9 +698,99 @@ def Submit_User():
         session['ERROR'] = "There was an error, please try again."
         return redirect('dashboard')
 
+@app.route("/get_info", methods=['POST'])
+def get_info():
+    last  = request.form.get('last_name', None)
+    first = request.form.get('first_name', None)
+    email = request.form.get('email', None)
+
+    mimic_model = MIMIC_Model()
+
+    if first is not None and first != '':
+        List = mimic_model.get_like_name(first)
+    elif last is not None and last != '':
+        List = mimic_model.get_like_last(last)
+    elif email is not None and email != '':
+        List = mimic_model.get_like_email(email)
+    else:
+        List = []
+
+    Line = ''
+    for person in List:
+        edit = "<a href='edit_dua_{0}' class='btn btn-warning'>Edit</a>".format(person[10])
+        Line += "<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td></tr>".format(person[0], person[1], person[2], person[4], person[5], person[8], person[7], edit)
+
+    return Line
+
+@app.route("/edit_dua_<ID>", methods=['POST','GET'])
+def Edit_dua_person(ID):
+    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
+        session['ERROR'] = "Please authenticate."
+        return redirect('/login')
+
+    from datetime import datetime
+    E = S = ''
+    mimic_model = MIMIC_Model()
+    try:
+        type(int(ID))
+    except:
+        Total = mimic_model.get_total()
+        return render_template('admin/duas.html', Error=E, Success=S, Logged_User=session['Username'],total=Total)
+
+    app.logger.info('{0}: User {1} is looking at the duas user number {2}.'.format(datetime.now(), session['Username'], ID))
+
+    if request.method == 'POST' and request.form.get("Email"):
+        eicu_A  = request.form.get('eicu_A', None)
+        MIMIC_A = request.form.get('MIMIC_A', None)
+        AWS = request.form.get('AWS', None)
+        GEmail = request.form.get('GEmail', None)
+        Email = request.form.get('Email', None)
+        LName = request.form.get('LName', None)
+        FName = request.form.get('FName', None)
+        UID   = request.form.get('UID', None)
+        Other = request.form.get('Other', None)
+        if is_Date(MIMIC_A) and FName and LName and Email and UID:
+            result = mimic_model.alter_person(FName, LName, Email, MIMIC_A, eicu_A, AWS, GEmail, Other, UID)
+            if result:
+                S = "Updated"
+                Total = mimic_model.get_total()
+                return render_template('admin/duas.html', Error=E, Success=S, Logged_User=session['Username'],total=Total)
+            else:
+                E = "Error updating the person"
+
+    Person = mimic_model.get_by_id(ID)
+    if Person:
+        Person = list(Person)
+    else:
+        Total = mimic_model.get_total()
+        return render_template('admin/duas.html', Error=E, Success=S, Logged_User=session['Username'],total=Total)
+
+    if Person[5] == 'None' or Person[5] == None:
+        Person[5] = ''
+
+    return render_template('admin/edit_dua_person.html', Error=E, date=date, Success=S, Logged_User=session['Username'], Person=Person)
+
+@app.route("/duas")#Signup page
+def dua_dashboard():
+    """
+    FUNCTION to handle user edits
+    """
+    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
+        session['ERROR'] = "Please authenticate."
+        return redirect('/login')
+    E = S = ''
+    mimic_model = MIMIC_Model()
+    from datetime import datetime
+    app.logger.info('{0}: User {1} is looking at the duas.'.format(datetime.now(), session['Username']))
+
+    Total = mimic_model.get_total()
+
+    return render_template('admin/duas.html', Error=E, Success=S, Logged_User=session['Username'],total=Total)
+
+
 
 if __name__ == "__main__":#RUN THE APP in port 8083
     # Once the templates are edited, this is needed to refresh the HTML automaticly
     app.jinja_env.auto_reload = True
-    app.run(host='0.0.0.0', port=8083, threaded=True)#, debug=True)
+    app.run(host='0.0.0.0', port=8083, threaded=True, debug=True)
     

@@ -264,3 +264,131 @@ class SimpleModel:
         except psycopg2.Error as e:
             return e
 
+
+
+class MIMIC_Model:
+    def __init__(self):
+        dbinfo = Config()
+        try:
+            self.con = psycopg2.connect("dbname={0} user={1} host={2} password={3}".format(dbinfo.getDBName(), dbinfo.getUser(), dbinfo.getHost(), dbinfo.getPassword()))
+            self.cur = self.con.cursor()
+        except psycopg2.Error as e:
+            print e
+    def __del__(self):
+        try:
+            self.con.close()
+        except psycopg2.Error as e:
+            print e
+    def get_all(self):
+        try:
+            self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info FROM \"Lab\".mimic_approved")
+            return self.cur.fetchall()
+        except psycopg2.Error as e:
+            print e
+            return False
+    def add_all_perons(self, name, last, email, mimic, eicu=None, country=None, info=None):
+        try:
+            if '@' not in email:
+                print "NOT EMAIL"
+                return False 
+            self.cur.execute("INSERT INTO \"Lab\".mimic_approved (first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info ) VALUES ('{0}', '{1}','{2}', '{3}','{4}', '{5}', '{6}')".format(name, last, email, country, mimic, eicu, info))
+            self.con.commit()
+            return True
+        except psycopg2.Error as e:
+            print "INSERT INTO \"Lab\".mimic_approved (first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info ) VALUES ('{0}', '{1}','{2}', '{3}','{4}', '{5}', '{6}')".format(name, last, email, country, mimic, eicu, info)
+            print e
+            return False
+
+    def add_person(self, name, last, email, mimic, eicu=None):
+        try:
+            self.cur.execute("INSERT INTO \"Lab\".mimic_approved (first_name, last_name,physionet_email, mimic_approval, eicu_approval) VALUES ('{0}', '{1}','{2}', '{3}','{4}')".format(name, last, email, mimic, eicu))
+            self.con.commit()
+            return True
+        except psycopg2.Error as e:
+            print e
+            return False
+    def get_total(self):
+        try:
+            self.cur.execute("SELECT count(*) FROM \"Lab\".mimic_approved")
+            return self.cur.fetchone()[0]
+        except psycopg2.Error as e:
+            print e
+            return False
+    def get_by_email(self, email):
+        try:
+            self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info FROM \"Lab\".mimic_approved where physionet_email = '{0}' or google_email = '{0}'".format(email))
+            return self.cur.fetchone()
+        except psycopg2.Error as e:
+            print e
+            return False
+    def add_google_email(self, p_email, g_email):
+        try:
+            self.cur.execute("UPDATE \"Lab\".mimic_approved SET (google_email) = ('{0}') where physionet_email = '{1}'".format(g_email, p_email))
+            self.con.commit()
+            return True
+        except psycopg2.Error as e:
+            print e
+            return False
+
+    def get_email(self):
+        try:
+            self.cur.execute("SELECT physionet_email, google_email FROM \"Lab\".mimic_approved ")
+            emails = self.cur.fetchall()
+            email_list = []
+            for item in emails:
+                for thing in item:
+                    if thing != None:
+                        email_list.append(thing)
+            return email_list
+        except psycopg2.Error as e:
+            print e
+            return False
+    def add_aws_id(self, p_email, aws):
+        try:
+            self.cur.execute("UPDATE \"Lab\".mimic_approved SET (aws_id) = ('{0}') where physionet_email = '{1}' or google_email = '{1}'".format(aws, p_email))
+            self.con.commit()
+            return True
+        except psycopg2.Error as e:
+            print e
+            return False
+
+    def get_like_name(self, name):
+        try:
+            self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info, id FROM \"Lab\".mimic_approved where first_name ILIKE '%{0}%'".format(name))
+            return self.cur.fetchall()
+        except psycopg2.Error as e:
+            print e
+            return False
+
+    def get_like_last(self, last):
+        try:
+            self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info, id FROM \"Lab\".mimic_approved where last_name ILIKE '%{0}%'".format(last))
+            return self.cur.fetchall()
+        except psycopg2.Error as e:
+            print e
+            return False
+
+    def get_like_email(self, email):
+        try:
+            self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info, id FROM \"Lab\".mimic_approved where physionet_email ILIKE '%{0}%' or google_email ILIKE '%{0}%' ".format(email))
+            return self.cur.fetchall()
+        except psycopg2.Error as e:
+            print e
+            return False
+
+    def get_by_id(self, ID):
+        try:
+            self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info, id FROM \"Lab\".mimic_approved where id = {0} ".format(ID))
+            return self.cur.fetchone()
+        except psycopg2.Error as e:
+            print e
+            return False
+
+    def alter_person(self, FName, LName, Email, MIMIC_A, eicu_A, AWS, GEmail, Other, UID):
+        try:
+            self.cur.execute("UPDATE \"Lab\".mimic_approved SET (first_name, last_name, physionet_email, mimic_approval, eicu_approval, aws_id, google_email, other_info) = ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}') where id = '{8}'".format(FName, LName, Email, MIMIC_A, eicu_A, AWS, GEmail, Other, UID))
+            self.con.commit()
+            return True
+        except psycopg2.Error as e:
+            print e
+            return False
