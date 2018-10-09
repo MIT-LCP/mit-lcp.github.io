@@ -439,7 +439,7 @@ def parse_tsv():
 
 def add_from_tsv():
     MIMIC = parse_tsv()
-    MimicModel = Model()
+    MimicModel = MIMIC_Model()
     Added = False
     for indx,item in enumerate(MIMIC):
         if '@' in item[2]:
