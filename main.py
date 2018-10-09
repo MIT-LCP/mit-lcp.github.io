@@ -718,6 +718,10 @@ def get_info():
     Line = ''
     for person in List:
         edit = "<a href='edit_dua_{0}' class='btn btn-warning'>Edit</a>".format(person[10])
+        person = list(person)
+        for indx, item in enumerate(person):
+            if item == 'None' or item == None:
+                person[indx] = ''
         Line += "<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td></tr>".format(person[0], person[1], person[2], person[4], person[5], person[8], person[7], edit)
 
     return Line
@@ -765,8 +769,9 @@ def Edit_dua_person(ID):
         Total = mimic_model.get_total()
         return render_template('admin/duas.html', Error=E, Success=S, Logged_User=session['Username'],total=Total)
 
-    if Person[5] == 'None' or Person[5] == None:
-        Person[5] = ''
+    for indx, item in enumerate(Person):
+        if item == 'None' or item == None:
+            Person[indx] = ''
 
     return render_template('admin/edit_dua_person.html', Error=E, date=date, Success=S, Logged_User=session['Username'], Person=Person)
 
@@ -792,5 +797,5 @@ def dua_dashboard():
 if __name__ == "__main__":#RUN THE APP in port 8083
     # Once the templates are edited, this is needed to refresh the HTML automaticly
     app.jinja_env.auto_reload = True
-    app.run(host='0.0.0.0', port=8083, threaded=True, debug=True)
+    app.run(host='0.0.0.0', port=8083, threaded=True)#, debug=True)
     

@@ -273,30 +273,35 @@ class MIMIC_Model:
             self.con = psycopg2.connect("dbname={0} user={1} host={2} password={3}".format(dbinfo.getDBName(), dbinfo.getUser(), dbinfo.getHost(), dbinfo.getPassword()))
             self.cur = self.con.cursor()
         except psycopg2.Error as e:
-            print e
+            WriteError("Error connecting", e)
+
     def __del__(self):
         try:
             self.con.close()
         except psycopg2.Error as e:
-            print e
+            WriteError("Error connecting", e)
+
     def get_all(self):
         try:
             self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info FROM \"Lab\".mimic_approved")
             return self.cur.fetchall()
         except psycopg2.Error as e:
-            print e
+            WriteError("Error getting every person", e)
             return False
     def add_all_perons(self, name, last, email, mimic, eicu=None, country=None, info=None):
         try:
             if '@' not in email:
                 print "NOT EMAIL"
-                return False 
+                return False
+            if not Not_Date(country):
+                print "IS A DATE, email {0} name {1}".format(email, name)
+                return False
             self.cur.execute("INSERT INTO \"Lab\".mimic_approved (first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info ) VALUES ('{0}', '{1}','{2}', '{3}','{4}', '{5}', '{6}')".format(name, last, email, country, mimic, eicu, info))
             self.con.commit()
             return True
         except psycopg2.Error as e:
             print "INSERT INTO \"Lab\".mimic_approved (first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info ) VALUES ('{0}', '{1}','{2}', '{3}','{4}', '{5}', '{6}')".format(name, last, email, country, mimic, eicu, info)
-            print e
+            WriteError("Error adding a person", e)
             return False
 
     def add_person(self, name, last, email, mimic, eicu=None):
@@ -305,21 +310,21 @@ class MIMIC_Model:
             self.con.commit()
             return True
         except psycopg2.Error as e:
-            print e
+            WriteError("Error adding a person", e)
             return False
     def get_total(self):
         try:
             self.cur.execute("SELECT count(*) FROM \"Lab\".mimic_approved")
             return self.cur.fetchone()[0]
         except psycopg2.Error as e:
-            print e
+            WriteError("Error getting total of approved users", e)
             return False
     def get_by_email(self, email):
         try:
             self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info FROM \"Lab\".mimic_approved where physionet_email = '{0}' or google_email = '{0}'".format(email))
             return self.cur.fetchone()
         except psycopg2.Error as e:
-            print e
+            WriteError("Error getting user by email", e)
             return False
     def add_google_email(self, p_email, g_email):
         try:
@@ -327,9 +332,8 @@ class MIMIC_Model:
             self.con.commit()
             return True
         except psycopg2.Error as e:
-            print e
+            WriteError("Error adding google email", e)
             return False
-
     def get_email(self):
         try:
             self.cur.execute("SELECT physionet_email, google_email FROM \"Lab\".mimic_approved ")
@@ -341,8 +345,9 @@ class MIMIC_Model:
                         email_list.append(thing)
             return email_list
         except psycopg2.Error as e:
-            print e
+            WriteError("Error getting all emails", e)
             return False
+
     def add_aws_id(self, p_email, aws):
         try:
             self.cur.execute("UPDATE \"Lab\".mimic_approved SET (aws_id) = ('{0}') where physionet_email = '{1}' or google_email = '{1}'".format(aws, p_email))
@@ -392,3 +397,62 @@ class MIMIC_Model:
         except psycopg2.Error as e:
             print e
             return False
+
+# Python code to remove duplicate elements 
+def duplicate_email(duplicate): 
+    final_list = [] 
+    duplicates = []
+    for num in duplicate: 
+        if num not in final_list: 
+            final_list.append(num)
+        else:
+            duplicates.append(num)
+    return final_list, duplicates
+
+def parse_eicu():
+    content = open('eicuapprovals.html').read()
+    content = content.split("<table>")[1].split("</table>")[0].replace('</tr>','').split('<tr>')
+    eicu = []
+    for item in content:
+        tmp = filter(None, item.replace('</td>','').replace('\n','').split('<td>'))
+        if re.match('\d*\.',tmp[0]):
+            eicu.append(tmp)
+
+def parse_mimic():
+    content = open('database_access_grantees.html').read()
+    content = content.split("<table>")[1].split("</table>")[0].replace('</tr>','').split('<tr>')
+
+    MIMIC = []
+    for indx, item in enumerate(content):
+        tmp = filter(None, item.replace('</td>','').replace('\n','').replace('<p>','').replace('</p>','').split('<td>'))
+        if tmp and re.match('\d*\.',tmp[0]):
+            MIMIC.append(tmp)
+    return MIMIC
+
+def parse_tsv():
+    MIMIC = []
+    content = open('tsv.txt').readlines()
+    for item in content:
+        if item.count('\t') > 6: 
+            MIMIC.append(item.replace('\n','').split('\t'))
+    return MIMIC
+
+def add_from_tsv():
+    MIMIC = parse_tsv()
+    MimicModel = Model()
+    Added = False
+    for indx,item in enumerate(MIMIC):
+        if '@' in item[2]:
+            if not MimicModel.get_by_email(item[2]):
+                print "Addning people"
+                empty = False
+                for part in item:
+                    if part == '':
+                        print "ERROR"
+                        empty = True
+                        return False
+                if not empty:
+                    result = MimicModel.add_all_perons(item[0].replace("'","''"), item[1].replace("'","''"), item[2], item[5], item[6], item[4].replace("'","''"), item[7].replace("'","''"))
+                    if result == False:
+                        print result
+    return True
