@@ -437,6 +437,27 @@ def parse_tsv():
             MIMIC.append(item.replace('\n','').split('\t'))
     return MIMIC
 
+def Not_Date(date_string):
+    date_format = '%m/%d/%Y'
+    try:
+        date_obj = datetime.strptime(date_string, date_format)
+        return False
+    except:
+        return True
+
+def is_date(date_string):
+    date_format = '%m/%d/%Y'
+    try:
+      date_obj = datetime.strptime(date_string, date_format)
+      return date_string
+    except:
+        try:
+            date_format = '%m/%d/%Y--'
+            date_obj = datetime.strptime(date_string, date_format)
+            return date_string.replace('--','')
+        except:
+            pass
+
 def add_from_tsv():
     MIMIC = parse_tsv()
     MimicModel = MIMIC_Model()
