@@ -13,7 +13,8 @@
 #############################################################################################################
 import datetime, urllib2
 from hashlib import sha256
-from re import match 
+from re import match, sub, DOTALL
+
 def File_Change(File_Content):
   """
   This function is designed to take the file that Ken generates for the publications, and re-arrange it to show the 
@@ -23,8 +24,9 @@ def File_Change(File_Content):
   Current_Year = datetime.datetime.now().year
   for item in reversed(range(2003, Current_Year+1)):# We add the keys to the dictionary of years, basicly we add a every year, until the current year
       Years[int(item)] = ""
-
-  File_Content    = File_Content.split("""<dl compact="1" class="bib2xhtml">""")
+  
+  File_Content = sub(r"<!--(.|\s|\n)*?-->", "", File_Content, flags=DOTALL).split("""<dl compact="1" class="bib2xhtml">""")
+  
   Size            = len(File_Content)
   Header          = File_Content[0] # We take the header, and we sicard it.
   Journal_Tag     = """\r\n<a name="journal"></a><h3>Journal articles</h3>\r\n</dl>\r\n\r\n"""
@@ -48,49 +50,33 @@ def File_Change(File_Content):
 
   for row in range(Journal_idx + 1, Conferences_idx):
     if File_Content[row][21:25].isdigit():
-      temp = File_Content[row] 
-      Years[int(File_Content[row][21:25])] += Journal_Tag.replace("\r","").replace("\n","").replace("journal", "journal"+File_Content[row][21:25]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
-      All['journal'][int(File_Content[row][21:25])] = Journal_Tag.replace("\r","").replace("\n","").replace("journal", "journal"+File_Content[row][21:25]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
-    elif File_Content[row][23:27].isdigit():
-      temp = File_Content[row]
-      Years[int(File_Content[row][23:27])] += Journal_Tag.replace("\r","").replace("\n","").replace("journal", "journal"+File_Content[row][23:27]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
-      All['journal'][int(File_Content[row][23:27])] = Journal_Tag.replace("\r","").replace("\n","").replace("journal", "journal"+File_Content[row][23:27]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
+      Journal_Tag = Journal_Tag.replace("\r","").replace("\n","").replace("</dl>","")
+      Years[int(File_Content[row][21:25])] += Journal_Tag.replace("journal", "journal"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
+      All['journal'][int(File_Content[row][21:25])] = Journal_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
       print "We could not find the year, the variables are not int. Check the perl script and/or alter this one", row, "\n\n"
 
   for row in range(Conferences_idx + 1, Books_idx):
     if File_Content[row][21:25].isdigit():
-      temp = File_Content[row]
-      Years[int(File_Content[row][21:25])] += Conferences_Tag.replace("\r","").replace("\n","").replace("conferences", "conferences"+File_Content[row][21:25]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
-      All['conferences'][int(File_Content[row][21:25])] = Conferences_Tag.replace("\r","").replace("\n","").replace("conferences", "conferences"+File_Content[row][21:25]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
-    elif File_Content[row][23:27].isdigit():
-      temp = File_Content[row]
-      Years[int(File_Content[row][23:27])] += Conferences_Tag.replace("\r","").replace("\n","").replace("conferences", "conferences"+File_Content[row][23:27]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
-      All['conferences'][int(File_Content[row][23:27])] = Conferences_Tag.replace("\r","").replace("\n","").replace("conferences", "conferences"+File_Content[row][23:27]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
+      Conferences_Tag = Conferences_Tag.replace("\r","").replace("\n","").replace("</dl>","")
+      Years[int(File_Content[row][21:25])] += Conferences_Tag.replace("conferences", "conferences"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
+      All['conferences'][int(File_Content[row][21:25])] = Conferences_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
       print "We could not find the year, the variables are not int. Check the perl script and/or alter this one", row, "\n\n"
 
   for row in range(Books_idx + 1, Theses_idx):
     if File_Content[row][21:25].isdigit():
-      temp = File_Content[row]
-      Years[int(File_Content[row][21:25])] += Books_Tag.replace("\r","").replace("\n","").replace("books", "books"+File_Content[row][21:25]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
-      All['books'][int(File_Content[row][21:25])] = Books_Tag.replace("\r","").replace("\n","").replace("conferences", "conferences"+File_Content[row][21:25]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
-    elif File_Content[row][23:27].isdigit():
-      temp = File_Content[row]
-      Years[int(File_Content[row][23:27])] += Books_Tag.replace("\r","").replace("\n","").replace("books", "books"+File_Content[row][23:27]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
-      All['books'][int(File_Content[row][23:27])] = Books_Tag.replace("\r","").replace("\n","").replace("conferences", "conferences"+File_Content[row][23:27]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
+      Books_Tag = Books_Tag.replace("\r","").replace("\n","").replace("</dl>","")
+      Years[int(File_Content[row][21:25])] += Books_Tag.replace("books", "books"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
+      All['books'][int(File_Content[row][21:25])] = Books_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
       print "We could not find the year, the variables are not int. Check the perl script and/or alter this one", row, "\n\n"
 
   for row in range(Theses_idx + 1, Size):
     if File_Content[row][21:25].isdigit():
-      temp = File_Content[row]
-      Years[int(File_Content[row][21:25])] += Theses_Tag.replace("\r","").replace("\n","").replace("theses", "theses"+File_Content[row][21:25]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
-      All['theses'][int(File_Content[row][21:25])] = Theses_Tag.replace("\r","").replace("\n","").replace("conferences", "conferences"+File_Content[row][21:25]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
-    elif File_Content[row][23:27].isdigit():
-      temp = File_Content[row]
-      Years[int(File_Content[row][23:27])] += Theses_Tag.replace("\r","").replace("\n","").replace("theses", "theses"+File_Content[row][23:27]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
-      All['theses'][int(File_Content[row][23:27])] = Theses_Tag.replace("\r","").replace("\n","").replace("conferences", "conferences"+File_Content[row][23:27]) + File_Content[row][temp.index("<!--") - 1:].replace("\r","").replace("\n","")
+      Theses_Tag = Theses_Tag.replace("\r","").replace("\n","").replace("</dl>","")
+      Years[int(File_Content[row][21:25])] += Theses_Tag.replace("theses","theses"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
+      All['theses'][int(File_Content[row][21:25])] = Theses_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
       print "We could not find the year, the variables are not int. Check the perl script and/or alter this one", row, "\n\n"
 
@@ -103,37 +89,37 @@ def File_Change(File_Content):
       if "http" in item.split("</a>")[0].split('<a')[1]:
         Recent.append("<li><a" + item.split("</a>")[0].split('<a')[1] + "</a></li>")  
   #####
-  temp1 = ""
+  temp = ""
 
   for key in ['journal', 'conferences', 'books', 'theses']:
     if key == 'journal':
-      temp1 += "<h3 id='journalall'>Journal articles</h3>"
+      temp += "<h3 id='journalall'>Journal articles</h3>"
     elif key == 'conferences':
-      temp1 += "<h3 id='conferencesall'>Conference proceedings and presentations</h3>"
+      temp += "<h3 id='conferencesall'>Conference proceedings and presentations</h3>"
     elif key == 'books':
-      temp1 += "<h3 id='booksall'>Books and book chapters</h3>"
+      temp += "<h3 id='booksall'>Books and book chapters</h3>"
     elif key == 'theses':
-      temp1 += "<h3 id='thesesall'>Theses</h3>"
+      temp += "<h3 id='thesesall'>Theses</h3>"
     else:
       print 'key', key
     for item in reversed(range(2003, Current_Year+1)):
       if item in All[key].keys():
         if key == 'journal':
-          temp1 += All[key][item].replace('<h3>Journal articles</h3>', '<h4>{0}</h4>'.format(item))
+          temp += All[key][item].replace('<h3>Journal articles</h3>', '<h4>{0}</h4>'.format(item))
         elif key == 'conferences':
-          temp1 += All[key][item].replace('<h3>Conference proceedings and presentations</h3>', '<h4>{0}</h4>'.format(item))
+          temp += All[key][item].replace('<h3>Conference proceedings and presentations</h3>', '<h4>{0}</h4>'.format(item))
         elif key == 'books':
           # print All[key][item]
-          temp1 += All[key][item].replace('<h3>Books and book chapters</h3>', '<h4>{0}</h4>'.format(item))
+          temp += All[key][item].replace('<h3>Books and book chapters</h3>', '<h4>{0}</h4>'.format(item))
           # print All[key][item].replace('<h3>Books and book chapters</h3>', '<h4>{0}</h4>'.format(item))
         elif key == 'theses':
-          temp1 += All[key][item].replace('<h3>Theses</h3>', '<h4>{0}</h4>'.format(item))
+          temp += All[key][item].replace('<h3>Theses</h3>', '<h4>{0}</h4>'.format(item))
         else:
           print 'key', key
 
   Head_tag = """<center><a href="#journalall">Journal articles</a> | <a href="#conferencesall">Conference  presentations</a> | 
   <a href="#booksall">Books and book chapters</a> | <a href="#thesesall">Theses</a></center>"""
-  Content  = """<div id="ALL" class="container tab-pane fade">{0}{1}</div>\n""".format(Head_tag, temp1)
+  Content  = """<div id="ALL" class="container tab-pane fade">{0}{1}</div>\n""".format(Head_tag, temp)
 # Setting the content of the years
   for key, value in Years.iteritems():
       Head_tag = """<center><a href="#journal{}">Journal articles</a> | <a href="#conferences{}">Conference  presentations</a> | 
@@ -307,7 +293,3 @@ else:
   print "- The latest  file: \t{0}".format(Download_SHA)
   print "- The current file: \t{0}".format(File_SHA) 
   print "- The stored shasum: \t{0}".format(SHA)
-
-
-
-

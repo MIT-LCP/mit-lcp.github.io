@@ -698,6 +698,11 @@ def Submit_User():
         session['ERROR'] = "There was an error, please try again."
         return redirect('dashboard')
 
+####################################################################################################################################
+## 
+## From here down is DUA related
+## 
+####################################################################################################################################
 @app.route("/get_info", methods=['POST'])
 def get_info():
     last  = request.form.get('last_name', None)
@@ -791,6 +796,7 @@ def dua_dashboard():
     Total = mimic_model.get_total()
 
     return render_template('admin/duas.html', Error=E, Success=S, Logged_User=session['Username'],total=Total)
+
 
 
 
