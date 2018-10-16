@@ -221,6 +221,7 @@ def File_Change(File_Content):
   .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
     border: 1px solid #ddd !important;
     border-right-color: transparent !important;
+    font-weight: bolder;
   }
 
   a {color: #202123;}
