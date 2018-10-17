@@ -54,7 +54,7 @@ def File_Change(File_Content):
       Years[int(File_Content[row][21:25])] += Journal_Tag.replace("journal", "journal"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
       All['journal'][int(File_Content[row][21:25])] = Journal_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
-      print "We could not find the year, the variables are not int. Check the perl script and/or alter this one", row, "\n\n"
+      print "We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n"
 
   for row in range(Conferences_idx + 1, Books_idx):
     if File_Content[row][21:25].isdigit():
@@ -62,7 +62,7 @@ def File_Change(File_Content):
       Years[int(File_Content[row][21:25])] += Conferences_Tag.replace("conferences", "conferences"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
       All['conferences'][int(File_Content[row][21:25])] = Conferences_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
-      print "We could not find the year, the variables are not int. Check the perl script and/or alter this one", row, "\n\n"
+      print "We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n"
 
   for row in range(Books_idx + 1, Theses_idx):
     if File_Content[row][21:25].isdigit():
@@ -70,7 +70,7 @@ def File_Change(File_Content):
       Years[int(File_Content[row][21:25])] += Books_Tag.replace("books", "books"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
       All['books'][int(File_Content[row][21:25])] = Books_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
-      print "We could not find the year, the variables are not int. Check the perl script and/or alter this one", row, "\n\n"
+      print "We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n"
 
   for row in range(Theses_idx + 1, Size):
     if File_Content[row][21:25].isdigit():
@@ -78,7 +78,7 @@ def File_Change(File_Content):
       Years[int(File_Content[row][21:25])] += Theses_Tag.replace("theses","theses"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
       All['theses'][int(File_Content[row][21:25])] = Theses_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
-      print "We could not find the year, the variables are not int. Check the perl script and/or alter this one", row, "\n\n"
+      print "We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n"
 
   Recent = []
   for item in Years[Current_Year].split('<dd>'):
@@ -219,9 +219,10 @@ def File_Change(File_Content):
   .tab-pane { width:100% }
 
   .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
-    border: 1px solid #ddd !important;
+    border: 2px solid #000 !important;
     border-right-color: transparent !important;
     font-weight: bolder;
+    color: #000;
   }
 
   a {color: #202123;}
