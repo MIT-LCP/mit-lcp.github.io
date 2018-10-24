@@ -727,6 +727,10 @@ def get_info():
         for indx, item in enumerate(person):
             if item == 'None' or item == None:
                 person[indx] = ''
+            elif (indx == 4 or indx == 5) and len(item) > 5 and not is_Date(item):
+                tmp = item.replace(',','').split()
+                day = str(datetime.strptime(tmp[1],'%b').month) + '/' + str(tmp[0]) + '/' + str(tmp[2])
+                person[indx] = day
         Line += "<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td></tr>".format(person[0], person[1], person[2], person[4], person[5], person[8], person[7], edit)
 
     return Line
@@ -758,8 +762,10 @@ def Edit_dua_person(ID):
         FName = request.form.get('FName', None)
         UID   = request.form.get('UID', None)
         Other = request.form.get('Other', None)
+        app.logger.info('The variables in the post are: {0}'.format(request.form))
         if is_Date(MIMIC_A) and FName and LName and Email and UID:
             result = mimic_model.alter_person(FName, LName, Email, MIMIC_A, eicu_A, AWS, GEmail, Other, UID)
+            app.logger.info('The form result of the DUA edit was: {0}'.format(result))
             if result:
                 S = "Updated"
                 Total = mimic_model.get_total()
@@ -777,7 +783,10 @@ def Edit_dua_person(ID):
     for indx, item in enumerate(Person):
         if item == 'None' or item == None:
             Person[indx] = ''
-
+        elif (indx == 4 or indx == 5) and len(item) > 5 and not is_Date(item):
+            tmp = item.replace(',','').split()
+            day = str(datetime.strptime(tmp[1],'%b').month) + '/' + str(tmp[0]) + '/' + str(tmp[2])
+            Person[indx] = day
     return render_template('admin/edit_dua_person.html', Error=E, date=date, Success=S, Logged_User=session['Username'], Person=Person)
 
 @app.route("/duas")#Signup page
