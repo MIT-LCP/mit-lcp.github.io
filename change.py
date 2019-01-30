@@ -54,7 +54,7 @@ def File_Change(File_Content):
       Years[int(File_Content[row][21:25])] += Journal_Tag.replace("journal", "journal"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
       All['journal'][int(File_Content[row][21:25])] = Journal_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
-      print "We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n"
+      print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
   for row in range(Conferences_idx + 1, Books_idx):
     if File_Content[row][21:25].isdigit():
@@ -62,7 +62,7 @@ def File_Change(File_Content):
       Years[int(File_Content[row][21:25])] += Conferences_Tag.replace("conferences", "conferences"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
       All['conferences'][int(File_Content[row][21:25])] = Conferences_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
-      print "We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n"
+      print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
   for row in range(Books_idx + 1, Theses_idx):
     if File_Content[row][21:25].isdigit():
@@ -70,7 +70,7 @@ def File_Change(File_Content):
       Years[int(File_Content[row][21:25])] += Books_Tag.replace("books", "books"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
       All['books'][int(File_Content[row][21:25])] = Books_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
-      print "We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n"
+      print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
   for row in range(Theses_idx + 1, Size):
     if File_Content[row][21:25].isdigit():
@@ -78,7 +78,7 @@ def File_Change(File_Content):
       Years[int(File_Content[row][21:25])] += Theses_Tag.replace("theses","theses"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
       All['theses'][int(File_Content[row][21:25])] = Theses_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
-      print "We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n"
+      print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
   Recent = []
   for item in Years[Current_Year].split('<dd>'):
@@ -101,7 +101,7 @@ def File_Change(File_Content):
     elif key == 'theses':
       temp += "<h3 id='thesesall'>Theses</h3>"
     else:
-      print 'key', key
+      print ('key', key)
     for item in reversed(range(2003, Current_Year+1)):
       if item in All[key].keys():
         if key == 'journal':
@@ -109,13 +109,11 @@ def File_Change(File_Content):
         elif key == 'conferences':
           temp += All[key][item].replace('<h3>Conference proceedings and presentations</h3>', '<h4>{0}</h4>'.format(item))
         elif key == 'books':
-          # print All[key][item]
           temp += All[key][item].replace('<h3>Books and book chapters</h3>', '<h4>{0}</h4>'.format(item))
-          # print All[key][item].replace('<h3>Books and book chapters</h3>', '<h4>{0}</h4>'.format(item))
         elif key == 'theses':
           temp += All[key][item].replace('<h3>Theses</h3>', '<h4>{0}</h4>'.format(item))
         else:
-          print 'key', key
+          print ('key', key)
 
   Head_tag = """<center><a href="#journalall">Journal articles</a> | <a href="#conferencesall">Conference  presentations</a> | 
   <a href="#booksall">Books and book chapters</a> | <a href="#thesesall">Theses</a></center>"""
@@ -288,10 +286,9 @@ if (SHA != File_SHA or SHA != Download_SHA or Download_SHA != File_SHA) or True:
     if indx < 4:
       Recent_File.write(item)
   Recent_File.close()
-  print "CHANGE DONE"
+  print ("CHANGE DONE")
 else:
-  print "No changes to be done"
-  print "The current shasum of the files are the following:"
-  print "- The latest  file: \t{0}".format(Download_SHA)
-  print "- The current file: \t{0}".format(File_SHA) 
-  print "- The stored shasum: \t{0}".format(SHA)
+  print ("No changes to be done\nThe current shasum of the files are the following:")
+  print ("- The latest  file: \t{0}".format(Download_SHA))
+  print ("- The current file: \t{0}".format(File_SHA))
+  print ("- The stored shasum: \t{0}".format(SHA))

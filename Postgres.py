@@ -291,16 +291,16 @@ class MIMIC_Model:
     def add_all_perons(self, name, last, email, mimic, eicu=None, country=None, info=None):
         try:
             if '@' not in email:
-                print "NOT EMAIL"
+                print ("NOT EMAIL")
                 return False
             if not Not_Date(country):
-                print "IS A DATE, email {0} name {1}".format(email, name)
+                print ("IS A DATE, email {0} name {1}".format(email, name))
                 return False
             self.cur.execute("INSERT INTO \"Lab\".mimic_approved (first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info ) VALUES ('{0}', '{1}','{2}', '{3}','{4}', '{5}', '{6}')".format(name, last, email, country, mimic, eicu, info))
             self.con.commit()
             return True
         except psycopg2.Error as e:
-            print "INSERT INTO \"Lab\".mimic_approved (first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info ) VALUES ('{0}', '{1}','{2}', '{3}','{4}', '{5}', '{6}')".format(name, last, email, country, mimic, eicu, info)
+            print ("INSERT INTO \"Lab\".mimic_approved (first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info ) VALUES ('{0}', '{1}','{2}', '{3}','{4}', '{5}', '{6}')".format(name, last, email, country, mimic, eicu, info))
             WriteError("Error adding a person", e)
             return False
 
@@ -354,7 +354,7 @@ class MIMIC_Model:
             self.con.commit()
             return True
         except psycopg2.Error as e:
-            print e
+            print (e)
             return False
 
     def get_like_name(self, name):
@@ -362,7 +362,7 @@ class MIMIC_Model:
             self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info, id FROM \"Lab\".mimic_approved where first_name ILIKE '%{0}%'".format(name))
             return self.cur.fetchall()
         except psycopg2.Error as e:
-            print e
+            print (e)
             return False
 
     def get_like_last(self, last):
@@ -370,7 +370,7 @@ class MIMIC_Model:
             self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info, id FROM \"Lab\".mimic_approved where last_name ILIKE '%{0}%'".format(last))
             return self.cur.fetchall()
         except psycopg2.Error as e:
-            print e
+            print (e)
             return False
 
     def get_like_email(self, email):
@@ -378,7 +378,7 @@ class MIMIC_Model:
             self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info, id FROM \"Lab\".mimic_approved where physionet_email ILIKE '%{0}%' or google_email ILIKE '%{0}%' ".format(email))
             return self.cur.fetchall()
         except psycopg2.Error as e:
-            print e
+            print (e)
             return False
 
     def get_by_id(self, ID):
@@ -386,7 +386,7 @@ class MIMIC_Model:
             self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info, id FROM \"Lab\".mimic_approved where id = {0} ".format(ID))
             return self.cur.fetchone()
         except psycopg2.Error as e:
-            print e
+            print (e)
             return False
 
     def alter_person(self, FName, LName, Email, MIMIC_A, eicu_A, AWS, GEmail, Other, UID):
@@ -395,7 +395,7 @@ class MIMIC_Model:
             self.con.commit()
             return True
         except psycopg2.Error as e:
-            print e
+            print (e)
             return False
 
 # Python code to remove duplicate elements 
@@ -465,15 +465,15 @@ def add_from_tsv():
     for indx,item in enumerate(MIMIC):
         if '@' in item[2]:
             if not MimicModel.get_by_email(item[2]):
-                print "Addning people"
+                print ("Addning people")
                 empty = False
                 for part in item:
                     if part == '':
-                        print "ERROR"
+                        print ("ERROR")
                         empty = True
                         return False
                 if not empty:
                     result = MimicModel.add_all_perons(item[0].replace("'","''"), item[1].replace("'","''"), item[2], item[5], item[6], item[4].replace("'","''"), item[7].replace("'","''"))
                     if result == False:
-                        print result
+                        print (result)
     return True
