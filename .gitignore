@@ -6,3 +6,7 @@ old_config/
 *.pyc 
 */.DS_Store
 */*/.DS_Store
+env
+env/
+env3
+env3/

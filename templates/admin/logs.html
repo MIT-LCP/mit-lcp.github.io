@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Laboratory for Computational Physiology</title>
+  {% include 'header.html'%}
+  <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+</head>
+<body data-spy="scroll" data-target=".navbar-fixed-top" >
+  {% include 'navbar.html'%}
+  <!-- - - - - - - - - - - - - - - - - - - - - - - START OF NEWS - - - - - - - - - - - - - - - - - - - - - - -->
+  {% if Error %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>{{Error}}</strong>
+  </div>
+  {% endif%}
+  {% if Success %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>{{Success}}</strong>
+  </div>
+  {% endif%}
+  <section id="dashboard">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="feature_header text-center">
+            <h3 class="feature_title"> Login info </h3>
+            <div class="divider"></div>
+          </div>
+        </div>  <!-- Col-md-12 End -->
+      </div>
+    </div>
+  </section><br>
+<!-- END of header -->
+  <div class="container">
+    <div>
+   {% for person, info in people.items() %}
+    <div class="card card-default">
+      <div class="card-header active" role="tab" id="{{person}}">
+        <h4 class="card-title">
+          <a role="button" data-toggle="collapse" href="#{{info[0][3]}}" aria-expanded="false" aria-controls="{{info[0][3]}}">
+            <h3 align='center'>{{person}}</h3>
+          </a>
+        </h4>
+      </div>
+      <div id="{{info[0][3]}}" class="card-collapse collapse" role="tabcard" aria-labelledby="{{info[0][3]}}">
+        <div class="card-body">
+          <div class='row'>
+            <table class="table table-hover table-bordered" id='log_people'>
+              <thead> <tr><th>Server</th><th>Source IP</th><th>Date</th><th>Duration</th></tr> </thead>
+            {% for item in info %}
+              <tr><td>{{item[0]}}</td><td>{{item[1]}}</td><td>{{item[2]}}</td><td>{{item[4]}}</td></tr>
+            {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   {% endfor %}
+
+<br><br>
+    </div>
+  </div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - END OF NEWS - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - START OF FOOTER  - - - - - - - - - - - - - - - - - - - - - - -->
+{% include 'footer.html'%}
+<!-- - - - - - - - - - - - - - - - - - - - - - - END OF FOOTER - - - - - - - - - - - - - - - - - - - - - - -->
+<script type="text/javascript">
+
+  $('ul.nav li.dropdown').hover(function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(0);
+  }, function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeOut(200);
+  });
+</script>
+
+</body>
+</html>

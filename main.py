@@ -33,9 +33,6 @@ app.jinja_env.auto_reload = True
 app.logger.addHandler(handler)
 app.logger.setLevel(logging.DEBUG)
 
-# Flask by default doesnt accept special characters like accents, to allow them we have to reload flask app as UTF-8
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 ADMIN = ["ftorres", "rgmark", "kpierce"]
 Project_Admin = ["ftorres", "rgmark", "kpierce", "alistairewj", "tpollard"]
@@ -47,7 +44,7 @@ def send_email(Subject, Content, sender, rec=None):
     The recipients has to be a list of emails, even is there is only one
     '''
     server = SMTP('mail.ecg.mit.edu')
-    msg = MIMEText(Content.decode('utf-8'), 'plain', 'utf-8')
+    msg = MIMEText(Content, 'plain', 'utf-8')
     recipients = ['ftorres@mit.edu'] #, 'kpierce@mit.edu'] # must be a list
     if rec != None:
         recipients = rec
@@ -75,7 +72,7 @@ def send_html_email(Subject, Content, html_Content, sender, rec=None):
       </body>
     </html>
     """.format(html_Content)
-    part1 = MIMEText(Content.decode('utf-8'), 'plain', 'utf-8')
+    part1 = MIMEText(Content, 'plain', 'utf-8')
     part2 = MIMEText(html, 'html')
 
     msg.attach(part1)
@@ -213,7 +210,7 @@ def show_diff(text, n_text):
             # seqm.a[a0:a1] -> seqm.b[b0:b1]
             output.append("<font color=green>^{0}</font>".format(seqm.b[b0:b1]))
         else:
-            raise RuntimeError, "unexpected opcode"
+            raise (RuntimeError, "unexpected opcode")
     return ''.join(output)
 ####################################################################################################################################
 @app.route("/info/")#Index page
@@ -806,6 +803,55 @@ def dua_dashboard():
 
     return render_template('admin/duas.html', Error=E, Success=S, Logged_User=session['Username'],total=Total)
 
+@app.route("/log_info")#Signup page
+def log_info():
+    """
+    FUNCTION to handle user edits
+    """
+    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
+        session['ERROR'] = "Please authenticate."
+        return redirect('/login')
+
+    logs = MIMIC_Model().get_all_logs()
+    people = {}
+    for item in logs:
+        if item[5] not in people:
+                people[item[5]]=[[item[2],item[4],item[1].replace(microsecond=0),item[0],item[3]]]
+        else:
+            people[item[5]].append([item[2],item[4],item[1].replace(microsecond=0),item[0],item[3]])
+
+    return render_template('admin/logs.html', logs=logs, people=people)
+
+# @app.route("/get_logs", methods=['POST'])#Signup page
+# def get_logs():
+#     """
+#     FUNCTION to handle user edits
+#     """
+#     if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
+#         session['ERROR'] = "Please authenticate."
+#         return redirect('/login')
+
+#     username  = request.form.get('username', None)
+#     server = request.form.get('server', None)
+
+
+#     mimic_model = MIMIC_Model()
+
+#     if username is not None and username != '':
+#         List = mimic_model.get_by_user(username)
+#     elif server is not None and server != '':
+#         List = mimic_model.get_by_server(server)
+#     else:
+#         List = []
+
+#     Line = ''
+#     for person in List:
+#         person = list(person)
+#         Line += "<tr><td>{0}</td><td>{2}</td><td>{3}</td><td>{1}</td></tr>".format(
+#             person[6], person[1], person[2], person[3])
+#             # self.cur.execute("SELECT log.id, log.login_time, log.username, log.server, log.duration, log.ip, person.\"Full_Name\" FROM \"Lab\".logins log INNER JOIN \"Lab\".\"Personel\" person ON log.username = person.\"Username\" where log.username ILIKE '%{0}%' ".format(username))
+
+#     return Line
 
 
 

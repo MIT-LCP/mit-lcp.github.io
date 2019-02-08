@@ -239,13 +239,13 @@ class SimpleModel:
         try:
             self.con = psycopg2.connect("dbname=" + dbinfo.getDBName() + " user=" + dbinfo.getUser() + " host=" + "192.168.11.160" + " password=" + dbinfo.getPassword())
             self.cur = self.con.cursor()
-        except psycopg2.Error, e:
+        except psycopg2.Error as e:
             print ("Error %s" % e)
 
     def __del__(self):
         try:
             self.con.close()
-        except psycopg2.Error, e:
+        except psycopg2.Error as e:
             print ("Error %s" % e)
 
     def Insert_line_reg(self, Vars, Picture):
@@ -380,6 +380,31 @@ class MIMIC_Model:
         except psycopg2.Error as e:
             print (e)
             return False
+
+    def get_by_server(self, server):
+        try:
+            self.cur.execute("SELECT log.id, log.login_time, log.username, log.server, log.duration, log.ip, person.\"Full_Name\" FROM \"Lab\".logins log INNER JOIN \"Lab\".\"Personel\" person ON log.username = person.\"Username\" where log.server ILIKE '%{0}%' ORDER BY log.login_time DESC".format(server))
+            return self.cur.fetchall()
+        except psycopg2.Error as e:
+            print (e)
+            return False
+
+    def get_by_user(self, username):
+        try:
+            self.cur.execute("SELECT log.id, log.login_time, log.username, log.server, log.duration, log.ip, person.\"Full_Name\" FROM \"Lab\".logins log INNER JOIN \"Lab\".\"Personel\" person ON log.username = person.\"Username\" where log.username ILIKE '%{0}%' ORDER BY log.login_time DESC".format(username))
+            return self.cur.fetchall()
+        except psycopg2.Error as e:
+            print (e)
+            return False
+
+    def get_all_logs(self):
+        try:
+            self.cur.execute("SELECT username, login_time, server, duration, ip, \"Full_Name\" from ( select log.username, log.login_time, log.server, log.duration, log.ip, person.\"Full_Name\"  FROM \"Lab\".logins log  INNER JOIN \"Lab\".\"Personel\" person  ON log.username = person.\"Username\"  ORDER BY log.login_time DESC ) x order by username")
+            return self.cur.fetchall()
+        except psycopg2.Error as e:
+            print (e)
+            return False
+
 
     def get_by_id(self, ID):
         try:
