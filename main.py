@@ -29,10 +29,8 @@ app.config.update(
         )
 
 app.jinja_env.auto_reload = True
-
 app.logger.addHandler(handler)
 app.logger.setLevel(logging.DEBUG)
-
 
 ADMIN = ["ftorres", "rgmark", "kpierce"]
 Project_Admin = ["ftorres", "rgmark", "kpierce", "alistairewj", "tpollard"]
@@ -43,7 +41,7 @@ def send_email(Subject, Content, sender, rec=None):
     This functions sends an email, takes subject, content, sender and recipients
     The recipients has to be a list of emails, even is there is only one
     '''
-    server = SMTP('mail.ecg.mit.edu')
+    server = SMTP('192.168.1.164')
     msg = MIMEText(Content, 'plain', 'utf-8')
     recipients = ['ftorres@mit.edu'] #, 'kpierce@mit.edu'] # must be a list
     if rec != None:
@@ -78,7 +76,7 @@ def send_html_email(Subject, Content, html_Content, sender, rec=None):
     msg.attach(part1)
     msg.attach(part2)
 
-    server = SMTP('mail.ecg.mit.edu')
+    server = SMTP('192.168.1.164')
     server.sendmail(sender, recipients, msg.as_string())
     server.quit()
 ####################################################################################################################################
@@ -106,32 +104,26 @@ def Registration_form(Vars, request):
     '''
     Checkin form function that will be called in the submittion of the 'info/submit'
     '''
+    Picture = 'missing.jpg'
+
+    if request.files.get("picture"):
+        if Vars["y"] and Vars["x"] and Vars["height"] and Vars["width"]:
+            Picture = resize_image(request)
+        else:
+            app.logger.error("There was a problem with the picture upload, missing axis")
+            session['ERROR'] = "There was a problem with the picture, skipping it."
+
+    # Set the content ofr the email, and the display page summary - The display page summary just shows what the user submitted
     SUBJECT = 'LCP registration form - {0}'.format(Vars['email'])
     Content = "\nFull Name: {0}\n\nStart date: {1}\nMIT username: {2}\nLCP username: {3}\n".format(Vars['firstname'] + " " + Vars['lastname'], Vars['startdate'], Vars['username'], Vars['lcp_username'])
     Content += "MIT ID number: {0}\nPreferred e-mail address: {1}\nOffice address: {2}\nHome address: {3}\nTelephone number(s): {4}\nEmergency contact: {5}\n".format(Vars['id'], Vars['email'], Vars['office-address'], Vars['home-address'], Vars['phone'], Vars['emergency-contact'])
-    
-    EXT = set(['gif', 'jpg', 'jpeg', 'png'])
-    Picture = 'missing.jpg'
-    if request.files.get("Picture"):
-        f = request.files['Picture']
-        Picture = secure_filename(f.filename) #
-        if Picture.split('.')[-1] in EXT:  #secure_filename(f.filename)split('.')[-1].
-            if path.isfile(app.config['UPLOAD_FOLDER'] + Picture):
-                try:
-                    remove(app.config['UPLOAD_FOLDER'] + Picture)
-                except:
-                    pass
-            f.filename = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(12)) + '.' +  Picture.split('.')[-1]
-            Picture = secure_filename(f.filename)
-            f.save(app.config['UPLOAD_FOLDER'] + secure_filename(f.filename))
-        else:
-            print(" -- WRONG FILE EXTENSION -- ")
-            app.logger.error(" -- WRONG FILE EXTENSION -- ")
-
     Content += "\nCurrent project(s) in LCP: {0}\nFocus of research: {1}\nBio: {2}\nPicture:{3}\nEHS training date: {4}\nHuman studies training date: {5}\nAnything else: {6}\n".format(Vars['research'], Vars['Other'], Vars['Bio'], Picture, Vars['ehs_training'], Vars['human_studies_training'], Vars['extra'])
+   
+    # Inserts the new user to the DB
     Result = SimpleModel().Insert_line_reg(Vars, Picture)
+    # Alert that the users have been submitted
     send_email(Subject='LCP registration form - {0}'.format(Vars['email']), Content=Content, sender=Vars['email'], rec=['ftorres@mit.edu', 'kpierce@mit.edu'])
-    app.logger.info("Sent a email for the checkin form")
+
     if Result != True:
         app.logger.error("There was an error in the postgres insert of the Registration_form\n{0}\n{1}".format(Content, str(Result)))
         send_email("There was an error in the Checkin form line insert", Result, 'noreply@lcp.mit.edu')
@@ -150,8 +142,13 @@ def resize_image(request):
     h = float(request.form.get('height', None))
     f = request.files['picture']
     UID = request.form.get('UID', None)
+    
+    status = username = ''
 
-    status, username = Personel_Model().GetUsernameByID(UID)
+    if UID != None:
+        status, username = Personel_Model().GetUsernameByID(UID)
+    else:
+        username = request.form.get('email', None).split("@")[0]
 
     Filename = username + '.' + f.filename.split('.')[-1]
 
@@ -238,14 +235,10 @@ def check_out_form():#render the index page information
 
 @app.route("/info/submit", methods=['POST'])
 def submit():#render the index page information
-    Vars = {'firstname' : request.form.get('firstname', 'None'), 'lastname' : request.form.get('lastname', 'None'),  'startdate' : request.form.get('startdate', 'None'), 'username' : request.form.get('username', 'None'), 'lcp_username' : request.form.get('lcp_username', 'None'), 'id' : request.form.get('id', 'None'), 'email' : request.form.get('email', 'None'),
-            'office-address' : request.form.get('office-address', 'None'), 'home-address' : request.form.get('home-address', 'None'),  'phone' : request.form.get('phone', 'None'), 
-            'emergency-contact' : request.form.get('emergency-contact', 'None'), 'research' : request.form.get('research', 'None'), 'Other' : request.form.get('Other', 'None'),
-            'Bio' : request.form.get('Bio', 'None').replace("'","''"),  'ehs_training' : request.form.get('ehs_training', 'None'), 'human_studies_training' : request.form.get('human_studies_training', 'None'), 
-            'extra' : request.form.get('extra', 'None'), 'enddate' : request.form.get('enddate','None'), 'machine' : request.form.get('machine', 'None'), 
-            'filepath' : request.form.get('filepath', 'None'), 'instructions' : request.form.get('instructions', 'None'),  'email-when' : request.form.get('email-when', 'None'),
-            #'office-address' : request.form.get('office-address', 'None'), 'office-when' : request.form.get('office-when', 'None'), 'home-address' : request.form.get('home-address', 'None')}
-            'office-when' : request.form.get('office-when', 'None')}
+    Vars = {'firstname' : request.form.get('firstname', None), 'lastname' : request.form.get('lastname', None),  'startdate' : request.form.get('startdate', None), 'username' : request.form.get('username', None), 'lcp_username' : request.form.get('lcp_username', None), 'id' : request.form.get('id', None), 'email' : request.form.get('email', None), 'office-address' : request.form.get('office-address', None), 'home-address' : request.form.get('home-address', None),  'phone' : request.form.get('phone', None), 'emergency-contact' : request.form.get('emergency-contact', None), 'research' : request.form.get('research', None), 'Other' : request.form.get('Other', None), 'Bio' : request.form.get('Bio', None).replace("'","''"),  'ehs_training' : request.form.get('ehs_training', None), 'human_studies_training' : request.form.get('human_studies_training', None), 'extra' : request.form.get('extra', None), 'enddate' : request.form.get('enddate',None), 'machine' : request.form.get('machine', None), 'filepath' : request.form.get('filepath', None), 'instructions' : request.form.get('instructions', None), 'email-when' : request.form.get('email-when', None), 'office-when' : request.form.get('office-when', None), 'y':request.form.get("y", None), 'x': request.form.get("x", None), 'height': request.form.get("height", None), 'width': request.form.get("width", None)}
+
+    app.logger.info("Person doing the registration\n")
+    app.logger.info(Vars)
 
     Content = ''
     if request.form.get('Registration_form', 'None') != 'None':
@@ -271,15 +264,13 @@ def internal_server_error(error):
     """
     This is the page for handling internal server error, there will be a log in apache and email generated
     """
-    import os
-    cwd = os.getcwd()
-    app.logger.error(str(cwd))
     app.logger.error("500 - Internal Server Error - {0}".format(request.path))
     app.logger.error(str(error))
     tb = str(traceback.format_exc())
     Content = "Hi,\n\nThere was a internal server error on the Flask app running the LCP website.\n"
     Content += "The time of this error is: {0}\n".format(datetime.now())
-    Content += "The error messege is: {0}\nError traceback:\n{1}".format(str(error.message), tb)
+    Content += "The error messege is: {0}\n".format(str(error))
+    Content += "Error traceback:\n{0}".format(tb)
     send_email("Internal Server Error - Flask LCP", Content, 'noreply_error@lcp.mit.edu')
     if 'Username' in session:
         Content += "\n\nThe user tha triggered this error is: {0}\n\nThanks!".format(session['Username'])
@@ -653,7 +644,6 @@ def Submit_User():
 
     app.logger.info(request.form)
     if request.method == 'POST' and request.form.get("FName"):
-
         Person_Info = {'Full_Name': request.form.get('FName', "None").replace("'","''"), 'Username': request.form.get('Username', "None").replace("'","''").rstrip(), 'Status': request.form.get('Status', "None"), 'Email': request.form.get('Email', "None"), 'Bio': request.form.get('Bio', "None").replace("'","''"), 'UID': request.form.get('UID', "None"), 'Food': request.form.get('Food', "False"), 'Hidden': request.form.get('Hidden', "False", ), 'y':request.form.get("y"), 'x': request.form.get("x"), 'height': request.form.get("height"), 'width': request.form.get("width")}
         Model = Personel_Model()
         Success = "empty"
@@ -821,38 +811,6 @@ def log_info():
             people[item[5]].append([item[2],item[4],item[1].replace(microsecond=0),item[0],item[3]])
 
     return render_template('admin/logs.html', logs=logs, people=people)
-
-# @app.route("/get_logs", methods=['POST'])#Signup page
-# def get_logs():
-#     """
-#     FUNCTION to handle user edits
-#     """
-#     if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
-#         session['ERROR'] = "Please authenticate."
-#         return redirect('/login')
-
-#     username  = request.form.get('username', None)
-#     server = request.form.get('server', None)
-
-
-#     mimic_model = MIMIC_Model()
-
-#     if username is not None and username != '':
-#         List = mimic_model.get_by_user(username)
-#     elif server is not None and server != '':
-#         List = mimic_model.get_by_server(server)
-#     else:
-#         List = []
-
-#     Line = ''
-#     for person in List:
-#         person = list(person)
-#         Line += "<tr><td>{0}</td><td>{2}</td><td>{3}</td><td>{1}</td></tr>".format(
-#             person[6], person[1], person[2], person[3])
-#             # self.cur.execute("SELECT log.id, log.login_time, log.username, log.server, log.duration, log.ip, person.\"Full_Name\" FROM \"Lab\".logins log INNER JOIN \"Lab\".\"Personel\" person ON log.username = person.\"Username\" where log.username ILIKE '%{0}%' ".format(username))
-
-#     return Line
-
 
 
 if __name__ == "__main__":#RUN THE APP in port 8083
