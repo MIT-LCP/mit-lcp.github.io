@@ -205,7 +205,6 @@ class Project_Model:
             self.cur.execute("""SELECT "PID", p_name, p_desc, p_email, p_contact, submitting_user, active_p, display_p, last_update FROM "Lab"."Projects" ORDER BY "PID" """)
             return self.cur.fetchall()
         except psycopg2.Error as e:
-            app.logger.error(e)
             http_logger.write("Error in GetAll function: {0}".format(e))
             return False
 
@@ -214,7 +213,6 @@ class Project_Model:
             self.cur.execute("""SELECT "PID", p_name, p_desc, p_email, p_contact, submitting_user, active_p, display_p, submitting_time FROM "Lab"."Projects" WHERE active_p='False' ORDER BY "PID" """)
             return self.cur.fetchall()
         except psycopg2.Error as e:
-            app.logger.error(e)
             http_logger.write("Error in GetAllWebsite function: {0}".format(e))
             return False
 
@@ -487,7 +485,7 @@ def add_from_tsv():
     for indx,item in enumerate(MIMIC):
         if '@' in item[2]:
             if not MimicModel.get_by_email(item[2]):
-                print ("Addning people")
+                # print ("Addning people")
                 empty = False
                 for part in item:
                     if part == '':
