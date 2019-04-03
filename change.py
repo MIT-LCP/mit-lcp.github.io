@@ -14,6 +14,7 @@
 import datetime, urllib2
 from hashlib import sha256
 from re import match, sub, DOTALL
+import pdb
 
 def File_Change(File_Content):
   """
@@ -29,10 +30,10 @@ def File_Change(File_Content):
   
   Size            = len(File_Content)
   Header          = File_Content[0] # We take the header, and we sicard it.
-  Journal_Tag     = """\r\n<a name="journal"></a><h3>Journal articles</h3>\r\n</dl>\r\n\r\n"""
-  Conferences_Tag = """\r\n<a name="conferences"></a><h3>Conference proceedings and presentations</h3>\r\n</dl>\r\n\r\n"""
-  Books_Tag       = """\r\n<a name="books"></a><h3>Books and book chapters</h3>\r\n</dl>\r\n\r\n"""
-  Theses_Tag      = """\r\n<a name="theses"></a><h3>Theses</h3>\r\n</dl>\r\n\r\n"""
+  Journal_Tag     = """\n<a name="journal"></a><h3>Journal articles</h3>\n</dl>\n\n"""
+  Conferences_Tag = """\n<a name="conferences"></a><h3>Conference proceedings and presentations</h3>\n</dl>\n\n"""
+  Books_Tag       = """\n<a name="books"></a><h3>Books and book chapters</h3>\n</dl>\n\n"""
+  Theses_Tag      = """\n<a name="theses"></a><h3>Theses</h3>\n</dl>\n\n"""
 
   # Here we find where the stirngs above are located. 
   Journal_idx     = File_Content.index(Journal_Tag)     #1
@@ -49,45 +50,55 @@ def File_Change(File_Content):
   # If the year wasnt found, then there was a change in the perl creation script, and now we have to check what happened and where is the year. 
 
   for row in range(Journal_idx + 1, Conferences_idx):
-    if File_Content[row][21:25].isdigit():
+    if File_Content[row][20:24].isdigit():
       Journal_Tag = Journal_Tag.replace("\r","").replace("\n","").replace("</dl>","")
-      Years[int(File_Content[row][21:25])] += Journal_Tag.replace("journal", "journal"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
-      All['journal'][int(File_Content[row][21:25])] = Journal_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
+      Years[int(File_Content[row][20:24])] += Journal_Tag.replace("journal", "journal"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
+      All['journal'][int(File_Content[row][20:24])] = Journal_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
+      print(File_Content[row])
+      print(File_Content[row][20:24])
       print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
   for row in range(Conferences_idx + 1, Books_idx):
-    if File_Content[row][21:25].isdigit():
+    if File_Content[row][20:24].isdigit():
       Conferences_Tag = Conferences_Tag.replace("\r","").replace("\n","").replace("</dl>","")
-      Years[int(File_Content[row][21:25])] += Conferences_Tag.replace("conferences", "conferences"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
-      All['conferences'][int(File_Content[row][21:25])] = Conferences_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
+      Years[int(File_Content[row][20:24])] += Conferences_Tag.replace("conferences", "conferences"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
+      All['conferences'][int(File_Content[row][20:24])] = Conferences_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
       print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
   for row in range(Books_idx + 1, Theses_idx):
-    if File_Content[row][21:25].isdigit():
+    if File_Content[row][20:24].isdigit():
       Books_Tag = Books_Tag.replace("\r","").replace("\n","").replace("</dl>","")
-      Years[int(File_Content[row][21:25])] += Books_Tag.replace("books", "books"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
-      All['books'][int(File_Content[row][21:25])] = Books_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
+      Years[int(File_Content[row][20:24])] += Books_Tag.replace("books", "books"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
+      All['books'][int(File_Content[row][20:24])] = Books_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
       print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
   for row in range(Theses_idx + 1, Size):
-    if File_Content[row][21:25].isdigit():
+    if File_Content[row][20:24].isdigit():
       Theses_Tag = Theses_Tag.replace("\r","").replace("\n","").replace("</dl>","")
-      Years[int(File_Content[row][21:25])] += Theses_Tag.replace("theses","theses"+File_Content[row][21:25]) + File_Content[row][File_Content[row].index('</dl>')+5:]
-      All['theses'][int(File_Content[row][21:25])] = Theses_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
+      Years[int(File_Content[row][20:24])] += Theses_Tag.replace("theses","theses"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
+      All['theses'][int(File_Content[row][20:24])] = Theses_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
     else:
       print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
-
   Recent = []
-  for item in Years[Current_Year].split('<dd>'):
-    if "http" in item.split("</a>")[0].split('<a')[1]:
-      Recent.append("<li><a" + item.split("</a>")[0].split('<a')[1] + "</a></li>")
-  if len(Years[Current_Year].split('<dd>')) < 5:
+  if(Years[Current_Year]):
+    for item in Years[Current_Year].split('<dd>'):
+      if "http" in item.split("</a>")[0].split('<a')[1]:
+        Recent.append("<li><a" + item.split("</a>")[0].split('<a')[1] + "</a></li>")
+    if len(Years[Current_Year].split('<dd>')) < 5:
+      for item in Years[Current_Year-1].split('<dd>'):
+        if "http" in item.split("</a>")[0].split('<a')[1]:
+          Recent.append("<li><a" + item.split("</a>")[0].split('<a')[1] + "</a></li>")
+  else:
     for item in Years[Current_Year-1].split('<dd>'):
       if "http" in item.split("</a>")[0].split('<a')[1]:
-        Recent.append("<li><a" + item.split("</a>")[0].split('<a')[1] + "</a></li>")  
+        Recent.append("<li><a" + item.split("</a>")[0].split('<a')[1] + "</a></li>")
+    if len(Years[Current_Year-1].split('<dd>')) < 5:
+      for item in Years[Current_Year-2].split('<dd>'):
+        if "http" in item.split("</a>")[0].split('<a')[1]:
+          Recent.append("<li><a" + item.split("</a>")[0].split('<a')[1] + "</a></li>")
   #####
   temp = ""
 
@@ -151,7 +162,7 @@ def File_Change(File_Content):
           else:
               Side_Tab += """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
   # Head = "<center>"+ File_Content[0].replace("""| <a href="#theses">Theses</a>""", """<!--| <a href="#theses">Theses</a>-->""") + "</center>"
-  File_Content[0] = File_Content[0].replace("""<a href="#journal">""", """<center><a href="#journal">""").replace("""<a href="#theses">Theses</a>""", """<a href="#theses">Theses</a></center>""").replace("""\r\n\r\n<p>\r\n(A separate listing of PhysioNet tutorials is available at <a href="http://physionet.org/tutorials/" target="_blank" >http://physionet.org/tutorials/</a>.)\r\n</p>\r\n\r\n""","").replace("\r","").replace("\n","").replace("<br>","").replace("< br>","").replace("<br >","").replace("<br />","").replace("""<center><a href="#journal">Journal articles</a> | <a href="#conferences">Conference  presentations</a> | <a href="#books">Books and book chapters</a> | <a href="#theses">Theses</a></center>""","")
+  File_Content[0] = File_Content[0].replace("""<a href="#journal">""", """<center><a href="#journal">""").replace("""<a href="#theses">Theses</a>""", """<a href="#theses">Theses</a></center>""").replace("""\n\n<p>\n(A separate listing of PhysioNet tutorials is available at <a href="http://physionet.org/tutorials/" target="_blank" >http://physionet.org/tutorials/</a>.)\n</p>\n\n""","").replace("\r","").replace("\n","").replace("<br>","").replace("< br>","").replace("<br >","").replace("<br />","").replace("""<center><a href="#journal">Journal articles</a> | <a href="#conferences">Conference  presentations</a> | <a href="#books">Books and book chapters</a> | <a href="#theses">Theses</a></center>""","")
 
   Head = str(File_Content[0])
   Header_HTML = """
