@@ -1,3 +1,10 @@
-psycopg2==2.7.3.2
-Flask==0.12.2
-flask-ldap-auth==0.2.2
+Click==7.0
+Flask==1.1.1
+itsdangerous==1.1.0
+Jinja2==2.10.1
+MarkupSafe==1.1.1
+Pillow==6.1.0
+Pillow-PIL==0.1.dev0
+psycopg2-binary==2.8.3
+simplepam==0.1.5
+Werkzeug==0.15.6
