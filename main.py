@@ -1,16 +1,18 @@
-from flask import Flask, render_template, redirect, request, session, Session#,  escape, url_for, jsonify, Session, g
+from flask import Flask, render_template, redirect, request, session
 from logging.handlers import RotatingFileHandler
 from datetime import timedelta, datetime, date
 from email.mime.multipart import MIMEMultipart
 from werkzeug.utils import secure_filename
 from email.mime.text import MIMEText
+from os import path, remove
 from smtplib import SMTP
 from uuid import uuid4
 from Postgres import *
 from PIL import Image
-from os import path, remove
 from re import sub
-import simplepam, logging, traceback, random, string, sys, re, os, difflib
+
+
+import simplepam, logging, traceback, difflib
 
 # Change the logger output file and schema
 
@@ -33,17 +35,48 @@ app.logger.addHandler(handler)
 app.logger.setLevel(logging.DEBUG)
 
 ADMIN = ["ftorres", "rgmark", "kpierce"]
-Project_Admin = ["ftorres", "rgmark", "kpierce", "alistairewj", "tpollard"]
+PROJECT_ADMINS = ["ftorres", "rgmark", "kpierce", "alistairewj", "tpollard"]
+EMAIL_RECIPIENTS = ['ftorres@mit.edu', 'kpierce@mit.edu']
+PRIMARY_ADMIN = ['ftorres@mit.edu']
 
-####################################################################################################################################
+@app.errorhandler(404)
+def page_not_found(error):
+    """
+    This is the page for handling pages not found, there will be a log in apache
+    """
+    return render_template('404.html')
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    """
+    This is the page for handling internal server error, there will be a log in apache and email generated
+    """
+    app.logger.error("500 - Internal Server Error - {0}".format(request.path))
+    app.logger.error(str(error))
+    tb = str(traceback.format_exc())
+    Content = "Hi,\n\nThere was a internal server error on the Flask app running the LCP website.\n"
+    Content += "The time of this error is: {0}\n".format(datetime.now())
+    Content += "The error messege is: {0}\n".format(str(error))
+    Content += "Error traceback:\n{0}".format(tb)
+    send_email("Internal Server Error - Flask LCP", Content, 'noreply_error@lcp.mit.edu')
+    if 'Username' in session:
+        Content += "\n\nThe user tha triggered this error is: {0}\n\nThanks!".format(session['Username'])
+    send_email("Internal Server Error - Flask LCP - {0}".format(request.path), Content, 'noreply_error@lcp.mit.edu')
+
+    return render_template('500.html')#, 404
+
+@app.route('/robots.txt')
+def send_text_file():
+    return app.send_static_file('robots.txt')
+
 def send_email(Subject, Content, sender, rec=None):
-    '''
+    """
     This functions sends an email, takes subject, content, sender and recipients
     The recipients has to be a list of emails, even is there is only one
-    '''
+    """
     server = SMTP('192.168.1.164')
     msg = MIMEText(Content, 'plain', 'utf-8')
-    recipients = ['ftorres@mit.edu'] #, 'kpierce@mit.edu'] # must be a list
+    recipients = PRIMARY_ADMIN
     if rec != None:
         recipients = rec
     msg['Subject'] = Subject
@@ -51,11 +84,16 @@ def send_email(Subject, Content, sender, rec=None):
     msg['To'] = ', '.join(recipients)
     server.sendmail(sender, recipients, msg.as_string())
     server.quit()
-####################################################################################################################################
+
 def send_html_email(Subject, Content, html_Content, sender, rec=None):
-    # Create message container - the correct MIME type is multipart/alternative.
+    """
+    This functions sends an email, takes subject, content, sender and recipients
+    The recipients has to be a list of emails, even is there is only one
+
+    Here a HTML email will be sent.
+    """
     msg = MIMEMultipart('alternative')
-    recipients = ['ftorres@mit.edu'] #, 'kpierce@mit.edu'] # must be a list
+    recipients = PRIMARY_ADMIN
     if rec != None:
         recipients = rec
     msg['Subject'] = Subject
@@ -79,27 +117,39 @@ def send_html_email(Subject, Content, html_Content, sender, rec=None):
     server = SMTP('192.168.1.164')
     server.sendmail(sender, recipients, msg.as_string())
     server.quit()
-####################################################################################################################################
+
 def Checkout_form(Vars):
     '''
     Checkout form function that will be called in the submittion of the 'info/submit'
     '''
-    SUBJECT = 'LCP checkout form - {0}'.format(Vars['email'] )
-    Content = "\nLastname: {0}\nFirstname: {1}\nEnd date: {2}\n".format(Vars['lastname'], Vars['firstname'], Vars['enddate'])
-    Content += "Archive location:\nMachine name: {0}\nFilepath: {1}\nSpecial instructions: {2}\nNew preferred e-mail address: {3}\nValid from (date): {4}\n".format(Vars['machine'], Vars['filepath'], Vars['instructions'], Vars['email'], Vars['email-when'])
-    Content += "New office address: {0}\nValid from (date): {1}\nNew home address: {2}\nNew telephone number(s): {3}\nAnything else: {4}\n" % (Vars['office-address'], Vars['office-when'], Vars['home-address'], Vars['phone'], Vars['extra'])
+    SUBJECT = 'LCP checkout form - {0}'.format(Vars['email'])
+    Content = "\nLastname: {0}\nFirstname: {1}\nEnd date: {2}\n\
+    Archive location:\nMachine name: {3}\nFilepath: {4}\n\
+    Special instructions: {5}\nNew preferred e-mail address: {6}\n\
+    Valid from (date): {7}\nNew office address: {8}\nValid from (date): {9}\n\
+    New home address: {10}\nNew telephone number(s): {11}\nAnything else: {12}\n".format(
+        Vars['lastname'], Vars['firstname'], Vars['enddate'], 
+        Vars['machine'], Vars['filepath'], Vars['instructions'], Vars['email'], 
+        Vars['email-when'], Vars['office-address'], Vars['office-when'], 
+        Vars['home-address'], Vars['phone'], Vars['extra'])
 
-    Result = SimpleModel().Insert_line_exit(Vars)
-    send_email(Subject='LCP checkout form - {0}'.format(Vars['email']), Content=Content, sender=Vars['email'], rec=['ftorres@mit.edu', 'kpierce@mit.edu'])
-    app.logger.info("Sent a email for the checkout form")
-    if Result != True:
-        app.logger.error("There was an error in the postgres insert of the Checkout_form\n{0}\n{1}".format(Content, str(Result)))
-        send_email("There was an error in the Checkout form line insert", Result, 'noreply@lcp.mit.edu')
-        return Result, False
-    else:
-        return Content, True
-####################################################################################################################################
-####################################################################################################################################
+    # Log the variables in case an error occurs.
+    app.logger.info("A person did the checkout form. Variables are the \
+        following: {}".format(Vars))
+
+    # Insert the checkout form into the database
+    model = SimpleModel()
+    result = model.Insert_line_exit(Vars)
+
+    send_email(Subject=SUBJECT, Content=Content, sender=Vars['email'], 
+        rec=EMAIL_RECIPIENTS)
+
+    if result != True:
+        app.logger.error("There was an error in the postgres insert of the Checkout_form\n{0}\n{1}".format(Content, str(result)))
+        send_email("There was an error in the Checkout form line insert", result, 'noreply@lcp.mit.edu')
+        return result, False
+    return Content, True
+
 def Registration_form(Vars, request):
     '''
     Checkin form function that will be called in the submittion of the 'info/submit'
@@ -107,6 +157,7 @@ def Registration_form(Vars, request):
     Picture = 'missing.jpg'
 
     if request.files.get("picture"):
+        app.logger.info("Image found in the registration form.")
         if Vars["y"] and Vars["x"] and Vars["height"] and Vars["width"]:
             Picture = resize_image(request)
         else:
@@ -115,23 +166,34 @@ def Registration_form(Vars, request):
 
     # Set the content ofr the email, and the display page summary - The display page summary just shows what the user submitted
     SUBJECT = 'LCP registration form - {0}'.format(Vars['email'])
-    Content = "\nFull Name: {0}\n\nStart date: {1}\nMIT username: {2}\nLCP username: {3}\n".format(Vars['firstname'] + " " + Vars['lastname'], Vars['startdate'], Vars['username'], Vars['lcp_username'])
-    Content += "MIT ID number: {0}\nPreferred e-mail address: {1}\nOffice address: {2}\nHome address: {3}\nTelephone number(s): {4}\nEmergency contact: {5}\n".format(Vars['id'], Vars['email'], Vars['office-address'], Vars['home-address'], Vars['phone'], Vars['emergency-contact'])
-    Content += "\nCurrent project(s) in LCP: {0}\nFocus of research: {1}\nBio: {2}\nPicture:{3}\nEHS training date: {4}\nHuman studies training date: {5}\nAnything else: {6}\n".format(Vars['research'], Vars['Other'], Vars['Bio'], Picture, Vars['ehs_training'], Vars['human_studies_training'], Vars['extra'])
-   
-    # Inserts the new user to the DB
-    Result = SimpleModel().Insert_line_reg(Vars, Picture)
-    # Alert that the users have been submitted
-    send_email(Subject='LCP registration form - {0}'.format(Vars['email']), Content=Content, sender=Vars['email'], rec=['ftorres@mit.edu', 'kpierce@mit.edu'])
 
-    if Result != True:
-        app.logger.error("There was an error in the postgres insert of the Registration_form\n{0}\n{1}".format(Content, str(Result)))
-        send_email("There was an error in the Checkin form line insert", Result, 'noreply@lcp.mit.edu')
-        return Result, False
-    else:
-        return Content, True
-####################################################################################################################################
-####################################################################################################################################
+    Content = "\nFull Name: {0} {1}\n\nStart date: {2}\nMIT username: {3}\n\
+    LCP username: {4}\nMIT ID number: {5}\nPreferred e-mail address: {6}\n\
+    Office address: {7}\nHome address: {8}\nTelephone number(s): {9}\n\
+    Emergency contact: {10}\nCurrent project(s) in LCP: {11}\nFocus of research: {12}\n\
+    Bio: {13}\nPicture:{14}\nEHS training date: {15}\nHuman studies training date: {16}\n\
+    Anything else: {17}\n".format(Vars['firstname'], Vars['lastname'], 
+        Vars['startdate'], Vars['username'], Vars['lcp_username'], Vars['id'], 
+        Vars['email'], Vars['office-address'], Vars['home-address'], Vars['phone'], 
+        Vars['emergency-contact'], Vars['research'], Vars['Other'], Vars['Bio'],
+        Picture, Vars['ehs_training'], Vars['human_studies_training'], Vars['extra'])
+   
+
+    app.logger.info("A person did the checkin form. Variables are the following:\
+     {}".format(Vars))
+
+    # Inserts the new user to the DB
+    model = SimpleModel()
+    result = model.Insert_line_reg(Vars, Picture)
+    # Alert that the users have been submitted
+    send_email(Subject=SUBJECT, Content=Content, sender=Vars['email'], rec=EMAIL_RECIPIENTS)
+
+    if result != True:
+        app.logger.error("There was an error in the postgres insert of the Registration_form\n{0}\n{1}".format(Content, str(result)))
+        send_email("There was an error in the Checkin form line insert", result, 'noreply@lcp.mit.edu')
+        return result, False
+    return Content, True
+
 def resize_image(request):
     '''
     Function that takes a image to crop it.
@@ -152,19 +214,17 @@ def resize_image(request):
 
     Filename = username + '.' + f.filename.split('.')[-1]
 
-    if os.path.exists(app.config['UPLOAD_FOLDER'] + Filename):
-        os.remove(app.config['UPLOAD_FOLDER'] + Filename)
+    if path.exists(app.config['UPLOAD_FOLDER'] + Filename):
+        remove(app.config['UPLOAD_FOLDER'] + Filename)
 
     image = Image.open(f)
     image = image.crop((x, y, w+x, h+y))
     image = image.resize((200, 200), Image.ANTIALIAS)
     
-
     image.save(app.config['UPLOAD_FOLDER'] + Filename)
 
     return Filename
-####################################################################################################################################
-####################################################################################################################################
+
 def Auth(Username, Password):
     '''
     Authentication function against the system users.
@@ -177,15 +237,16 @@ def Auth(Username, Password):
         session['URL'] = "https://lcp.mit.edu"
         return True
     else:
-        app.logger.error('Incorrect password or username: %s Error: %s' % (Username, str(result)))
+        app.logger.error('Incorrect password or username: {0} Error: {1}'.format(
+            Username, result))
         return False
 
 def is_Date(date_string):
-    date_format = '%m/%d/%Y'
     try:
-        date_obj = datetime.strptime(date_string, date_format)
+        date_obj = datetime.strptime(date_string, '%m/%d/%Y')
         return True
-    except:
+    except Exception as e:
+        app.logger.error(e)
         return False
 
 def show_diff(text, n_text):
@@ -209,7 +270,12 @@ def show_diff(text, n_text):
         else:
             raise (RuntimeError, "unexpected opcode")
     return ''.join(output)
-####################################################################################################################################
+
+###############################################################################
+#
+# Pages for the LCP registration, checkout and basic information for the lab.
+#
+###############################################################################
 @app.route("/info/")#Index page
 @app.route("/info/index")
 @app.route("/info/index.html")
@@ -230,15 +296,39 @@ def intro_to_Mark_lab():#render the index page information
 @app.route("/info/check_out_form.html")
 def check_out_form():#render the index page information
     return render_template('info/check_out_form.html')
-####################################################################################################################################
-####################################################################################################################################
 
 @app.route("/info/submit", methods=['POST'])
 def submit():#render the index page information
-    Vars = {'firstname' : request.form.get('firstname', None), 'lastname' : request.form.get('lastname', None),  'startdate' : request.form.get('startdate', None), 'username' : request.form.get('username', None), 'lcp_username' : request.form.get('lcp_username', None), 'id' : request.form.get('id', None), 'email' : request.form.get('email', None), 'office-address' : request.form.get('office-address', None), 'home-address' : request.form.get('home-address', None),  'phone' : request.form.get('phone', None), 'emergency-contact' : request.form.get('emergency-contact', None), 'research' : request.form.get('research', None), 'Other' : request.form.get('Other', None), 'Bio' : request.form.get('Bio', None).replace("'","''"),  'ehs_training' : request.form.get('ehs_training', None), 'human_studies_training' : request.form.get('human_studies_training', None), 'extra' : request.form.get('extra', None), 'enddate' : request.form.get('enddate',None), 'machine' : request.form.get('machine', None), 'filepath' : request.form.get('filepath', None), 'instructions' : request.form.get('instructions', None), 'email-when' : request.form.get('email-when', None), 'office-when' : request.form.get('office-when', None), 'y':request.form.get("y", None), 'x': request.form.get("x", None), 'height': request.form.get("height", None), 'width': request.form.get("width", None)}
-
+    """
+    This form accept both registration and checkout form.
+    """
     app.logger.info("Person doing the registration\n")
-    app.logger.info(Vars)
+    app.logger.info(request.form)
+    Vars = {'firstname': request.form.get('firstname', None),
+    'lastname': request.form.get('lastname', None),
+    'startdate': request.form.get('startdate', None),
+    'username': request.form.get('username', None),
+    'lcp_username': request.form.get('lcp_username', None),
+    'id': request.form.get('id', None),
+    'email': request.form.get('email', None),
+    'office-address': request.form.get('office-address', None),
+    'home-address': request.form.get('home-address', None),
+    'phone': request.form.get('phone', None),
+    'emergency-contact': request.form.get('emergency-contact', None),
+    'research': request.form.get('research', None),
+    'Other': request.form.get('Other', None),
+    'Bio': request.form.get('Bio', None), 
+    'ehs_training': request.form.get('ehs_training', None),
+    'human_studies_training': request.form.get('human_studies_training', None),
+    'extra': request.form.get('extra', None),
+    'enddate': request.form.get('enddate',None),
+    'machine': request.form.get('machine', None),
+    'filepath': request.form.get('filepath', None),
+    'instructions': request.form.get('instructions', None),
+    'email-when': request.form.get('email-when', None),
+    'office-when': request.form.get('office-when', None),
+    'y': request.form.get("y", None), 'x': request.form.get("x", None),
+    'height': request.form.get("height", None), 'width': request.form.get("width", None)}
 
     Content = ''
     if request.form.get('Registration_form', 'None') != 'None':
@@ -250,46 +340,18 @@ def submit():#render the index page information
 
     return render_template('info/submit.html', Content=Content.replace("\n","<br>"))
 
-####################################################################################################################################
-@app.errorhandler(404)
-def page_not_found(error):
-    """
-    This is the page for handling pages not found, there will be a log in apache
-    """
-    app.logger.error("404 - Page not found - {0}".format(request.path))
-    return render_template('404.html')#, 404
-####################################################################################################################################
-@app.errorhandler(500)
-def internal_server_error(error):
-    """
-    This is the page for handling internal server error, there will be a log in apache and email generated
-    """
-    app.logger.error("500 - Internal Server Error - {0}".format(request.path))
-    app.logger.error(str(error))
-    tb = str(traceback.format_exc())
-    Content = "Hi,\n\nThere was a internal server error on the Flask app running the LCP website.\n"
-    Content += "The time of this error is: {0}\n".format(datetime.now())
-    Content += "The error messege is: {0}\n".format(str(error))
-    Content += "Error traceback:\n{0}".format(tb)
-    send_email("Internal Server Error - Flask LCP", Content, 'noreply_error@lcp.mit.edu')
-    if 'Username' in session:
-        Content += "\n\nThe user tha triggered this error is: {0}\n\nThanks!".format(session['Username'])
-    send_email("Internal Server Error - Flask LCP - {0}".format(request.path), Content, 'noreply_error@lcp.mit.edu')
-
-    return render_template('500.html')#, 404
-####################################################################################################################################
-@app.route('/robots.txt')
-def send_text_file():
-    return app.send_static_file('robots.txt')
-####################################################################################################################################
+###############################################################################
+#
+# Main pages for the LCP website
+#
+###############################################################################
 @app.route("/")#Index page
 @app.route("/index")
 @app.route("/index.html")
 @app.route("/index.shtml")
 def index():#render the index page information
     return render_template('index.html')
-####################################################################################################################################
-####################################################################################################################################
+
 @app.route("/projects")#Index page
 @app.route("/Projects")
 @app.route("/Projects.html")
@@ -301,8 +363,7 @@ def Projects():#render the index page information
         # return render_template('projects.html', Projects=[])
     projects = Project_Model().GetAllWebsite()
     return render_template('projects.html', Projects=projects)
-####################################################################################################################################
-####################################################################################################################################
+
 @app.route("/publications")#Index page
 @app.route("/Publications")
 @app.route("/publications.html")
@@ -310,20 +371,17 @@ def Projects():#render the index page information
 @app.route("/Publications.html")
 def Publications():#render the index page information
     return render_template('publications.html')
-####################################################################################################################################
-####################################################################################################################################
+
 @app.route("/rgm_publications")#Index page
 @app.route("/rgm_publications.html")
 def rgm_publications():#render the index page information
     return render_template('rgm_publications.html')
-####################################################################################################################################
-# ####################################################################################################################################
+
 @app.route("/brp_references")#Index page
 @app.route("/brp_references.html")
 def brp_references():#render the index page information
     return render_template('brp_references.html')
-# ####################################################################################################################################
-####################################################################################################################################
+
 @app.route("/CCI")#Index page
 @app.route("/cci")
 @app.route("/CCI.html")
@@ -331,9 +389,7 @@ def brp_references():#render the index page information
 @app.route("/cci.shtml")
 def CCI():#render the index page information
     return render_template('cci.html')
-####################################################################################################################################
 
-####################################################################################################################################
 @app.route("/PhysioNet")#Index page
 @app.route("/Physionet")
 @app.route("/physionet")
@@ -343,8 +399,7 @@ def CCI():#render the index page information
 @app.route("/physionet.shtml")
 def Physionet():#render the index page information
     return render_template('physionet.html')
-####################################################################################################################################
-####################################################################################################################################
+
 @app.route("/BRP")#Index page
 @app.route("/brp")
 @app.route("/BRP.html")
@@ -352,22 +407,25 @@ def Physionet():#render the index page information
 @app.route("/brp.shtml")
 def BRP():#render the index page information
     return render_template('brp.html')
-####################################################################################################################################
-# 1. General
-# 2. Colaborating Researcher
-# 3. Visiting Colleague
-# 4. Alumni
-# 5. Grad Student
-# 6. UROP
-# 7. Affiliate
-# 8. Other
-####################################################################################################################################
+
 @app.route("/people")#Index page
 @app.route("/People")
 @app.route("/people.html")
 @app.route("/People.html")
 @app.route("/people.shtml")
 def people():#render the index page information
+    """
+    Function to display the list of people in the lab.
+    The categories are:
+        1. General
+        2. Colaborating Researcher
+        3. Visiting Colleague
+        4. Alumni
+        5. Grad Student
+        6. UROP
+        7. Affiliate
+        8. Other
+    """
     People = Personel_Model().GetAllWeb()
 
     #Creating 5 empty arrays
@@ -400,27 +458,31 @@ def people():#render the index page information
         else:
             Colab.append([item[0], item[1], item[2]])
     return render_template('people.html', IDs=IDs, Person=Person, Visiting=Visiting, Grad=Grad, Colab=Colab, Aff=Aff)
-####################################################################################################################################
-####################################################################################################################################
+
+###############################################################################
+#
+# Dashboard pages for the LCP
+#
+###############################################################################
+
 @app.route("/login")#Signup page
 @app.route("/Login")#Signup page
 @app.route("/login.html")#Signup page
 @app.route("/Login.html")#Signup page
 def login():
-    if 'ERROR' in session:#If there is an error then display the message
+    if 'ERROR' in session:
         Error = session['ERROR']
         session.pop('ERROR', None)
         app.logger.error('Loggin error: %s' % Error)
         return render_template('admin/login.html', Error=Error)
     else:
         return render_template('admin/login.html')
-####################################################################################################################################
-####################################################################################################################################
+
 @app.route("/Authenticate", methods=['POST','GET'])#Signup page
 def Authenticate():
     if request.method == 'GET':
         return redirect('login')
-    Username = re.sub(r"[!@#$%^&*()_+\[\]{}:\"?><,/\'\;~` ]", '', request.form.get('Username', None))
+    Username = sub(r"[!@#$%^&*()_+\[\]{}:\"?><,/\'\;~` ]", '', request.form.get('Username', None))
     if Username != None and request.form.get('Password', None) != None:
         Success = Auth(Username, request.form.get('Password', None))
         if Success:
@@ -428,8 +490,7 @@ def Authenticate():
     session["ERROR"] = "Incorrect login or password."
     return redirect('login')
 
-####################################################################################################################################
-####################################################################################################################################
+
 @app.route("/User_List")
 @app.route("/User_List.html")
 def User_List():
@@ -454,8 +515,7 @@ def User_List():
         elif item[1] == 6:
             People[indx][1] = 'UROP Student'
     return render_template('admin/User_list.html', Error=E, Success=S, Users=People, Logged_User=Logged_User)
-####################################################################################################################################
-####################################################################################################################################
+
 @app.route("/new_project", methods=['POST','GET'])
 def manage_projects():
     if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
@@ -485,8 +545,7 @@ def manage_projects():
             Success = Project_Model().Update_ALL(Project_Info)
     return redirect('dashboard')
     #return render_template('edit_project.html', Error=E, Success=S, Logged_User=session['Username'], Person=Person)
-####################################################################################################################################
-####################################################################################################################################
+
 @app.route("/dashboard")
 @app.route("/dashboard.html")
 def dashboard():
@@ -547,8 +606,7 @@ def dashboard():
     Projects = Project_Model().GetAll()
 
     return render_template('admin/dashboard.html', Error=Error, Success=Success, Logged_User=Logged_User, Personel=Personel, Projects=Projects)
-####################################################################################################################################
-####################################################################################################################################
+
 @app.route("/Edit_Project_<id>")
 def project(id):
     """
@@ -568,7 +626,7 @@ def project(id):
     elif 'SUCCESS' in session:
         S = session['SUCCESS']
         session.pop('SUCCESS', None)
-    if session['Username'] in Project_Admin:# app.config["Project_Admin"]: #
+    if session['Username'] in PROJECT_ADMINS:
         Admin = 1
     else:
         Admin = 0
@@ -579,8 +637,7 @@ def project(id):
     app.logger.error(status)
     E = status
     return render_template('admin/edit_project.html', Error=E, Success=S, Logged_User=session['Username'])
-####################################################################################################################################
-####################################################################################################################################
+
 @app.route("/Edit_User_<id>")
 def user(id):
     if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
@@ -623,7 +680,7 @@ def user(id):
 
     return render_template('admin/edit.html', Error=E, Success=S, Logged_User=session['Username'], Person=Person)
 
-####################################################################################################################################
+###############################################################################
 # 1. General
 # 2. Colaborating Researcher
 # 3. Visiting Colleague
@@ -632,7 +689,7 @@ def user(id):
 # 6. UROP
 # 7. Affiliate
 # 8. Other
-####################################################################################################################################
+###############################################################################
 @app.route("/Submit_User", methods=['POST','GET'])#Signup page
 def Submit_User():
     """
@@ -672,7 +729,7 @@ def Submit_User():
                 Content += "The old Bio is:\n{0}\n\nThe new Bio is:\n{1}\n\n".format(Bio, Person_Info["Bio"])
                 Subject = "Bio changed in the LCP website"
                 html_Content = Content + "The changes are:\n{0}\n\nThanks!".format(show_diff(Bio, Person_Info["Bio"]))
-                send_html_email(Subject, Content, html_Content.replace('\n','<br>'), 'noreply@lcp.mit.edu')#, rec=['rgmark@mit.edu', 'kpierce@mit.edu', 'ftorres@mit.edu']) 
+                send_html_email(Subject, Content, html_Content.replace('\n','<br>'), 'noreply@lcp.mit.edu')
             Success = Model.Update_ALL(Person_Info["Full_Name"], Person_Info["Status"], filename, Person_Info["Email"], Person_Info["Bio"], Person_Info["UID"], Person_Info["Food"], Person_Info["Hidden"])
     else:
         return redirect('/dashboard')
@@ -685,11 +742,11 @@ def Submit_User():
         session['ERROR'] = "There was an error, please try again."
         return redirect('dashboard')
 
-####################################################################################################################################
+###############################################################################
 ## 
 ## From here down is DUA related
 ## 
-####################################################################################################################################
+###############################################################################
 @app.route("/get_info", methods=['POST'])
 def get_info():
     last  = request.form.get('last_name', None)
