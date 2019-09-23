@@ -241,7 +241,7 @@ class SimpleModel:
 
     def Insert_line_reg(self, Vars, Picture):
         try:
-            self.cur.execute("""INSERT INTO "Lab"."Personel" ("Full_Name", "startdate", "username", "Username", "id", "Email", "office-address", "home-address", "phone", "emergency-contact", "Other", "research", "Bio", "Picture", "ehs_training", "human_studies_training", "extra", "Hidden") VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', 'TRUE')""" % (Vars["firstname"] + ' ' + Vars["lastname"], Vars["startdate"], Vars["username"], Vars["lcp_username"], Vars["id"],Vars["email"],Vars["office-address"],Vars["home-address"], Vars["phone"], Vars["emergency-contact"],Vars["Other"],Vars["research"],Vars["Bio"], Picture, Vars["ehs_training"],Vars["human_studies_training"], Vars["extra"]))
+            self.cur.execute("""INSERT INTO "Lab"."Personel" ("Full_Name", "startdate", "username", "Username", "id", "Email", "office-address", "home-address", "phone", "emergency-contact", "Other", "research", "Bio", "Picture", "ehs_training", "human_studies_training", "extra", "Hidden") VALUES ("%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", 'TRUE')""" % (Vars["firstname"] + ' ' + Vars["lastname"], Vars["startdate"], Vars["username"], Vars["lcp_username"], Vars["id"],Vars["email"],Vars["office-address"],Vars["home-address"], Vars["phone"], Vars["emergency-contact"],Vars["Other"],Vars["research"],Vars["Bio"], Picture, Vars["ehs_training"],Vars["human_studies_training"], Vars["extra"]))
             self.con.commit()
             return True
         except psycopg2.Error as e:
