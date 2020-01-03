@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session, g
+from flask import Flask, render_template, redirect, request, session, g, url_for
 from logging.handlers import RotatingFileHandler
 from datetime import timedelta, datetime, date
 from email.mime.multipart import MIMEMultipart
@@ -231,7 +231,7 @@ def resize_image(request):
     image = Image.open(f)
     image = image.crop((x, y, w+x, h+y))
     image = image.resize((200, 200), Image.ANTIALIAS)
-    
+
     image.save(app.config['UPLOAD_FOLDER'] + Filename)
 
     return Filename
