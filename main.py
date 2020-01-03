@@ -1,24 +1,21 @@
-from flask import Flask, render_template, redirect, request, session
+from flask import Flask, render_template, redirect, request, session, g
 from logging.handlers import RotatingFileHandler
 from datetime import timedelta, datetime, date
 from email.mime.multipart import MIMEMultipart
 from werkzeug.utils import secure_filename
+from email.message import EmailMessage
 from email.mime.text import MIMEText
 from os import path, remove
+from functools import wraps
 from smtplib import SMTP
 from uuid import uuid4
 from Postgres import *
 from PIL import Image
 from re import sub
-
-
-import simplepam, logging, traceback, difflib
-
-# Change the logger output file and schema
-
-handler = RotatingFileHandler('/var/log/flask/lcp_website.log', maxBytes=10000000, backupCount=2)
-handler.setLevel(logging.DEBUG)
-handler.setFormatter(logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s"))
+import traceback
+import simplepam
+import logging
+import difflib
 
 app = Flask(__name__) # Add the debug if you are running debugging mode
 
@@ -31,19 +28,32 @@ app.config.update(
         )
 
 app.jinja_env.auto_reload = True
+
+# Set logging information
+handler = RotatingFileHandler('/var/log/flask/lcp_website.log', maxBytes=10000000, backupCount=2)
+handler.setLevel(logging.DEBUG)
+handler.setFormatter(logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s"))
 app.logger.addHandler(handler)
 app.logger.setLevel(logging.DEBUG)
 
-ADMIN = ["ftorres", "rgmark", "kpierce"]
-PROJECT_ADMINS = ["ftorres", "rgmark", "kpierce", "alistairewj", "tpollard"]
+ADMIN = ["ftorres", "rgmark", "kpierce", "alistairewj", "tpollard"]
 EMAIL_RECIPIENTS = ['ftorres@mit.edu', 'kpierce@mit.edu']
 PRIMARY_ADMIN = ['ftorres@mit.edu']
 
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        # if user is not logged in, redirect to login page
+        if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
+            return redirect(url_for('login'))
+        # make user available down the pipeline via flask.g
+        g.username = session['Username']
+        # finally call f. f() now haves access to g.user
+        return f(*args, **kwargs)
+    return wrap
+
 @app.errorhandler(404)
 def page_not_found(error):
-    """
-    This is the page for handling pages not found, there will be a log in apache
-    """
     return render_template('404.html')
 
 @app.errorhandler(500)
@@ -52,7 +62,7 @@ def internal_server_error(error):
     This is the page for handling internal server error, there will be a log in apache and email generated
     """
     app.logger.error("500 - Internal Server Error - {0}".format(request.path))
-    app.logger.error(str(error))
+    app.logger.error("{}".format(error))
     tb = str(traceback.format_exc())
     Content = "Hi,\n\nThere was a internal server error on the Flask app running the LCP website.\n"
     Content += "The time of this error is: {0}\n".format(datetime.now())
@@ -74,8 +84,8 @@ def send_email(Subject, Content, sender, rec=None):
     This functions sends an email, takes subject, content, sender and recipients
     The recipients has to be a list of emails, even is there is only one
     """
-    server = SMTP('192.168.1.164')
-    msg = MIMEText(Content, 'plain', 'utf-8')
+    server = SMTP('127.0.0.1')
+    msg = MIMEText(Content, 'plain')
     recipients = PRIMARY_ADMIN
     if rec != None:
         recipients = rec
@@ -84,6 +94,7 @@ def send_email(Subject, Content, sender, rec=None):
     msg['To'] = ', '.join(recipients)
     server.sendmail(sender, recipients, msg.as_string())
     server.quit()
+
 
 def send_html_email(Subject, Content, html_Content, sender, rec=None):
     """
@@ -108,7 +119,7 @@ def send_html_email(Subject, Content, html_Content, sender, rec=None):
       </body>
     </html>
     """.format(html_Content)
-    part1 = MIMEText(Content, 'plain', 'utf-8')
+    part1 = MIMEText(Content, 'plain')
     part2 = MIMEText(html, 'html')
 
     msg.attach(part1)
@@ -357,10 +368,8 @@ def index():#render the index page information
 @app.route("/Projects.html")
 @app.route("/projects.html")
 @app.route("/projects.shtml")
+@login_required
 def Projects():#render the index page information
-    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
-        return render_template('404.html')#, 404
-        # return render_template('projects.html', Projects=[])
     projects = Project_Model().GetAllWebsite()
     return render_template('projects.html', Projects=projects)
 
@@ -493,10 +502,8 @@ def Authenticate():
 
 @app.route("/User_List")
 @app.route("/User_List.html")
+@login_required
 def User_List():
-    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
-        session['ERROR'] = "Please authenticate."
-        return redirect('/login')
     E = S = P_Output = ''
     People      = Personel_Model().GetAll2()
     Logged_User = []
@@ -517,11 +524,8 @@ def User_List():
     return render_template('admin/User_list.html', Error=E, Success=S, Users=People, Logged_User=Logged_User)
 
 @app.route("/new_project", methods=['POST','GET'])
+@login_required
 def manage_projects():
-    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
-        session['ERROR'] = "Please authenticate."
-        return redirect('/login')
-
     app.logger.info(request.form)
     if request.method == 'POST':
         Project_Info = {'p_name': request.form.get('p_name', "None").replace("'","''").rstrip(),  
@@ -548,10 +552,8 @@ def manage_projects():
 
 @app.route("/dashboard")
 @app.route("/dashboard.html")
+@login_required
 def dashboard():
-    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
-        session['ERROR'] = "Please authenticate."
-        return redirect('login')
     app.logger.info('The user %s is in the dashboard' % session['Username'])
 
     session.permanent = True
@@ -564,7 +566,7 @@ def dashboard():
         session.pop('SUCCESS', None)
 
     UserModel   = Personel_Model()
-    People      = UserModel.GetAll() #Normalize_utf8(UserModel.GetAll())
+    People      = UserModel.GetAll()
     Logged_User = [session['Username'], False]
 
     Personel = {"General":[],'Alumni':[],"UROP":[],"Affiliate":[],"Other":[]}
@@ -608,14 +610,11 @@ def dashboard():
     return render_template('admin/dashboard.html', Error=Error, Success=Success, Logged_User=Logged_User, Personel=Personel, Projects=Projects)
 
 @app.route("/Edit_Project_<id>")
+@login_required
 def project(id):
     """
     FUNCTION to do project edits
     """
-    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
-        session['ERROR'] = "Please authenticate."
-        return redirect('login')
-
     app.logger.info('The user {0} is trying to edit a project ID {1}'.format(session['Username'], id))
     session.permanent = True
 
@@ -626,7 +625,7 @@ def project(id):
     elif 'SUCCESS' in session:
         S = session['SUCCESS']
         session.pop('SUCCESS', None)
-    if session['Username'] in PROJECT_ADMINS:
+    if session['Username'] in ADMIN:
         Admin = 1
     else:
         Admin = 0
@@ -639,10 +638,8 @@ def project(id):
     return render_template('admin/edit_project.html', Error=E, Success=S, Logged_User=session['Username'])
 
 @app.route("/Edit_User_<id>")
+@login_required
 def user(id):
-    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
-        session['ERROR'] = "Please authenticate."
-        return redirect('login')
     app.logger.info('The user {0} is trying to edit the profile id {1}'.format(session['Username'], id))
     session.permanent = True
     E = S = P_Output = ''
@@ -691,14 +688,11 @@ def user(id):
 # 8. Other
 ###############################################################################
 @app.route("/Submit_User", methods=['POST','GET'])#Signup page
+@login_required
 def Submit_User():
     """
     FUNCTION to handle user edits
     """
-    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
-        session['ERROR'] = "Please authenticate."
-        return redirect('/login')
-
     app.logger.info(request.form)
     if request.method == 'POST' and request.form.get("FName"):
         Person_Info = {'Full_Name': request.form.get('FName', "None").replace("'","''"), 'Username': request.form.get('Username', "None").replace("'","''").rstrip(), 'Status': request.form.get('Status', "None"), 'Email': request.form.get('Email', "None"), 'Bio': request.form.get('Bio', "None").replace("'","''"), 'UID': request.form.get('UID', "None"), 'Food': request.form.get('Food', "False"), 'Hidden': request.form.get('Hidden', "False", ), 'y':request.form.get("y"), 'x': request.form.get("x"), 'height': request.form.get("height"), 'width': request.form.get("width")}
@@ -748,6 +742,7 @@ def Submit_User():
 ## 
 ###############################################################################
 @app.route("/get_info", methods=['POST'])
+@login_required
 def get_info():
     last  = request.form.get('last_name', None)
     first = request.form.get('first_name', None)
@@ -780,12 +775,8 @@ def get_info():
     return Line
 
 @app.route("/edit_dua_<ID>", methods=['POST','GET'])
+@login_required
 def Edit_dua_person(ID):
-    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
-        session['ERROR'] = "Please authenticate."
-        return redirect('/login')
-
-    from datetime import datetime
     E = S = ''
     mimic_model = MIMIC_Model()
     try:
@@ -834,16 +825,13 @@ def Edit_dua_person(ID):
     return render_template('admin/edit_dua_person.html', Error=E, date=date, Success=S, Logged_User=session['Username'], Person=Person)
 
 @app.route("/duas")#Signup page
+@login_required
 def dua_dashboard():
     """
     FUNCTION to handle user edits
     """
-    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
-        session['ERROR'] = "Please authenticate."
-        return redirect('/login')
     E = S = ''
     mimic_model = MIMIC_Model()
-    from datetime import datetime
     app.logger.info('{0}: User {1} is looking at the duas.'.format(datetime.now(), session['Username']))
 
     Total = mimic_model.get_total()
@@ -851,14 +839,11 @@ def dua_dashboard():
     return render_template('admin/duas.html', Error=E, Success=S, Logged_User=session['Username'],total=Total)
 
 @app.route("/log_info")#Signup page
+@login_required
 def log_info():
     """
     FUNCTION to handle user edits
     """
-    if ('SID' not in session) or ('Username' not in session) or ('URL' not in session):
-        session['ERROR'] = "Please authenticate."
-        return redirect('/login')
-
     logs = MIMIC_Model().get_all_logs()
     people = {}
     for item in logs:
@@ -868,6 +853,7 @@ def log_info():
             people[item[5]].append([item[2],item[4],item[1].replace(microsecond=0),item[0],item[3]])
 
     return render_template('admin/logs.html', logs=logs, people=people)
+
 
 
 if __name__ == "__main__":#RUN THE APP in port 8083
