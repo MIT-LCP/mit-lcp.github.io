@@ -11,7 +11,7 @@
 # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** TODO ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
 # If the lcp_references.html file were to change locations, the inpout of the file has also to be changed
 #############################################################################################################
-import datetime, urllib2
+import datetime
 from hashlib import sha256
 from re import match, sub, DOTALL
 import pdb

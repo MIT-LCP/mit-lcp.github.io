@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Laboratory for Computational Physiology</title>
+  {% include 'header.html'%}
+<!--   <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/up_file.js') }}"></script>
+ -->
+</head>
+<body data-spy="scroll" data-target=".navbar-fixed-top" >
+  {% include 'navbar.html'%}
+  <!-- - - - - - - - - - - - - - - - - - - - - - - START OF NEWS - - - - - - - - - - - - - - - - - - - - - - -->
+  {% if Error %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>{{Error}}</strong>
+  </div>
+  {% endif%}
+  {% if Success %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>{{Success}}</strong>
+  </div>
+  {% endif%}
+  <section id="dashboard">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="feature_header text-center">
+            <h3 class="feature_title">Grant BigQuery access</h3>
+            <div class="divider"></div>
+          </div>
+        </div>  <!-- Col-md-12 End -->
+      </div>
+    </div>
+  </section><br>
+<!-- END of header -->
+  <div class="container">
+    <div>
+      <form method='POST' action='datathon_add'>
+        <div class="form-group row">
+          <label for="location" class="col-sm-2 col-form-label">Location of event</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="location" name="location" type="text" placeholder="Location of event">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="contact_name" class="col-sm-2 col-form-label">Name of person of contact</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="contact_name" name="contact_name" type="text" placeholder="Name of person of contact">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="contact_email" class="col-sm-2 col-form-label">Email of person of contact</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="contact_email" name="contact_email" type="text" placeholder="Email of person of contact">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="google_group" class="col-sm-2 col-form-label">Google group</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="google_group" name="google_group" type="text" placeholder="Google group">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="date" class="col-sm-2 col-form-label">Date of event</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="date" name="date" type="date" placeholder="Date of event">
+          </div>
+        </div>
+          <button type='submit' id='submit' class='btn btn-primary pull-right'>Submit</button>
+          <a class='btn btn-danger pull-left' href='duas'>Back</a>
+      </form>
+
+<br><br>
+    </div>
+  </div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - END OF NEWS - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - START OF FOOTER  - - - - - - - - - - - - - - - - - - - - - - -->
+{% include 'footer.html'%}
+<!-- - - - - - - - - - - - - - - - - - - - - - - END OF FOOTER - - - - - - - - - - - - - - - - - - - - - - -->
+<script>
+  $('ul.nav li.dropdown').hover(function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(0);
+  }, function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeOut(200);
+  });
+  // $(function () {$('#date').datepicker();});
+  
+</script>
+
+</body>
+</html>
