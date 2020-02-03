@@ -1,79 +1,27 @@
-import psycopg2
-from config import *
 from datetime import datetime
 from sys import stderr as http_logger
 
+import psycopg2
 
-class LCP_Model:
+from config import Config
 
+
+class base_model:
     def __init__(self):
         dbinfo = Config()
         try:
             self.con = psycopg2.connect("dbname={0} user={1} host={2} password={3}".format(dbinfo.getDBName(), dbinfo.getUser(), dbinfo.getHost(), dbinfo.getPassword()))
             self.cur = self.con.cursor()
         except psycopg2.Error as e:
-            print (e)
-            http_logger.write("Error connecting to the user DB: {0}".format(e))
-
+            http_logger.write("Error connecting: {0}".format(e))
     def __del__(self):
         try:
             self.con.close()
         except psycopg2.Error as e:
-            http_logger.write("Error connecting to the user DB: {0}".format(e))
-
-    def InsertRow(self, Name, Last, Role, Email, Location):
-        try:
-            self.cur.execute("""INSERT INTO "Lab"."Inventory" ("Name", "Last", "Role", "Email", "Location")"""+" VALUES ('%s', '%s', '%s', '%s', '%s')" % (Name, Last, Role, Email, Location))
-            self.con.commit()
-            return True
-        except psycopg2.Error as e:
-            http_logger.write("Error inserting into the users Table: {0}".format(e))
-            return False
-
-    def GetAll(self):
-        try:
-            self.cur.execute("""SELECT "Name", "Last", "Role", "Email", "Location", "ID" FROM "Lab"."IRB" ORDER BY "ID" """)
-            return self.cur.fetchall()
-        except psycopg2.Error as e:
-            http_logger.write("Error selecting from the users Table: {0}".format(e))
-            return False
-
-
-    def InsertRow(self,Name, Email, Computer_Name, Monitors, Authentication, HD, OS, CPU, Graphics_Card, RAM, Location, purchased, Users, MIT_Number, Time_Used):
-        try:
-            SQL = """INSERT INTO Inventory (Name, Email, Computer_name, Monitors, Authentication, HD, OS, CPU, GPU, RAM, Location, Year_Purchased, Users, MIT_Property, Time_Used) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')""" % (Name, Email, Computer_Name, Monitors, Authentication, HD, OS, CPU, Graphics_Card, RAM, Location, purchased, Users, MIT_Number, Time_Used)
-            self.cur.execute(SQL)
-            self.con.commit()
-            return True
-        except MySQLdb.Error as e:
-            http_logger.write("Error inserting into the users Table: {0}".format(e))
-            return False
-
-    def ShowAll(self):
-        try:
-            self.cur.execute("SELECT * FROM Inventory")
-            return self.cur.fetchall()
-        except MySQLdb.Error as e:
-            http_logger.write("Error selecting from the Inventory Table: {0}".format(e))
-            return False
-
-class Personel_Model:
-
-    def __init__(self):
-        dbinfo = Config()
-        try:
-            self.con = psycopg2.connect("dbname={0} user={1} host={2} password={3}".format(dbinfo.getDBName(), dbinfo.getUser(), dbinfo.getHost(), dbinfo.getPassword()))
-            self.cur = self.con.cursor()
-        except psycopg2.Error as e:
-            print (e)
             http_logger.write("Error connecting: {0}".format(e))
 
-    def __del__(self):
-        try:
-            self.con.close()
-        except psycopg2.Error as e:
-            http_logger.write("Error connecting to the user DB: {0}".format(e))
 
+class Personel_Model(base_model):
     def New_ALL(self, Full_Name, Status, Picture, Email, Bio):
         try:
             self.cur.execute("""INSERT INTO "Lab"."Personel" ("Full_Name", "Status", "Email", "Bio", "Picture")"""+" VALUES ('%s', '%s', '%s', '%s', '%s')" % (Full_Name, Status, Email, Bio, Picture))
@@ -90,7 +38,6 @@ class Personel_Model:
             return 1
         except psycopg2.Error as e:
             http_logger.write("Error in Update_ALL: {0}".format(e))
-            print ("""UPDATE "Lab"."Personel" SET ("Full_Name", "Status", "Email", "Bio", "Picture", "Food", "Hidden") = ('%s', '%s', '%s', '%s', '%s', '%s', '%s') WHERE "UID"=%s""" % (Full_Name, Status, Email, Bio, Picture, Food, Hidden, UID))
             return e
 
     def GetAllUROP(self):
@@ -165,26 +112,11 @@ class Personel_Model:
             http_logger.write("Error in GetAllWeb function: {0}".format(e))
             return False
 
-class Project_Model:
 
-    def __init__(self):
-        dbinfo = Config()
-        try:
-            self.con = psycopg2.connect("dbname={0} user={1} host={2} password={3}".format(dbinfo.getDBName(), dbinfo.getUser(), dbinfo.getHost(), dbinfo.getPassword()))
-            self.cur = self.con.cursor()
-        except psycopg2.Error as e:
-            print (e)
-            http_logger.write("Error connecting: {0}".format(e))
-
-    def __del__(self):
-        try:
-            self.con.close()
-        except psycopg2.Error as e:
-            http_logger.write("Error connecting: {0}".format(e))
-            
+class Project_Model(base_model):
     def New_ALL(self, P_info):
         try:
-            self.cur.execute("""INSERT INTO "Lab"."Projects" (p_name, p_desc, p_email, p_contact, submitting_user, active_p, display_p, last_update) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')""" % (P_info["p_name"], P_info["p_desc"], P_info["p_email"], P_info["p_contact"], P_info["submitting_user"], True, True, datetime.now().strftime('%Y-%m-%d'))) #P_info["active_p"], P_info["display_p"]))
+            self.cur.execute("""INSERT INTO "Lab"."Projects" (p_name, p_desc, p_email, p_contact, submitting_user, active_p, display_p, last_update) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')""" % (P_info["p_name"], P_info["p_desc"], P_info["p_email"], P_info["p_contact"], P_info["submitting_user"], True, True, datetime.now().strftime('%Y-%m-%d')))
             self.con.commit()
             return 1
         except psycopg2.Error as e:
@@ -224,21 +156,52 @@ class Project_Model:
             http_logger.write("Error in GetAllByID function: {0}".format(e))
             return False, e
 
-class SimpleModel:
-    def __init__(self):
-        dbinfo = Config()
-        try:
-            self.con = psycopg2.connect("dbname=" + dbinfo.getDBName() + " user=" + dbinfo.getUser() + " host=" + "192.168.11.160" + " password=" + dbinfo.getPassword())
-            self.cur = self.con.cursor()
-        except psycopg2.Error as e:
-            http_logger.write("Error connecting: {0}".format(e))
 
-    def __del__(self):
+class Datathon_Model(base_model):
+    def Grant_BQ_access(self, Vars):
         try:
-            self.con.close()
+            self.cur.execute("INSERT INTO \"Lab\".datathon (location, contact_name, contact_email, google_group, event_date, creator_user) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')".format(Vars["location"], Vars["contact_name"], Vars["contact_email"], Vars["google_group"], Vars["date"], Vars["user"]))
+            self.con.commit()
+            return True
         except psycopg2.Error as e:
-            http_logger.write("Error connecting: {0}".format(e))
+            http_logger.write("Error in Grant_BQ_access function: {0}".format(e))
+            return False
 
+    def Revoke_BQ_Access(self, user, datathon_id):
+        try:
+            self.cur.execute("UPDATE \"Lab\".datathon SET (revoke_date, revoke_user) = ('{0}', '{1}') WHERE id={2}".format(datetime.now().strftime('%Y-%m-%d'), user, datathon_id))
+            self.con.commit()
+            return True
+        except psycopg2.Error as e:
+            http_logger.write("Error in Revoke_BQ_Access function: {0}".format(e))
+            return False
+
+    def GetByID(self, datathon_id):
+        try:
+            self.cur.execute("SELECT location, contact_name, contact_email, google_group, event_date, creation_date, revoke_date, creator_user, revoke_user FROM \"Lab\".datathon WHERE id={0}".format(datathon_id))
+            return self.cur.fetchone()
+        except psycopg2.Error as e:
+            http_logger.write("Error in GetAll function: {0}".format(e))
+            return False
+
+    def GetAll(self):
+        try:
+            self.cur.execute("SELECT id, location, contact_name, contact_email, google_group, event_date, creation_date, revoke_date, creator_user, revoke_user FROM \"Lab\".datathon ORDER BY event_date DESC")
+            return self.cur.fetchall()
+        except psycopg2.Error as e:
+            http_logger.write("Error in GetAll function: {0}".format(e))
+            return False
+
+    def GetAllCurrent(self):
+        try:
+            self.cur.execute("SELECT id, location, contact_name, contact_email, google_group, event_date, creation_date, creator_user FROM \"Lab\".datathon WHERE revoke_date IS NULL ORDER BY id")
+            return self.cur.fetchall()
+        except psycopg2.Error as e:
+            http_logger.write("Error in GetAllCurrent function: {0}".format(e))
+            return False
+
+
+class SimpleModel(base_model):
     def Insert_line_reg(self, Vars, Picture):
         try:
             self.cur.execute("""INSERT INTO "Lab"."Personel" ("Full_Name", "startdate", "username", "Username", "id", "Email", "office-address", "home-address", "phone", "emergency-contact", "Other", "research", "Bio", "Picture", "ehs_training", "human_studies_training", "extra", "Hidden") VALUES ("%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", 'TRUE')""" % (Vars["firstname"] + ' ' + Vars["lastname"], Vars["startdate"], Vars["username"], Vars["lcp_username"], Vars["id"],Vars["email"],Vars["office-address"],Vars["home-address"], Vars["phone"], Vars["emergency-contact"],Vars["Other"],Vars["research"],Vars["Bio"], Picture, Vars["ehs_training"],Vars["human_studies_training"], Vars["extra"]))
@@ -258,22 +221,7 @@ class SimpleModel:
             return e
 
 
-
-class MIMIC_Model:
-    def __init__(self):
-        dbinfo = Config()
-        try:
-            self.con = psycopg2.connect("dbname={0} user={1} host={2} password={3}".format(dbinfo.getDBName(), dbinfo.getUser(), dbinfo.getHost(), dbinfo.getPassword()))
-            self.cur = self.con.cursor()
-        except psycopg2.Error as e:
-            http_logger.write("Error connecting: {0}".format(e))
-
-    def __del__(self):
-        try:
-            self.con.close()
-        except psycopg2.Error as e:
-            http_logger.write("Error connecting: {0}".format(e))
-
+class MIMIC_Model(base_model):
     def get_all(self):
         try:
             self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info FROM \"Lab\".mimic_approved")
@@ -281,21 +229,19 @@ class MIMIC_Model:
         except psycopg2.Error as e:
             http_logger.write("Error in get_all function: {0}".format(e))
             return False
+
     def add_all_perons(self, name, last, email, mimic, eicu=None, country=None, info=None):
         try:
             if '@' not in email:
                 http_logger.write("Error in add_all_perons function, not an email: {0}".format(email))
-                print ("NOT EMAIL")
                 return False
             if not Not_Date(country):
                 http_logger.write("Error in add_all_perons function wrong info: {0}\n{1}".format(name, email))
-                print ("IS A DATE, email {0} name {1}".format(email, name))
                 return False
             self.cur.execute("INSERT INTO \"Lab\".mimic_approved (first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info ) VALUES ('{0}', '{1}','{2}', '{3}','{4}', '{5}', '{6}')".format(name, last, email, country, mimic, eicu, info))
             self.con.commit()
             return True
         except psycopg2.Error as e:
-            print ("INSERT INTO \"Lab\".mimic_approved (first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info ) VALUES ('{0}', '{1}','{2}', '{3}','{4}', '{5}', '{6}')".format(name, last, email, country, mimic, eicu, info))
             http_logger.write("Error in add_all_perons function: {0}".format(e))
             return False
 
@@ -307,6 +253,7 @@ class MIMIC_Model:
         except psycopg2.Error as e:
             http_logger.write("Error in add_person function: {0}".format(e))
             return False
+
     def get_total(self):
         try:
             self.cur.execute("SELECT count(*) FROM \"Lab\".mimic_approved")
@@ -314,6 +261,7 @@ class MIMIC_Model:
         except psycopg2.Error as e:
             http_logger.write("Error in get_total function: {0}".format(e))
             return False
+
     def get_by_email(self, email):
         try:
             self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info FROM \"Lab\".mimic_approved where physionet_email = '{0}' or google_email = '{0}'".format(email))
@@ -321,6 +269,7 @@ class MIMIC_Model:
         except psycopg2.Error as e:
             http_logger.write("Error in get_by_email function: {0}".format(e))
             return False
+
     def add_google_email(self, p_email, g_email):
         try:
             self.cur.execute("UPDATE \"Lab\".mimic_approved SET (google_email) = ('{0}') where physionet_email = '{1}'".format(g_email, p_email))
@@ -329,6 +278,7 @@ class MIMIC_Model:
         except psycopg2.Error as e:
             http_logger.write("Error in add_google_email function: {0}".format(e))
             return False
+
     def get_email(self):
         try:
             self.cur.execute("SELECT physionet_email, google_email FROM \"Lab\".mimic_approved ")
@@ -400,7 +350,6 @@ class MIMIC_Model:
             http_logger.write("Error in get_all_logs function: {0}".format(e))
             return False
 
-
     def get_by_id(self, ID):
         try:
             self.cur.execute("SELECT first_name, last_name, physionet_email, country, mimic_approval, eicu_approval, info, aws_id, google_email, other_info, id FROM \"Lab\".mimic_approved where id = {0} ".format(ID))
@@ -417,83 +366,3 @@ class MIMIC_Model:
         except psycopg2.Error as e:
             http_logger.write("Error in alter_person function: {0}".format(e))
             return False
-
-# Python code to remove duplicate elements 
-def duplicate_email(duplicate): 
-    final_list = [] 
-    duplicates = []
-    for num in duplicate: 
-        if num not in final_list: 
-            final_list.append(num)
-        else:
-            duplicates.append(num)
-    return final_list, duplicates
-
-def parse_eicu():
-    content = open('eicuapprovals.html').read()
-    content = content.split("<table>")[1].split("</table>")[0].replace('</tr>','').split('<tr>')
-    eicu = []
-    for item in content:
-        tmp = filter(None, item.replace('</td>','').replace('\n','').split('<td>'))
-        if re.match('\d*\.',tmp[0]):
-            eicu.append(tmp)
-
-def parse_mimic():
-    content = open('database_access_grantees.html').read()
-    content = content.split("<table>")[1].split("</table>")[0].replace('</tr>','').split('<tr>')
-
-    MIMIC = []
-    for indx, item in enumerate(content):
-        tmp = filter(None, item.replace('</td>','').replace('\n','').replace('<p>','').replace('</p>','').split('<td>'))
-        if tmp and re.match('\d*\.',tmp[0]):
-            MIMIC.append(tmp)
-    return MIMIC
-
-def parse_tsv():
-    MIMIC = []
-    content = open('tsv.txt').readlines()
-    for item in content:
-        if item.count('\t') > 6: 
-            MIMIC.append(item.replace('\n','').split('\t'))
-    return MIMIC
-
-def Not_Date(date_string):
-    date_format = '%m/%d/%Y'
-    try:
-        date_obj = datetime.strptime(date_string, date_format)
-        return False
-    except:
-        return True
-
-def is_date(date_string):
-    date_format = '%m/%d/%Y'
-    try:
-      date_obj = datetime.strptime(date_string, date_format)
-      return date_string
-    except:
-        try:
-            date_format = '%m/%d/%Y--'
-            date_obj = datetime.strptime(date_string, date_format)
-            return date_string.replace('--','')
-        except:
-            pass
-
-def add_from_tsv():
-    MIMIC = parse_tsv()
-    MimicModel = MIMIC_Model()
-    Added = False
-    for indx,item in enumerate(MIMIC):
-        if '@' in item[2]:
-            if not MimicModel.get_by_email(item[2]):
-                # print ("Addning people")
-                empty = False
-                for part in item:
-                    if part == '':
-                        print ("ERROR")
-                        empty = True
-                        return False
-                if not empty:
-                    result = MimicModel.add_all_perons(item[0].replace("'","''"), item[1].replace("'","''"), item[2], item[5], item[6], item[4].replace("'","''"), item[7].replace("'","''"))
-                    if result == False:
-                        print (result)
-    return True

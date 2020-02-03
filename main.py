@@ -1,23 +1,31 @@
-from flask import Flask, render_template, redirect, request, session, g, url_for
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from logging.handlers import RotatingFileHandler
 from datetime import timedelta, datetime, date
 from email.mime.multipart import MIMEMultipart
-from werkzeug.utils import secure_filename
-from email.message import EmailMessage
 from email.mime.text import MIMEText
-from os import path, remove
 from functools import wraps
+from os import path, remove
 from smtplib import SMTP
 from uuid import uuid4
-from Postgres import *
-from PIL import Image
-from re import sub
+from re import sub, search
 import traceback
-import simplepam
 import logging
+import json
+
+from flask import Flask, render_template, redirect, request, session, g, url_for
+from oauth2client.service_account import ServiceAccountCredentials
+from googleapiclient.errors import HttpError
+from googleapiclient.discovery import build
+from werkzeug.utils import secure_filename
+from PIL import Image
+import simplepam
 import difflib
 
-app = Flask(__name__) # Add the debug if you are running debugging mode
+from Postgres import Personel_Model, Project_Model, Datathon_Model, SimpleModel, MIMIC_Model
+from config import SERVICE_ACCOUNT_EMAIL, SERVICE_ACCOUNT_KEY, GCP_SECRET_KEY
+
+app = Flask(__name__)
 
 app.config.update(
         PERMANENT_SESSION_LIFETIME = timedelta(seconds=3000),
@@ -39,6 +47,9 @@ app.logger.setLevel(logging.DEBUG)
 ADMIN = ["ftorres", "rgmark", "kpierce", "alistairewj", "tpollard"]
 EMAIL_RECIPIENTS = ['ftorres@mit.edu', 'kpierce@mit.edu']
 PRIMARY_ADMIN = ['ftorres@mit.edu']
+
+GCP_DELEGATION_EMAIL = 'ftorres@physionet.org'
+DATATHON_GROUP = "datathon@physionet.org"
 
 def login_required(f):
     @wraps(f)
@@ -68,7 +79,6 @@ def internal_server_error(error):
     Content += "The time of this error is: {0}\n".format(datetime.now())
     Content += "The error messege is: {0}\n".format(str(error))
     Content += "Error traceback:\n{0}".format(tb)
-    send_email("Internal Server Error - Flask LCP", Content, 'noreply_error@lcp.mit.edu')
     if 'Username' in session:
         Content += "\n\nThe user tha triggered this error is: {0}\n\nThanks!".format(session['Username'])
     send_email("Internal Server Error - Flask LCP - {0}".format(request.path), Content, 'noreply_error@lcp.mit.edu')
@@ -102,6 +112,8 @@ def send_html_email(Subject, Content, html_Content, sender, rec=None):
     The recipients has to be a list of emails, even is there is only one
 
     Here a HTML email will be sent.
+
+    ONLY used in BIO edits.
     """
     msg = MIMEMultipart('alternative')
     recipients = PRIMARY_ADMIN
@@ -125,7 +137,7 @@ def send_html_email(Subject, Content, html_Content, sender, rec=None):
     msg.attach(part1)
     msg.attach(part2)
 
-    server = SMTP('192.168.1.164')
+    server = SMTP('127.0.0.1')
     server.sendmail(sender, recipients, msg.as_string())
     server.quit()
 
@@ -854,10 +866,125 @@ def log_info():
 
     return render_template('admin/logs.html', logs=logs, people=people)
 
+@app.route("/datathon", methods=['POST', 'GET'])
+@login_required
+def datathon():
+    """
+    Page to handle datathon access to MIMIC and eICU
+    """
+    S = E = ''
+    model = Datathon_Model()
+
+    if 'ERROR' in session:
+        E = session['ERROR']
+        session.pop('ERROR', None)
+    elif 'SUCCESS' in session:
+        S = session['SUCCESS']
+        session.pop('SUCCESS', None)
+    if request.method == 'POST' and request.form.get("remove_id"):
+        remove_id = request.form.get('remove_id', None)
+        if model.Revoke_BQ_Access(session['Username'], remove_id):
+            datathon_info = model.GetByID(remove_id)
+            revoke_gcp_group_access(datathon_info[3])
+            S = "The BigQuery from {0} access has been removed.".format(datathon_info[3])
+
+    datathons = model.GetAllCurrent()
+    datathons = model.GetAll()
+    print(datathons)
+    return render_template('admin/datathons.html', Error=E, Success=S, datathons=datathons)
+
+
+@app.route("/datathon_add", methods=['POST', 'GET'])
+@login_required
+def datathon_add():
+    """
+    Page to handle datathon access to MIMIC and eICU
+    """
+    Vars = {}
+    if request.method == 'POST' and request.form.get("location"):
+        Vars['location'] = request.form.get('location', None)
+        Vars['contact_name'] = request.form.get('contact_name', None)
+        Vars['contact_email'] = request.form.get('contact_email', None)
+        Vars['google_group'] = request.form.get('google_group', None)
+        Vars['date'] = request.form.get('date', None)
+        Vars['user'] = session['Username']
+
+        check_email(Vars['contact_email'])
+        check_email(Vars['google_group'])
+
+        model = Datathon_Model()
+        if model.Grant_BQ_access(Vars):
+            grant_gcp_group_access(Vars['contact_email'])
+            session['SUCCESS'] = "Access was granted"
+        else:
+            session['ERROR'] = "There was an error entering the information into the database"
+        return redirect('datathon')
+    return render_template('admin/datathon_add.html')
+
+
+def grant_gcp_group_access(email):
+    """
+    Add a specific email address to a organizational google group
+    Returns two things:
+        The first argument is if access was awarded.
+        The second argument is if the access was awarded in a previous time.
+    """
+    service = build_service()
+    try:
+        outcome = service.members().insert(groupKey=DATATHON_GROUP,
+            body={"email": email, "delivery_settings": "NONE"}).execute()
+        if outcome['role'] == "MEMBER":
+            session['SUCCESS'] = 'Access has been granted to {0}'.format(email)
+            return True
+        session['ERROR'] = 'Threre was an error granting access to {0}'.format(email)
+        return False
+    except HttpError as e:
+        if json.loads(e.content)['error']['message'] != 'Member already exists.':
+            raise e
+
+def revoke_gcp_group_access(email):
+    """
+    Add a specific email address to a organizational google group
+    Returns two things:
+        The first argument is if access was awarded.
+        The second argument is if the access was awarded in a previous time.
+    """
+    service = build_service()
+    try:
+        outcome = service.members().delete(groupKey=DATATHON_GROUP, memberKey=email).execute()
+        if outcome == '':
+            session['SUCCESS'] = 'Access has been granted to {0}'.format(email)
+            return True
+        session['ERROR'] = 'Threre was an error granting access to {0}'.format(email)
+        return False
+    except HttpError as e:
+        if json.loads(e.content)['error']['message'] != 'Resource Not Found: memberKey':
+            raise e
+
+def build_service():
+    if not path.isfile(SERVICE_ACCOUNT_KEY):
+        raise Exception("The GCP access key file does not exists.")
+
+    credentials = ServiceAccountCredentials.from_p12_keyfile(
+        SERVICE_ACCOUNT_EMAIL, SERVICE_ACCOUNT_KEY, GCP_SECRET_KEY,
+        scopes=['https://www.googleapis.com/auth/admin.directory.group'])
+    credentials = credentials.create_delegated(GCP_DELEGATION_EMAIL)
+    return build('admin', 'directory_v1', credentials=credentials)
+
+
+def check_email(email):
+    """
+    Validates emails
+    """
+    regex = '\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+
+    if not search(regex, email):
+        raise Exception("Invalid email: {}".format(email))
+
 
 
 if __name__ == "__main__":#RUN THE APP in port 8083
     # Once the templates are edited, this is needed to refresh the HTML automaticly
     app.jinja_env.auto_reload = True
-    app.run(host='0.0.0.0', port=8083, threaded=True)#, debug=True)
+    app.run(host='0.0.0.0', port=8083, threaded=True, debug=True)
     
