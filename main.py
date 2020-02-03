@@ -909,8 +909,8 @@ def datathon_add():
         Vars['date'] = request.form.get('date', None)
         Vars['user'] = session['Username']
 
-        check_email(Vars['contact_email'])
-        check_email(Vars['google_group'])
+        if not valid_email(Vars['contact_email']) or not valid_email(Vars['google_group']):
+            return render_template('admin/datathon_add.html', Error="Please enter valid emails")
 
         model = Datathon_Model()
         if model.Grant_BQ_access(Vars):
@@ -972,15 +972,16 @@ def build_service():
     return build('admin', 'directory_v1', credentials=credentials)
 
 
-def check_email(email):
+def valid_email(email):
     """
     Validates emails
     """
     regex = '\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
 
     if not search(regex, email):
-        raise Exception("Invalid email: {}".format(email))
-
+        app.logger.info("Invalid email: {}".format(email))
+        return False
+    return True
 
 
 if __name__ == "__main__":#RUN THE APP in port 8083
