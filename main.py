@@ -569,7 +569,7 @@ def dashboard():
     app.logger.info('The user %s is in the dashboard' % session['Username'])
 
     session.permanent = True
-    error = success = status()
+    error, success = status()
     people_list = PersonelModel().get_all()
     user_admin = [session['Username'], False]
     if session['Username'] in ADMIN:
@@ -621,7 +621,7 @@ def user(uid):
     app.logger.info('The user {0} is trying to edit the profile id {1}'.format(
         session['Username'], uid))
     session.permanent = True
-    error = success = status()
+    error, success = status()
     person = PersonelModel().get_all_from_id(uid)
 
     if session['Username'] not in ADMIN and person[8] != session['Username']:
@@ -739,7 +739,8 @@ def status():
     """
     Return if there was an error or successful event
     """
-    error = success = False
+    error = False
+    success = False
     if 'ERROR' in session:
         error = session['ERROR']
         session.pop('ERROR', None)
@@ -755,7 +756,7 @@ def datathon():
     """
     Page to handle datathon access to MIMIC and eICU
     """
-    error = success = status()
+    error, success = status()
     model = DatathonModel()
 
     if request.method == 'POST' and request.form.get("remove_id"):
@@ -767,8 +768,8 @@ def datathon():
                 datathon_info[3])
 
     datathons = model.get_all()
-    return render_template('admin/datathons.html', Error=error,
-                           Success=success, datathons=datathons)
+    return render_template('admin/datathons.html', error=error,
+                           success=success, datathons=datathons)
 
 
 @app.route("/datathon_add", methods=['POST', 'GET'])
