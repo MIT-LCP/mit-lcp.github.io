@@ -612,7 +612,7 @@ def dashboard():
                            Personel=personel)
 
 
-@app.route("/Edit_User_<id>")
+@app.route("/Edit_User_<uid>")
 @login_required
 def user(uid):
     """
@@ -739,7 +739,7 @@ def status():
     """
     Return if there was an error or successful event
     """
-    error = success = ''
+    error = success = False
     if 'ERROR' in session:
         error = session['ERROR']
         session.pop('ERROR', None)
