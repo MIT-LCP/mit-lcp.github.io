@@ -631,9 +631,6 @@ def user(uid):
                   <option value='False'>False</option>"
     person[10] = true_false.replace("'{}'".format(person[10]),
                                     "'{}' selected".format(person[10]))
-    if person[10]:
-        person[10] = "<option value='True' selected>True</option>\
-                      <option value='False'>False</option>"
 
     category = "<option value='1'> -- General -- </option>\
                 <option value='2'> -- Collaborating Researcher -- </option>\
