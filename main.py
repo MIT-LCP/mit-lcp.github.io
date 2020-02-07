@@ -83,7 +83,7 @@ def internal_server_error(error):
         location, trace))
 
     content = "There was a internal server error on the Flask app running the \
-    LCP website. \nThe time of this error is: {0}\nError traceback:\n{2}\
+    LCP website. \nThe time of this error is: {0}\nError traceback:\n{1}\
     ".format(datetime.now(), trace)
     if 'Username' in session:
         content += "\nThe user tha triggered this error is: {0}".format(
