@@ -498,7 +498,7 @@ def people():
     ids = ""
     for item in people_list:
         # If the person is set as hidden then skip = item[10]
-        if item[3] in [1, 3, 5, 7]:
+        if item[3] in [1, 3, 5, 7] and item[10] not in ['true', True]:
             bio = ""
             ids += "<li><a href='#{0}'>{1}</a></li>".format(item[0], item[2])
             if item[1]:
