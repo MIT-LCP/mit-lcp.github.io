@@ -157,8 +157,8 @@ class PersonelModel(BaseModel):
                 "office-address", "home-address", "phone",
                 "emergency-contact", "Other", "research", "Bio", "Picture",
                 "ehs_training", "human_studies_training", "extra", "Hidden")
-                VALUES ("%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s",
-                "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", 'TRUE')""" % (
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                %s, %s, %s, 'TRUE')""", (
                     Vars["firstname"] + ' ' + Vars["lastname"],
                     Vars["startdate"], Vars["username"], Vars["lcp_username"],
                     Vars["id"], Vars["email"], Vars["office-address"],
