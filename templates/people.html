@@ -37,8 +37,8 @@
            </div>
           {% endfor %}
         </div>
-        <div class="divider"></div>
         {% if Visiting %}
+        <div class="divider"></div>
         <h2>Visiting Colleagues</h2>
         <div class="divider"></div>
         <div id="Visiting_List">
@@ -64,6 +64,7 @@
 
         </div>
         {% endif %}
+        {% if Aff %}
          <h2>Research Affiliate</h2>
         <div class="divider"></div>
         <div id="Affiliate_List">
@@ -87,6 +88,7 @@
             </div>
           {% endfor %}
         </div>
+        {% endif %}
         <h2>Collaborators</h2>
         <div class="divider"></div>
         <div id="Colaborators_List">
