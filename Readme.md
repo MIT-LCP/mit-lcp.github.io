@@ -31,4 +31,17 @@ There are some key files in this folders.
     # http://127.0.0.1:5000/ (debug mode off)
     flask run
     # http://0.0.0.0:8083/ (debug mode on)
+    # Debug will allow to see crash errors and access the interactive debugger
     python main.py
+
+## Deploying to the Bare Repository
+
+Before deploying for the first time, make sure to set the variables in the `post-receive` file in the bare repository.
+
+Add the remote bare repositories from your local development machines:
+
+`git remote add <production> <user>@<address>:/home/webuser/lcp-website.git`
+
+Push to the remotes when appropriate
+
+`git push <production> <production>`
