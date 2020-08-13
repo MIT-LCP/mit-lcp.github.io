@@ -9,19 +9,26 @@ There are some key files in this folders.
 - main.py   - The actual application file
 - Postgres.py - All the postgres functions
 
-##### From NGINX the web application used to serve the files instead of apache/httpd, there are several IMPORTANT files that must NOT be touched.
+## From NGINX the web application used to serve the files instead of apache/httpd, there are several IMPORTANT files that must NOT be touched.
 
 - /etc/uwsgi.sockets/lcp_uwsgi.sock - Auto generated file by lcp_website.service
 - wsgi_lcp.ini  - The reference file that the lcp_website.service takes to serve the application
 - wsgi.py - The actual calling the application used by main.ini
 - main_nginx.conf - The nginx configuration file
 
-##### How to run the server locally
-    git clone <GITHUB_URL>
+## How to run the server locally
+    # Pull down the project contents
+    git clone https://github.com/MIT-LCP/lcp-website.git
+    # Change to the project directory
+    cd lcp-website
+    # Create a new Python3.5+ virtual environment
     python3 -m venv env
+    # Activate the virtual environment
     source env/bin/activate
+    # Install the package requirements
     pip install -r requirements.txt
+    # Run the Flask App on localhost...
+    # http://127.0.0.1:5000/ (debug mode off)
     flask run
-    ...Add more here...
-    
-
+    # http://0.0.0.0:8083/ (debug mode on)
+    python main.py
