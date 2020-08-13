@@ -16,3 +16,12 @@ There are some key files in this folders.
 - wsgi.py - The actual calling the application used by main.ini
 - main_nginx.conf - The nginx configuration file
 
+##### How to run the server locally
+    git clone <GITHUB_URL>
+    python3 -m venv env
+    source env/bin/activate
+    pip install -r requirements.txt
+    flask run
+    ...Add more here...
+    
+
