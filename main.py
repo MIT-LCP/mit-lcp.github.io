@@ -21,33 +21,22 @@ import simplepam
 import difflib
 
 from Postgres import PersonelModel, DatathonModel
-from config import SERVICE_ACCOUNT_EMAIL, SERVICE_ACCOUNT_KEY, GCP_SECRET_KEY
 
 app = Flask(__name__)
+if app.config['ENV'] == 'production':
+    app.config.from_object('config.ProductionConfig')
+else:
+    app.config.from_object('config.DevConfig')
 
-app.config.update(
-        PERMANENT_SESSION_LIFETIME=timedelta(seconds=3000),
-        SECRET_KEY='mf}7WwDxTm8ik}ipULrYgSWzfxutj|zDo1n(h+abvE&$aM)?O$8R>qUtE)?CyOQ)*6YwADN!IHLy+TE^K1>>1^riVxme**JBH!+N',
-        MAX_CONTENT_PATH=5 * 1024 * 1024,
-        TEMPLATES_AUTO_RELOAD=True,
-        UPLOAD_FOLDER="static/images/"
-        )
+if app.config['ENV'] == 'production':
+    LOG_HANDLER = RotatingFileHandler('/var/log/flask/lcp_website.log',
+                                    maxBytes=10000000, backupCount=2)
+    LOG_HANDLER.setLevel(DEBUG)
+    LOG_HANDLER.setFormatter(
+        Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(message)s"))
+    app.logger.addHandler(LOG_HANDLER)
 
-# Set logging information
-LOG_HANDLER = RotatingFileHandler('/var/log/flask/lcp_website.log',
-                                  maxBytes=10000000, backupCount=2)
-LOG_HANDLER.setLevel(DEBUG)
-LOG_HANDLER.setFormatter(
-    Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(message)s"))
-app.logger.addHandler(LOG_HANDLER)
 app.logger.setLevel(DEBUG)
-
-ADMIN = ["ftorres", "rgmark", "kpierce", "alistairewj", "tpollard"]
-EMAIL_RECIPIENTS = ['ftorres@mit.edu', 'kpierce@mit.edu']
-PRIMARY_ADMIN = ['ftorres@mit.edu']
-
-GCP_DELEGATION_EMAIL = 'ftorres@physionet.org'
-DATATHON_GROUP = "datathon@physionet.org"
 
 
 def login_required(function):
@@ -107,7 +96,7 @@ def send_email(subject, content, sender, rec=None):
     """
     server = SMTP('127.0.0.1')
     msg = MIMEText(content, 'plain')
-    recipients = PRIMARY_ADMIN
+    recipients = app.config['PRIMARY_ADMIN']
     if rec is not None:
         recipients = rec
     msg['Subject'] = subject
@@ -127,7 +116,7 @@ def send_html_email(subject, content, html_content, sender, rec=None):
     ONLY used in BIO edits.
     """
     msg = MIMEMultipart('alternative')
-    recipients = PRIMARY_ADMIN
+    recipients = app.config['PRIMARY_ADMIN']
     if rec is not None:
         recipients = rec
     msg['Subject'] = subject
@@ -178,7 +167,7 @@ def checkout_form(var):
     result = model.checkout_form(var)
 
     send_email(subject=subject, content=content, sender=var['email'],
-               rec=EMAIL_RECIPIENTS)
+               rec=app.config['EMAIL_RECIPIENTS'])
 
     if result is not True:
         app.logger.error("There was an error in the postgres insert of the \
@@ -223,7 +212,7 @@ def registration_form(var):
     result = PersonelModel().registration_form(var, picture)
     # Alert that the users have been submitted
     send_email(subject=subject, content=content, sender=var['email'],
-               rec=EMAIL_RECIPIENTS)
+               rec=app.config['EMAIL_RECIPIENTS'])
 
     if result is not True:
         app.logger.error("There was an error in the postgres insert of the \
@@ -572,7 +561,7 @@ def dashboard():
     error, success = status()
     people_list = PersonelModel().get_all()
     user_admin = [session['Username'], False]
-    if session['Username'] in ADMIN:
+    if session['Username'] in app.config['ADMIN']:
         user_admin = [session['Username'], True]
 
     personel = {"General": [], 'Alumni': [], "UROP": [], "Affiliate": [],
@@ -808,7 +797,7 @@ def grant_gcp_group_access(email):
     """
     service = build_service()
     try:
-        outcome = service.members().insert(groupKey=DATATHON_GROUP, body={
+        outcome = service.members().insert(groupKey=app.config['DATATHON_GROUP'], body={
             "email": email, "delivery_settings": "NONE"}).execute()
         if outcome['role'] == "MEMBER":
             session['SUCCESS'] = 'Access has been granted to {0}'.format(email)
@@ -829,7 +818,7 @@ def revoke_gcp_group_access(email):
     """
     service = build_service()
     try:
-        outcome = service.members().delete(groupKey=DATATHON_GROUP,
+        outcome = service.members().delete(groupKey=app.config['DATATHON_GROUP'],
                                            memberKey=email).execute()
         if outcome == '':
             session['SUCCESS'] = 'Access has been granted to {0}'.format(email)
@@ -845,13 +834,15 @@ def build_service():
     """
     Builds the GCP service to add and remove emails to admin.google.com
     """
-    if not path.isfile(SERVICE_ACCOUNT_KEY):
+    if not path.isfile(app.config['SERVICE_ACCOUNT_KEY']):
         raise Exception("The GCP access key file does not exists.")
 
     credentials = ServiceAccountCredentials.from_p12_keyfile(
-        SERVICE_ACCOUNT_EMAIL, SERVICE_ACCOUNT_KEY, GCP_SECRET_KEY,
+        app.config['SERVICE_ACCOUNT_EMAIL'],
+        app.config['SERVICE_ACCOUNT_KEY'],
+        app.config['GCP_SECRET_KEY'],
         scopes=['https://www.googleapis.com/auth/admin.directory.group'])
-    credentials = credentials.create_delegated(GCP_DELEGATION_EMAIL)
+    credentials = credentials.create_delegated(app.config['GCP_DELEGATION_EMAIL'])
     return build('admin', 'directory_v1', credentials=credentials)
 
 
