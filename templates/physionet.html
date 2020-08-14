@@ -3,44 +3,51 @@
 {% block head2 %}{% endblock %}
 {% block content %}
 
-  <div class="container about">
-    <div class="row">
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="feature_header text-center">
-          <h1 class="feature_title">PhysioNet</h1>
-          <div class="divider"></div>
+<div class="container about">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="feature_header text-center">
+        <a href="https://physionet.org">
+        <h1 class="feature_title">PhysioNet</h1></a>
+        <div class="divider"></div>
+      </div>
+    </div>  <!-- Col-md-12 End -->
+  </div>
+  <!-- - - - - - - - - - - - - - - - - - - - - - Physionet Details - - - - - - - - - - - - - - - - - - - - - - -->
+  <div class="row text-center">
+    <div class="feature_content" align='center'>
+      <a href="https://physionet.org/lightwave/">
+        <div class="image_hover" data-content="LightWAVE">
+          <img class="img-fluid" alt="[MIT photo logo]" style="margin:1em 0;width:90%;height:auto;" src="{{url_for('static', filename='images/MIT_BIH_waveform.png')}}">
         </div>
-      </div>  <!-- Col-md-12 End -->
+      </a>
     </div>
-    <div class='row'>
-      <div class="col-md-12">
-        <p>The LCP and <a href="http://reylab.bidmc.harvard.edu" target="_blank">The Margret H. A. Rey Institute for Nonlinear Dynamics in Medicine</a> (ReyLab) are the two core laboratories of the National Institutes of Health’s Research Resource for Complex Physiologic Signals.  The LCP is the home of the Resource’s <a href="http://www.physionet.org">PhysioNet</a> web site, one of the world’s largest, most comprehensive, and most widely used repositories of freely available recorded physiologic signals and high resolution clinical ICU data, with related open-source software for research.  PhysioNet, the first such repository, was established in 1999 to provide data and software resources to the biomedicical  research community. It is an officially recommended repository for the journal Scientific Data (SciData).</p>
-
-        <h2>The three major aims of PhysioNet are:</h2>
-        <ul>
-          <li>To provide data and software resources to the biomedical research community, and to enable and accelerate data sharing and open-source software contributions:
-          <ul>
-            <li><a href="http://physionet.org/physiobank/" target="_blank">PhysioBank</a>, PhysioNet’s data archive, is a large and continually growing archive of well-characterized digital recordings of physiologic signals, time series, and archives of detailed clinical data from ICU patients for use by the biomedical research community. The collections include data from a wide range of studies, as developed and contributed by members of the research community.</li>
-            <li><a href="http://physionet.org/physiotoolkit/" target="_blank">PhysioToolkit</a>, PhysioNet’s software collection, supports exploration and quantitative analyses of PhysioBank and similar data with a wide range of well-documented, rigorously tested open-source software that can be run on any platform.</li>
-            <li><a href="http://physionet.org/users/" target="_blank">PhysioNetWorks</a>, PhysioNet’s incubation laboratory, inaugurated in 2011, allows collaborating researchers to share and study their own data and software securely before contributing them to PhysioNet. It is designed to enable and accelerate data sharing, foster collaborative development of data, software, and dissemination of knowledge.</li>
-          </ul></li>
-          <li>To drive relevant innovation through a vigorous research program.
-          <b class="bold">A key component of the work done under PhysioNet is our research on selected aspects of signal analysis that have proved of interest to our user community. Our current research projects include the following:</b>
-          <ul>
-            <li>Developing computational tools to address the problems of reducing false alarms during long-term monitoring and distinguishing clinically important events from noise and artifacts.</li>
-            <li>Developing dynamical biomarkers of physiologic instability and related computational tools.
-            <ul>
-              <li>Develop dynamical biomarkers of physiologic status by quantifying changes in complexity.</li>
-              <li>Develop dynamical biomarkers of physiologic instability based on indexes of coupling.</li>
-              <li>Develop visual analytic tools for complex signals: 2- and 3-D data transformations.</li>
-            </ul></li>
-          </ul></li>
-          <li>To stimulate and support a growing community of investigators</li>
-	  </ul>
-          <p>We organize and host the annual PhysioNet/CinC Challenges (<a href="https://physionet.org/physiobank/database/challenge/" target="_blank">https://physionet.org/challenge/</a>), held annually since 2000, in cooperation with the annual IEEE Engineering in Medicine and Biology sponsored conference, <a href="http://cinc.org" target="_blank">Computing in Cardiology</a> (CinC).   The annual series of open biomedical Challenges are competitions in physiological signal processing and machine learning, and have been highly successful in stimulating new research on a variety of important unsolved and clinically relevant problems.</p>
+    <div class="col-md-3 col-xs-3 col-sm-3">
+      <div class="feature_content" align='center'>
+        <a href="https://physionet.org/about/"><i class="fa fa-history"></i>
+        <h5>History</h5></a>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-3 col-sm-3">
+      <div class="feature_content" align='center'>
+        <a href="https://physionet.org/content/"><i class="fa fa-search"></i>
+        <h5>Search For Data</h5></a>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-3 col-sm-3">
+      <div class="feature_content" align='center'>
+        <a href="https://physionet.org/about/publish/"><i class="fa fa-share"></i>
+        <h5>Share Your Data</h5></a>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-3 col-sm-3">
+      <div class="feature_content" align='center'>
+        <a href="https://physionet.org/news/"><i class="fa fa-comment"></i>
+        <h5>Latest News</h5></a>
       </div>
     </div>
   </div>
+</div>
 <br>
 
 {% endblock %}
