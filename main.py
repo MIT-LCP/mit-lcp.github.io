@@ -28,14 +28,14 @@ if app.config['ENV'] == 'production':
 else:
     app.config.from_object('config.DevConfig')
 
-# Set logging information
-LOG_HANDLER = RotatingFileHandler('/var/log/flask/lcp_website.log',
-                                  maxBytes=10000000, backupCount=2)
-LOG_HANDLER.setLevel(DEBUG)
-LOG_HANDLER.setFormatter(
-    Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(message)s"))
-app.logger.addHandler(LOG_HANDLER)
-app.logger.setLevel(DEBUG)
+if app.config['ENV'] == 'production':
+    LOG_HANDLER = RotatingFileHandler('/var/log/flask/lcp_website.log',
+                                    maxBytes=10000000, backupCount=2)
+    LOG_HANDLER.setLevel(DEBUG)
+    LOG_HANDLER.setFormatter(
+        Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(message)s"))
+    app.logger.addHandler(LOG_HANDLER)
+    app.logger.setLevel(DEBUG)
 
 
 def login_required(function):
