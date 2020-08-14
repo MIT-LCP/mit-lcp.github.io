@@ -1,4 +1,4 @@
-config.py
+# Python caching
 __pycache__/
 old_config/
 .DS_Store
@@ -6,8 +6,16 @@ old_config/
 *.pyc 
 */.DS_Store
 */*/.DS_Store
+*credentials.p12
+
+# Virtual environments
 env
 env/
 env3
 env3/
-*credentials.p12
+
+# Text editors
+.vscode/
+
+# Configuration
+.env
