@@ -35,7 +35,8 @@ if app.config['ENV'] == 'production':
     LOG_HANDLER.setFormatter(
         Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(message)s"))
     app.logger.addHandler(LOG_HANDLER)
-    app.logger.setLevel(DEBUG)
+
+app.logger.setLevel(DEBUG)
 
 
 def login_required(function):
