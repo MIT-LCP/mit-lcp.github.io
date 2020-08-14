@@ -13,11 +13,10 @@ class BaseModel:
     Initial connection to dabase
     """
     def __init__(self):
-        dbinfo = Config()
         try:
             self.con = psycopg2.connect("dbname={0} user={1} host={2} \
-                password={3}".format(dbinfo.getDBName(), dbinfo.getUser(),
-                                     dbinfo.getHost(), dbinfo.getPassword()))
+                password={3}".format(Config.DB_NAME, Config.DB_USER,
+                                     Config.DB_HOST, Config.DB_PASSWD))
             self.cur = self.con.cursor()
         except psycopg2.Error as error:
             http_logger.write("Error connecting: {0}".format(error))

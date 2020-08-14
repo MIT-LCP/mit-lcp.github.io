@@ -19,20 +19,30 @@ There are some key files in this folders.
 ## How to run the server locally
     # Pull down the project contents
     git clone https://github.com/MIT-LCP/lcp-website.git
+
     # Change to the project directory
     cd lcp-website
+
     # Create a new Python3.5+ virtual environment
     python3 -m venv env
+
     # Activate the virtual environment
     source env/bin/activate
+
     # Install the package requirements
     pip install -r requirements.txt
-    # Run the Flask App on localhost...
-    # http://127.0.0.1:5000/ (debug mode off)
+
+    # Get the environment:
+    # (1) Development
+    cp config/dev/.env.example .env
+    # (2) Production
+    cp config/production/.env.example .env
+
+    # Ask an admin for the database configuration settings
+
+    # Run the Flask App on localhost
+    # http://127.0.0.1:5000/
     flask run
-    # http://0.0.0.0:8083/ (debug mode on)
-    # Debug will allow to see crash errors and access the interactive debugger
-    python main.py
 
 ## Deploying to the Bare Repository
 
