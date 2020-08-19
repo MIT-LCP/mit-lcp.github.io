@@ -1,22 +1,7 @@
 # LCP Website - Flask app
 
-A bit of information of the contents of this directory
+## How to download the project contents
 
-There are some key files in this folders.
-
-- change.py - Takes as input three different lcp_references.html files and changes them to the version in the website
-- config.py - Has the connection to Postgres 
-- main.py   - The actual application file
-- Postgres.py - All the postgres functions
-
-## From NGINX the web application used to serve the files instead of apache/httpd, there are several IMPORTANT files that must NOT be touched.
-
-- /etc/uwsgi.sockets/lcp_uwsgi.sock - Auto generated file by lcp_website.service
-- wsgi_lcp.ini  - The reference file that the lcp_website.service takes to serve the application
-- wsgi.py - The actual calling the application used by main.ini
-- main_nginx.conf - The nginx configuration file
-
-## How to run the server locally
     # Pull down the project contents
     git clone https://github.com/MIT-LCP/lcp-website.git
 
@@ -32,7 +17,19 @@ There are some key files in this folders.
     # Install the package requirements
     pip install -r requirements.txt
 
-    # Get the environment:
+    # When finished with everything:
+    # De-activate the virtual environment
+    deactivate
+
+## How to run the server locally
+
+    # Change to the project directory
+    cd lcp-website
+
+    # Activate the virtual environment
+    source env/bin/activate
+
+    # Copy the desired server environment:
     # (1) Development
     cp config/dev/.env.example .env
     # (2) Production
@@ -43,6 +40,14 @@ There are some key files in this folders.
     # Run the Flask App on localhost
     # http://127.0.0.1:5000/
     flask run
+
+    # When finished viewing the webpage:
+    # Quit the Flask App
+    <CTRL>+C
+
+    # When finished with everything:
+    # De-activate the virtual environment
+    deactivate
 
 ## Deploying to the Bare Repository
 
@@ -55,3 +60,21 @@ Add the remote bare repositories from your local development machines:
 Push to the remotes when appropriate
 
 `git push <production> <production>`
+
+## General Information
+
+A bit of information of the contents of this directory
+
+There are some key files in this folders.
+
+- change.py - Takes as input three different lcp_references.html files and changes them to the version in the website
+- config.py - Has the connection to Postgres
+- main.py   - The actual application file
+- Postgres.py - All the postgres functions
+
+## From NGINX the web application used to serve the files instead of apache/httpd, there are several IMPORTANT files that must NOT be touched.
+
+- /etc/uwsgi.sockets/lcp_uwsgi.sock - Auto generated file by lcp_website.service
+- wsgi_lcp.ini  - The reference file that the lcp_website.service takes to serve the application
+- wsgi.py - The actual calling the application used by main.ini
+- main_nginx.conf - The nginx configuration file
