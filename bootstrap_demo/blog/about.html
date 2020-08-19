@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MIT-LCP</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="blog.css" rel="stylesheet">
+  </head>
+  <body>
+  <a name="top"></a>
+  <div class="container">
+    <!-- Top header (should be the same across each page) -->
+    <header class="blog-header py-4">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-md-1">
+          <a href="index.html"><img class="img-fluid" src="../images/lcp_logo.png"></a>
+        </div>
+        <div class="col-md-0 text-primary">
+          <a class="blog-header-logo text-dark" href="index.html">Laboratory for Computational Physiology</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Top bar with links to each page -->
+    <div class="nav-scroller py-1 mb-2">
+      <nav class="nav d-flex align-items-left">
+        <a class="p-2 text-muted" href="index.html">Home</a>
+        <a class="p-2 text-muted" href="about.html">About</a>
+        <a class="p-2 text-muted" href="people.html">People</a>
+        <a class="p-2 text-muted" href="news.html">News</a>
+        <a class="p-2 text-muted" href="publications.html">Publications</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- The start of the content -->
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md blog-main">
+
+        <h3 class="pb-3 mb-4 font-italic border-bottom">
+          About
+        </h3>
+
+        <div class="container">
+
+          <div class="blog-post">
+            <p>
+              The research at the Laboratory for Computational Physiology (LCP) incorporates physiology, computer science, engineering, and applied mathematics.
+              Using modern approaches to modeling, signal processing, pattern recognition, and machine learning, the lab’s researchers develop and refine methods for analyzing data—for example, from patients in intensive care units—and for generating predictive models that will aid in patient care.
+              Current LCP research comprises of two major projects, the Critical Care Informatics project and PhysioNet.
+            </p>
+            <br>
+
+            <h3>Critical Care Informatics</h3>
+            <figure>
+              <img class="img-fluid" src="../images/mimic.png">
+              <div class="col-md-6 mx-auto">
+                <i>Data workflow for <a href="https://mimic.physionet.org">MIMIC</a>, also see the latest release: <a href="https://mimic-iv.mit.edu">MIMIC-IV</a>.</i>
+              </div>
+            </figure>
+            <p>
+              Patients in hospital intensive care units (ICUs) are physiologically fragile and unstable, generally have life-threatening conditions, and require close monitoring and rapid therapeutic interventions. They are connected to an array of equipment and monitors, and are carefully attended by the clinical staff. Staggering amounts of data are collected daily on each patient in an ICU: multi-channel waveform data sampled hundreds of times each second, vital sign time series updated each second or minute, alarms and alerts, lab results, imaging results, records of medication and fluid administration, staff notes and more. Petabytes of data are captured daily during care delivery in the country‚Äôs ICUs; however, most of these data are not used to generate evidence or to discover new knowledge. The technology now exists to collect, archive and organize finely detailed ICU data, resulting in research resources of enormous potential.
+              The objective of our laboratory is to improve health care through the generation of new clinical knowledge and new monitoring technology and decision support through the application of data science and machine learning technology to large collections of critical care data.
+              Over the past decade, LCP, Philips Healthcare and Beth Israel Deaconess Medical Center (BIDMC), with support from the National Institute of Biomedical Imaging and Bioinformatics, have built and maintained the Medical Information Mart for Intensive Care (MIMIC) database. This public-access database, which now holds detailed clinical data from over 60,000 stays in BIDMC intensive care units, including waveform data (continuous multi-channel recordings of physiologic signals and vital signs) for a subset of these stays. We have meticulously de-identified the data and freely shared them with the research community via the PhysioNet web site. It is an unparalleled research resource; over 2500 credentialed researchers from more than 32 countries have free access to the clinical and physiologic data under data use agreements. This worldwide community includes academic, clinical, and industrial investigators from more than 32 countries and is growing by over 50% per year. In addition, thousands of investigators, educators, and students have used the waveform data, which we have made freely available to all without restriction. More information concerning MIMIC can be found at http://mimic.mit.edu, together with extensive documentation on the data.
+              More recently, in 2015 Philips and LCP launched a new initiative that gives our laboratory access to the largest data sources available on critical care with close to 3 million ICU admissions from across the US. LCP serves as the academic research hub for the initiative, and will provide and maintain access, as well as help educate researchers on the database and offer a platform for collaboration.
+              Clinical databases such as MIMIC provide a unique opportunity to evaluate both practice variation and the impact of diagnostic and treatment decisions on patient outcomes. Critically ill patients are an ideal population for database investigations because the clinical value of many treatments and interventions they receive is unproven, and high-quality data supporting or discouraging specific practices is relatively sparse. In addition, significant practice variation exists in the ICU; decisions are often based on clinician training and knowledge and local ICU culture. MIMIC presents an opportunity to examine which diagnostic and therapeutic interventions impact clinical outcomes in the real world setting.
+              We typically form teams consisting of clinicians (nurses, doctors, pharmacists) and scientists (database engineers, modelers, epidemiologists) who translate the questions into study designs, perform the modeling and the analysis and publish their findings. The scientists have been joining the clinicians during ICU rounds to gain a better understanding of clinical medicine and the clinicians have been attending conferences at MIT on data mining and machine learning. The studies fall into the following broad categories: identification and interrogation of practice variation, predictive modeling of clinical outcomes within patient subsets, and comparative effectiveness research on diagnostic tests and therapeutic interventions.
+              This project is funded by the National Institute of Biomedical Imaging and BioEngineering (NIBIB) under grant R01-EB017205.
+            </p>
+
+            <br>
+            <h3>PhysioNet</h3>
+            <figure>
+              <img class="img-fluid" src="../images/MIT_BIH_waveform.png">
+              <div class="col-md-6 mx-auto">
+                <i>Example figure from <a href="https://physionet.org/lightwave/">LightWAVE</a>, currently available on <a href="https://physionet.org">PhysioNet</a>.</i>
+              </div>
+            </figure>
+            <p>
+              The LCP and The Margret & H. A. Rey Institute for Nonlinear Dynamics in Medicine (ReyLab) are the two core laboratories of the National Institutes of Health’s Research Resource for Complex Physiologic Signals. The LCP is the home of the Resource’s PhysioNet web site, one of the world’s largest, most comprehensive, and most widely used repositories of freely available recorded physiologic signals and high resolution clinical ICU data, with related open-source software for research. PhysioNet, the first such repository, was established in 1999 to provide data and software resources in biomedicine to the research community.
+              The three major aims of PhysioNet are:
+              To provide data and software resources to the biomedicine research community, and to enable and accelerate data sharing and open-source software contributions
+              PhysioBank, PhysioNet’s data archive, is a large and continually growing archive of well-characterized digital recordings of physiologic signals, time series, archives of clinical data from ICU patients, and related data for use by the biomedical research community. The collections include data from a wide range of studies, as developed and contributed by members of the research community.
+              PhysioToolkit, PhysioNet’s software collection, supports exploration and quantitative analyses of PhysioBank and similar data with a wide range of well-documented, rigorously tested open-source software that can be run on any platform.
+              PhysioNetWorks, PhysioNet’s incubation laboratory, inaugurated in 2011, allows collaborating researchers to share and study their own data and software securely before contributing them to PhysioNet. It is designed to enable and accelerate data sharing, foster collaborative development of data, software, and dissemination of knowledge.
+              To drive relevant innovation through a vigorous research program
+              A key component of the work done under PhysioNet is our research on selected aspects of signal analysis that have proved of interest to our user community. Our current research projects include the following:
+              Quantitatively characterize signal quality in sets of multiparameter coupled signals, and address the related problems of reducing false alarms during long-term monitoring and distinguishing clinically important events from noise and artifacts.
+              Develop dynamical biomarkers of physiologic instability and related computational tools.
+              Develop dynamical biomarkers of physiologic status by quantifying changes in complexity.
+              Develop dynamical biomarkers of physiologic instability based on indexes of coupling.
+              Develop visual analytic tools for complex signals: 2- and 3-D data transformations.
+              To stimulate and support a growing community of investigators
+              We organize and host the annual PhysioNet/CinC Challenges (http://physionet.org/physiobank/database/challenge/), held annually since 2000, in cooperation with the annual IEEE Engineering in Medicine and Biology sponsored conference, Computing in Cardiology (CinC). The annual series of open biomedical Challenges are competitions in physiological signal processing and machine learning, and have been highly successful in stimulating new research on a variety of important unsolved and clinically relevant problems.
+            </p>
+          </div>
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">Quick Links</h2>
+            <ul>
+              <li><a href="https://physionet.org">PhysioNet Website</a></li>
+              <li><a href="https://mimic.physionet.org">MIMIC Website</a></li>
+              <li><a href="http://sana.mit.edu/">Sana Website</a></li>
+              <li><a href="http://criticaldata.mit.edu/">Critical Data Website</a></li>
+            </ul>
+          </div>
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">Contact Us</h2>
+            <ul>
+              <li>
+                <i class="fa fa-home"></i>
+                <span>Laboratory for Computational Physiology <br> MIT, E25-505 <br> 45 Carleton St. <br> Cambridge, MA 02139 <br></span>
+              </li>
+              <li>
+                <a href = "mailto: contact@lcp.mit.edu">contact@lcp.mit.edu</a>
+              </li>
+              <li>
+                <a href="https://github.com/MIT-LCP">https://github.com/MIT-LCP</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">Partners</h2>
+            <div class="row align-items-center">
+              <div class="col-md-2 mx-auto">
+                <a href="https://www.mit.edu">
+                  <img class="img-fluid" src="../images/mit.png">
+                </a>
+              </div>
+              <div class="col-md-2 mx-auto">
+                <a href="http://imes.mit.edu">
+                  <img class="img-fluid" src="../images/imes.png">
+                </a>
+              </div>
+              <div class="col-md-2 mx-auto">
+                <a href="https://hst.mit.edu">
+                  <img class="img-fluid" src="../images/hst-logo.png">
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="blog-footer">
+    <p>
+      <a href="#top">Back to top</a>
+    </p>
+  </footer>
+  </body>
+</html>
