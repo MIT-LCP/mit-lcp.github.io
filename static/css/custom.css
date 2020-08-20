@@ -27,7 +27,7 @@
     text-decoration: underline;
     cursor: pointer;
 } */
-.footer_menu1 ul li a {
+.footer_menu_pub ul li a {
     color: #9E9E9E; 
 }
 .about {
@@ -245,7 +245,7 @@
     padding: 1.875em 0em 50px;
     border-bottom: 0.0625em solid #0F0F0F;
     background: none repeat scroll 0% 0% #333;
-    color: #AAA;
+    color: #9E9E9E;
 }
 .footer_b {
     background: #222; 
@@ -285,7 +285,6 @@
     margin-top: 1.25em;
 }
 .footer_menu ul li a {
-    text-decoration: none;
     color: #9E9E9E;
     display: inline-block;
     padding: 0.3125em 0em;
@@ -295,9 +294,6 @@
 }
 .footer_menu_contact li i{
     width: 1.25em;
-}
-.footer_menu_contact li span:hover {
-    cursor:pointer;
 }
 .profile-bio {
     padding-top: 2.5em;
