@@ -392,6 +392,18 @@ def index():
     return render_template('index.html')
 
 
+@app.route("/about")
+@app.route("/About")
+@app.route("/about.html")
+@app.route("/about.shtml")
+@app.route("/About.html")
+def about():
+    """
+    About page
+    """
+    return render_template('about.html')
+
+
 @app.route("/publications")
 @app.route("/Publications")
 @app.route("/publications.html")
