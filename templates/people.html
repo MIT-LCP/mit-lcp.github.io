@@ -21,15 +21,19 @@
       <a name="researchers"></a>
       <h2 class="site-section border-bottom">Researchers</h2>
 
-      {% for item in Person %}
-        <div id="{{item[0]}}">
-          <h2 class="site-section-meta">{{item[2] | safe}}</h2>
+      {% for person in people.current_members %}
+        <div id="{{ person.name }}">
+          <h2 class="site-section-meta">{{ person.name }}</h2>
           <div class="row">
             <div class="col-md-2">
-              <img class="img-fluid" width="100%" src="{{url_for('static', filename='images/'+item[4])}}" alt="[{{item[2] | safe}} photo]">
+              {% if person.image %} 
+              <img class="img-fluid" width="100%" src="{{ url_for('static', filename='images/' + person.image )}}" alt="{{ person.name }}">
+              {% else %} 
+              <img class="img-fluid" width="100%" src="{{ url_for('static', filename='images/missing.jpg' )}}" alt="{{ person.name }}">
+              {% endif %} 
             </div>
             <div class="col-md-10">
-              {{item[1] | safe}}
+              {{ person.biog }}
             </div>
           </div>
         </div>
@@ -41,8 +45,8 @@
       <div class="p-3">
         <h4 class="font-italic">People</h4>
         <ol class="list-unstyled mb-0">
-          {% for item in Person %}
-            <li><a href="#{{item[0]}}">{{item[2] | safe}}</a></li>
+          {% for person in people.current_members %}
+            <li><a href="#{{ person.name }}">{{ person.name }}</a></li>
           {% endfor %}
         </ol>
       </div>
