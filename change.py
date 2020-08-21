@@ -127,12 +127,12 @@ def File_Change(File_Content):
           print ('key', key)
 
   Head_tag = """<center><a href="#journalall">Journal articles</a> | <a href="#conferencesall">Conference  presentations</a> | 
-  <a href="#booksall">Books and book chapters</a> | <a href="#thesesall">Theses</a></center>"""
+  <a href="#booksall">Books and book chapters</a> | <a href="#thesesall">Theses</a></center><br>"""
   Content  = """<div id="ALL" class="container tab-pane fade">{0}{1}</div>\n""".format(Head_tag, temp)
 # Setting the content of the years
   for key, value in Years.iteritems():
       Head_tag = """<center><a href="#journal{}">Journal articles</a> | <a href="#conferences{}">Conference  presentations</a> | 
-      <a href="#books{}">Books and book chapters</a> | <a href="#theses{}">Theses</a></center>""".format(key, key, key, key)
+      <a href="#books{}">Books and book chapters</a> | <a href="#theses{}">Theses</a></center><br>""".format(key, key, key, key)
       if key == Current_Year:
           if Years[Current_Year] != "":
               Content += """<div id="P_{0}" class="container tab-pane active">{1}{2}</div>\n""".format(key, Head_tag, value)
@@ -161,93 +161,27 @@ def File_Change(File_Content):
               Side_Tab += """<li class="nav-item"><a class="nav-link active" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
           else:
               Side_Tab += """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
-  # Head = "<center>"+ File_Content[0].replace("""| <a href="#theses">Theses</a>""", """<!--| <a href="#theses">Theses</a>-->""") + "</center>"
-  File_Content[0] = File_Content[0].replace("""<a href="#journal">""", """<center><a href="#journal">""").replace("""<a href="#theses">Theses</a>""", """<a href="#theses">Theses</a></center>""").replace("""\n\n<p>\n(A separate listing of PhysioNet tutorials is available at <a href="http://physionet.org/tutorials/" target="_blank" >http://physionet.org/tutorials/</a>.)\n</p>\n\n""","").replace("\r","").replace("\n","").replace("<br>","").replace("< br>","").replace("<br >","").replace("<br />","").replace("""<center><a href="#journal">Journal articles</a> | <a href="#conferences">Conference  presentations</a> | <a href="#books">Books and book chapters</a> | <a href="#theses">Theses</a></center>""","")
+  # Head = "<center>"+ File_Content[0].replace("""| <a href="#theses">Theses</a>""", """<!--| <a href="#theses">Theses</a>-->""") + "</center><br>"
+  File_Content[0] = File_Content[0].replace("""<a href="#journal">""", """<center><a href="#journal">""").replace("""<a href="#theses">Theses</a>""", """<a href="#theses">Theses</a></center><br>""").replace("""\n\n<p>\n(A separate listing of PhysioNet tutorials is available at <a href="http://physionet.org/tutorials/" target="_blank" >http://physionet.org/tutorials/</a>.)\n</p>\n\n""","").replace("\r","").replace("\n","").replace("<br>","").replace("< br>","").replace("<br >","").replace("<br />","").replace("""<center><a href="#journal">Journal articles</a> | <a href="#conferences">Conference  presentations</a> | <a href="#books">Books and book chapters</a> | <a href="#theses">Theses</a></center><br>""","")
 
   Head = str(File_Content[0])
   Header_HTML = """
   {% extends "base.html" %}
   {% block title %}Laboratory for Computational Physiology{% endblock %}
   {% block head2 %}
-  <style type='text/css'>
-
-  #left ul.menu li.menu_publications a:link,
-  #left ul.menu li.menu_publications a:visited {
-  background: #DFE8F5;
-  border-left:solid 1px #9BA8BE;
-  border-right:solid 1px #9BA8BE;
-  }
-
-  #left ul.menu li.menu_publications a:hover,
-  #left ul.menu li.menu_publications a:active,
-  #left ul.menu li.menu_publications a:focus {
-  color: #25385D;
-  }
-
-  dl.bib2xhtml {
-    margin:1em 0 0 10em;
-    margin:1em 0 0 0em;
-  }
-
-  dl.bib2xhtml dt {
-    font-weight:normal;
-    padding:0 .5em .3em 0;
-    float: left;
-    text-align: right;
-    min-width: 2em;
-  }
-
-  dl.bib2xhtml dt a:link,
-  dl.bib2xhtml dt a:visited {
-    color: inherit;
-    background-color: inherit;
-  }
-
-  dl.bib2xhtml dt a:hover,
-  dl.bib2xhtml dt a:active,
-  dl.bib2xhtml dt a:focus {
-    color: inherit;
-    background-color: inherit;
-  }
-
-  dl.bib2xhtml dd {
-    padding:0 0 1em 2.8em;
-  }
-
-  dl.bib2xhtml .year {
-    font-style:italic;
-  }
-  ul.bib2xhtml li {
-    padding-bottom: 1em 
-  }
-  .nav-tabs{
-    border-right: 1px solid #ddd;
-    border-bottom: transparent !important;
-  }
-/*  .tabs-left { max-width:100% }*/  
-  .tab-pane { width:100% }
-
-  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
-    border: 2px solid #000 !important;
-    border-right-color: transparent !important;
-    font-weight: bolder;
-    color: #000;
-  }
-
-  a {color: #202123;}
-  </style>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/publications.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/references.css') }}">
   {% endblock %}
   {% block content %}"""
 
   Header_HTML += """
-  <div class="container about">
+  <div class="container">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="feature_header text-center">
-          <h3 class="feature_title">Publications</h3>
-          <div class="divider"></div>
+        <div class="text-center">
+          <h3 class="site-section-title">Publications</h3>
         </div>
-      </div>  <!-- Col-md-12 End -->
+      </div>
     </div>
     <div class='row'>
       <div class="col-md-12">
