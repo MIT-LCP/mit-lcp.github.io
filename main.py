@@ -508,7 +508,7 @@ def people():
                     for line in bio_array:
                         bio += "<p>{0}</p>".format(line)
                 else:
-                    bio = "<p style='margin:0 0 0 0;'>{0}</p>".format(item[1])
+                    bio = "<p>{0}</p>".format(item[1])
             else:
                 bio = ""
             if item[3] == 1:

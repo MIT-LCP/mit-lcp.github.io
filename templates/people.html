@@ -1,106 +1,143 @@
 {% extends "base.html" %}
 {% block title %}Laboratory for Computational Physiology{% endblock %}
-{% block head2 %}{% endblock %}
-{% block content %}
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - START OF PROJECTS - - - - - - - - - - - - - - - - - - - - - - -->
-  <section id="projects" class='about'>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="feature_header text-center">
-            <h1 class="feature_title">LCP personnel and collaborators</h1>
-            <div class="divider"></div>
-          </div>
-        </div>  <!-- Col-md-12 End -->
-      </div>
-        <div id="Users_List">
-          <p>Research in the Laboratory for Computational Physiology takes place both in the lab itself and through collaborations with other researchers elsewhere on campus. LCP researchers and <a href='#Colaborators_List' >principal collaborators</a> are listed below.</p>
-          <ul class='people'>{{IDs | safe}}</ul>
-          {% for item in Person %}
-	         <div class="container bootstrap snippet">
-            <div class="profile">
-              <div class="profile-body">
-                <div class="profile-bio"  id="{{item[0]}}">
-                  <div class="row">
-                      <div class="col-md-2 col-lg-2 col-sm-2 col-xm-2 text-center">
-                      <img class="img-thumbnail md-margin-bottom-10" alt="[{{item[2] | safe}} photo]" style="margin:1em 0;" src="{{url_for('static', filename='images/'+item[4])}}" alt="">
-                    </div>
-                    <div class="col-md-10 col-lg-10 col-sm-10 col-xm-10">
-                      <h2>{{item[2] | safe}}</h2>
-                      {{item[1] | safe}}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-           </div>
-          {% endfor %}
-        </div>
-        {% if Visiting %}
-        <div class="divider"></div>
-        <h2>Visiting Colleagues</h2>
-        <div class="divider"></div>
-        <div id="Visiting_List">
-          {% for item in Visiting %}
-            <div class="container bootstrap snippet">
-              <div class="profile">
-                <div class="profile-body">
-                  <div class="profile-bio"  id="{{item[0]}}">
-                    <div class="row">
-                      <div class="col-md-2 col-lg-2 col-sm-2 col-xm-2 text-center">
-                        <img class="img-thumbnail md-margin-bottom-10" alt="[{{item[2] | safe}} photo]" style="margin:1em 0;" src="{{url_for('static', filename='images/'+item[4])}}" alt="">
-                      </div>
-                      <div class="col-md-10 col-lg-10 col-sm-10 col-xm-10">
-                        <h2>{{item[2] | safe}}</h2>
-                        {{item[1] | safe}}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-           {% endfor %}
-
-        </div>
-        {% endif %}
-        {% if Aff %}
-         <h2>Research Affiliate</h2>
-        <div class="divider"></div>
-        <div id="Affiliate_List">
-          {% for item in Aff %}
-            <div class="container bootstrap snippet">
-              <div class="profile">
-                <div class="profile-body">
-                  <div class="profile-bio"  id="{{item[0]}}">
-                    <div class="row">
-                      <div class="col-md-2 col-lg-2 col-sm-2 col-xm-2 text-center">
-                        <img class="img-thumbnail md-margin-bottom-10" alt="[{{item[2] | safe}} photo]" style="margin:1em 0;" src="{{url_for('static', filename='images/'+item[4])}}" alt="">
-                      </div>
-                      <div class="col-md-10 col-lg-10 col-sm-10 col-xm-10">
-                        <h2>{{item[2] | safe}}</h2>
-                        {{item[1] | safe}}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-        {% endif %}
-        <h2>Collaborators</h2>
-        <div class="divider"></div>
-        <div id="Colaborators_List">
-          {% for item in Colab %}
-            <div class="container bootstrap snippet">
-              <div class="profile">
-                <div class="profile-body">
-                  <div class="profile-bio"  id="{{item[0]}}"><div class="row"><div class="col-md-10 col-lg-10 col-sm-10 col-xm-10"><h2 style="margin:0 0 0 0;">{{item[2]}}</h2><!--<hr>--><a href="{{item[1]}}" style="color:blue;">{{item[1]}}</a></div></div></div></div></div></div>
-          {% endfor %} 
-        </div>
-    </div> 
-  </section>
-
+{% block head2 %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/people.css') }}">
 {% endblock %}
 
+{% block content %}
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-10 blog-main">
+
+      <div class="feature_header text-center">
+        <h1 class="feature_title">LCP Personnel and Collaborators</h1>
+        <div class="divider"></div>
+      </div>
+
+      <p>
+        Research in the Laboratory for Computational Physiology takes place both in the lab itself and through collaborations with other researchers elsewhere on campus.
+        LCP <a href="#researchers">researchers</a> and <a href="#collaborators">principal collaborators</a> are listed below.
+      </p>
+
+      <a name="researchers"></a>
+      <h2 class="site-section-title border-bottom">Researchers</h2>
+
+      {% for item in Person %}
+        <div class="site-section" id="{{item[0]}}">
+          <h2>{{item[2] | safe}}</h2>
+          <div class="row">
+            <div class="col-md-2">
+              <img class="img-fluid" width="100%" src="{{url_for('static', filename='images/'+item[4])}}" alt="[{{item[2] | safe}} photo]">
+            </div>
+            <div class="col-md-10">
+              {{item[1] | safe}}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+      {% if Visiting %}
+        <a name="visiting"></a>
+        <h2 class="site-section-title border-bottom">Visiting Colleagues</h2>
+
+        {% for item in Visiting %}
+          <div class="site-section" id="{{item[0]}}">
+            <h2>{{item[2] | safe}}</h2>
+            <div class="row">
+              <div class="col-md-2">
+                <img class="img-fluid" width="100%" src="{{url_for('static', filename='images/'+item[4])}}" alt="[{{item[2] | safe}} photo]">
+              </div>
+              <div class="col-md-10">
+                {{item[1] | safe}}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% if Aff %}
+        <a name="affiliates"></a>
+        <h2 class="site-section-title border-bottom">Research Affiliates</h2>
+
+        {% for item in Aff %}
+          <div class="site-section" id="{{item[0]}}">
+            <h2>{{item[2] | safe}}</h2>
+            <div class="row">
+              <div class="col-md-2">
+                <img class="img-fluid" width="100%" src="{{url_for('static', filename='images/'+item[4])}}" alt="[{{item[2] | safe}} photo]">
+              </div>
+              <div class="col-md-10">
+                {{item[1] | safe}}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% if Grad %}
+        <a name="graduates"></a>
+        <h2 class="site-section-title border-bottom">Graduate Students</h2>
+
+        {% for item in Grad %}
+          <div class="site-section" id="{{item[0]}}">
+            <h2>{{item[2] | safe}}</h2>
+            <div class="row">
+              <div class="col-md-2">
+                <img class="img-fluid" width="100%" src="{{url_for('static', filename='images/'+item[4])}}" alt="[{{item[2] | safe}} photo]">
+              </div>
+              <div class="col-md-10">
+                {{item[1] | safe}}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <a name="collaborators"></a>
+      <h2 class="site-section-title border-bottom">Collaborators</h2>
+
+      {% for item in Colab %}
+        <div class="site-section" id="{{item[0]}}">
+          <h2>{{item[2] | safe}}</h2>
+          <div class="row">
+            <div class="col-md-2"><img class="img-fluid" src="{{url_for('static', filename='images/missing.jpg')}}" width="100%"></div>
+            <div class="col-md-10">
+              <p>
+                <a href="{{item[1]}}">{{item[1] | safe}}</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+
+    <aside class="col-md-2 blog-sidebar">
+      <div class="p-3">
+        <h4 class="font-italic">Position</h4>
+        <ol class="list-unstyled mb-0">
+          <li><a href="#researchers">Researchers</a></li>
+          {% if Visiting %}
+            <li><a href="#visiting">Visiting Colleagues</a></li>
+          {% endif %}
+          {% if Aff %}
+            <li><a href="#affiliates">Research Affiliates</a></li>
+          {% endif %}
+          {% if Grad %}
+            <li><a href="#graduates">Graduate Students</a></li>
+          {% endif %}
+          <li><a href="#collaborators">Collaborators</a></li>
+        </ol>
+        <br>
+        <h4 class="font-italic">People</h4>
+        <ol class="list-unstyled mb-0">
+          {% for item in Person %}
+            <li><a href="#{{item[0]}}">{{item[2] | safe}}</a></li>
+          {% endfor %}
+        </ol>
+      </div>
+    </aside>
+
+  </div>
+</main>
+{% endblock %}
