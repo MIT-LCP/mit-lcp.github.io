@@ -6,11 +6,12 @@ from datetime import timedelta, datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from functools import wraps
-from os import path, remove
+import os
 from smtplib import SMTP
 from re import sub, search
 import traceback
 import json
+import yaml
 
 from flask import Flask, render_template, redirect, request, session, url_for
 from oauth2client.service_account import ServiceAccountCredentials
@@ -37,6 +38,11 @@ if app.config['ENV'] == 'production':
     app.logger.addHandler(LOG_HANDLER)
 
 app.logger.setLevel(DEBUG)
+
+
+def _data():
+    data = {}
+    return data
 
 
 def login_required(function):
@@ -240,8 +246,8 @@ def resize_image():
         username = request.form.get('email', None).split("@")[0]
 
     filename = username + '.' + file.filename.split('.')[-1]
-    if path.exists(app.config['UPLOAD_FOLDER'] + filename):
-        remove(app.config['UPLOAD_FOLDER'] + filename)
+    if os.path.exists(app.config['UPLOAD_FOLDER'] + filename):
+        os.remove(app.config['UPLOAD_FOLDER'] + filename)
 
     image = Image.open(file)
     image = image.crop((x_axis, y_axis, width+x_axis, height+y_axis))
@@ -479,38 +485,17 @@ def brp():
 @app.route("/people.shtml")
 def people():
     """
-    Function to display the list of people in the lab.
-    The categories are:
-        1. General
-        2. Colaborating Researcher
-        3. Visiting Colleague
-        4. Alumni
-        5. Grad Student
-        6. UROP
-        7. Affiliate
-        8. Other
+    Display a list of people.
     """
-    people_list = PersonelModel().get_user_public()
-    person = []
-    ids = ""
-    for item in people_list:
-        # If the person is set as hidden then skip = item[10]
-        if item[3] in [1] and item[10] not in ['true', True]:
-            bio = ""
-            ids += "<li><a href='#{0}'>{1}</a></li>".format(item[0], item[2])
-            if item[1]:
-                if "\n" in item[1] and item[1] is not None:
-                    bio_array = item[1].split("\n")
-                    for line in bio_array:
-                        bio += "<p>{0}</p>".format(line)
-                else:
-                    bio = "<p>{0}</p>".format(item[1])
-            else:
-                bio = ""
-            if item[3] == 1:
-                person.append([item[0], bio, item[2], item[3], item[4]])
+    data = _data()
 
-    return render_template('people.html', IDs=ids, Person=person)
+    path = "sitedata"
+    fn = "people.yml"
+
+    with open(os.path.join(path, fn), 'r') as f:
+        data["people"] = yaml.safe_load(f)
+
+    return render_template('people.html', **data)
 
 ###############################################################################
 #
@@ -834,7 +819,7 @@ def build_service():
     """
     Builds the GCP service to add and remove emails to admin.google.com
     """
-    if not path.isfile(app.config['SERVICE_ACCOUNT_KEY']):
+    if not os.path.isfile(app.config['SERVICE_ACCOUNT_KEY']):
         raise Exception("The GCP access key file does not exists.")
 
     credentials = ServiceAccountCredentials.from_p12_keyfile(
