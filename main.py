@@ -492,14 +492,10 @@ def people():
     """
     people_list = PersonelModel().get_user_public()
     person = []
-    colab = []
-    grad = []
-    visiting = []
-    aff = []
     ids = ""
     for item in people_list:
         # If the person is set as hidden then skip = item[10]
-        if item[3] in [1, 3, 5, 7] and item[10] not in ['true', True]:
+        if item[3] in [1] and item[10] not in ['true', True]:
             bio = ""
             ids += "<li><a href='#{0}'>{1}</a></li>".format(item[0], item[2])
             if item[1]:
@@ -508,21 +504,13 @@ def people():
                     for line in bio_array:
                         bio += "<p>{0}</p>".format(line)
                 else:
-                    bio = "<p style='margin:0 0 0 0;'>{0}</p>".format(item[1])
+                    bio = "<p>{0}</p>".format(item[1])
             else:
                 bio = ""
             if item[3] == 1:
                 person.append([item[0], bio, item[2], item[3], item[4]])
-            elif item[3] == 3:
-                visiting.append([item[0], bio, item[2], item[3], item[4]])
-            elif item[3] == 5:
-                grad.append([item[0], bio, item[2], item[3], item[4]])
-            elif item[3] == 7:
-                aff.append([item[0], bio, item[2], item[3], item[4]])
-        elif item[10] not in ['true', True]:
-            colab.append([item[0], item[1], item[2]])
-    return render_template('people.html', IDs=ids, Person=person,
-                           Visiting=visiting, Grad=grad, Colab=colab, Aff=aff)
+
+    return render_template('people.html', IDs=ids, Person=person)
 
 ###############################################################################
 #
