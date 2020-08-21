@@ -56,6 +56,9 @@ ul.bib2xhtml li {
     font-weight: bolder;
     color: #000;
 }
-a {
-    color: #202123;
+.nav-tabs .nav-link {
+    border: none;
+}
+.nav-tabs .nav-link:hover {
+    font-weight: bolder;
 }
