@@ -10,16 +10,16 @@
     <div class="col-md-10">
 
       <div class="text-left">
-        <h1 class="site-section-title">LCP Personnel and Collaborators</h1>
+        <h1 class="site-section-title">People</h1>
       </div>
 
       <p>
-        Research in the Laboratory for Computational Physiology takes place both in the lab itself and through collaborations with other researchers elsewhere on campus.
-        LCP <a href="#researchers">researchers</a> and principal collaborators are listed below.
+        Research in the Laboratory for Computational Physiology takes place both in the laboratory itself and through collaborations with other researchers elsewhere on campus.
+        Current <a href="#researchers">members</a> of the laboratory are listed below.
       </p>
 
       <a name="researchers"></a>
-      <h2 class="site-section border-bottom">Researchers</h2>
+      <h2 class="site-section border-bottom">Current members</h2>
 
       {% for person in people.current_members %}
         <div id="{{ person.name }}">
@@ -33,7 +33,7 @@
               {% endif %} 
             </div>
             <div class="col-md-10">
-              {{ person.biog }}
+              <p>{{ person.biog }}</p>
             </div>
           </div>
         </div>
