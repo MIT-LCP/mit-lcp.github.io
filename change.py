@@ -166,6 +166,7 @@ def File_Change(File_Content):
 
   Head = str(File_Content[0])
   Header_HTML = """
+  {% set active_page = "Publications" %}
   {% extends "base.html" %}
   {% block title %}Laboratory for Computational Physiology{% endblock %}
   {% block head2 %}
