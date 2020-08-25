@@ -399,10 +399,8 @@ def index():
 
 
 @app.route("/about")
-@app.route("/About")
 @app.route("/about.html")
 @app.route("/about.shtml")
-@app.route("/About.html")
 def about():
     """
     About page
@@ -411,10 +409,8 @@ def about():
 
 
 @app.route("/publications")
-@app.route("/Publications")
 @app.route("/publications.html")
 @app.route("/publications.shtml")
-@app.route("/Publications.html")
 def publications():
     """
     Publications page
@@ -440,23 +436,17 @@ def brp_references():
     return render_template('brp_references.html')
 
 
-@app.route("/CCI")
-@app.route("/cci")
-@app.route("/CCI.html")
-@app.route("/cci.html")
-@app.route("/cci.shtml")
-def cci():
+@app.route("/mimic")
+@app.route("/mimic.html")
+@app.route("/mimic.shtml")
+def mimic():
     """
     Info page for Critical Care Informatics
     """
-    return render_template('cci.html')
+    return render_template('mimic.html')
 
 
-@app.route("/PhysioNet")
-@app.route("/Physionet")
 @app.route("/physionet")
-@app.route("/PhysioNet.html")
-@app.route("/Physionet.html")
 @app.route("/physionet.html")
 @app.route("/physionet.shtml")
 def physionet():
@@ -466,9 +456,7 @@ def physionet():
     return render_template('physionet.html')
 
 
-@app.route("/BRP")
 @app.route("/brp")
-@app.route("/BRP.html")
 @app.route("/brp.html")
 @app.route("/brp.shtml")
 def brp():
@@ -479,9 +467,7 @@ def brp():
 
 
 @app.route("/people")
-@app.route("/People")
 @app.route("/people.html")
-@app.route("/People.html")
 @app.route("/people.shtml")
 def people():
     """
@@ -499,9 +485,7 @@ def people():
 
 
 @app.route("/news")
-@app.route("/News")
 @app.route("/news.html")
-@app.route("/News.html")
 @app.route("/news.shtml")
 def news():
     """
@@ -535,9 +519,7 @@ def news():
 #
 ###############################################################################
 @app.route("/login")
-@app.route("/Login")
 @app.route("/login.html")
-@app.route("/Login.html")
 def login():
     """
     Login function
