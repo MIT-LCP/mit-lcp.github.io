@@ -295,6 +295,33 @@ def show_diff(text, n_text):
             raise Exception("unexpected opcode")
     return ''.join(output)
 
+
+def get_news_data():
+    """
+    Retrieve and process the news data
+    """
+    data = _data()
+
+    path = "sitedata"
+    fn = "news.yml"
+
+    with open(os.path.join(path, fn), 'r') as f:
+        data["news"] = yaml.safe_load(f)
+
+    years = []
+    for i,post in enumerate(data['news']['news_items']):
+        # Gives unique names to each news item to create links later
+        data['news']['news_items'][i]['post_number'] = 'news_' + str(i)
+        # List of all the years for the news items
+        years.append(post['date'].split('-')[0])
+
+    data['news']['tag_info'] = {
+        'year': sorted(set(years), reverse=True)
+    }
+
+    return data
+
+
 ###############################################################################
 #
 # Pages for the LCP registration, checkout and basic information for the lab.
@@ -395,7 +422,9 @@ def index():
     """
     LCP index page
     """
-    return render_template('index.html')
+    data = get_news_data()
+
+    return render_template('index.html', **data)
 
 
 @app.route("/about")
@@ -491,24 +520,7 @@ def news():
     """
     Display a list of news items.
     """
-    data = _data()
-
-    path = "sitedata"
-    fn = "news.yml"
-
-    with open(os.path.join(path, fn), 'r') as f:
-        data["news"] = yaml.safe_load(f)
-
-    years = []
-    for i,post in enumerate(data['news']['news_items']):
-        # Gives unique names to each news item to create links later
-        data['news']['news_items'][i]['post_number'] = 'news_' + str(i)
-        # List of all the years for the news items
-        years.append(post['date'].split('-')[0])
-
-    data['news']['tag_info'] = {
-        'year': sorted(set(years), reverse=True)
-    }
+    data = get_news_data()
 
     return render_template('news.html', **data)
 

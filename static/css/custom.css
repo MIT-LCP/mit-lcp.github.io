@@ -40,9 +40,6 @@
 .jumbotron a {
     color: #FFFFFF;
 }
-.about {
-    padding-top:1.875em;
-}
 .new_image {
     height:12.5em;
     width: 18.75em;
@@ -185,13 +182,6 @@
     color: #EE3B24;
 }
 /* ========================================== Affiliates Area ========================================== */
-#projects {
-    padding: 1.875em 0em;
-    background: #f2f2f2;
-}
-/* #projects h3.feature_title {
-    color: #fff !important;
-} */
 .projects_logo img { 
     position:relative;
     display:inline-block;
