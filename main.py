@@ -497,6 +497,38 @@ def people():
 
     return render_template('people.html', **data)
 
+
+@app.route("/news")
+@app.route("/News")
+@app.route("/news.html")
+@app.route("/News.html")
+@app.route("/news.shtml")
+def news():
+    """
+    Display a list of news items.
+    """
+    data = _data()
+
+    path = "sitedata"
+    fn = "news.yml"
+
+    with open(os.path.join(path, fn), 'r') as f:
+        data["news"] = yaml.safe_load(f)
+
+    years = []
+    for i,post in enumerate(data['news']['news_items']):
+        # Gives unique names to each news item to create links later
+        data['news']['news_items'][i]['post_number'] = 'news_' + str(i)
+        # List of all the years for the news items
+        years.append(post['date'].split('-')[0])
+
+    data['news']['tag_info'] = {
+        'year': sorted(set(years), reverse=True)
+    }
+
+    return render_template('news.html', **data)
+
+
 ###############################################################################
 #
 # Dashboard pages for the LCP
