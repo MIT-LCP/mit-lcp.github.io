@@ -27,6 +27,19 @@
     text-decoration: underline;
     cursor: pointer;
 } */
+.back {
+    background:
+        linear-gradient(
+            0.25turn,
+            rgba(68, 102, 170, 0.90) 50%,
+            rgba(0, 0, 0, 0.01)
+        ),
+        url('../images/background.jpg');
+    background-size: cover;
+}
+.jumbotron a {
+    color: #FFFFFF;
+}
 .about {
     padding-top:1.875em;
 }
