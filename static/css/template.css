@@ -25,6 +25,12 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 2rem;
     margin-bottom: 1.25rem;
 }
+.site-section-sub {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: #717171;
+}
 .site-section ul {
     list-style: none;
 }
