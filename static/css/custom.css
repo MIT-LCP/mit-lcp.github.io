@@ -159,9 +159,6 @@
 .feature_content a:hover {
     text-decoration:none;
 }
-.feature_content i,.feature_content h5,.feature_content a {
-    color:#000!important;
-}
 .feature_content a:hover {
     color:#fff;
 }
@@ -173,9 +170,6 @@
 }
 .feature-icon {
     color: #EE3B24;
-}
-#isotope-filter a {
-    background: #000;
 }
 /* ========================================== Affiliates Area ========================================== */
 #projects {
@@ -244,9 +238,6 @@
     background: none repeat scroll 0% 0% #FFFFFF;
     color: #000000;
 }
-.footer_menu_pub ul li a {
-    color: #000000;
-}
 .footer_menu li a:before {
     display: inline-block;
     margin-right: 0.5em;
@@ -254,7 +245,6 @@
     font-family: FontAwesome;
 }
 .footer_menu ul li a {
-    color: #000000;
     display: inline-block;
     padding: 0.3125em 0em;
 }
@@ -297,16 +287,12 @@
     margin: 0.1875em;
     padding: 0.5em 0.625em;
     background: none repeat scroll 0% 0% #2C2C2C;
-    color: #C4C4C4;
     font-size: 0.875em;
     text-decoration: none;
 }
 .tags a:hover {
     color: #fff;
 }
-/* a {
-    color: #0033aa;
-} */
 .bold {
     font-weight: bold;
 }
@@ -328,9 +314,6 @@
         padding-top: 1.5625em;
     }
 } 
-a {
-    color: #337ab7;
-}
 /* added by KP to override bootstrap styles */
 .col-md-3 {
     width: 25%;
@@ -354,7 +337,6 @@ a {
 }
 .dropdown-content a {
     float: none;
-    color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
