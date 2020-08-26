@@ -2,13 +2,86 @@
 {% extends "base.html" %}
 {% block title %}Laboratory for Computational Physiology{% endblock %}
 {% block head2 %}{% endblock %}
-{% block content %}
-
-<div id="map"></div>
-
-{% endblock %}
 
 {% block js %}
 <script src="{{ url_for('static', filename='js/maps.js') }}"></script>  
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-q9kFgyTe0awyCEOeBz8ukOsCOizBPA4&callback=initMap&language=en&region=US"  async defer></script> 
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="text-left">
+        <a name="About"></a>
+        <h1 class="site-section-title">About</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+
+      <a name="Summary"></a>
+      <h2 class="site-section-meta border-bottom">Research Summary</h2>
+      <p>
+        The Laboratory for Computational Physiology (LCP), under the direction of Professor Roger Mark, conducts research on improving health care through new and refined approaches to interpreting data.
+        Some of the group’s researchers have medical backgrounds; others have backgrounds in computer science, electrical engineering, physics, or mathematics; and others have training that spans several of these disciplines.
+        Current laboratory research incorporates physiology, computer science, engineering, and applied mathematics.
+        <br><br>
+        Using modern approaches to modeling, signal processing, pattern recognition, and machine learning, the lab’s researchers develop and refine methods for analyzing data—for example, from patients in intensive care units—and for generating predictive models that will aid in patient care.
+        Current laboratory research comprises two major projects, the <a href="mimic">MIMIC</a> project and <a href="physionet">PhysioNet</a>. See their respective pages for more detailed information.
+      </p>
+
+      <a name="Joining"></a>
+      <h2 class="site-section-meta border-bottom">Joining the Lab</h2>
+      <p>
+        The Laboratory for Computational Physiology offers research opportunities to MIT students, including UROPs for undergraduate students and thesis projects for graduate students.
+        A degree is required of anyone outside of the MIT community interested in collaborating with the laboratory.
+        For those with a degree interested in collaborating with the laboratory, please <a href="#Contact">contact us</a>.
+      </p>
+
+      <a name="Contact"></a>
+      <h2 class="site-section-meta border-bottom">Contact</h2>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-6">
+            <p>
+              Director: Roger Mark<br>
+              Director Phone: (617) 253-7818<br>
+              Director Email: <a href="mailto: rgmark@mit.edu">rgmark@mit.edu</a>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>
+              Assistant: Ken Pierce<br>
+              Assistant Phone: (617) 258-7656<br>
+              Assistant Email: <a href="mailto: kpierce@mit.edu">kpierce@mit.edu</a>
+            </p>
+          </div>
+        </div>
+        <div class="text-left">
+          <p>
+            Lab Address: 45 Carleton St., Cambridge, MA 02139<br>
+            Room: E25-505
+          </p>
+        </div>
+      </div>
+    </div>
+    <aside class="col-md-3">
+      <div class="p-3 mb-3 bg-light rounded">
+        <h4 class="font-italic">Section Links</h4>
+        <ul>
+          <li><a href="#About">About</a></li>
+          <li><a href="#Summary">Research Summary</a></li>
+          <li><a href="#Joining">Joining the Lab</a></li>
+          <li><a href="#Contact">Contact</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div id="map"></div>
+
 {% endblock %}
