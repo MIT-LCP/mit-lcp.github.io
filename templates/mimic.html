@@ -1,59 +1,77 @@
-{% set active_page = "Critical Care" %}
+{% set active_page = "MIMIC" %}
 {% extends "base.html" %}
 {% block title %}Laboratory for Computational Physiology{% endblock %}
 {% block head2 %}{% endblock %}
 
+{% block js %}
+<script src="{{ url_for('static', filename='js/maps.js') }}"></script>  
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-q9kFgyTe0awyCEOeBz8ukOsCOizBPA4&callback=initMap&language=en&region=US"  async defer></script> 
+{% endblock %}
+
 {% block content %}
+
 <div class="container">
   <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+    <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="text-left">
-        <h1 class="site-section-title">Critical Care Informatics</h1>
+        <a name="About"></a>
+        <h1 class="site-section-title">MIMIC</h1>
       </div>
     </div>
   </div>
-  <div class='row'>
-    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-    <img src="{{ url_for('static', filename='images/mimic.png') }}" class="img-responsive" style="height:350px;width:auto;float:left;padding:25px 15px 15px 0px;">
+  <div class="row">
+    <div class="col-md-9">
 
-    <p>
-      Patients in hospital intensive care units (ICUs) are physiologically fragile and unstable, generally have life-threatening conditions, and require close monitoring and rapid therapeutic interventions.'
-      They are connected to an array of equipment and monitors, and are carefully attended by the clinical staff.
-      Staggering amounts of data are collected daily on each patient in an ICU: multi-channel waveform data sampled hundreds of times each second, vital sign time series updated each second or minute, alarms and alerts, lab results, imaging results, records of medication and fluid administration, staff notes and more.
-      Petabytes of data are captured daily during care delivery in the country’s ICUs; however, most of these data are not used to generate evidence or to discover new knowledge.
-      The technology now exists to collect, archive and organize finely detailed ICU data, resulting in research resources of enormous potential.
-    </p>
-    <p>
-      The objective of this project is to improve health care through the generation of new clinical knowledge and new monitoring technology and decision support through the application of data science and machine learning technology to large collections of critical care data.
-    </p>
-    <p>
-      Over the past decade, LCP, Philips Healthcare and Beth Israel Deaconess Medical Center (BIDMC), with support from the National Institute of Biomedical Imaging and Bioinformatics, have built and maintained the <strong>Medical Information Mart for Intensive Care </strong>(MIMIC) database.
-      This public-access database now holds detailed clinical data from over 60,000 patient stays in BIDMC intensive care units, including waveform data (continuous multi-channel recordings of physiologic signals and vital signs) for a subset of these stays.
-      We have meticulously de-identified the data and freely shared them with the research community via the PhysioNet web site.
-      MIMIC is an unparalleled research resource; thousands of credentialed researchers from more than 70 countries have free access to the clinical and physiologic data under data use agreements.
-      This worldwide community includes academic, clinical, and industrial investigators and is growing by over 50% per year.
-      In addition, thousands of investigators, educators, and students have used the waveform data, which we have made freely available to all without restriction.
-      More information concerning MIMIC can be found at <a href="http://mimic.mit.edu" target="_blank">http://mimic.mit.edu</a>, together with extensive documentation on the data.
-    </p>
-    <p>
-      More recently, in 2015 Philips and LCP launched a new initiative that gives our laboratory access to the largest data sources available on critical care with close to 3 million ICU admissions from across the US.
-      LCP serves as the academic research hub for the initiative, and will provide and maintain access, as well as help educate researchers on the database and offer a platform for collaboration.
-    </p>
-    <p>
-      Clinical databases such as MIMIC provide a unique opportunity to evaluate both practice variation and the impact of diagnostic and treatment decisions on patient outcomes.
-      Critically ill patients are an ideal population for database investigations because the clinical value of many treatments and interventions they receive is unproven, and high-quality data supporting or discouraging specific practices is relatively sparse.
-      In addition, significant practice variation exists in the ICU; decisions are often based on clinician training and knowledge and local ICU culture.
-      MIMIC presents an opportunity to examine which diagnostic and therapeutic interventions impact clinical outcomes in the real world setting.
-    </p>
-    <p>
-      We typically form teams consisting of clinicians (nurses, doctors, pharmacists) and scientists (database engineers, modelers, epidemiologists) who translate the questions into study designs, perform the modeling and the analysis and publish their findings.
-      The studies fall into the following broad categories: identification and interrogation of practice variation, predictive modeling of clinical outcomes within patient subsets, and comparative effectiveness research on diagnostic tests and therapeutic interventions.
-    </p>
-    <p>
-      This project is funded by the National Institute of Biomedical Imaging and BioEngineering (NIBIB) under grant R01-EB017205.
-    </p>
+      <a name="Overview"></a>
+      <h2 class="site-section-meta border-bottom">Overview</h2>
+      <p>
+        MIMIC is a publicly available dataset developed by the Laboratory for Computational Physiology that comprises deidentified health data associated with thousands of intensive care unit admissions. The dataset is widely used by investigators and engineers around the world, helping to drive research in clinical informatics, epidemiology, and machine learning.
+      </p>
+
+      <a name="Story"></a>
+      <h2 class="site-section-meta border-bottom">Story of MIMIC</h2>
+      <p>
+      In the early 2000s, with colleagues from academia (Massachusetts Institute of Technology), industry (Philips Medical Systems), and clinical medicine (Beth Israel Deaconess Medical Center, BIDMC) we received NIH (National Institutes of Health) funding to launch the project “Integrating Signals, Models and Reasoning in Critical Care”, a major goal of which was to build a massive critical care research database. The study was approved by the Institutional Review Boards of BIDMC (Boston, MA) and MIT (Cambridge, MA). 
+      </p>
+      <p>
+      We set out to collect comprehensive clinical and physiologic data from all ICU patients admitted to the multiple adult medical and surgical ICUs of our hospital (BIDMC). Each patient record began at ICU admission and ended at final discharge from the hospital. The data acquisition process was continuous and invisible to staff and it did not impact the care of patients or methods of monitoring. 
+      </p>
+      <p>
+      Three categories of data were collected: clinical data, which were aggregated from ICU information systems and hospital archives; high-resolution physiological data (waveforms and time series of vital signs and alarms obtained from bedside monitors); and death data from Social Security Administration Death Master Files. 
+      </p>
+      <p>
+      These data were de-identified in compliance with Health Insurance Portability and Accountability Act standards, and restructured to facilitate reuse in scientific research. The assembled dataset, MIMIC, is shared via the PhysioNet. To restrict users to legitimate medical researchers, access to the clinical database requires completion of a simple data use agreement (DUA) and proof that the researcher has completed human subjects training.
+      </p>
+
+      <a name="Future"></a>
+      <h2 class="site-section-meta border-bottom">Future Directions</h2>
+      <p>
+        The MIMIC database is a powerful and flexible research resource, but the generalizability of MIMIC-based studies is somewhat limited by the fact that the data are collected from a single institution. Multi-center data would have the advantages of including wider practice variability, and of course a larger number of cases. Data from international institutions would add still greater strength to the database owing to the even larger variations in practice and patient populations.
+      </p>
+      <p>
+      Our long-term goal is to expand our work to enable incorporate data from multiple institutions, capable of supporting research on cohorts of critically ill patients from around the world. In addition, we seek to expand the data to new modalities, including x-ray images and echocardiograms.
+      </p>
+
+      <a name="Acknowledgments"></a>
+      <h2 class="site-section-meta border-bottom">Acknowledgments</h2>
+      <p>
+        The development and maintenance of MIMIC has been funded by the National Institute of Biomedical Imaging and Bioengineering (NIBIB) and the National Institute of General Medical Sciences (NIGMS) over the period 2003 to present. Grants R01EB1659, R01EB017205, R01GM104987, and U01EB008577.
+      </p>
 
     </div>
+
+    <aside class="col-md-3">
+      <div class="p-3 mb-3 bg-light rounded">
+        <h4 class="font-italic">MIMIC</h4>
+        <ul>
+          <li><a href="#Overview">Overview</a></li>
+          <li><a href="#Story">Story of MIMIC</a></li>
+          <li><a href="#Future">Future Directions</a></li>
+          <li><a href="#Acknowledgments">Acknowledgments</a></li>
+        </ul>
+      </div>
+    </aside>
   </div>
-</div>
+</div
+
 {% endblock %}
