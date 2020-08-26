@@ -182,24 +182,6 @@
     color: #EE3B24;
 }
 /* ========================================== Affiliates Area ========================================== */
-.projects_logo img { 
-    position:relative;
-    display:inline-block;
-    text-align:center;
-    margin: 0 auto;
-    height:90px !important;
-    width:165px !important;
-}
-@media {
-    .projects_logo img{ 
-        position:relative;
-        display:inline-block;
-        text-align:center;
-        left: 25%;
-        height:90px !important;
-        width:165px !important;
-    }
-}
 #news_1 {
     padding: 0em 0em 1.875em 0em;
     background: #f2f2f2;
