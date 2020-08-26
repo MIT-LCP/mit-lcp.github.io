@@ -6,14 +6,16 @@
 {% endblock %}
 
 {% block content %}
-<main role="main" class="container">
+<div class="container">
   <div class="row">
-    <div class="col-md-10">
 
+    <div class="col-md-12">
       <div class="text-left">
         <h1 class="site-section-title">People</h1>
       </div>
+    </div>
 
+    <div class="col-md-9">
       <p>
         Research in the Laboratory for Computational Physiology takes place both in the laboratory itself and through collaborations with other researchers elsewhere on campus.
         Current <a href="#researchers">members</a> of the laboratory are listed below.
@@ -33,26 +35,26 @@
               <img class="img-fluid" width="100%" src="{{ url_for('static', filename='images/missing.jpg' )}}" alt="{{ person.name }}">
               {% endif %} 
             </div>
-            <div class="col-md-10">
+            <div class="col-md-9">
               <p>{{ person.biog }}</p>
             </div>
           </div>
         </div>
       {% endfor %}
-
     </div>
 
-    <aside class="col-md-2 blog-sidebar">
-      <div class="p-3">
+    <aside class="col-md-3">
+      <div class="p-3 mb-3 bg-light rounded">
         <h4 class="font-italic">People</h4>
-        <ol class="list-unstyled mb-0">
+        <ul>
           {% for person in people.current_members %}
             <li><a href="#{{ person.name }}">{{ person.name }}</a></li>
           {% endfor %}
-        </ol>
+        </ul>
       </div>
     </aside>
 
   </div>
-</main>
+</div>
+
 {% endblock %}
