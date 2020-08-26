@@ -35,8 +35,6 @@
     # (2) Production
     cp config/production/.env.example .env
 
-    # Ask an admin for the database configuration settings
-
     # Run the Flask App on localhost
     # http://127.0.0.1:5000/
     flask run
