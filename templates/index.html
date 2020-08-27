@@ -20,23 +20,36 @@
 </div>
 
 <div class="container">
-  <h1 class="site-section-title">Latest News</h1>
-  <div class="row mb-2">
-    {% for post in news.news_items %}
-      {% if post.front_page %}
-        <div class="col-md-6">
-          <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-success">{{ post.header }}</strong>
-              <h3 class="mb-0">{{ post.title }}</h3>
-              <div class="mb-1 text-muted">{{ post.date }}</div>
-              <p class="card-text">{{ post.content | safe | truncate(200)}}</p>
-              <a href="/news" class="card-link">Continue reading</a>
+  <div class="col-md-12">
+    <h2 class="site-section-meta border-bottom">Research Summary</h2>
+    <p>
+      The Laboratory for Computational Physiology (LCP), under the direction of Professor Roger Mark, conducts research on improving health care through new and refined approaches to interpreting data.
+      Some of the group’s researchers have medical backgrounds; others have backgrounds in computer science, electrical engineering, physics, or mathematics; and others have training that spans several of these disciplines.
+      Current laboratory research incorporates physiology, computer science, engineering, and applied mathematics.
+      <br><br>
+      Using modern approaches to modeling, signal processing, pattern recognition, and machine learning, the lab’s researchers develop and refine methods for analyzing data—for example, from patients in intensive care units—and for generating predictive models that will aid in patient care.
+      Current laboratory research comprises two major projects, the <a href="mimic">MIMIC</a> project and <a href="physionet">PhysioNet</a>. See their respective pages for more detailed information.
+    </p>
+  </div>
+  <div class="col-md-12">
+    <h1 class="site-section-meta border-bottom">Latest News</h1>
+    <div class="row">
+      {% for post in news.news_items %}
+        {% if post.front_page %}
+          <div class="col-md-6">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-success">{{ post.header }}</strong>
+                <h3 class="mb-0">{{ post.title }}</h3>
+                <div class="mb-1 text-muted">{{ post.date }}</div>
+                <p class="card-text">{{ post.content | safe | truncate(200)}}</p>
+                <a href="/news" class="card-link">Continue reading</a>
+              </div>
             </div>
           </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 </div>
 
