@@ -414,6 +414,16 @@ def people():
 
     return render_template('people.html', **data)
 
+@app.route("/news")
+@app.route("/news.html")
+@app.route("/news.shtml")
+def news():
+    """
+    Display a list of news items.
+    """
+    data = get_news_data()
+    return render_template('news.html', **data)
+
 
 if __name__ == "__main__":
     app.jinja_env.auto_reload = True
