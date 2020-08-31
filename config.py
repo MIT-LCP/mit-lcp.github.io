@@ -1,6 +1,7 @@
 # Import necessary packages
 import os
 
+
 # Base configuration
 class Config:
     # Flask configuration
@@ -11,11 +12,6 @@ class Config:
 
     # Django configuration
     SECRET_KEY = os.environ.get('SECRET_KEY')
-
-    # Google Cloud configuration
-    SERVICE_ACCOUNT_EMAIL = os.environ.get('SERVICE_ACCOUNT_EMAIL')
-    SERVICE_ACCOUNT_KEY = os.environ.get('SERVICE_ACCOUNT_KEY')
-    GCP_SECRET_KEY = os.environ.get('GCP_SECRET_KEY')
 
     # Database configuration
     DB_USER = os.environ.get('DB_USER')
@@ -28,13 +24,13 @@ class Config:
     ADMIN = os.environ.get('ADMIN')
     EMAIL_RECIPIENTS = os.environ.get('EMAIL_RECIPIENTS')
     PRIMARY_ADMIN = os.environ.get('PRIMARY_ADMIN')
-    GCP_DELEGATION_EMAIL = os.environ.get('GCP_DELEGATION_EMAIL')
-    DATATHON_GROUP = os.environ.get('DATATHON_GROUP')
+
 
 # Config used for development
 class DevConfig(Config):
     DEBUG = True
     TESTING = True
+
 
 # Config used for production
 class ProductionConfig(Config):

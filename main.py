@@ -3,25 +3,16 @@
 from logging.handlers import RotatingFileHandler
 from logging import Formatter, DEBUG
 from datetime import timedelta, datetime
-from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from functools import wraps
 import os
 from smtplib import SMTP
-from re import sub, search
 import traceback
-import json
 import yaml
 
 from flask import Flask, render_template, redirect, request, session, url_for
-from oauth2client.service_account import ServiceAccountCredentials
-from googleapiclient.errors import HttpError
-from googleapiclient.discovery import build
 from PIL import Image
-import simplepam
-import difflib
 
-from Postgres import PersonelModel, DatathonModel
+from Postgres import PersonelModel
 
 app = Flask(__name__)
 if app.config['ENV'] == 'production':
@@ -43,19 +34,6 @@ app.logger.setLevel(DEBUG)
 def _data():
     data = {}
     return data
-
-
-def login_required(function):
-    """
-    Wrapper function to force login
-    """
-    @wraps(function)
-    def wrap(*args, **kwargs):
-        # if user is not logged in, redirect to login page
-        if ('Username' not in session) or ('URL' not in session):
-            return redirect(url_for('login'))
-        return function(*args, **kwargs)
-    return wrap
 
 
 @app.errorhandler(404)
@@ -112,40 +90,99 @@ def send_email(subject, content, sender, rec=None):
     server.quit()
 
 
-def send_html_email(subject, content, html_content, sender, rec=None):
+def resize_image():
     """
-    This functions sends an email, takes subject, content, sender and recipient
-    The recipients has to be a list of emails, even is there is only one
-
-    Here a HTML email will be sent.
-
-    ONLY used in BIO edits.
+    Function that takes a image to crop and upload ßit.
     """
-    msg = MIMEMultipart('alternative')
-    recipients = app.config['PRIMARY_ADMIN']
-    if rec is not None:
-        recipients = rec
-    msg['Subject'] = subject
-    msg['From'] = sender
-    msg['To'] = ', '.join(recipients)
+    x_axis = float(request.form.get('x', None))
+    y_axis = float(request.form.get('y', None))
+    width = float(request.form.get('width', None))
+    height = float(request.form.get('height', None))
+    file = request.files['picture']
+    uid = request.form.get('UID', None)
+    username = ''
+    if uid is not None:
+        username = PersonelModel().get_username_from_id(uid)
+    else:
+        username = request.form.get('email', None).split("@")[0]
 
-    html = """\
-    <html>
-      <head></head>
-      <body>
-        {0}
-      </body>
-    </html>
-    """.format(html_content)
-    part1 = MIMEText(content, 'plain')
-    part2 = MIMEText(html, 'html')
+    filename = username + '.' + file.filename.split('.')[-1]
+    if os.path.exists(app.config['UPLOAD_FOLDER'] + filename):
+        os.remove(app.config['UPLOAD_FOLDER'] + filename)
 
-    msg.attach(part1)
-    msg.attach(part2)
+    image = Image.open(file)
+    image = image.crop((x_axis, y_axis, width+x_axis, height+y_axis))
+    image = image.resize((200, 200), Image.ANTIALIAS)
+    image.save(app.config['UPLOAD_FOLDER'] + filename)
+    return filename
 
-    server = SMTP('127.0.0.1')
-    server.sendmail(sender, recipients, msg.as_string())
-    server.quit()
+
+def get_news_data():
+    """
+    Retrieve and process the news data
+    """
+    data = _data()
+
+    path = "sitedata"
+    fn = "news.yml"
+
+    with open(os.path.join(path, fn), 'r') as f:
+        data["news"] = yaml.safe_load(f)
+
+    years = []
+    for i,post in enumerate(data['news']['news_items']):
+        # Gives unique names to each news item to create links later
+        data['news']['news_items'][i]['post_number'] = 'news_' + str(i)
+        # List of all the years for the news items
+        years.append(post['date'].split('-')[0])
+
+    data['news']['tag_info'] = {
+        'year': sorted(set(years), reverse=True)
+    }
+
+    return data
+
+
+###############################################################################
+#
+# Pages for the LCP registration, checkout and basic information for the lab.
+#
+###############################################################################
+@app.route("/info/")
+@app.route("/info/index")
+@app.route("/info/index.html")
+def lab_index():
+    """
+    Index page for the lab info
+    """
+    return render_template('info/index.html')
+
+
+@app.route("/info/reg_form")
+@app.route("/info/reg_form.html")
+def reg_form():
+    """
+    Registration form for new lab members
+    """
+    return render_template('info/registration_form.html')
+
+
+@app.route("/info/intro_to_Mark_lab")
+@app.route("/info/intro_to_Mark_lab.html")
+def lcp_intro():
+    """
+    Basic lab info
+    """
+    return render_template('info/intro_to_Mark_lab.html')
+
+
+@app.route("/info/check_out_form")
+@app.route("/info/check_out_form.html")
+def check_out_form():
+    """
+    Form for when a person leaves
+    """
+    return render_template('info/check_out_form.html')
 
 
 def checkout_form(var):
@@ -227,141 +264,6 @@ def registration_form(var):
                    result, 'noreply@lcp.mit.edu')
         return result
     return content
-
-
-def resize_image():
-    """
-    Function that takes a image to crop and upload ßit.
-    """
-    x_axis = float(request.form.get('x', None))
-    y_axis = float(request.form.get('y', None))
-    width = float(request.form.get('width', None))
-    height = float(request.form.get('height', None))
-    file = request.files['picture']
-    uid = request.form.get('UID', None)
-    username = ''
-    if uid is not None:
-        username = PersonelModel().get_username_from_id(uid)
-    else:
-        username = request.form.get('email', None).split("@")[0]
-
-    filename = username + '.' + file.filename.split('.')[-1]
-    if os.path.exists(app.config['UPLOAD_FOLDER'] + filename):
-        os.remove(app.config['UPLOAD_FOLDER'] + filename)
-
-    image = Image.open(file)
-    image = image.crop((x_axis, y_axis, width+x_axis, height+y_axis))
-    image = image.resize((200, 200), Image.ANTIALIAS)
-    image.save(app.config['UPLOAD_FOLDER'] + filename)
-    return filename
-
-
-def auth(username, passwd):
-    """
-    Authentication function against the system users.
-    """
-    result = simplepam.authenticate(str(username), str(passwd))
-    # Personel = PersonelModel()
-    if result:
-        session["Username"] = username
-        session['URL'] = "https://lcp.mit.edu"
-        return True
-    app.logger.error('Incorrect password or username: {0} Error: {1}'.format(
-        username, result))
-    return False
-
-
-def show_diff(text, n_text):
-    """
-    http://stackoverflow.com/a/788780
-    Unify operations between two compared strings seqm is a difflib.
-    SequenceMatcher instance whose a & b are strings
-    """
-    seqm = difflib.SequenceMatcher(None, text, n_text)
-    output = []
-    for opcode, a_0, a_1, b_0, b_1 in seqm.get_opcodes():
-        if opcode == 'equal':
-            output.append(seqm.a[a_0:a_1])
-        elif opcode == 'insert':
-            output.append("<font color=red>^{0}</font>".format(
-                seqm.b[b_0:b_1]))
-        elif opcode == 'delete':
-            output.append("<font color=blue>^{0}</font>".format(
-                seqm.a[a_0:a_1]))
-        elif opcode == 'replace':
-            output.append("<font color=green>^{0}</font>".format(
-                seqm.b[b_0:b_1]))
-        else:
-            raise Exception("unexpected opcode")
-    return ''.join(output)
-
-
-def get_news_data():
-    """
-    Retrieve and process the news data
-    """
-    data = _data()
-
-    path = "sitedata"
-    fn = "news.yml"
-
-    with open(os.path.join(path, fn), 'r') as f:
-        data["news"] = yaml.safe_load(f)
-
-    years = []
-    for i,post in enumerate(data['news']['news_items']):
-        # Gives unique names to each news item to create links later
-        data['news']['news_items'][i]['post_number'] = 'news_' + str(i)
-        # List of all the years for the news items
-        years.append(post['date'].split('-')[0])
-
-    data['news']['tag_info'] = {
-        'year': sorted(set(years), reverse=True)
-    }
-
-    return data
-
-
-###############################################################################
-#
-# Pages for the LCP registration, checkout and basic information for the lab.
-#
-###############################################################################
-@app.route("/info/")
-@app.route("/info/index")
-@app.route("/info/index.html")
-def lab_index():
-    """
-    Index page for the lab info
-    """
-    return render_template('info/index.html')
-
-
-@app.route("/info/reg_form")
-@app.route("/info/reg_form.html")
-def reg_form():
-    """
-    Registration form for new lab members
-    """
-    return render_template('info/registration_form.html')
-
-
-@app.route("/info/intro_to_Mark_lab")
-@app.route("/info/intro_to_Mark_lab.html")
-def lcp_intro():
-    """
-    Basic lab info
-    """
-    return render_template('info/intro_to_Mark_lab.html')
-
-
-@app.route("/info/check_out_form")
-@app.route("/info/check_out_form.html")
-def check_out_form():
-    """
-    Form for when a person leaves
-    """
-    return render_template('info/check_out_form.html')
 
 
 @app.route("/info/submit", methods=['POST'])
@@ -511,362 +413,6 @@ def people():
         data["people"] = yaml.safe_load(f)
 
     return render_template('people.html', **data)
-
-
-@app.route("/news")
-@app.route("/news.html")
-@app.route("/news.shtml")
-def news():
-    """
-    Display a list of news items.
-    """
-    data = get_news_data()
-
-    return render_template('news.html', **data)
-
-
-###############################################################################
-#
-# Dashboard pages for the LCP
-#
-###############################################################################
-@app.route("/login")
-@app.route("/login.html")
-def login():
-    """
-    Login function
-    """
-    session["Username"] = 'ftorres'
-    session['URL'] = "https://lcp.mit.edu"
-    error, success = status()
-    return render_template('admin/login.html', Error=error)
-
-
-@app.route("/Authenticate", methods=['POST', 'GET'])
-def authenticate():
-    """
-    Auth function
-    """
-    if request.method == 'GET':
-        return redirect('login')
-    username = sub(r"[!@#$%^&*()_+\[\]{}:\"?><,/\'\;~` ]", '',
-                   request.form.get('Username', None))
-    if username is not None and request.form.get('Password', None) is not None:
-        success = auth(username, request.form.get('Password', None))
-        if success:
-            return redirect('dashboard')
-    session["ERROR"] = "Incorrect login or password."
-    return redirect('login')
-
-
-@app.route("/dashboard")
-@app.route("/dashboard.html")
-@login_required
-def dashboard():
-    """
-    LCP Dashboard
-    """
-    app.logger.info('The user %s is in the dashboard' % session['Username'])
-
-    session.permanent = True
-    error, success = status()
-    people_list = PersonelModel().get_all()
-    user_admin = [session['Username'], False]
-    if session['Username'] in app.config['ADMIN']:
-        user_admin = [session['Username'], True]
-
-    personel = {"General": [], 'Alumni': [], "UROP": [], "Affiliate": [],
-                "Other": []}
-
-    for indx, item in enumerate(people_list):
-        people_list[indx] = list(item)
-        people_list[indx][10] = """False"""
-        if item[10]:
-            people_list[indx][10] = """True"""
-        if item[3] in ["1", 1]:
-            people_list[indx][3] = " -- General -- "
-            personel['General'].append(people_list[indx])
-        elif item[3]in ["2", 2]:
-            people_list[indx][3] = " -- Collaborating Researcher -- "
-            personel['General'].append(people_list[indx])
-        elif item[3] in ["3", 3]:
-            people_list[indx][3] = " -- Visiting Colleague -- "
-            personel['General'].append(people_list[indx])
-        elif item[3] in ["4", 4]:
-            people_list[indx][3] = " -- Alumni -- "
-            personel['Alumni'].append(people_list[indx])
-        elif item[3] in ["5", 5]:
-            people_list[indx][3] = " -- Graduate Student -- "
-            personel['General'].append(people_list[indx])
-        elif item[3] in ["6", 6]:
-            people_list[indx][3] = " -- UROP -- "
-            personel['UROP'].append(people_list[indx])
-        elif item[3] in ["7", 7]:
-            people_list[indx][3] = " -- Affiliate Researcher -- "
-            personel['Affiliate'].append(people_list[indx])
-        else:
-            people_list[indx][3] = " -- Other -- "
-            personel['Other'].append(people_list[indx])
-    return render_template('admin/dashboard.html', Error=error,
-                           Success=success, Logged_User=user_admin,
-                           Personel=personel)
-
-
-@app.route("/Edit_User_<uid>")
-@login_required
-def user(uid):
-    """
-    Populates page to edit a persons information
-    """
-    app.logger.info('The user {0} is trying to edit the profile id {1}'.format(
-        session['Username'], uid))
-    session.permanent = True
-    error, success = status()
-    person = PersonelModel().get_all_from_id(uid)
-
-    if session['Username'] not in ADMIN and person[8] != session['Username']:
-        return redirect('dashboard')
-
-    true_false = "<option value='True'>True</option>\
-                  <option value='False'>False</option>"
-    person[10] = true_false.replace("'{}'".format(person[10]),
-                                    "'{}' selected".format(person[10]))
-
-    category = "<option value='1'> -- General -- </option>\
-                <option value='2'> -- Collaborating Researcher -- </option>\
-                <option value='3'> -- Visiting Colleague -- </option>\
-                <option value='4'> -- Alumni -- </option>\
-                <option value='5'> -- Graduate Student -- </option>\
-                <option value='6'> -- UROP -- </option>\
-                <option value='7'> -- Research Affiliate -- </option>\
-                <option value='8'> -- Other -- </option>"
-    person[3] = category.replace("'{}'".format(person[3]),
-                                 "'{}' selected".format(person[3]))
-
-    return render_template('admin/edit.html', Error=error, Success=success,
-                           Logged_User=session['Username'], Person=person)
-
-###############################################################################
-# 1. General
-# 2. Colaborating Researcher
-# 3. Visiting Colleague
-# 4. Alumni
-# 5. Grad Student
-# 6. UROP
-# 7. Affiliate
-# 8. Other
-###############################################################################
-@app.route("/Submit_User", methods=['POST', 'GET'])
-@login_required
-def submit_user():
-    """
-    FUNCTION to handle user edits
-    """
-    app.logger.info(request.form)
-    if request.method == 'POST' and request.form.get("FName"):
-        person_info = {'Full_Name': request.form.get('FName', "None"),
-                       'Username': request.form.get('Username', "None"),
-                       'Status': request.form.get('Status', "None"),
-                       'Email': request.form.get('Email', "None"),
-                       'Bio': request.form.get('Bio', "None"),
-                       'UID': request.form.get('UID', "None"),
-                       'Food': request.form.get('Food', "False"),
-                       'Hidden': request.form.get('Hidden', "False", ),
-                       'y': request.form.get("y"),
-                       'x': request.form.get("x"),
-                       'height': request.form.get("height"),
-                       'width': request.form.get("width")}
-
-        model = PersonelModel()
-        success = "empty"
-        if request.files.get("picture"):
-            # If there is an image, then upload and crop it
-            if (person_info["y"] and person_info["x"] and person_info["height"]
-                    and person_info["width"]):
-                filename = resize_image()
-            else:
-                # The image should NOT be blank, but its a posibility
-                # I am unaware if this if is used
-                filename = 'missing.jpg'
-                if model.get_picture(person_info["UID"])[1] != '':
-                    filename = model.get_picture(person_info["UID"])[1]
-                app.logger.error("Problem with the upload, (missing axis)")
-                session['ERROR'] = "Error uploading the image."
-        else:
-            # The image should NOT be blank, but its a posibility
-            # I am unaware if this if is used
-            filename = 'missing.jpg'
-            if model.get_picture(person_info["UID"])[1] != '':
-                filename = model.get_picture(person_info["UID"])[1]
-
-        if request.form.get("New_User") in ['1', 1]:
-            success = model.new_person(person_info["Full_Name"], filename,
-                                       person_info["Status"],
-                                       person_info["Email"],
-                                       person_info["Bio"])
-        else:
-            bio = model.get_bio_from_id(person_info["UID"])
-            if bio != person_info["Bio"]:
-                content = "The Bio of {1} has changed. Please take a look at \
-                           the Bio to see if up to standards.\nThe old Bio is:\
-                           \n{0}\nThe new Bio is:\n{2}".format(
-                               bio, person_info["Full_Name"],
-                               person_info["Bio"])
-                subject = "Bio changed in the LCP website"
-                html_content = content + "The changes are:\n{0}".format(
-                    show_diff(bio, person_info["Bio"]))
-                send_html_email(subject, content, html_content.replace(
-                    '\n', '<br>'), 'noreply@lcp.mit.edu')
-            success = model.update(
-                person_info["Full_Name"], person_info["Status"], filename,
-                person_info["Email"], person_info["Bio"], person_info["UID"],
-                person_info["Food"], person_info["Hidden"])
-    else:
-        return redirect('/dashboard')
-
-    if success:
-        session['SUCCESS'] = "The update was successfully done."
-        return redirect('dashboard')
-    app.logger.error(success)
-    session['ERROR'] = "There was an error, please try again."
-    return redirect('dashboard')
-
-
-def status():
-    """
-    Return if there was an error or successful event
-    """
-    error = False
-    success = False
-    if 'ERROR' in session:
-        error = session['ERROR']
-        session.pop('ERROR', None)
-    elif 'SUCCESS' in session:
-        success = session['SUCCESS']
-        session.pop('SUCCESS', None)
-    return error, success
-
-
-@app.route("/datathon", methods=['POST', 'GET'])
-@login_required
-def datathon():
-    """
-    Page to handle datathon access to MIMIC and eICU
-    """
-    error, success = status()
-    model = DatathonModel()
-
-    if request.method == 'POST' and request.form.get("remove_id"):
-        remove_id = request.form.get('remove_id', None)
-        if model.revoke_bq_access(session['Username'], remove_id):
-            datathon_info = model.get_by_id(remove_id)
-            revoke_gcp_group_access(datathon_info[3])
-            success = "The BigQuery from {0} access has been removed.".format(
-                datathon_info[3])
-
-    datathons = model.get_all()
-    return render_template('admin/datathons.html', error=error,
-                           success=success, datathons=datathons)
-
-
-@app.route("/datathon_add", methods=['POST', 'GET'])
-@login_required
-def datathon_add():
-    """
-    Page to handle datathon access to MIMIC and eICU
-    """
-    var = {}
-    if request.method == 'POST' and request.form.get("location"):
-        var['location'] = request.form.get('location', None)
-        var['contact_name'] = request.form.get('contact_name', None)
-        var['contact_email'] = request.form.get('contact_email', None)
-        var['google_group'] = request.form.get('google_group', None)
-        var['date'] = request.form.get('date', None)
-        var['user'] = session['Username']
-
-        if not (valid_email(var['contact_email']) and
-                valid_email(var['google_group'])):
-            return render_template('admin/datathon_add.html',
-                                   Error="Please enter valid emails")
-
-        model = DatathonModel()
-        if model.grant_bq_access(var):
-            grant_gcp_group_access(var['contact_email'])
-            session['SUCCESS'] = "Access was granted."
-        else:
-            session['ERROR'] = "Error with the dabase, access skipped."
-        return redirect('datathon')
-    return render_template('admin/datathon_add.html')
-
-
-def grant_gcp_group_access(email):
-    """
-    Add a specific email address to a organizational google group
-    Returns two things:
-        The first argument is if access was awarded.
-        The second argument is if the access was awarded in a previous time.
-    """
-    service = build_service()
-    try:
-        outcome = service.members().insert(groupKey=app.config['DATATHON_GROUP'], body={
-            "email": email, "delivery_settings": "NONE"}).execute()
-        if outcome['role'] == "MEMBER":
-            session['SUCCESS'] = 'Access has been granted to {0}'.format(email)
-            return True
-        session['ERROR'] = 'Error granting access to {0}'.format(email)
-        return False
-    except HttpError as error:
-        if json.loads(error.content)['error']['message'] != 'Member already exists.':
-            raise error
-
-
-def revoke_gcp_group_access(email):
-    """
-    Add a specific email address to a organizational google group
-    Returns two things:
-        The first argument is if access was awarded.
-        The second argument is if the access was awarded in a previous time.
-    """
-    service = build_service()
-    try:
-        outcome = service.members().delete(groupKey=app.config['DATATHON_GROUP'],
-                                           memberKey=email).execute()
-        if outcome == '':
-            session['SUCCESS'] = 'Access has been granted to {0}'.format(email)
-            return True
-        session['ERROR'] = 'Error granting access to {0}'.format(email)
-        return False
-    except HttpError as error:
-        if json.loads(error.content)['error']['message'] != 'Resource Not Found: memberKey':
-            raise error
-
-
-def build_service():
-    """
-    Builds the GCP service to add and remove emails to admin.google.com
-    """
-    if not os.path.isfile(app.config['SERVICE_ACCOUNT_KEY']):
-        raise Exception("The GCP access key file does not exists.")
-
-    credentials = ServiceAccountCredentials.from_p12_keyfile(
-        app.config['SERVICE_ACCOUNT_EMAIL'],
-        app.config['SERVICE_ACCOUNT_KEY'],
-        app.config['GCP_SECRET_KEY'],
-        scopes=['https://www.googleapis.com/auth/admin.directory.group'])
-    credentials = credentials.create_delegated(app.config['GCP_DELEGATION_EMAIL'])
-    return build('admin', 'directory_v1', credentials=credentials)
-
-
-def valid_email(email):
-    """
-    Validates emails
-    """
-    regex = r'\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
-
-    if not search(regex, email):
-        app.logger.info("Invalid email: {}".format(email))
-        return False
-    return True
 
 
 if __name__ == "__main__":
