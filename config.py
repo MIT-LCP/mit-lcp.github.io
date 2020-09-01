@@ -5,8 +5,6 @@ import os
 # Base configuration
 class Config:
     # Flask configuration
-    PERMANENT_SESSION_LIFETIME = os.environ.get('PERMANENT_SESSION_LIFETIME')
-    MAX_CONTENT_PATH = os.environ.get('MAX_CONTENT_PATH')
     TEMPLATES_AUTO_RELOAD = os.environ.get('TEMPLATES_AUTO_RELOAD')
     UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER')
 
