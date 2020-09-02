@@ -6,7 +6,8 @@ from smtplib import SMTP
 import traceback
 import os
 
-from flask import Flask, render_template, redirect, request, session, url_for
+from flask import Flask, render_template, redirect, request, session, url_for, Response
+from werkzeug.wsgi import DispatcherMiddleware
 from PIL import Image
 import yaml
 
@@ -15,6 +16,8 @@ from Postgres import PersonelModel
 app = Flask(__name__)
 if app.config['ENV'] == 'production':
     app.config.from_object('config.ProductionConfig')
+elif app.config['ENV'] == 'staging':
+    app.wsgi_app = DispatcherMiddleware(app, {'/lcp_dev': app.wsgi_app})
 else:
     app.config.from_object('config.DevConfig')
 
@@ -59,7 +62,9 @@ def send_text_file():
     """
     Serve robots file
     """
-    return app.send_static_file('robots.txt')
+    if app.config['ENV'] == 'production':
+        return app.send_static_file('robots.txt')
+    return Response("User-agent: *\nDisallow: /", mimetype='text/plain')
 
 
 def send_email(subject, content, sender, rec=None):
