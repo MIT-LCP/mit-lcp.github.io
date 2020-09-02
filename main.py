@@ -66,7 +66,7 @@ def internal_server_error(error):
     return render_template('500.html')
 
 
-@app.route('/robots.txt')
+@app.route('/lcp_dev/robots.txt')
 def send_text_file():
     """
     Serve robots file
@@ -316,6 +316,8 @@ def submit():
 # Main pages for the LCP website
 #
 ###############################################################################
+@app.route("/lcp_dev/")
+@app.route("/lcp_dev/index.html")
 @app.route("/")
 @app.route("/index")
 @app.route("/index.html")
@@ -328,7 +330,7 @@ def index():
 
     return render_template('index.html', **data)
 
-
+@app.route("/lcp_dev/about")
 @app.route("/about")
 @app.route("/about.html")
 @app.route("/about.shtml")
@@ -338,7 +340,7 @@ def about():
     """
     return render_template('about.html')
 
-
+@app.route("/lcp_dev/publications")
 @app.route("/publications")
 @app.route("/publications.html")
 @app.route("/publications.shtml")
@@ -348,7 +350,7 @@ def publications():
     """
     return render_template('publications.html')
 
-
+@app.route("/lcp_dev/rgm_publications")
 @app.route("/rgm_publications")
 @app.route("/rgm_publications.html")
 def rgm_publications():
@@ -358,6 +360,7 @@ def rgm_publications():
     return render_template('rgm_publications.html')
 
 
+@app.route("/lcp_dev/brp_references")
 @app.route("/brp_references")
 @app.route("/brp_references.html")
 def brp_references():
@@ -367,6 +370,7 @@ def brp_references():
     return render_template('brp_references.html')
 
 
+@app.route("/lcp_dev/mimic")
 @app.route("/mimic")
 @app.route("/mimic.html")
 @app.route("/mimic.shtml")
@@ -377,6 +381,7 @@ def mimic():
     return render_template('mimic.html')
 
 
+@app.route("/lcp_dev/physionet")
 @app.route("/physionet")
 @app.route("/physionet.html")
 @app.route("/physionet.shtml")
@@ -387,6 +392,7 @@ def physionet():
     return render_template('physionet.html')
 
 
+@app.route("/lcp_dev/brp")
 @app.route("/brp")
 @app.route("/brp.html")
 @app.route("/brp.shtml")
@@ -397,6 +403,7 @@ def brp():
     return render_template('brp.html')
 
 
+@app.route("/lcp_dev/people")
 @app.route("/people")
 @app.route("/people.html")
 @app.route("/people.shtml")
@@ -413,6 +420,144 @@ def people():
         data["people"] = yaml.safe_load(f)
 
     return render_template('people.html', **data)
+
+
+@app.route("/lcp_dev/news")
+@app.route("/news")
+@app.route("/news.html")
+@app.route("/news.shtml")
+def news():
+    """
+    Display a list of news items.
+    """
+    data = get_news_data()
+
+    return render_template('news.html', **data)
+
+
+###############################################################################
+#
+# Dashboard pages for the LCP
+#
+###############################################################################
+@app.route("/login")
+@app.route("/login.html")
+def login():
+    """
+    Login function
+    """
+    session["Username"] = 'ftorres'
+    session['URL'] = "https://lcp.mit.edu"
+    error, success = status()
+    return render_template('admin/login.html', Error=error)
+
+
+@app.route("/Authenticate", methods=['POST', 'GET'])
+def authenticate():
+    """
+    Auth function
+    """
+    if request.method == 'GET':
+        return redirect('login')
+    username = sub(r"[!@#$%^&*()_+\[\]{}:\"?><,/\'\;~` ]", '',
+                   request.form.get('Username', None))
+    if username is not None and request.form.get('Password', None) is not None:
+        success = auth(username, request.form.get('Password', None))
+        if success:
+            return redirect('dashboard')
+    session["ERROR"] = "Incorrect login or password."
+    return redirect('login')
+
+
+# 2. Colaborating Researcher
+# 3. Visiting Colleague
+# 4. Alumni
+# 5. Grad Student
+# 6. UROP
+# 7. Affiliate
+# 8. Other
+###############################################################################
+def status():
+    """
+    Return if there was an error or successful event
+    """
+    error = False
+    success = False
+    if 'ERROR' in session:
+        error = session['ERROR']
+        session.pop('ERROR', None)
+    elif 'SUCCESS' in session:
+        success = session['SUCCESS']
+        session.pop('SUCCESS', None)
+    return error, success
+
+    """
+    Add a specific email address to a organizational google group
+    Returns two things:
+        The first argument is if access was awarded.
+        The second argument is if the access was awarded in a previous time.
+    """
+    service = build_service()
+    try:
+        outcome = service.members().insert(groupKey=app.config['DATATHON_GROUP'], body={
+            "email": email, "delivery_settings": "NONE"}).execute()
+        if outcome['role'] == "MEMBER":
+            session['SUCCESS'] = 'Access has been granted to {0}'.format(email)
+            return True
+        session['ERROR'] = 'Error granting access to {0}'.format(email)
+        return False
+    except HttpError as error:
+        if json.loads(error.content)['error']['message'] != 'Member already exists.':
+            raise error
+
+
+def revoke_gcp_group_access(email):
+    """
+    Add a specific email address to a organizational google group
+    Returns two things:
+        The first argument is if access was awarded.
+        The second argument is if the access was awarded in a previous time.
+    """
+    service = build_service()
+    try:
+        outcome = service.members().delete(groupKey=app.config['DATATHON_GROUP'],
+                                           memberKey=email).execute()
+        if outcome == '':
+            session['SUCCESS'] = 'Access has been granted to {0}'.format(email)
+            return True
+        session['ERROR'] = 'Error granting access to {0}'.format(email)
+        return False
+    except HttpError as error:
+        if json.loads(error.content)['error']['message'] != 'Resource Not Found: memberKey':
+            raise error
+
+
+def build_service():
+    """
+    Builds the GCP service to add and remove emails to admin.google.com
+    """
+    if not os.path.isfile(app.config['SERVICE_ACCOUNT_KEY']):
+        raise Exception("The GCP access key file does not exists.")
+
+    credentials = ServiceAccountCredentials.from_p12_keyfile(
+        app.config['SERVICE_ACCOUNT_EMAIL'],
+        app.config['SERVICE_ACCOUNT_KEY'],
+        app.config['GCP_SECRET_KEY'],
+        scopes=['https://www.googleapis.com/auth/admin.directory.group'])
+    credentials = credentials.create_delegated(app.config['GCP_DELEGATION_EMAIL'])
+    return build('admin', 'directory_v1', credentials=credentials)
+
+
+def valid_email(email):
+    """
+    Validates emails
+    """
+    regex = r'\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+
+    if not search(regex, email):
+        app.logger.info("Invalid email: {}".format(email))
+        return False
+    return True
 
 
 if __name__ == "__main__":

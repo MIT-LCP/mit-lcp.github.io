@@ -13,12 +13,9 @@ class Config:
     # Django configuration
     SECRET_KEY = os.environ.get('SECRET_KEY')
 
-    # Database configuration
-    DB_USER = os.environ.get('DB_USER')
-    DB_PASSWD = os.environ.get('DB_PASSWD')
-    DB_NAME = os.environ.get('DB_NAME')
-    DB_PORT = os.environ.get('DB_PORT')
-    DB_HOST = os.environ.get('DB_HOST')
+    # Google Cloud configuration
+    SERVICE_ACCOUNT_KEY = os.environ.get('SERVICE_ACCOUNT_KEY')
+    GCP_SECRET_KEY = os.environ.get('GCP_SECRET_KEY')
 
     # Admin configuration
     ADMIN = os.environ.get('ADMIN')
