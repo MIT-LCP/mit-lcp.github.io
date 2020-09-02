@@ -21,8 +21,7 @@
         Current <a href="#researchers">members</a> of the laboratory are listed below.
       </p>
 
-      <a name="researchers"></a>
-      <h2 class="site-section border-bottom">Current members</h2>
+      <h2 class="site-section border-bottom" id="researchers">Current members</h2>
 
       {% for person in people.current_members %}
         <div id="{{ person.name | replace(' ','_') }}">
@@ -30,9 +29,9 @@
           <div class="row">
             <div class="col-md-2">
               {% if person.image %} 
-              <img class="img-fluid" width="100%" src="{{ url_for('static', filename='images/' + person.image )}}" alt="{{ person.name }}">
+              <img class="img-fluid" width="120px" src="{{ url_for('static', filename='images/' + person.image )}}" alt="{{ person.name }}">
               {% else %} 
-              <img class="img-fluid" width="100%" src="{{ url_for('static', filename='images/missing.jpg' )}}" alt="{{ person.name }}">
+              <img class="img-fluid" width="120px" src="{{ url_for('static', filename='images/missing.jpg' )}}" alt="{{ person.name }}">
               {% endif %} 
             </div>
             <div class="col-md-9">
