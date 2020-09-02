@@ -1,16 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from logging.handlers import RotatingFileHandler
-from logging import Formatter, DEBUG
-from datetime import timedelta, datetime
 from email.mime.text import MIMEText
-import os
+from datetime import datetime
 from smtplib import SMTP
 import traceback
-import yaml
+import os
 
 from flask import Flask, render_template, redirect, request, session, url_for
 from PIL import Image
+import yaml
 
 from Postgres import PersonelModel
 
@@ -19,16 +17,6 @@ if app.config['ENV'] == 'production':
     app.config.from_object('config.ProductionConfig')
 else:
     app.config.from_object('config.DevConfig')
-
-if app.config['ENV'] == 'production':
-    LOG_HANDLER = RotatingFileHandler('/var/log/flask/lcp_website.log',
-                                    maxBytes=10000000, backupCount=2)
-    LOG_HANDLER.setLevel(DEBUG)
-    LOG_HANDLER.setFormatter(
-        Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(message)s"))
-    app.logger.addHandler(LOG_HANDLER)
-
-app.logger.setLevel(DEBUG)
 
 
 def _data():
