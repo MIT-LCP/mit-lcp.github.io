@@ -1,4 +1,3 @@
 # robots.txt for http://www.physionet.org/
 User-agent: *
-Disallow: /info/
-Allow: /
+Disallow: /
