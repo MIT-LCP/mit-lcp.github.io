@@ -1,12 +1,17 @@
 # Import necessary packages
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # Base configuration
 class Config:
     # Flask configuration
     TEMPLATES_AUTO_RELOAD = os.environ.get('TEMPLATES_AUTO_RELOAD')
     UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER')
+    ENV = os.environ.get('FLASK_ENV')
 
     # Django configuration
     SECRET_KEY = os.environ.get('SECRET_KEY')
