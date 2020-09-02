@@ -66,7 +66,7 @@ def internal_server_error(error):
     return render_template('500.html')
 
 
-@app.route('/robots.txt')
+@app.route('/lcp_dev/robots.txt')
 def send_text_file():
     """
     Serve robots file
@@ -316,6 +316,8 @@ def submit():
 # Main pages for the LCP website
 #
 ###############################################################################
+@app.route("/lcp_dev/")
+@app.route("/lcp_dev/index.html")
 @app.route("/")
 @app.route("/index")
 @app.route("/index.html")
@@ -328,7 +330,7 @@ def index():
 
     return render_template('index.html', **data)
 
-
+@app.route("/lcp_dev/about")
 @app.route("/about")
 @app.route("/about.html")
 @app.route("/about.shtml")
@@ -338,7 +340,7 @@ def about():
     """
     return render_template('about.html')
 
-
+@app.route("/lcp_dev/publications")
 @app.route("/publications")
 @app.route("/publications.html")
 @app.route("/publications.shtml")
@@ -348,7 +350,7 @@ def publications():
     """
     return render_template('publications.html')
 
-
+@app.route("/lcp_dev/rgm_publications")
 @app.route("/rgm_publications")
 @app.route("/rgm_publications.html")
 def rgm_publications():
@@ -358,6 +360,7 @@ def rgm_publications():
     return render_template('rgm_publications.html')
 
 
+@app.route("/lcp_dev/brp_references")
 @app.route("/brp_references")
 @app.route("/brp_references.html")
 def brp_references():
@@ -367,6 +370,7 @@ def brp_references():
     return render_template('brp_references.html')
 
 
+@app.route("/lcp_dev/mimic")
 @app.route("/mimic")
 @app.route("/mimic.html")
 @app.route("/mimic.shtml")
@@ -377,6 +381,7 @@ def mimic():
     return render_template('mimic.html')
 
 
+@app.route("/lcp_dev/physionet")
 @app.route("/physionet")
 @app.route("/physionet.html")
 @app.route("/physionet.shtml")
@@ -387,6 +392,7 @@ def physionet():
     return render_template('physionet.html')
 
 
+@app.route("/lcp_dev/brp")
 @app.route("/brp")
 @app.route("/brp.html")
 @app.route("/brp.shtml")
@@ -397,6 +403,7 @@ def brp():
     return render_template('brp.html')
 
 
+@app.route("/lcp_dev/people")
 @app.route("/people")
 @app.route("/people.html")
 @app.route("/people.shtml")
@@ -413,6 +420,19 @@ def people():
         data["people"] = yaml.safe_load(f)
 
     return render_template('people.html', **data)
+
+
+@app.route("/lcp_dev/news")
+@app.route("/news")
+@app.route("/news.html")
+@app.route("/news.shtml")
+def news():
+    """
+    Display a list of news items.
+    """
+    data = get_news_data()
+
+    return render_template('news.html', **data)
 
 
 if __name__ == "__main__":
