@@ -130,7 +130,7 @@ def File_Change(File_Content):
   <a href="#booksall">Books and book chapters</a> | <a href="#thesesall">Theses</a></center><br>"""
   Content  = """<div id="ALL" class="container tab-pane fade">{0}{1}</div>\n""".format(Head_tag, temp)
 # Setting the content of the years
-  for key, value in Years.iteritems():
+  for key, value in Years.items():
       Head_tag = """<center><a href="#journal{}">Journal articles</a> | <a href="#conferences{}">Conference  presentations</a> | 
       <a href="#books{}">Books and book chapters</a> | <a href="#theses{}">Theses</a></center><br>""".format(key, key, key, key)
       if key == Current_Year:
@@ -224,10 +224,10 @@ SHA = open(FILE_BASE + NEW_FILE, 'r').read()
 if (SHA != File_SHA or SHA != Download_SHA or Download_SHA != File_SHA) or True:
   open(FILE_BASE + NEW_FILE, 'w').write(File_SHA)
 
-  Recent, Content = File_Change(Edited_File)
+  Recent, Content = File_Change(Edited_File.decode('UTF-8'))
 
   New_File = open(FILE_BASE + NEW_PUB, "w").write(Content)
-  Update_File = open(FILE_BASE + OLD_FILE, 'w').write(Edited_File)
+  Update_File = open(FILE_BASE + OLD_FILE, 'w').write(Edited_File.decode('UTF-8'))
   Recent_File = open(FILE_BASE + RECENT_PUB, "w")
 
   for indx, item in enumerate(Recent):
