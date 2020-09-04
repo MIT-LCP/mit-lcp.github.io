@@ -24,5 +24,5 @@ current_members:
     image: "kepaik.png"
     biog: "Kenneth E. Paik, MD MBA MMSc is a clinical informatician focused on quality improvement in healthcare through technology innovation, combining a multidisciplinary background in medicine, machine learning, business management, and technology strategy. As a Research Scientist at MIT his research encompasses the secondary analysis of health data and the application of digital health in resource limited settings."
   - name: Lucas McCullum
-    image: ""
+    image: "lucasmc.jpeg"
     biog: "Lucas is a full-time software engineer in the Laboratory for Computational Physiology (LCP) at the MIT Institute for Medical Engineering & Science (IMES) and has been on the team since March 2020. He earned his B.S. in Mechanical Engineering from the University of Maryland, Baltimore County (UMBC) before enrolling in a M.S. in Computational and Mathematical Engineering with a focus on Imaging Sciences at Stanford University. His previous research includes a vast array of interdisciplinary fields including biomedical engineering, computational fluid dynamics, sustainable engineering, bioinformatics, machine learning, and computational neuroscience. His current work focuses on developing the PhysioNet platform as well as contributing to waveform analysis on the MIMIC platform."
