@@ -9,7 +9,7 @@
 # by Ken's script and re-arranges it to the a page with a sidebar of all the years.
 # 
 # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** TODO ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-# If the lcp_references.html file were to change locations, the inpout of the file has also to be changed
+# If the lcp_references.html file were to change locations, the input of the file has also to be changed
 #############################################################################################################
 import datetime
 from hashlib import sha256
@@ -23,7 +23,7 @@ def File_Change(File_Content):
   """
   Years = {'ALL':''} # we create a dictionary for the years from 2003, that the publications were started to get recorded int he website.
   Current_Year = datetime.datetime.now().year
-  for item in reversed(range(2003, Current_Year+1)):# We add the keys to the dictionary of years, basicly we add a every year, until the current year
+  for item in reversed(range(2003, Current_Year+1)):# We add the keys to the dictionary of years, basically we add a every year, until the current year
       Years[int(item)] = ""
   
   File_Content = sub(r"<!--(.|\s|\n)*?-->", "", File_Content, flags=DOTALL).split("""<dl compact="1" class="bib2xhtml">""")
@@ -42,12 +42,12 @@ def File_Change(File_Content):
   Theses_idx      = File_Content.index(Theses_Tag)      #38
   All = {'journal':{}, 'conferences':{}, 'books':{}, 'theses':{}}
 
-  # Here we itterate throught all four elements of the file. 
+  # Here we iterate throughout all four elements of the file. 
   # We keep a copy of the current row, each row is a journal or conference or book, depends on what for loop you are in.
   # Since there are two places the year is located at, we have to try and search for it.
-  # The output of the try exept, will be (2016 16</ OR ">20 2015), since we use that variable to set the year, we need a try exept to see if the item is a intiger or a string.
-  # We remove all newlines because they dont work on html, set the ID of the journal, conference... and we remove the commented data, just to try and clean out the code.
-  # If the year wasnt found, then there was a change in the perl creation script, and now we have to check what happened and where is the year. 
+  # The output of the try except, will be (2016 16</ OR ">20 2015), since we use that variable to set the year, we need a try except to see if the item is a intiger or a string.
+  # We remove all newlines because they don't work on html, set the ID of the journal, conference... and we remove the commented data, just to try and clean out the code.
+  # If the year wasn't found, then there was a change in the perl creation script, and now we have to check what happened and where is the year.
 
   for row in range(Journal_idx + 1, Conferences_idx):
     if File_Content[row][20:24].isdigit():
@@ -130,7 +130,7 @@ def File_Change(File_Content):
   <a href="#booksall">Books and book chapters</a> | <a href="#thesesall">Theses</a></center><br>"""
   Content  = """<div id="ALL" class="container tab-pane fade">{0}{1}</div>\n""".format(Head_tag, temp)
 # Setting the content of the years
-  for key, value in Years.iteritems():
+  for key, value in Years.items():
       Head_tag = """<center><a href="#journal{}">Journal articles</a> | <a href="#conferences{}">Conference  presentations</a> | 
       <a href="#books{}">Books and book chapters</a> | <a href="#theses{}">Theses</a></center><br>""".format(key, key, key, key)
       if key == Current_Year:
@@ -162,7 +162,7 @@ def File_Change(File_Content):
           else:
               Side_Tab += """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
   # Head = "<center>"+ File_Content[0].replace("""| <a href="#theses">Theses</a>""", """<!--| <a href="#theses">Theses</a>-->""") + "</center><br>"
-  File_Content[0] = File_Content[0].replace("""<a href="#journal">""", """<center><a href="#journal">""").replace("""<a href="#theses">Theses</a>""", """<a href="#theses">Theses</a></center><br>""").replace("""\n\n<p>\n(A separate listing of PhysioNet tutorials is available at <a href="http://physionet.org/tutorials/" target="_blank" >http://physionet.org/tutorials/</a>.)\n</p>\n\n""","").replace("\r","").replace("\n","").replace("<br>","").replace("< br>","").replace("<br >","").replace("<br />","").replace("""<center><a href="#journal">Journal articles</a> | <a href="#conferences">Conference  presentations</a> | <a href="#books">Books and book chapters</a> | <a href="#theses">Theses</a></center><br>""","")
+  File_Content[0] = File_Content[0].replace("""\n\n<p>\n(A separate listing of PhysioNet tutorials is available at <a href="http://physionet.org/tutorials/" target="_blank" >http://physionet.org/tutorials/</a>.)\n</p>\n\n""","").replace("\r","").replace("\n","").replace("<br>","").replace("< br>","").replace("<br >","").replace("<br />","").replace("""<a href="#journal">Journal articles</a> | <a href="#conferences">Conference  presentations</a> | <a href="#books">Books and book chapters</a> | <a href="#theses">Theses</a>""","")
 
   Head = str(File_Content[0])
   Header_HTML = """
@@ -179,7 +179,7 @@ def File_Change(File_Content):
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="text-center">
+        <div class="text-left">
           <h3 class="site-section-title">Publications</h3>
         </div>
       </div>
@@ -204,30 +204,32 @@ def File_Change(File_Content):
   return Recent, Header_HTML + Footer_HTML
 
 
-
-
-
 # Here will be the shasum and the content of the newly edited publications
-Edited_File  = open("/var/www/vhosts/lcp.mit.edu/html/lcp_references.html", 'rb').read()
+FILE_BASE = "/var/www/vhosts/lcp.mit.edu/"
+CHANGE_FILE = "html/lcp_references.html"
+OLD_FILE = "Flask/templates/lcp_references.html"
+NEW_FILE = "Flask/shasum.references"
+NEW_PUB = "Flask/templates/publications.html"
+RECENT_PUB =  "Flask/templates/recent_publications.html"
+
+Edited_File  = open(FILE_BASE + CHANGE_FILE, 'rb').read()
 Download_SHA = sha256(Edited_File).hexdigest()
 
 # Here we get the shasum of the older references file 
-File_SHA = sha256(open("/var/www/vhosts/lcp.mit.edu/Flask/templates/lcp_references.html", 'rb').read()).hexdigest()
+File_SHA = sha256(open(FILE_BASE + OLD_FILE, 'rb').read()).hexdigest()
 
 # Here we read Latest shasum of the references file
-SHA = open("/var/www/vhosts/lcp.mit.edu/Flask/shasum.references", 'r').read()
-
+SHA = open(FILE_BASE + NEW_FILE, 'r').read()
 
 if (SHA != File_SHA or SHA != Download_SHA or Download_SHA != File_SHA) or True:
-  open("/var/www/vhosts/lcp.mit.edu/Flask/shasum.references", 'w').write(File_SHA)
+  open(FILE_BASE + NEW_FILE, 'w').write(File_SHA)
 
-  Recent, Content = File_Change(Edited_File)
+  Recent, Content = File_Change(Edited_File.decode('UTF-8'))
 
-  New_File = open("/var/www/vhosts/lcp.mit.edu/Flask/templates/publications.html", "w").write(Content)
-  Upadate_File = open("/var/www/vhosts/lcp.mit.edu/Flask/templates/lcp_references.html", 'w').write(Edited_File)
+  New_File = open(FILE_BASE + NEW_PUB, "w").write(Content)
+  Update_File = open(FILE_BASE + OLD_FILE, 'w').write(Edited_File.decode('UTF-8'))
+  Recent_File = open(FILE_BASE + RECENT_PUB, "w")
 
-
-  Recent_File = open("/var/www/vhosts/lcp.mit.edu/Flask/templates/recent_publications.html", "w")
   for indx, item in enumerate(Recent):
     if indx < 4:
       Recent_File.write(item)
