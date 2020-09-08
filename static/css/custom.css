@@ -182,9 +182,8 @@
     color: #EE3B24;
 }
 /* ========================================== Affiliates Area ========================================== */
-.img_logo {
-    min-width: 63px;
-    max-height: 87px;
+.header_img {
+    min-width: 80px;
     padding: 0.5em;
     background: rgb(223, 232, 245);
 }
