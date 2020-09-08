@@ -182,6 +182,11 @@
     color: #EE3B24;
 }
 /* ========================================== Affiliates Area ========================================== */
+.img_logo {
+    height: 80px;
+    padding: 0.5em;
+    background: rgb(223, 232, 245);
+}
 .projects_logo img { 
     position:relative;
     display:inline-block;
