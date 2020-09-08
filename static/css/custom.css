@@ -31,7 +31,7 @@
     background:
         linear-gradient(
             0.25turn,
-            rgba(68, 102, 170, 0.90) 50%,
+            rgba(68, 102, 170, 1.00) 50%,
             rgba(0, 0, 0, 0.01)
         ),
         url('../images/background.jpg');
