@@ -399,11 +399,11 @@ def people():
     """
     data = _data()
 
-    path = "sitedata"
-    fn = "people.yml"
+    path = 'sitedata'
+    fn = 'people.yml'
 
     with open(os.path.join(path, fn), 'r') as f:
-        data["people"] = yaml.safe_load(f)
+        data['people'] = yaml.safe_load(f)
 
     return render_template('people.html', **data)
 
