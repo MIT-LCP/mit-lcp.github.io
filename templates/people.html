@@ -24,14 +24,14 @@
       <h2 class="site-section border-bottom" id="researchers">Current members</h2>
 
       {% for person in people.current_members %}
-        <div id="{{ person.name | replace(' ','_') }}">
-          <h2 class="site-section-meta">{{ person.name }}</h2>
+        <div id="#{{ person.name | replace(' ','_') }}">
+          <h3 class="site-section-meta">{{ person.name }}</h3>
           <div class="row">
             <div class="col-md-2">
               {% if person.image %} 
-              <img class="img-fluid" width="120" src="{{ url_for('static', filename='images/' + person.image )}}" alt="{{ person.name }}">
+              <img class="img-fluid" width="120" src="{{ url_for('static', filename='images/' + person.image )}}" alt="Photo of {{ person.name }}">
               {% else %} 
-              <img class="img-fluid" width="120" src="{{ url_for('static', filename='images/missing.jpg' )}}" alt="{{ person.name }}">
+              <img class="img-fluid" width="120" src="{{ url_for('static', filename='images/missing.jpg' )}}" alt="Photo of {{ person.name }}">
               {% endif %} 
             </div>
             <div class="col-md-9">
