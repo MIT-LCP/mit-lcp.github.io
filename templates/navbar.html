@@ -26,7 +26,7 @@
     ] -%}
 
   <!-- Top bar with links to each page -->
-  <div class="nav-scroller py-1 mb-2">
+  <div class="py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
       {% for href, id in navigation_bar %}
         <a class="p-2 text-muted {% if id == active_page %}bold{% endif %}" href="{{ href }}">{{ id }}</a>
