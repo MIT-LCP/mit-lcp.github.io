@@ -176,6 +176,7 @@ def File_Change(File_Content):
   {% block content %}"""
 
   Header_HTML += """
+  <a id="skip_content"></a>
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
