@@ -9,11 +9,9 @@
   {% block head2 %}{% endblock %}
 </head>
 <body data-spy="scroll" data-target=".navbar-fixed-top">
+  <a href="#skip_content" class="skip-to-content">Skip to content</a>
   {% include 'navbar.html'%}
-
-
-    <div id="content">{% block content %}{% endblock %}</div>
-
+  <div id="content">{% block content %}{% endblock %}</div>
   {% include 'footer.html'%}
 
   <script>
