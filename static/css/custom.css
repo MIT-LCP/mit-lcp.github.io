@@ -1,3 +1,10 @@
+.news_box {
+    height: 300px;
+}
+.news_box p {
+    overflow-y: auto;
+    max-height: 200px;
+}
 .skip-to-content {
     position: absolute;
     left: -10000px;

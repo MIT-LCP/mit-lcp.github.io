@@ -39,12 +39,11 @@
         {% if post.front_page %}
           <div class="col-md-6">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-              <div class="col p-4 d-flex flex-column position-static">
+              <div class="news_box col p-4 d-flex flex-column position-static">
                 <strong class="d-inline-block mb-2 text-success">{{ post.header }}</strong>
                 <h3 class="mb-0">{{ post.title }}</h3>
                 <div class="mb-1 text-muted">{{ post.date }}</div>
-                <p class="card-text">{{ post.content | safe | truncate(200)}}</p>
-                <a href="news" class="card-link">Continue reading</a>
+                <p class="card-text">{{ post.content | safe }}</p>
               </div>
             </div>
           </div>
