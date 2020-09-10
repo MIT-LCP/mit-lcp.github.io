@@ -418,6 +418,24 @@ def news():
     return render_template('news.html', **data)
 
 
+@app.route("/<news_id>")
+def news_item(news_id):
+    """
+    Display an individual news item.
+    """
+    news = get_news_data()
+
+    post = [x for x in news['news']['news_items']
+            if x['post_number'] == news_id]
+
+    if post:
+        data = {}
+        data['post'] = post[0]
+        return render_template("news_post.html", **data)
+    else:
+        return render_template('404.html')
+
+
 if __name__ == "__main__":
     app.jinja_env.auto_reload = True
     app.run(host='0.0.0.0', port=8083, threaded=True, debug=True)

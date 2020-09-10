@@ -1,0 +1,33 @@
+{% set active_page = "News" %}
+{% extends "base.html" %}
+{% block title %}Laboratory for Computational Physiology{% endblock %}
+{% block head2 %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/publications.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/references.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<a id="skip_content"></a>
+<main class="container">
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="text-left">
+        <h1 class="site-section-title">{{ post.title }}</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+
+    <div class="col-md-12">
+      <h2>{{ post.date }}</h2>
+      <p>{{ post.content | safe }}</p>
+    </div>
+
+  </div>
+
+</main>
+
+{% endblock %}
