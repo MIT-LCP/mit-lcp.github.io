@@ -61,9 +61,7 @@ Push to the remotes when appropriate
 
 ## General Information
 
-A bit of information of the contents of this directory
-
-There are some key files in this folders.
+A bit of information for the main script files.
 
 - change.py - Takes as input three different lcp_references.html files and changes them to the version in the website
 - config.py - Has the connection to Postgres

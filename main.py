@@ -11,15 +11,15 @@ from werkzeug.wsgi import DispatcherMiddleware
 from PIL import Image
 import yaml
 
-from Postgres import PersonelModel
+from scripts.Postgres import PersonelModel
 
 app = Flask(__name__)
 if app.config['ENV'] == 'production':
-    app.config.from_object('config.ProductionConfig')
+    app.config.from_object('scripts.config.ProductionConfig')
 elif app.config['ENV'] == 'staging':
     app.wsgi_app = DispatcherMiddleware(app, {'/lcp_dev': app.wsgi_app})
 else:
-    app.config.from_object('config.DevConfig')
+    app.config.from_object('scripts.config.DevConfig')
 
 
 def _data():

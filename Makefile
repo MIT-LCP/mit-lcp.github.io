@@ -32,7 +32,7 @@ update:
 	@echo '**************************\n'
 
 sitedata-changed:
-	./sitedata-changed.sh
+	./scripts/sitedata-changed.sh
 
 github-update-temp:
 	@echo '\nMaking updates on a temporary branch.\n'

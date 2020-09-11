@@ -5,7 +5,7 @@ from sys import stderr as http_logger
 
 import psycopg2
 
-from config import Config
+from scripts.config import Config
 
 
 class BaseModel:
