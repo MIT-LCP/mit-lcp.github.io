@@ -1,5 +1,4 @@
-# -*- coding: UTF-8 -*-
-#!/usr/bin/python
+#!/usr/bin/env python
 #############################################################################################################
 # Felipe Torres Fabregas
 # Created on 10/22/2017: Felipe
@@ -15,6 +14,7 @@ import datetime
 from hashlib import sha256
 from re import match, sub, DOTALL
 import pdb
+import os
 
 def File_Change(File_Content):
   """
@@ -206,38 +206,23 @@ def File_Change(File_Content):
 
 
 # Here will be the shasum and the content of the newly edited publications
-FILE_BASE = "/var/www/vhosts/lcp.mit.edu/"
-CHANGE_FILE = "html/lcp_references.html"
-OLD_FILE = "Flask/templates/lcp_references.html"
-NEW_FILE = "Flask/shasum.references"
-NEW_PUB = "Flask/templates/publications.html"
-RECENT_PUB =  "Flask/templates/recent_publications.html"
+CHANGE_FILE = os.path.join('sitedata', 'lcp_references.html')
+NEW_PUB = os.path.join('templates', 'publications.html')
+RECENT_PUB = os.path.join('templates', 'recent_publications.html')
 
-Edited_File  = open(FILE_BASE + CHANGE_FILE, 'rb').read()
-Download_SHA = sha256(Edited_File).hexdigest()
+# Read the file used to update the publications
+Edited_File  = open(CHANGE_FILE, 'rb').read()
+# Return the converted file separated by most recent publications and content
+Recent, Content = File_Change(Edited_File.decode('UTF-8'))
 
-# Here we get the shasum of the older references file 
-File_SHA = sha256(open(FILE_BASE + OLD_FILE, 'rb').read()).hexdigest()
+# Write the new content to the publications template
+New_File = open(NEW_PUB, "w").write(Content)
 
-# Here we read Latest shasum of the references file
-SHA = open(FILE_BASE + NEW_FILE, 'r').read()
+# Update the most recent publications
+Recent_File = open(RECENT_PUB, "w")
+for indx, item in enumerate(Recent):
+  if indx < 4:
+    Recent_File.write(item)
+Recent_File.close()
 
-if (SHA != File_SHA or SHA != Download_SHA or Download_SHA != File_SHA) or True:
-  open(FILE_BASE + NEW_FILE, 'w').write(File_SHA)
-
-  Recent, Content = File_Change(Edited_File.decode('UTF-8'))
-
-  New_File = open(FILE_BASE + NEW_PUB, "w").write(Content)
-  Update_File = open(FILE_BASE + OLD_FILE, 'w').write(Edited_File.decode('UTF-8'))
-  Recent_File = open(FILE_BASE + RECENT_PUB, "w")
-
-  for indx, item in enumerate(Recent):
-    if indx < 4:
-      Recent_File.write(item)
-  Recent_File.close()
-  print ("CHANGE DONE")
-else:
-  print ("No changes to be done\nThe current shasum of the files are the following:")
-  print ("- The latest  file: \t{0}".format(Download_SHA))
-  print ("- The current file: \t{0}".format(File_SHA))
-  print ("- The stored shasum: \t{0}".format(SHA))
+print ("CHANGE DONE")
