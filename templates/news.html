@@ -45,7 +45,9 @@
                 <h2 class="site-section-meta">{{ post.title }}</h2>
                 <h2 class="site-section-sub">{{ post.date }}</h2>
                 <p>{{ post.content | safe }}</p>
-                <p><a href="{{ post.url }}">Read more..</a></p>
+                {% if post.url %}
+                  <p><a href="{{ post.url }}">Read more..</a></p>
+                {% endif %}
               </div>
             {% endif %}
           {% endfor %}
