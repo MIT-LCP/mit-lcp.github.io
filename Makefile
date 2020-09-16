@@ -16,6 +16,9 @@ run:
 	(source activate; flask run)
 
 update:
+	# Update the publications
+	./scripts/change.py
+	# Determine if changes are detected in the sitedata folder
 	make sitedata-changed
 	# If changes are detected, commit changes on temp branch.
 	make github-update-temp
