@@ -11,8 +11,6 @@ from werkzeug.wsgi import DispatcherMiddleware
 from PIL import Image
 import yaml
 
-from scripts.Postgres import PersonelModel
-
 app = Flask(__name__)
 if app.config['ENV'] == 'production':
     app.config.from_object('scripts.config.ProductionConfig')
@@ -93,11 +91,7 @@ def resize_image():
     height = float(request.form.get('height', None))
     file = request.files['picture']
     uid = request.form.get('UID', None)
-    username = ''
-    if uid is not None:
-        username = PersonelModel().get_username_from_id(uid)
-    else:
-        username = request.form.get('email', None).split("@")[0]
+    username = request.form.get('email', None).split("@")[0]
 
     filename = username + '.' + file.filename.split('.')[-1]
     if os.path.exists(app.config['UPLOAD_FOLDER'] + filename):
@@ -160,13 +154,13 @@ def reg_form():
     return render_template('info/registration_form.html')
 
 
-@app.route("/info/intro_to_Mark_lab")
-@app.route("/info/intro_to_Mark_lab.html")
+@app.route("/info/intro_to_mark_lab")
+@app.route("/info/intro_to_mark_lab.html")
 def lcp_intro():
     """
     Basic lab info
     """
-    return render_template('info/intro_to_Mark_lab.html')
+    return render_template('info/intro_to_mark_lab.html')
 
 
 @app.route("/info/check_out_form")
@@ -198,19 +192,9 @@ def checkout_form(var):
     app.logger.info("A person did the checkout form. Variables are the \
         following: {}".format(var))
 
-    # Insert the checkout form into the database
-    model = PersonelModel()
-    result = model.checkout_form(var)
-
     send_email(subject=subject, content=content, sender=var['email'],
                rec=app.config['EMAIL_RECIPIENTS'])
 
-    if result is not True:
-        app.logger.error("There was an error in the postgres insert of the \
-                         checkout_form\n{0}\n{1}".format(content, result))
-        send_email("There was an error in the Checkout form line insert",
-                   result, 'noreply@lcp.mit.edu')
-        return result
     return content
 
 
@@ -245,17 +229,9 @@ def registration_form(var):
         var['ehs_training'], var['extra'], var['human_studies_training'])
 
     app.logger.info("Checking form submitted:\n{}\n".format(var))
-    result = PersonelModel().registration_form(var, picture)
-    # Alert that the users have been submitted
+
     send_email(subject=subject, content=content, sender=var['email'],
                rec=app.config['EMAIL_RECIPIENTS'])
-
-    if result is not True:
-        app.logger.error("There was an error in the postgres insert of the \
-                         Registration_form\n{0}\n{1}".format(content, result))
-        send_email("There was an error in the Checkin form line insert",
-                   result, 'noreply@lcp.mit.edu')
-        return result
     return content
 
 
