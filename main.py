@@ -286,6 +286,7 @@ def submit():
 #
 ###############################################################################
 @app.route("/")
+@app.route("/home")
 @app.route("/index")
 @app.route("/index.html")
 @app.route("/index.shtml")
