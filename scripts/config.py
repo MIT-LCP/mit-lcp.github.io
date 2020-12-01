@@ -1,5 +1,6 @@
 # Import necessary packages
 import os
+import ast
 
 from dotenv import load_dotenv
 
@@ -25,8 +26,8 @@ class Config:
 
     # Admin configuration
     ADMIN = os.environ.get('ADMIN')
-    EMAIL_RECIPIENTS = os.environ.get('EMAIL_RECIPIENTS')
-    PRIMARY_ADMIN = os.environ.get('PRIMARY_ADMIN')
+    EMAIL_RECIPIENTS = ast.literal_eval(os.environ.get('EMAIL_RECIPIENTS'))
+    PRIMARY_ADMIN = ast.literal_eval(os.environ.get('PRIMARY_ADMIN'))
 
 
 # Config used for development
