@@ -3,7 +3,7 @@
 set -e
 
 install_dir=/var/www/vhosts/lcp.mit.edu/lcp-website
-log_file=/data/log/github/update.log
+log_file=/var/log/github/update.log
 branch=main
 
 # If the following commands fail, it is too late to abort the push.
