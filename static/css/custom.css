@@ -35,6 +35,12 @@
     text-decoration: underline;
     cursor: pointer;
 } */
+a {
+    color: #0000EE;
+}
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
 .back {
     background:
         linear-gradient(
