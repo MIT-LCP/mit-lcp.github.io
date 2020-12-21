@@ -206,9 +206,9 @@ def File_Change(File_Content):
 
 
 # Here will be the shasum and the content of the newly edited publications
-CHANGE_FILE = os.path.join('sitedata', 'lcp_references.html')
-NEW_PUB = os.path.join('templates', 'publications.html')
-RECENT_PUB = os.path.join('templates', 'recent_publications.html')
+CHANGE_FILE = os.path.join('..', 'sitedata', 'lcp_references.html')
+NEW_PUB = os.path.join('..', 'templates', 'publications.html')
+RECENT_PUB = os.path.join('..', 'templates', 'recent_publications.html')
 
 # Read the file used to update the publications
 Edited_File  = open(CHANGE_FILE, 'rb').read()
