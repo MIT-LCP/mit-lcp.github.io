@@ -29,11 +29,8 @@
     # Activate the virtual environment
     source env/bin/activate
 
-    # Copy the desired server environment:
-    # (1) Development
-    cp config/dev/.env.example .env
-    # (2) Production
-    cp config/production/.env.example .env
+    # Copy the .env.example file:
+    cp config/.env.example .env
 
     # Run the Flask App on localhost
     # http://127.0.0.1:5000/
