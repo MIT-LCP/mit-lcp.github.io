@@ -10,6 +10,9 @@ from re import sub, DOTALL
 import os
 
 
+from bs4 import BeautifulSoup
+
+
 def get_years(current_year, start_year=2003):
     """
     Return a list of years from the current year to the start year.
@@ -306,8 +309,12 @@ def main():
     # Read the file used to update the publications
     edited_file = open(CHANGE_FILE, 'rb').read()
 
+    # # Select body content
+    # soup = BeautifulSoup(edited_file)
+    # body = soup.find('body').decode_contents()
+
     # Return the converted file separated by most recent publications and content
-    recent, content = file_change(edited_file.decode('UTF-8'))
+    recent, content = file_change(edited_file.decode('utf-8'))
 
     # Write the new content to the publications template
     open(NEW_PUB, "w").write(content)
