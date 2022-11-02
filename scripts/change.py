@@ -98,6 +98,24 @@ def get_footer_template():
     """
     return footer_html
 
+def split_content(content):
+    """
+    Splits content into X.
+    """
+    content_list = sub(r"<!--(.|\s|\n)*?-->", "", content, flags=DOTALL).split("""<ol compact="1" class="bib2xhtml">""")
+    return content_list
+
+def get_section_tags():
+    """
+    Get the tags for each section.
+    """
+    section_tags = {}
+    section_tags['journal'] = """\n<a name="journal"></a><h3>Journal articles</h3>\n</ol>\n\n\n"""
+    section_tags['conference'] = """\n<a name="conferences"></a><h3>Conference proceedings and presentations</h3>\n</ol>\n\n"""
+    section_tags['book'] = """\n<a name="books"></a><h3>Books and book chapters</h3>\n</ol>\n\n"""
+    section_tags['thesis'] = """\n<a name="theses"></a><h3>Theses</h3>\n</ol>\n\n"""
+
+    return section_tags
 
 def file_change(File_Content):
     """
@@ -108,20 +126,18 @@ def file_change(File_Content):
     current_year = datetime.datetime.now().year
     years = get_years(current_year, 2003)
 
-    File_Content = sub(r"<!--(.|\s|\n)*?-->", "", File_Content, flags=DOTALL).split("""<ol compact="1" class="bib2xhtml">""")
+    File_Content = split_content(File_Content)
 
     Size = len(File_Content)
     Header = File_Content[0] # We take the header, and we sicard it.
-    Journal_Tag = """\n<a name="journal"></a><h3>Journal articles</h3>\n</ol>\n\n\n"""
-    Conferences_Tag = """\n<a name="conferences"></a><h3>Conference proceedings and presentations</h3>\n</ol>\n\n"""
-    Books_Tag = """\n<a name="books"></a><h3>Books and book chapters</h3>\n</ol>\n\n"""
-    Theses_Tag = """\n<a name="theses"></a><h3>Theses</h3>\n</ol>\n\n"""
+
+    section_tags = get_section_tags()
 
     # Here we find where the stirngs above are located. 
-    Journal_idx = File_Content.index(Journal_Tag) #1
-    Conferences_idx = File_Content.index(Conferences_Tag) #16
-    Books_idx = File_Content.index(Books_Tag) #31
-    Theses_idx = File_Content.index(Theses_Tag) #38
+    Journal_idx = File_Content.index(section_tags['journal']) #1
+    Conferences_idx = File_Content.index(section_tags['conference']) #16
+    Books_idx = File_Content.index(section_tags['book']) #31
+    Theses_idx = File_Content.index(section_tags['thesis']) #38
     All = {'journal': {}, 'conferences': {}, 'books': {}, 'theses': {}}
 
     # Here we iterate throughout all four elements of the file. 
@@ -133,9 +149,9 @@ def file_change(File_Content):
 
     for row in range(Journal_idx + 1, Conferences_idx):
         if File_Content[row][20:24].isdigit():
-            Journal_Tag = Journal_Tag.replace("\r","").replace("\n","").replace("</dl>","")
-            years[int(File_Content[row][20:24])] += Journal_Tag.replace("journal", "journal"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
-            All['journal'][int(File_Content[row][20:24])] = Journal_Tag + File_Content[row][File_Content[row].index('</ol>')+5:]
+            section_tags['journal'] = section_tags['journal'].replace("\r","").replace("\n","").replace("</dl>","")
+            years[int(File_Content[row][20:24])] += section_tags['journal'].replace("journal", "journal"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
+            All['journal'][int(File_Content[row][20:24])] = section_tags['journal'] + File_Content[row][File_Content[row].index('</ol>')+5:]
         else:
             print(File_Content[row])
             print(File_Content[row][20:24])
@@ -143,25 +159,25 @@ def file_change(File_Content):
 
     for row in range(Conferences_idx + 1, Books_idx):
         if File_Content[row][20:24].isdigit():
-            Conferences_Tag = Conferences_Tag.replace("\r","").replace("\n","").replace("</dl>","")
-            years[int(File_Content[row][20:24])] += Conferences_Tag.replace("conferences", "conferences"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
-            All['conferences'][int(File_Content[row][20:24])] = Conferences_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
+            section_tags['conference'] = section_tags['conference'].replace("\r","").replace("\n","").replace("</dl>","")
+            years[int(File_Content[row][20:24])] += section_tags['conference'].replace("conferences", "conferences"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
+            All['conferences'][int(File_Content[row][20:24])] = section_tags['conference'] + File_Content[row][File_Content[row].index('</dl>')+5:]
         else:
             print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
     for row in range(Books_idx + 1, Theses_idx):
         if File_Content[row][20:24].isdigit():
-            Books_Tag = Books_Tag.replace("\r","").replace("\n","").replace("</dl>","")
-            years[int(File_Content[row][20:24])] += Books_Tag.replace("books", "books"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
-            All['books'][int(File_Content[row][20:24])] = Books_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
+            section_tags['book'] = section_tags['book'].replace("\r","").replace("\n","").replace("</dl>","")
+            years[int(File_Content[row][20:24])] += section_tags['book'].replace("books", "books"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
+            All['books'][int(File_Content[row][20:24])] = section_tags['book'] + File_Content[row][File_Content[row].index('</dl>')+5:]
         else:
             print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
     for row in range(Theses_idx + 1, Size):
         if File_Content[row][20:24].isdigit():
-            Theses_Tag = Theses_Tag.replace("\r","").replace("\n","").replace("</dl>","")
-            years[int(File_Content[row][20:24])] += Theses_Tag.replace("theses","theses"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
-            All['theses'][int(File_Content[row][20:24])] = Theses_Tag + File_Content[row][File_Content[row].index('</dl>')+5:]
+            section_tags['thesis'] = section_tags['thesis'].replace("\r","").replace("\n","").replace("</dl>","")
+            years[int(File_Content[row][20:24])] += section_tags['thesis'].replace("theses","theses"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
+            All['theses'][int(File_Content[row][20:24])] = section_tags['thesis'] + File_Content[row][File_Content[row].index('</dl>')+5:]
         else:
             print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
@@ -199,36 +215,36 @@ def file_change(File_Content):
 
     # Setting the content of the years
     for key, value in years.items():
-            Head_tag = """<center><a href="#journal{}">Journal articles</a> | <a href="#conferences{}">Conference    presentations</a> | 
-            <a href="#books{}">Books and book chapters</a> | <a href="#theses{}">Theses</a></center><br>""".format(key, key, key, key)
-            if key == current_year:
-                    if years[current_year] != "":
-                            content += """<div id="P_{0}" class="container tab-pane active">{1}{2}</div>\n""".format(key, Head_tag, value)
-                    else:
-                            content += """<div id="P_{0}" class="container tab-pane fade">{1}{2}</div>\n""".format(key, Head_tag, value)
-            elif key == 'ALL':
-                    pass
-                    # content += """<div id="%s" class="tab-pane fade">%s%sUnder development</div>\n""" % (key, Head_tag, value)
+        Head_tag = """<center><a href="#journal{}">Journal articles</a> | <a href="#conferences{}">Conference    presentations</a> | 
+        <a href="#books{}">Books and book chapters</a> | <a href="#theses{}">Theses</a></center><br>""".format(key, key, key, key)
+        if key == current_year:
+            if years[current_year] != "":
+                content += """<div id="P_{0}" class="container tab-pane active">{1}{2}</div>\n""".format(key, Head_tag, value)
             else:
-                    if years[current_year] == "" and key == current_year -1:
-                            content += """<div id="P_{0}" class="container tab-pane active">{1}{2}</div>\n""".format(key, Head_tag, value)
-                    else:
-                            content += """<div id="P_{0}" class="container tab-pane fade">{1}{2}</div>\n""".format(key, Head_tag, value)
+                content += """<div id="P_{0}" class="container tab-pane fade">{1}{2}</div>\n""".format(key, Head_tag, value)
+        elif key == 'ALL':
+            pass
+            # content += """<div id="%s" class="tab-pane fade">%s%sUnder development</div>\n""" % (key, Head_tag, value)
+        else:
+            if years[current_year] == "" and key == current_year -1:
+                content += """<div id="P_{0}" class="container tab-pane active">{1}{2}</div>\n""".format(key, Head_tag, value)
+            else:
+                content += """<div id="P_{0}" class="container tab-pane fade">{1}{2}</div>\n""".format(key, Head_tag, value)
+                # content += """<div id="%s" class="tab-pane fade">%s%sUnder development</div>\n""" % (key, Head_tag, value)
 
-                    # content += """<div id="%s" class="tab-pane fade">%s%sUnder development</div>\n""" % (key, Head_tag, value)
     # Setting the sidebar with the years
     side_tab = """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="ALL_tab" href="#ALL">All</a></li>"""
     for item in reversed(range(2003, current_year+1)):
-            if item == current_year:
-                    if years[current_year] != "":
-                            side_tab += """<li class="nav-item"><a class="nav-link active" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
-                    else:
-                            side_tab += """<li class="nav-item"><a class="nav-link btn disabled" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
+        if item == current_year:
+            if years[current_year] != "":
+                side_tab += """<li class="nav-item"><a class="nav-link active" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
             else:
-                    if years[current_year] == "" and item == current_year -1:
-                            side_tab += """<li class="nav-item"><a class="nav-link active" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
-                    else:
-                            side_tab += """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
+                side_tab += """<li class="nav-item"><a class="nav-link btn disabled" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
+        else:
+            if years[current_year] == "" and item == current_year -1:
+                side_tab += """<li class="nav-item"><a class="nav-link active" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
+            else:
+                side_tab += """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
 
     # Head = "<center>"+ File_Content[0].replace("""| <a href="#theses">Theses</a>""", """<!--| <a href="#theses">Theses</a>-->""") + "</center><br>"
     File_Content[0] = File_Content[0].replace("""\n\n<p>\n(A separate listing of PhysioNet tutorials is available at <a href="http://physionet.org/tutorials/" target="_blank" >http://physionet.org/tutorials/</a>.)\n</p>\n\n""","").replace("\r","").replace("\n","").replace("<br>","").replace("< br>","").replace("<br >","").replace("<br />","").replace("""<a href="#journal">Journal articles</a> | <a href="#conferences">Conference    presentations</a> | <a href="#books">Books and book chapters</a> | <a href="#theses">Theses</a>""","")
