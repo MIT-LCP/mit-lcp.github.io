@@ -47,6 +47,7 @@ def get_recent_pubs(current_year, years):
 
     return recent
 
+
 def get_header_template(head, side_tab, content):
     """
     Get content for the HTML header.
@@ -120,6 +121,19 @@ def get_section_tags():
     return section_tags
 
 
+def get_section_indexes(file_content, section_tags):
+    """
+    Get the tags for each section.
+    """
+    section_idx = {}
+    section_idx['journal'] = file_content.index(section_tags['journal']) #1
+    section_idx['conference'] = file_content.index(section_tags['conference']) #16
+    section_idx['book'] = file_content.index(section_tags['book']) #31
+    section_idx['thesis'] = file_content.index(section_tags['thesis']) #38
+
+    return section_idx
+
+
 def populate_all_section(all, section_idx, content, section_tags, years):
     """
     Populate the "ALL" section.
@@ -168,33 +182,58 @@ def populate_all_section(all, section_idx, content, section_tags, years):
     return all, section_tags, years
 
 
-def file_change(content):
+def set_year_content(years, current_year, temp):
     """
-    This function is designed to take the file that Ken generates for the publications,
-    and re-arrange it to show the publications by year.
+    Set the content for each year.
     """
+    head_tag = """<center><a href="#journalall">Journal articles</a> | <a href="#conferencesall">Conference    presentations</a> | 
+    <a href="#booksall">Books and book chapters</a> | <a href="#thesesall">Theses</a></center><br>"""
+    content = """<div id="ALL" class="container tab-pane fade">{0}{1}</div>\n""".format(head_tag, temp)
 
-    current_year = datetime.datetime.now().year
-    years = get_years(current_year, 2003)
+    # Setting the content of the years
+    for key, value in years.items():
+        head_tag = """<center><a href="#journal{}">Journal articles</a> | <a href="#conferences{}">Conference    presentations</a> | 
+        <a href="#books{}">Books and book chapters</a> | <a href="#theses{}">Theses</a></center><br>""".format(key, key, key, key)
+        if key == current_year:
+            if years[current_year] != "":
+                content += """<div id="P_{0}" class="container tab-pane active">{1}{2}</div>\n""".format(key, head_tag, value)
+            else:
+                content += """<div id="P_{0}" class="container tab-pane fade">{1}{2}</div>\n""".format(key, head_tag, value)
+        elif key == 'ALL':
+            pass
+        else:
+            if years[current_year] == "" and key == current_year-1:
+                content += """<div id="P_{0}" class="container tab-pane active">{1}{2}</div>\n""".format(key, head_tag, value)
+            else:
+                content += """<div id="P_{0}" class="container tab-pane fade">{1}{2}</div>\n""".format(key, head_tag, value)
 
-    File_Content = split_content(content)
+    return years, content
 
-    Header = File_Content[0] # We take the header, and we sicard it.
 
-    section_tags = get_section_tags()
+def set_sidebar_content(years, current_year):
+    """
+    Set the sidebar content.
+    """
+    side_tab = """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="ALL_tab" href="#ALL">All</a></li>"""
+    for item in reversed(range(2003, current_year+1)):
+        if item == current_year:
+            if years[current_year] != "":
+                side_tab += """<li class="nav-item"><a class="nav-link active" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
+            else:
+                side_tab += """<li class="nav-item"><a class="nav-link btn disabled" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
+        else:
+            if years[current_year] == "" and item == current_year -1:
+                side_tab += """<li class="nav-item"><a class="nav-link active" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
+            else:
+                side_tab += """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
 
-    # Here we find where the stirngs above are located. 
-    section_idx = {}
-    section_idx['journal'] = File_Content.index(section_tags['journal']) #1
-    section_idx['conference'] = File_Content.index(section_tags['conference']) #16
-    section_idx['book'] = File_Content.index(section_tags['book']) #31
-    section_idx['thesis'] = File_Content.index(section_tags['thesis']) #38
-    all = {'journal': {}, 'conferences': {}, 'books': {}, 'theses': {}}
+    return years, side_tab
 
-    all, section_tags, years = populate_all_section(all, section_idx, File_Content, section_tags, years)
 
-    recent = get_recent_pubs(current_year, years)
-
+def set_temp_content(all, current_year):
+    """
+    Set the temp content.
+    """
     temp = ""
 
     for key in ['journal', 'conferences', 'books', 'theses']:
@@ -219,53 +258,41 @@ def file_change(content):
                 elif key == 'theses':
                     temp += all[key][item].replace('<h3>Theses</h3>', '<h4>{0}</h4>'.format(item))
                 else:
-                    print ('key', key)
+                    print('key', key)
 
-    Head_tag = """<center><a href="#journalall">Journal articles</a> | <a href="#conferencesall">Conference    presentations</a> | 
-    <a href="#booksall">Books and book chapters</a> | <a href="#thesesall">Theses</a></center><br>"""
-    content    = """<div id="ALL" class="container tab-pane fade">{0}{1}</div>\n""".format(Head_tag, temp)
+    return temp
 
-    # Setting the content of the years
-    for key, value in years.items():
-        Head_tag = """<center><a href="#journal{}">Journal articles</a> | <a href="#conferences{}">Conference    presentations</a> | 
-        <a href="#books{}">Books and book chapters</a> | <a href="#theses{}">Theses</a></center><br>""".format(key, key, key, key)
-        if key == current_year:
-            if years[current_year] != "":
-                content += """<div id="P_{0}" class="container tab-pane active">{1}{2}</div>\n""".format(key, Head_tag, value)
-            else:
-                content += """<div id="P_{0}" class="container tab-pane fade">{1}{2}</div>\n""".format(key, Head_tag, value)
-        elif key == 'ALL':
-            pass
-            # content += """<div id="%s" class="tab-pane fade">%s%sUnder development</div>\n""" % (key, Head_tag, value)
-        else:
-            if years[current_year] == "" and key == current_year -1:
-                content += """<div id="P_{0}" class="container tab-pane active">{1}{2}</div>\n""".format(key, Head_tag, value)
-            else:
-                content += """<div id="P_{0}" class="container tab-pane fade">{1}{2}</div>\n""".format(key, Head_tag, value)
-                # content += """<div id="%s" class="tab-pane fade">%s%sUnder development</div>\n""" % (key, Head_tag, value)
+def file_change(file_content):
+    """
+    This function is designed to take the file that Ken generates for the publications,
+    and re-arrange it to show the publications by year.
+    """
+    current_year = datetime.datetime.now().year
+    years = get_years(current_year, 2003)
 
-    # Setting the sidebar with the years
-    side_tab = """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="ALL_tab" href="#ALL">All</a></li>"""
-    for item in reversed(range(2003, current_year+1)):
-        if item == current_year:
-            if years[current_year] != "":
-                side_tab += """<li class="nav-item"><a class="nav-link active" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
-            else:
-                side_tab += """<li class="nav-item"><a class="nav-link btn disabled" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
-        else:
-            if years[current_year] == "" and item == current_year -1:
-                side_tab += """<li class="nav-item"><a class="nav-link active" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
-            else:
-                side_tab += """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
+    file_content = split_content(file_content)
 
-    # Head = "<center>"+ File_Content[0].replace("""| <a href="#theses">Theses</a>""", """<!--| <a href="#theses">Theses</a>-->""") + "</center><br>"
-    File_Content[0] = File_Content[0].replace("""\n\n<p>\n(A separate listing of PhysioNet tutorials is available at <a href="http://physionet.org/tutorials/" target="_blank" >http://physionet.org/tutorials/</a>.)\n</p>\n\n""","").replace("\r","").replace("\n","").replace("<br>","").replace("< br>","").replace("<br >","").replace("<br />","").replace("""<a href="#journal">Journal articles</a> | <a href="#conferences">Conference    presentations</a> | <a href="#books">Books and book chapters</a> | <a href="#theses">Theses</a>""","")
+    section_tags = get_section_tags()
+    section_idx = get_section_indexes(file_content, section_tags)
 
-    head = str(File_Content[0])
+    all = {'journal': {}, 'conferences': {}, 'books': {}, 'theses': {}}
+
+    all, section_tags, years = populate_all_section(all, section_idx, file_content, section_tags, years)
+    recent = get_recent_pubs(current_year, years)
+    temp = set_temp_content(all, current_year)
+
+    years, content = set_year_content(years, current_year, temp)
+    years, side_tab = set_sidebar_content(years, current_year)
+
+    # Head = "<center>"+ file_content[0].replace("""| <a href="#theses">Theses</a>""", """<!--| <a href="#theses">Theses</a>-->""") + "</center><br>"
+    file_content[0] = file_content[0].replace("""\n\n<p>\n(A separate listing of PhysioNet tutorials is available at <a href="http://physionet.org/tutorials/" target="_blank" >http://physionet.org/tutorials/</a>.)\n</p>\n\n""","").replace("\r","").replace("\n","").replace("<br>","").replace("< br>","").replace("<br >","").replace("<br />","").replace("""<a href="#journal">Journal articles</a> | <a href="#conferences">Conference    presentations</a> | <a href="#books">Books and book chapters</a> | <a href="#theses">Theses</a>""","")
+
+    head = str(file_content[0])
     header_html = get_header_template(head, side_tab, content)
     footer_html = get_footer_template()
 
     return recent, header_html + footer_html
+
 
 def main():
 
@@ -275,12 +302,13 @@ def main():
     RECENT_PUB = os.path.join('..', 'templates', 'recent_publications.html')
 
     # Read the file used to update the publications
-    Edited_File    = open(CHANGE_FILE, 'rb').read()
+    edited_file = open(CHANGE_FILE, 'rb').read()
+
     # Return the converted file separated by most recent publications and content
-    recent, content = file_change(Edited_File.decode('UTF-8'))
+    recent, content = file_change(edited_file.decode('UTF-8'))
 
     # Write the new content to the publications template
-    New_File = open(NEW_PUB, "w").write(content)
+    open(NEW_PUB, "w").write(content)
 
     # Update the most recent publications
     recent_file = open(RECENT_PUB, "w")
@@ -289,7 +317,7 @@ def main():
             recent_file.write(item)
     recent_file.close()
 
-    print ("CHANGE DONE")
 
 if __name__ == '__main__':
     main()
+    print ("CHANGE DONE")
