@@ -154,8 +154,8 @@ def populate_all_sections(section_idx, content, section_tags, years):
 
     for row in range(section_idx['journal'] + 1, section_idx['conference']):
         if content[row][20:24].isdigit():
-            section_tags['journal'] = section_tags['journal'].replace("\r", "").replace("\n","").replace("</dl>","")
-            years[int(content[row][20:24])] += section_tags['journal'].replace("journal", "journal"+content[row][20:24]) + content[row][content[row].index('</dl>')+5:]
+            section_tags['journal'] = section_tags['journal'].replace("\r", "").replace("\n","").replace("</ol>","")
+            years[int(content[row][20:24])] += section_tags['journal'].replace("journal", "journal"+content[row][20:24]) + content[row][content[row].index('</ol>')+5:]
             all['journal'][int(content[row][20:24])] = section_tags['journal'] + content[row][content[row].index('</ol>')+5:]
         else:
             print(content[row])
@@ -164,25 +164,25 @@ def populate_all_sections(section_idx, content, section_tags, years):
 
     for row in range(section_idx['conference'] + 1, section_idx['book']):
         if content[row][20:24].isdigit():
-            section_tags['conference'] = section_tags['conference'].replace("\r","").replace("\n","").replace("</dl>","")
-            years[int(content[row][20:24])] += section_tags['conference'].replace("conferences", "conferences"+content[row][20:24]) + content[row][content[row].index('</dl>')+5:]
-            all['conferences'][int(content[row][20:24])] = section_tags['conference'] + content[row][content[row].index('</dl>')+5:]
+            section_tags['conference'] = section_tags['conference'].replace("\r","").replace("\n","").replace("</ol>","")
+            years[int(content[row][20:24])] += section_tags['conference'].replace("conferences", "conferences"+content[row][20:24]) + content[row][content[row].index('</ol>')+5:]
+            all['conferences'][int(content[row][20:24])] = section_tags['conference'] + content[row][content[row].index('</ol>')+5:]
         else:
             print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
     for row in range(section_idx['book'] + 1, section_idx['thesis']):
         if content[row][20:24].isdigit():
-            section_tags['book'] = section_tags['book'].replace("\r","").replace("\n","").replace("</dl>","")
-            years[int(content[row][20:24])] += section_tags['book'].replace("books", "books"+content[row][20:24]) + content[row][content[row].index('</dl>')+5:]
-            all['books'][int(content[row][20:24])] = section_tags['book'] + content[row][content[row].index('</dl>')+5:]
+            section_tags['book'] = section_tags['book'].replace("\r","").replace("\n","").replace("</ol>","")
+            years[int(content[row][20:24])] += section_tags['book'].replace("books", "books"+content[row][20:24]) + content[row][content[row].index('</ol>')+5:]
+            all['books'][int(content[row][20:24])] = section_tags['book'] + content[row][content[row].index('</ol>')+5:]
         else:
             print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
     for row in range(section_idx['thesis'] + 1, len(content)):
         if content[row][20:24].isdigit():
-            section_tags['thesis'] = section_tags['thesis'].replace("\r", "").replace("\n","").replace("</dl>","")
-            years[int(content[row][20:24])] += section_tags['thesis'].replace("theses","theses"+content[row][20:24]) + content[row][content[row].index('</dl>')+5:]
-            all['theses'][int(content[row][20:24])] = section_tags['thesis'] + content[row][content[row].index('</dl>')+5:]
+            section_tags['thesis'] = section_tags['thesis'].replace("\r", "").replace("\n","").replace("</ol>","")
+            years[int(content[row][20:24])] += section_tags['thesis'].replace("theses","theses"+content[row][20:24]) + content[row][content[row].index('</ol>')+5:]
+            all['theses'][int(content[row][20:24])] = section_tags['thesis'] + content[row][content[row].index('</ol>')+5:]
         else:
             print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
 
