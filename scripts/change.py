@@ -98,12 +98,14 @@ def get_footer_template():
     """
     return footer_html
 
+
 def split_content(content):
     """
     Splits content into X.
     """
     content_list = sub(r"<!--(.|\s|\n)*?-->", "", content, flags=DOTALL).split("""<ol compact="1" class="bib2xhtml">""")
     return content_list
+
 
 def get_section_tags():
     """
@@ -117,7 +119,56 @@ def get_section_tags():
 
     return section_tags
 
-def file_change(File_Content):
+
+def populate_all_section(all, section_idx, content, section_tags, years):
+    """
+    Populate the "ALL" section.
+
+    Here we iterate throughout all four elements of the file. 
+    We keep a copy of the current row, each row is a journal or conference or book, depends on what for loop you are in.
+    Since there are two places the year is located at, we have to try and search for it.
+    The output of the try except, will be (2016 16</ OR ">20 2015), since we use that variable to set the year, we need a try except to see if the item is a intiger or a string.
+    We remove all newlines because they don't work on html, set the ID of the journal, conference... and we remove the commented data, just to try and clean out the code.
+    If the year wasn't found, then there was a change in the perl creation script, and now we have to check what happened and where is the year.
+    """
+    for row in range(section_idx['journal'] + 1, section_idx['conference']):
+        if content[row][20:24].isdigit():
+            section_tags['journal'] = section_tags['journal'].replace("\r", "").replace("\n","").replace("</dl>","")
+            years[int(content[row][20:24])] += section_tags['journal'].replace("journal", "journal"+content[row][20:24]) + content[row][content[row].index('</dl>')+5:]
+            all['journal'][int(content[row][20:24])] = section_tags['journal'] + content[row][content[row].index('</ol>')+5:]
+        else:
+            print(content[row])
+            print(content[row][20:24])
+            print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
+
+    for row in range(section_idx['conference'] + 1, section_idx['book']):
+        if content[row][20:24].isdigit():
+            section_tags['conference'] = section_tags['conference'].replace("\r","").replace("\n","").replace("</dl>","")
+            years[int(content[row][20:24])] += section_tags['conference'].replace("conferences", "conferences"+content[row][20:24]) + content[row][content[row].index('</dl>')+5:]
+            all['conferences'][int(content[row][20:24])] = section_tags['conference'] + content[row][content[row].index('</dl>')+5:]
+        else:
+            print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
+
+    for row in range(section_idx['book'] + 1, section_idx['thesis']):
+        if content[row][20:24].isdigit():
+            section_tags['book'] = section_tags['book'].replace("\r","").replace("\n","").replace("</dl>","")
+            years[int(content[row][20:24])] += section_tags['book'].replace("books", "books"+content[row][20:24]) + content[row][content[row].index('</dl>')+5:]
+            all['books'][int(content[row][20:24])] = section_tags['book'] + content[row][content[row].index('</dl>')+5:]
+        else:
+            print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
+
+    for row in range(section_idx['thesis'] + 1, len(content)):
+        if content[row][20:24].isdigit():
+            section_tags['thesis'] = section_tags['thesis'].replace("\r", "").replace("\n","").replace("</dl>","")
+            years[int(content[row][20:24])] += section_tags['thesis'].replace("theses","theses"+content[row][20:24]) + content[row][content[row].index('</dl>')+5:]
+            all['theses'][int(content[row][20:24])] = section_tags['thesis'] + content[row][content[row].index('</dl>')+5:]
+        else:
+            print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
+
+    return all, section_tags, years
+
+
+def file_change(content):
     """
     This function is designed to take the file that Ken generates for the publications,
     and re-arrange it to show the publications by year.
@@ -126,60 +177,21 @@ def file_change(File_Content):
     current_year = datetime.datetime.now().year
     years = get_years(current_year, 2003)
 
-    File_Content = split_content(File_Content)
+    File_Content = split_content(content)
 
-    Size = len(File_Content)
     Header = File_Content[0] # We take the header, and we sicard it.
 
     section_tags = get_section_tags()
 
     # Here we find where the stirngs above are located. 
-    Journal_idx = File_Content.index(section_tags['journal']) #1
-    Conferences_idx = File_Content.index(section_tags['conference']) #16
-    Books_idx = File_Content.index(section_tags['book']) #31
-    Theses_idx = File_Content.index(section_tags['thesis']) #38
-    All = {'journal': {}, 'conferences': {}, 'books': {}, 'theses': {}}
+    section_idx = {}
+    section_idx['journal'] = File_Content.index(section_tags['journal']) #1
+    section_idx['conference'] = File_Content.index(section_tags['conference']) #16
+    section_idx['book'] = File_Content.index(section_tags['book']) #31
+    section_idx['thesis'] = File_Content.index(section_tags['thesis']) #38
+    all = {'journal': {}, 'conferences': {}, 'books': {}, 'theses': {}}
 
-    # Here we iterate throughout all four elements of the file. 
-    # We keep a copy of the current row, each row is a journal or conference or book, depends on what for loop you are in.
-    # Since there are two places the year is located at, we have to try and search for it.
-    # The output of the try except, will be (2016 16</ OR ">20 2015), since we use that variable to set the year, we need a try except to see if the item is a intiger or a string.
-    # We remove all newlines because they don't work on html, set the ID of the journal, conference... and we remove the commented data, just to try and clean out the code.
-    # If the year wasn't found, then there was a change in the perl creation script, and now we have to check what happened and where is the year.
-
-    for row in range(Journal_idx + 1, Conferences_idx):
-        if File_Content[row][20:24].isdigit():
-            section_tags['journal'] = section_tags['journal'].replace("\r","").replace("\n","").replace("</dl>","")
-            years[int(File_Content[row][20:24])] += section_tags['journal'].replace("journal", "journal"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
-            All['journal'][int(File_Content[row][20:24])] = section_tags['journal'] + File_Content[row][File_Content[row].index('</ol>')+5:]
-        else:
-            print(File_Content[row])
-            print(File_Content[row][20:24])
-            print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
-
-    for row in range(Conferences_idx + 1, Books_idx):
-        if File_Content[row][20:24].isdigit():
-            section_tags['conference'] = section_tags['conference'].replace("\r","").replace("\n","").replace("</dl>","")
-            years[int(File_Content[row][20:24])] += section_tags['conference'].replace("conferences", "conferences"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
-            All['conferences'][int(File_Content[row][20:24])] = section_tags['conference'] + File_Content[row][File_Content[row].index('</dl>')+5:]
-        else:
-            print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
-
-    for row in range(Books_idx + 1, Theses_idx):
-        if File_Content[row][20:24].isdigit():
-            section_tags['book'] = section_tags['book'].replace("\r","").replace("\n","").replace("</dl>","")
-            years[int(File_Content[row][20:24])] += section_tags['book'].replace("books", "books"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
-            All['books'][int(File_Content[row][20:24])] = section_tags['book'] + File_Content[row][File_Content[row].index('</dl>')+5:]
-        else:
-            print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
-
-    for row in range(Theses_idx + 1, Size):
-        if File_Content[row][20:24].isdigit():
-            section_tags['thesis'] = section_tags['thesis'].replace("\r","").replace("\n","").replace("</dl>","")
-            years[int(File_Content[row][20:24])] += section_tags['thesis'].replace("theses","theses"+File_Content[row][20:24]) + File_Content[row][File_Content[row].index('</dl>')+5:]
-            All['theses'][int(File_Content[row][20:24])] = section_tags['thesis'] + File_Content[row][File_Content[row].index('</dl>')+5:]
-        else:
-            print ("We could not find the year, the variables are not int. Check the HTML file.", row, "\n\n")
+    all, section_tags, years = populate_all_section(all, section_idx, File_Content, section_tags, years)
 
     recent = get_recent_pubs(current_year, years)
 
@@ -197,15 +209,15 @@ def file_change(File_Content):
         else:
             print ('key', key)
         for item in reversed(range(2003, current_year+1)):
-            if item in All[key].keys():
+            if item in all[key].keys():
                 if key == 'journal':
-                    temp += All[key][item].replace('<h3>Journal articles</h3>', '<h4>{0}</h4>'.format(item))
+                    temp += all[key][item].replace('<h3>Journal articles</h3>', '<h4>{0}</h4>'.format(item))
                 elif key == 'conferences':
-                    temp += All[key][item].replace('<h3>Conference proceedings and presentations</h3>', '<h4>{0}</h4>'.format(item))
+                    temp += all[key][item].replace('<h3>Conference proceedings and presentations</h3>', '<h4>{0}</h4>'.format(item))
                 elif key == 'books':
-                    temp += All[key][item].replace('<h3>Books and book chapters</h3>', '<h4>{0}</h4>'.format(item))
+                    temp += all[key][item].replace('<h3>Books and book chapters</h3>', '<h4>{0}</h4>'.format(item))
                 elif key == 'theses':
-                    temp += All[key][item].replace('<h3>Theses</h3>', '<h4>{0}</h4>'.format(item))
+                    temp += all[key][item].replace('<h3>Theses</h3>', '<h4>{0}</h4>'.format(item))
                 else:
                     print ('key', key)
 
@@ -265,17 +277,17 @@ def main():
     # Read the file used to update the publications
     Edited_File    = open(CHANGE_FILE, 'rb').read()
     # Return the converted file separated by most recent publications and content
-    Recent, Content = file_change(Edited_File.decode('UTF-8'))
+    recent, content = file_change(Edited_File.decode('UTF-8'))
 
     # Write the new content to the publications template
-    New_File = open(NEW_PUB, "w").write(Content)
+    New_File = open(NEW_PUB, "w").write(content)
 
     # Update the most recent publications
-    Recent_File = open(RECENT_PUB, "w")
-    for indx, item in enumerate(Recent):
-        if indx < 4:
-            Recent_File.write(item)
-    Recent_File.close()
+    recent_file = open(RECENT_PUB, "w")
+    for idx, item in enumerate(recent):
+        if idx < 4:
+            recent_file.write(item)
+    recent_file.close()
 
     print ("CHANGE DONE")
 
