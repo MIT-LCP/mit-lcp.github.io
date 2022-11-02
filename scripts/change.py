@@ -48,10 +48,12 @@ def get_recent_pubs(current_year, years):
     return recent
 
 
-def get_header_template(head, side_tab, content):
+def get_header_template(file_content, side_tab, content):
     """
     Get content for the HTML header.
     """
+    head = str(file_content[0])
+
     header_html = """
     {% set active_page = "Publications" %}
     {% extends "base.html" %}
@@ -134,7 +136,7 @@ def get_section_indexes(file_content, section_tags):
     return section_idx
 
 
-def populate_all_section(all, section_idx, content, section_tags, years):
+def populate_all_sections(section_idx, content, section_tags, years):
     """
     Populate the "ALL" section.
 
@@ -145,6 +147,8 @@ def populate_all_section(all, section_idx, content, section_tags, years):
     We remove all newlines because they don't work on html, set the ID of the journal, conference... and we remove the commented data, just to try and clean out the code.
     If the year wasn't found, then there was a change in the perl creation script, and now we have to check what happened and where is the year.
     """
+    all = {'journal': {}, 'conferences': {}, 'books': {}, 'theses': {}}
+
     for row in range(section_idx['journal'] + 1, section_idx['conference']):
         if content[row][20:24].isdigit():
             section_tags['journal'] = section_tags['journal'].replace("\r", "").replace("\n","").replace("</dl>","")
@@ -207,7 +211,7 @@ def set_year_content(years, current_year, temp):
             else:
                 content += """<div id="P_{0}" class="container tab-pane fade">{1}{2}</div>\n""".format(key, head_tag, value)
 
-    return years, content
+    return content
 
 
 def set_sidebar_content(years, current_year):
@@ -227,7 +231,7 @@ def set_sidebar_content(years, current_year):
             else:
                 side_tab += """<li class="nav-item"><a class="nav-link" data-toggle="tab" id="{}_tab" href="#P_{}">{}</a></li>\n""".format(item, item, item)
 
-    return years, side_tab
+    return side_tab
 
 
 def set_temp_content(all, current_year):
@@ -262,6 +266,7 @@ def set_temp_content(all, current_year):
 
     return temp
 
+
 def file_change(file_content):
     """
     This function is designed to take the file that Ken generates for the publications,
@@ -275,20 +280,17 @@ def file_change(file_content):
     section_tags = get_section_tags()
     section_idx = get_section_indexes(file_content, section_tags)
 
-    all = {'journal': {}, 'conferences': {}, 'books': {}, 'theses': {}}
-
-    all, section_tags, years = populate_all_section(all, section_idx, file_content, section_tags, years)
+    all, section_tags, years = populate_all_sections(section_idx, file_content, section_tags, years)
     recent = get_recent_pubs(current_year, years)
     temp = set_temp_content(all, current_year)
 
-    years, content = set_year_content(years, current_year, temp)
-    years, side_tab = set_sidebar_content(years, current_year)
+    content = set_year_content(years, current_year, temp)
+    side_tab = set_sidebar_content(years, current_year)
 
     # Head = "<center>"+ file_content[0].replace("""| <a href="#theses">Theses</a>""", """<!--| <a href="#theses">Theses</a>-->""") + "</center><br>"
     file_content[0] = file_content[0].replace("""\n\n<p>\n(A separate listing of PhysioNet tutorials is available at <a href="http://physionet.org/tutorials/" target="_blank" >http://physionet.org/tutorials/</a>.)\n</p>\n\n""","").replace("\r","").replace("\n","").replace("<br>","").replace("< br>","").replace("<br >","").replace("<br />","").replace("""<a href="#journal">Journal articles</a> | <a href="#conferences">Conference    presentations</a> | <a href="#books">Books and book chapters</a> | <a href="#theses">Theses</a>""","")
 
-    head = str(file_content[0])
-    header_html = get_header_template(head, side_tab, content)
+    header_html = get_header_template(file_content, side_tab, content)
     footer_html = get_footer_template()
 
     return recent, header_html + footer_html
