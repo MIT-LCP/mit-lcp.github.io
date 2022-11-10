@@ -1,4 +1,10 @@
 news_items:
+  - date: "2022-10-28"
+    front_page: True
+    header: "Award"
+    title: "Inaugural MIT Prize for Open Data"
+    content: "<p><img alt='Tom Pollard. MIT Open Data.' src='/static/images/opendata102822-087.jpg' width='300' /></p><p>The PhysioNet team were recipients of the inaugural MIT Prize for Open Data in recognition of their work to support health research and education. The award - established to highlight the value of open data at MIT - was presented by School of Science Dean Nergis Mavalvala and MIT Libraries Director Chris Bourg on October 28 in the MIT Hayden Library.</p>"
+    url: "https://libraries.mit.edu/opendata/open-data-mit-home/mit-prize/"
   - date: "2021-02-16"
     front_page: True
     header: "Tribute"
