@@ -13,7 +13,7 @@ title: Home
     </h2>
     
     <p>
-      The Laboratory for Computational Physiology (LCP), under the direction of Professor Roger Mark, conducts research at the intersection of medicine, engineering, and data science.
+      The MIT Laboratory for Computational Physiology (MIT-LCP), under the direction of Professor Roger Mark, conducts research at the intersection of medicine, engineering, and data science.
     </p>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
