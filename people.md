@@ -9,9 +9,6 @@ title: People
       <span class="title-line-1">Meet the</span>
       <span class="title-line-2">Team</span>
     </h2>
-    <p>
-      Meet the researchers, scientists, and collaborators of the Laboratory for Computational Physiology.
-    </p>
 
     <div class="people-list">
       {% for person in site.data.people %}
