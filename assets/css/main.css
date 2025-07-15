@@ -267,9 +267,7 @@ a:hover {
   width: 100%;
 }
 
-.content-section:nth-child(even) {
-  background: var(--background-alt);
-}
+/* Removed alternating backgrounds for cleaner look */
 
 .section-title {
   text-align: left;
