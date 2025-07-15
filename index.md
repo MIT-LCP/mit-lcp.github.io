@@ -13,18 +13,22 @@ title: Home
     </h2>
     
     <p>
-      The MIT Laboratory for Computational Physiology (MIT-LCP), under the direction of Professor Roger Mark, conducts research at the intersection of medicine, engineering, and data science.
+      The MIT Laboratory for Computational Physiology (MIT-LCP), under the direction of Professor Roger Mark, conducts research at the intersection of <span class="key-term">medicine</span>, <span class="key-term">engineering</span>, and <span class="key-term">data science</span>.
+    </p>
+    
+    <p>
+      Our laboratory focuses on developing computational methods and tools for analyzing physiological signals and clinical data, with particular emphasis on critical care medicine and patient monitoring systems.
     </p>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
       <div class="card">
         <h3>Our Mission</h3>
-        <p>To advance healthcare through open science, reproducible research, and innovative computational methods that improve patient outcomes in critical care settings.</p>
+        <p>To advance healthcare through <span class="key-term">open science</span>, <span class="key-term">reproducible research</span>, and innovative computational methods that improve patient outcomes in critical care settings.</p>
       </div>
       
       <div class="card">
         <h3>Key Projects</h3>
-        <p>Our major projects include <a href="https://mimic.physionet.org" target="_blank">MIMIC</a> and <a href="https://physionet.org" target="_blank">PhysioNet</a>, supporting global research in clinical informatics.</p>
+        <p>Our major projects include <a href="https://mimic.physionet.org" target="_blank">MIMIC</a> and <a href="https://physionet.org" target="_blank">PhysioNet</a>, supporting global research in <span class="key-term">clinical informatics</span>.</p>
       </div>
     </div>
   </section>
@@ -56,7 +60,7 @@ title: Home
   <section class="content-section">
     <h2 class="section-title">
       <span class="title-line-1">Explore Our</span>
-      <span class="title-line-2">Quick Links</span>
+      <span class="title-line-2">Resources</span>
     </h2>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
       <a href="{{ '/people/' | relative_url }}" class="card" style="text-decoration: none; text-align: center;">
