@@ -225,14 +225,21 @@ class GoogleScholarFetcher:
                 if end_year is None:
                     end_year = current_year
                 
-                if start_year <= pub_year <= end_year:
+                # Handle None pub_year (skip publications without year)
+                if pub_year is None:
+                    filtered_out_count += 1
+                    logger.debug(f"Filtered out {pub.get('title', 'Unknown')} (no year) by {author_name} - missing year")
+                elif start_year <= pub_year <= end_year:
                     filtered_pubs.append(pub)
                 else:
                     filtered_out_count += 1
                     logger.debug(f"Filtered out {pub.get('title', 'Unknown')} ({pub_year}) by {author_name} - outside year range {start_year}-{end_year}")
             else:
                 # Fallback to global min_year if no year range specified
-                if pub_year >= min_year:
+                if pub_year is None:
+                    filtered_out_count += 1
+                    logger.debug(f"Filtered out {pub.get('title', 'Unknown')} (no year) by {author_name} - missing year")
+                elif pub_year >= min_year:
                     filtered_pubs.append(pub)
                 else:
                     filtered_out_count += 1
