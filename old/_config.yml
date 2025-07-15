@@ -1,0 +1,59 @@
+# Site settings
+title: "Laboratory for Computational Physiology"
+description: "MIT Laboratory for Computational Physiology - Advancing healthcare through computational physiology and machine learning"
+url: "https://mit-lcp.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Collections
+collections:
+  news:
+    output: true
+    permalink: /news/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Include files
+include:
+  - _pages
+  - _posts
+  - _layouts
+  - _includes
+  - _sass
+  - _data
+  - assets
+  - static
+
+# Sass settings
+sass:
+  style: compressed 

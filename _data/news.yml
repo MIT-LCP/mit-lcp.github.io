@@ -1,0 +1,4 @@
+# Example news data
+- date: 2024-06-01
+  title: "LCP launches new website on GitHub Pages!"
+  content: "We are excited to announce the launch of our new lab website, now powered by Jekyll and GitHub Pages." 

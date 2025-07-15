@@ -1,0 +1,30 @@
+# Example people data
+- name: Roger Mark
+  role: Director & Distinguished Professor
+  bio: "Distinguished Professor of Health Sciences and Technology at MIT. Leads research on improving healthcare through new approaches to interpreting data and generating predictive models."
+  image: "roger_mark.png"
+
+- name: Leo Celi
+  role: Principal Research Scientist
+  bio: "Physician and data scientist. Leads interdisciplinary clinical research and mentors young clinicians collaborating with engineering staff on research projects."
+  image: "leo.jpg"
+
+- name: Li-wei Lehman
+  role: Research Scientist
+  bio: "Focuses on machine learning for physiological dynamics modeling and informed clinical decision making. Member of the PhysioNet team."
+  image: "li-wei_lehman.png"
+
+- name: Tom Pollard
+  role: Research Scientist
+  bio: "Technical Director of PhysioNet. Expert in critical care databases including MIMIC and eICU. Conducts retrospective studies and develops software used internationally."
+  image: "tpollard.jpg"
+
+- name: Jesse Raffa
+  role: Research Scientist
+  bio: "Biostatistician providing statistical and epidemiological expertise. Specializes in analysis of complex longitudinal data relevant to critical care settings."
+  image: "jraffa.jpg"
+
+- name: Kenneth Paik
+  role: Research Scientist
+  bio: "Clinical informatician focused on quality improvement through technology innovation. Combines medicine, machine learning, and business management expertise."
+  image: "kepaik.png" 

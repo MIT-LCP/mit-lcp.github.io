@@ -1,0 +1,27 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% include 'header.html'%}
+  {% block head2 %}{% endblock %}
+</head>
+<body data-spy="scroll" data-target=".navbar-fixed-top">
+  <a href="#skip_content" class="skip-to-content">Skip to content</a>
+  {% include 'navbar.html'%}
+  <div id="content">{% block content %}{% endblock %}</div>
+  {% include 'footer.html'%}
+
+  <script>
+    $('ul.nav li.dropdown').hover(function() {
+      $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(0);
+    }, function() {
+      $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeOut(200);
+    });
+    </script>
+  {% block js %}{% endblock %}
+
+</body>
+</html>

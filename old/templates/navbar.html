@@ -1,0 +1,36 @@
+{% block head2 %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/template.css') }}">
+{% endblock %}
+
+<div class="container">
+  <!-- Header with lab name and logo -->
+  <header class="site-header py-4">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-md-1">
+        <a href="home"><img class="img-fluid header_img" src="{{ url_for('static', filename='images/lcp_logo.png') }}" alt="Laboratory for Computational Physiology"></a>
+      </div>
+      <div class="col-md-10 text-primary">
+        <a class="site-header-logo text-dark" href="home">Laboratory for Computational Physiology</a>
+      </div>
+    </div>
+  </header>
+
+  {% set navigation_bar = [
+    ('home', 'Home'),
+    ('about', 'About'),
+    ('people', 'People'),
+    ('physionet', 'PhysioNet'),
+    ('mimic', 'MIMIC'),
+    ('news', 'News'),
+    ('publications', 'Publications'),
+    ] -%}
+
+  <!-- Top bar with links to each page -->
+  <div class="py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+      {% for href, id in navigation_bar %}
+        <a class="p-2 text-muted {% if id == active_page %}bold{% endif %}" href="{{ href }}">{{ id }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</div>

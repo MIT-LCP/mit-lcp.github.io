@@ -1,0 +1,62 @@
+{% set active_page = "PhysioNet" %}
+{% extends "base.html" %}
+{% block title %}Laboratory for Computational Physiology{% endblock %}
+{% block head2 %}{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block content %}
+
+<a id="skip_content"></a>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="text-left">
+        <h1 class="site-section-title" id="PhysioNet">PhysioNet</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+
+      <h2 class="site-section-meta border-bottom" id="Overview">Overview</h2>
+      <p>
+        The Laboratory for Computational Physiology develops and maintains <a href="https://physionet.org" target="_blank">PhysioNet</a>, a widely-used repository of biomedical data and software. PhysioNet enables researchers around the world to share and reuse resources that underpin clinical studies, promoting reproducible research and lowering barriers to data access.
+      </p>
+
+      <h2 class="site-section-meta border-bottom" id="Story">Story of PhysioNet</h2>
+      <p>
+      In the mid-1970s, members of the PhysioNet team who were then working on some of the first microcomputer-based instruments for cardiac arrhythmia monitoring, foresaw the benefit of establishing shared databases of well-characterized ECG recordings, as a basis for evaluation, and objective comparison of algorithms for automated arrhythmia analysis. A five-year effort culminated in the publication of the MIT-BIH Arrhythmia Database in 1980, which soon became the standard reference collection of its type.
+      </p>
+      <p>
+      PhysioNet was established in 1999 as the outreach component of a project entitled "Research Resource for Complex Physiologic Signals", a collaboration between scientists and clinicians at Boston's Beth Israel Deaconess Medical Center, Boston University, and McGill University, and MIT. Initial datasets contributed by MIT were quickly supplemented by additional collections of data and software from collaborators, and soon after, from researchers worldwide.
+      </p>
+      <p>
+      In 2000, PhysioNet hosted a challenge in collaboration with the Computing in Cardiology (CinC) conference that sought to stimulate rapid progress on an unsolved problem of practical clinical significance. This challenge is now hosted annually with CinC, often focusing on arrhythmia analysis but branching into areas including detection of sleep apnea and prediction of mortality. The ability to host challenges on the PhysioNet platform has now been opened up to the wider Physionet community.
+      </p>
+      <p>
+      In 2019, PhysioNet was rebuilt following best practice in scientific data management and stewardship. Our goal is to promote Findability, Accessibility, Interoperability, and Reuse of PhysioNet resources (the "FAIR principles"). 
+      </p>
+
+      <h2 class="site-section-meta border-bottom" id="Acknowledgments">Acknowledgments</h2>
+      <p>
+        The development and maintenance of PhysioNet has been funded by the National Institute of Biomedical Imaging and Bioengineering (NIBIB) and the National Institute of General Medical Sciences (NIGMS) over the period 2003 to present. Grants R01EB1659, R01EB017205, R01GM104987, and U01EB008577.
+      </p>
+
+    </div>
+
+    <aside class="col-md-3">
+      <div class="p-3 mb-3 bg-light rounded">
+        <h4 class="font-italic">PhysioNet</h4>
+        <ul>
+          <li><a href="#Overview">Overview</a></li>
+          <li><a href="#Story">Story of PhysioNet</a></li>
+          <li><a href="#Acknowledgments">Acknowledgments</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+{% endblock %}

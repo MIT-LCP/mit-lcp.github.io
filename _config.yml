@@ -1,0 +1,10 @@
+title: "MIT Laboratory for Computational Physiology"
+description: "Advancing healthcare through computational physiology and machine learning."
+baseurl: ""
+url: "https://mit-lcp.github.io"
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Collections and data can be added as needed

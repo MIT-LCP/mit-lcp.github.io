@@ -1,73 +1,17 @@
-# LCP Website - Flask app
+# MIT Laboratory for Computational Physiology Website
 
-## How to download the project contents
+This is the official website for the MIT Laboratory for Computational Physiology, built with [Jekyll](https://jekyllrb.com/) and hosted on GitHub Pages.
 
-    # Pull down the project contents
-    git clone https://github.com/MIT-LCP/lcp-website.git
+## Local Development
 
-    # Change to the project directory
-    cd lcp-website
+1. Install Ruby and Bundler
+2. Run `bundle install`
+3. Run `bundle exec jekyll serve`
+4. Visit `http://localhost:4000`
 
-    # Create a new Python3.5+ virtual environment
-    python3 -m venv env
+## Editing Content
+- Edit pages in Markdown (e.g., `about.md`, `people.md`)
+- Edit data in `_data/` (e.g., `people.yml`, `news.yml`)
 
-    # Activate the virtual environment
-    source env/bin/activate
-
-    # Install the package requirements
-    pip install -r requirements.txt
-
-    # When finished with everything:
-    # De-activate the virtual environment
-    deactivate
-
-## How to run the server locally
-
-    # Change to the project directory
-    cd lcp-website
-
-    # Activate the virtual environment
-    source env/bin/activate
-
-    # Copy the .env.example file:
-    cp config/.env.example .env
-
-    # Run the Flask App on localhost
-    # http://127.0.0.1:5000/
-    flask run
-
-    # When finished viewing the webpage:
-    # Quit the Flask App
-    <CTRL>+C
-
-    # When finished with everything:
-    # De-activate the virtual environment
-    deactivate
-
-## Deploying to the Bare Repository
-
-Before deploying for the first time, make sure to set the variables in the `post-receive` file in the bare repository.
-
-Add the remote bare repositories from your local development machines:
-
-`git remote add <production> <user>@<address>:/home/webuser/lcp-website.git`
-
-Push to the remotes when appropriate
-
-`git push <production> <production>`
-
-## General Information
-
-A bit of information for the main script files.
-
-- change.py - Takes as input three different lcp_references.html files and changes them to the version in the website
-- config.py - Has the connection to Postgres
-- main.py   - The actual application file
-- Postgres.py - All the postgres functions
-
-## From NGINX the web application used to serve the files instead of apache/httpd, there are several IMPORTANT files that must NOT be touched.
-
-- /etc/uwsgi.sockets/lcp_uwsgi.sock - Auto generated file by lcp_website.service
-- wsgi_lcp.ini  - The reference file that the lcp_website.service takes to serve the application
-- wsgi.py - The actual calling the application used by main.ini
-- main_nginx.conf - The nginx configuration file
+## Deployment
+Push to the `main` branch. GitHub Pages will build and deploy automatically. 

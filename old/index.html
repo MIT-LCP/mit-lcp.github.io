@@ -1,0 +1,42 @@
+---
+layout: default
+title: Home
+---
+
+<a id="skip_content"></a>
+<div class="container">
+  <div class="jumbotron p-md-5 text-white rounded back">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 font-italic">Welcome</h1>
+      <p class="lead my-3">
+        The Laboratory for Computational Physiology (LCP), under the direction of Professor Roger Mark, is focused on research at the intersection of medicine and engineering.
+      </p>
+      <p class="lead mb-0">
+        <a href="{{ '/about/' | relative_url }}">Continue Reading...</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-md-12">
+    <h1 class="site-section-meta border-bottom">Latest News</h1>
+    <div class="row">
+      {% for post in site.data.news.news_items %}
+        {% if post.front_page %}
+          <div class="col-md-6">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-success">{{ post.header }}</strong>
+                <h3 class="mb-0">{{ post.title }}</h3>
+                <div class="mb-1 text-muted">{{ post.date }}</div>
+                <p class="card-text">{{ post.content | safe | truncate: 200 }}</p>
+                <a href="{{ '/news/' | append: post.date | append: '-' | append: post.title | slugify | relative_url }}" class="card-link">Continue reading</a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div> 
