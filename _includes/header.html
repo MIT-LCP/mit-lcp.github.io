@@ -4,11 +4,11 @@
       <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
 
       <nav class="site-nav">
-        <a class="page-link" href="{{ "/" | relative_url }}">Home</a>
-        <a class="page-link" href="{{ "/about" | relative_url }}">About</a>
-        <a class="page-link" href="{{ "/people" | relative_url }}">People</a>
-        <a class="page-link" href="{{ "/news" | relative_url }}">News</a>
-        <a class="page-link" href="{{ "/publications" | relative_url }}">Publications</a>
+        <a class="page-link{% if page.url == '/' %} active{% endif %}" href="{{ "/" | relative_url }}">Home</a>
+        <a class="page-link{% if page.url contains '/about' %} active{% endif %}" href="{{ "/about" | relative_url }}">About</a>
+        <a class="page-link{% if page.url contains '/people' %} active{% endif %}" href="{{ "/people" | relative_url }}">People</a>
+        <a class="page-link{% if page.url contains '/news' %} active{% endif %}" href="{{ "/news" | relative_url }}">News</a>
+        <a class="page-link{% if page.url contains '/publications' %} active{% endif %}" href="{{ "/publications" | relative_url }}">Publications</a>
       </nav>
     </div>
   </div>

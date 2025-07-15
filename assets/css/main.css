@@ -49,11 +49,32 @@ body {
   margin: 0 1rem;
   text-decoration: none;
   transition: color 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  position: relative;
 }
 
 .page-link:hover {
   color: var(--mit-red);
   text-decoration: none;
+}
+
+.page-link.active {
+  color: var(--mit-red);
+  background-color: rgba(163, 31, 52, 0.1);
+  font-weight: 600;
+}
+
+.page-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background-color: var(--mit-red);
+  border-radius: 1px;
 }
 
 /* Hero Section */
