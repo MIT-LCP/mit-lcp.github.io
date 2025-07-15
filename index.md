@@ -52,7 +52,7 @@ title: Home
     {% endfor %}
     
     <div style="text-align: center; margin-top: 2rem;">
-      <a href="{{ '/news/' | relative_url }}" class="btn">View All News</a>
+      <a href="{{ '/news' | relative_url }}" class="btn">View All News</a>
     </div>
   </section>
 
@@ -63,12 +63,12 @@ title: Home
       <span class="title-line-2">Resources</span>
     </h2>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
-      <a href="{{ '/people/' | relative_url }}" class="card" style="text-decoration: none; text-align: center;">
+      <a href="{{ '/people' | relative_url }}" class="card" style="text-decoration: none; text-align: center;">
         <h3>Meet Our Team</h3>
         <p>Learn about our researchers and collaborators</p>
       </a>
       
-      <a href="{{ '/publications/' | relative_url }}" class="card" style="text-decoration: none; text-align: center;">
+      <a href="{{ '/publications' | relative_url }}" class="card" style="text-decoration: none; text-align: center;">
         <h3>Publications</h3>
         <p>Browse our research papers and presentations</p>
       </a>

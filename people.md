@@ -37,7 +37,7 @@ title: People
       <p>
         We offer research opportunities to MIT students and welcome collaborations with researchers worldwide.
       </p>
-      <a href="{{ '/about/' | relative_url }}" class="btn">Learn About Opportunities</a>
+      <a href="{{ '/about' | relative_url }}" class="btn">Learn About Opportunities</a>
     </div>
   </section>
 </div> 
