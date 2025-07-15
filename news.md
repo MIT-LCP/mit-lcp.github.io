@@ -6,9 +6,6 @@ title: News
 <div class="wrapper">
   <section class="content-section">
     <h1 class="section-title">News & Updates</h1>
-    <p class="section-subtitle">
-      Stay up to date with the latest news, publications, and announcements from the Laboratory for Computational Physiology.
-    </p>
 
     {% for news_item in site.data.news %}
     <div class="news-item">

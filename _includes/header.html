@@ -1,14 +1,18 @@
 <header class="site-header">
-  <div class="wrapper">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
-
-      <nav class="site-nav">
-        <a class="page-link{% if page.url == '/' %} active{% endif %}" href="{{ "/" | relative_url }}">Home</a>
-        <a class="page-link{% if page.url contains '/about' %} active{% endif %}" href="{{ "/about" | relative_url }}">About</a>
-        <a class="page-link{% if page.url contains '/people' %} active{% endif %}" href="{{ "/people" | relative_url }}">People</a>
-        <a class="page-link{% if page.url contains '/news' %} active{% endif %}" href="{{ "/news" | relative_url }}">News</a>
-        <a class="page-link{% if page.url contains '/publications' %} active{% endif %}" href="{{ "/publications" | relative_url }}">Publications</a>
+  <div class="container">
+    <div class="header-content">
+      <div class="site-title">
+        <img src="{{ '/assets/images/lcp_logo.png' | relative_url }}" alt="LCP Logo" class="site-logo">
+        <h1>MIT Laboratory for Computational Physiology</h1>
+      </div>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+          <li><a href="{{ '/about/' | relative_url }}" {% if page.url contains '/about/' %}class="active"{% endif %}>About</a></li>
+          <li><a href="{{ '/people/' | relative_url }}" {% if page.url contains '/people/' %}class="active"{% endif %}>People</a></li>
+          <li><a href="{{ '/news/' | relative_url }}" {% if page.url contains '/news/' %}class="active"{% endif %}>News</a></li>
+          <li><a href="{{ '/publications/' | relative_url }}" {% if page.url contains '/publications/' %}class="active"{% endif %}>Publications</a></li>
+        </ul>
       </nav>
     </div>
   </div>

@@ -14,6 +14,11 @@
   bio: "Focuses on machine learning for physiological dynamics modeling and informed clinical decision making. Member of the PhysioNet team."
   image: "li-wei_lehman.png"
 
+- name: Kenneth Paik
+  role: Research Scientist
+  bio: "Clinical informatician focused on quality improvement through technology innovation. Combines medicine, machine learning, and business management expertise."
+  image: "kepaik.png"
+
 - name: Tom Pollard
   role: Research Scientist
   bio: "Technical Director of PhysioNet. Expert in critical care databases including MIMIC and eICU. Conducts retrospective studies and develops software used internationally."
@@ -22,9 +27,4 @@
 - name: Jesse Raffa
   role: Research Scientist
   bio: "Biostatistician providing statistical and epidemiological expertise. Specializes in analysis of complex longitudinal data relevant to critical care settings."
-  image: "jraffa.jpg"
-
-- name: Kenneth Paik
-  role: Research Scientist
-  bio: "Clinical informatician focused on quality improvement through technology innovation. Combines medicine, machine learning, and business management expertise."
-  image: "kepaik.png" 
+  image: "jraffa.jpg" 

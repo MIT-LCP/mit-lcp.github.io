@@ -3,34 +3,38 @@ layout: default
 title: People
 ---
 
-<div class="wrapper">
+<div class="container">
   <section class="content-section">
-    <h1 class="section-title">Our Team</h1>
-    <p class="section-subtitle">
+    <h2 class="section-title">Our Team</h2>
+    <p>
       Meet the researchers, scientists, and collaborators of the Laboratory for Computational Physiology.
     </p>
 
-    <div class="people-grid">
+    <div class="people-list">
       {% for person in site.data.people %}
-      <div class="person-card">
-        {% if person.image %}
-        <img src="{{ '/assets/images/' | append: person.image | relative_url }}" alt="{{ person.name }}" class="person-image">
-        {% else %}
-        <img src="{{ '/assets/images/missing.jpg' | relative_url }}" alt="{{ person.name }}" class="person-image">
-        {% endif %}
-        <h3 class="person-name">{{ person.name }}</h3>
-        <p class="person-role">{{ person.role }}</p>
-        <p>{{ person.bio }}</p>
+      <div class="person-item">
+        <div class="person-photo-container">
+          {% if person.image %}
+          <img src="{{ '/assets/images/' | append: person.image | relative_url }}" alt="{{ person.name }}" class="person-photo">
+          {% else %}
+          <img src="{{ '/assets/images/missing.jpg' | relative_url }}" alt="{{ person.name }}" class="person-photo">
+          {% endif %}
+        </div>
+        <div class="person-info">
+          <h3 class="person-name">{{ person.name }}</h3>
+          <p class="person-title">{{ person.role }}</p>
+          <p>{{ person.bio }}</p>
+        </div>
       </div>
       {% endfor %}
     </div>
 
     <div style="text-align: center; margin-top: 3rem;">
       <h2 class="section-title">Join Our Lab</h2>
-      <p class="section-subtitle">
+      <p>
         We offer research opportunities to MIT students and welcome collaborations with researchers worldwide.
       </p>
-      <a href="{{ '/about' | relative_url }}" class="btn-hero" style="background: var(--mit-red); color: white;">Learn About Opportunities</a>
+      <a href="{{ '/about/' | relative_url }}" class="btn">Learn About Opportunities</a>
     </div>
   </section>
 </div> 

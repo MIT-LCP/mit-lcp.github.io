@@ -1,4 +1,30 @@
-# Example news data
-- date: 2024-06-01
-  title: "LCP launches new website on GitHub Pages!"
-  content: "We are excited to announce the launch of our new lab website, now powered by Jekyll and GitHub Pages." 
+# News items for the LCP lab
+- date: 2022-10-28
+  title: "Inaugural MIT Prize for Open Data"
+  content: "The PhysioNet team were recipients of the inaugural MIT Prize for Open Data in recognition of their work to support health research and education. The award - established to highlight the value of open data at MIT - was presented by School of Science Dean Nergis Mavalvala and MIT Libraries Director Chris Bourg on October 28 in the MIT Hayden Library."
+  url: "/2022/10/28/mit-prize-open-data.html"
+
+- date: 2021-02-16
+  title: "A tribute to George Moody"
+  content: "We are deeply saddened to announce the passing of George Moody, one of the original PhysioNet team. George passed away as a consequence of COVID-19 on February 13, 2021, surrounded by his family. George has been a fundamental part of PhysioNet since the beginning, stretching back into the late 70s and early 1980's. He developed the WFDB libraries and much of the code that can be found on PhysioNet today, which underpins the Research Resource for Complex Physiologic Signals."
+  url: "/2021/02/16/tribute-george-moody.html"
+
+- date: 2020-11-30
+  title: "LCP student receives Distinguished Paper award"
+  content: "We are delighted to announce that MingYu Lu has won the Distinguished Paper award at the AMIA 2020 Annual Symposium! MingYu worked under the guidance of Dr. Li-wei Lehman where they evaluated the safety and robustness of machine learning models for clinical treatment decision making in their paper titled 'Is Deep Reinforcement Learning Ready for Practical Applications in Healthcare?'"
+  url: "/2020/11/30/lcp-student-distinguished-paper.html"
+
+- date: 2020-08-17
+  title: "MIMIC-IV is now available!"
+  content: "We are delighted to announce that MIMIC-IV has been published on PhysioNet. MIMIC-IV, the latest version of MIMIC, is a database comprising comprehensive clinical information on hospital stays for patients admitted to a tertiary academic medical center in Boston, MA, USA. Major changes from MIMIC-III include a modular structure that links core hospital data to multiple data sources, including chest x-ray images."
+  url: "/2020/08/17/mimic-iv-available.html"
+
+- date: 2020-02-10
+  title: "MIMIC-CXR paper published"
+  content: "A journal article describing the MIMIC-CXR database was recently published in Scientific Data. The article provides detail regarding the collection, curation, and processing done in order to create the database. The database has also been preprocessed into compressed JPG format images, which have been made available on PhysioNet as the MIMIC-CXR-JPG Database."
+  url: "/2020/02/10/mimic-cxr-paper-published.html"
+
+- date: 2019-09-30
+  title: "MIMIC-III available on the cloud"
+  content: "The MIMIC-III database is now available on two major cloud platforms: Google Cloud Platform (GCP) and Amazon Web Services (AWS). To access the data on the cloud, simply add the relevant cloud identifier to your PhysioNet profile. Further instructions are available on the MIMIC-III website."
+  url: "/2019/09/30/mimic-iii-cloud.html" 
