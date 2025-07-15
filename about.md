@@ -75,7 +75,7 @@ title: About
         <p>
           We welcome collaborations with researchers worldwide who have relevant expertise in medicine, computer science, engineering, or related fields.
         </p>
-        <a href="{{ '/people/' | relative_url }}" class="btn" style="margin-top: 1rem;">Meet Our Team</a>
+        <a href="{{ '/people' | relative_url }}" class="btn" style="margin-top: 1rem;">Meet Our Team</a>
       </div>
       
       <div>
