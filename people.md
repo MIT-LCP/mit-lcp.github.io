@@ -5,7 +5,10 @@ title: People
 
 <div class="container">
   <section class="content-section">
-    <h2 class="section-title">Our Team</h2>
+    <h2 class="section-title">
+      <span class="title-line-1">Meet the</span>
+      <span class="title-line-2">Team</span>
+    </h2>
     <p>
       Meet the researchers, scientists, and collaborators of the Laboratory for Computational Physiology.
     </p>
@@ -30,7 +33,10 @@ title: People
     </div>
 
     <div style="text-align: center; margin-top: 3rem;">
-      <h2 class="section-title">Join Our Lab</h2>
+      <h2 class="section-title">
+        <span class="title-line-1">Interested in</span>
+        <span class="title-line-2">Join Our Lab</span>
+      </h2>
       <p>
         We offer research opportunities to MIT students and welcome collaborations with researchers worldwide.
       </p>

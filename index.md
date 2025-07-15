@@ -5,8 +5,13 @@ title: Home
 
 <!-- Main Content -->
 <div class="container">
-  <!-- About Section -->
+  <!-- Welcome Section -->
   <section class="content-section">
+    <h2 class="section-title">
+      <span class="title-line-1">Welcome to</span>
+      <span class="title-line-2">MIT-LCP</span>
+    </h2>
+    
     <p>
       The Laboratory for Computational Physiology (LCP), under the direction of Professor Roger Mark, conducts research at the intersection of medicine, engineering, and data science.
     </p>
@@ -26,7 +31,10 @@ title: Home
 
   <!-- Latest News Section -->
   <section class="content-section">
-    <h2 class="section-title">Latest News</h2>
+    <h2 class="section-title">
+      <span class="title-line-1">Stay Updated</span>
+      <span class="title-line-2">Latest News</span>
+    </h2>
     
     {% for news_item in site.data.news limit:3 %}
     <div class="news-item">
@@ -46,7 +54,10 @@ title: Home
 
   <!-- Quick Links -->
   <section class="content-section">
-    <h2 class="section-title">Quick Links</h2>
+    <h2 class="section-title">
+      <span class="title-line-1">Explore Our</span>
+      <span class="title-line-2">Quick Links</span>
+    </h2>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
       <a href="{{ '/people/' | relative_url }}" class="card" style="text-decoration: none; text-align: center;">
         <h3>Meet Our Team</h3>
