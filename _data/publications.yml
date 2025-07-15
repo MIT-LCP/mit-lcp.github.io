@@ -1,0 +1,119 @@
+- year: 2022
+  publications:
+    - title: "Delirium prediction in the ICU: designing a screening tool for preventive interventions"
+      authors: "Bhattacharyya A, Sheikhalishahi S, Torbic H, Yeung W, Wang T, Birst J, Duggal A, Celi LA, Osmani V"
+      journal: "JAMIA Open"
+      volume: "5(2)"
+      pages: "ooac048"
+      date: "June 2022"
+      doi: "10.1093/jamiaopen/ooac048"
+      pmid: "35702626"
+      url: "https://pubmed.ncbi.nlm.nih.gov/35702626/"
+      pdf: "/assets/pdf/research-opportunities.pdf"
+      type: "journal"
+    
+    - title: "A novel Vascular Leak Index identifies sepsis patients with a higher risk for in-hospital death and fluid accumulation"
+      authors: "Chandra J, Armengol de la Hoz MÁ, Lee G, Lee A, Thoral P, Elbers P, Lee HC, Munger JS, Celi LA, Kaufman DA"
+      journal: "Crit Care"
+      volume: "26(1)"
+      pages: "103"
+      date: "Apr. 2022"
+      doi: "10.1186/s13054-022-03968-4"
+      pmid: "35410278"
+      url: "https://pubmed.ncbi.nlm.nih.gov/35410278/"
+      type: "journal"
+    
+    - title: "Artificial intelligence for prediction of treatment outcomes in breast cancer: Systematic review of design, reporting standards, and bias"
+      authors: "Corti C, Cobanaj M, Marian F, Dee EC, Lloyd MR, Marcu S, Dombrovschi A, Biondetti GP, Batalini F, Celi LA, Curigliano G"
+      journal: "Cancer Treat Rev"
+      volume: "108"
+      pages: "102410"
+      date: "July 2022"
+      doi: "10.1016/j.ctrv.2022.102410"
+      pmid: "35609495"
+      url: "https://pubmed.ncbi.nlm.nih.gov/35609495/"
+      type: "journal"
+
+- year: 2021
+  publications:
+    - title: "Clinical artificial intelligence: a systematic review of methods and data quality"
+      authors: "Feng J, Phillips RV, Malenica I, Bishara A, Hubbard AE, Celi LA, Pirracchio R"
+      journal: "Nature Medicine"
+      volume: "27"
+      pages: "1660-1671"
+      date: "2021"
+      doi: "10.1038/s41591-021-01508-1"
+      type: "journal"
+    
+    - title: "MIMIC-IV: A freely accessible electronic health record dataset"
+      authors: "Johnson A, Bulgarelli L, Pollard T, Horng S, Celi LA, Mark R"
+      journal: "Scientific Data"
+      volume: "10"
+      pages: "1"
+      date: "2021"
+      doi: "10.1038/s41597-021-00935-6"
+      type: "journal"
+
+- year: 2020
+  publications:
+    - title: "MIMIC-IV, a freely accessible electronic health record dataset"
+      authors: "Johnson A, Bulgarelli L, Pollard T, Horng S, Celi LA, Mark R"
+      journal: "Scientific Data"
+      volume: "10"
+      pages: "1"
+      date: "2020"
+      doi: "10.1038/s41597-020-0495-7"
+      type: "journal"
+    
+    - title: "Chest radiograph interpretation with deep learning models: assessment with radiologist-adjudicated reference standards and population-adjusted evaluation"
+      authors: "Irvin J, Rajpurkar P, Ko M, Yu Y, Ciurea-Ilcus S, Chute C, Marklund H, Haghgoo B, Ball R, Shpanskaya K, Seekins J, Mong D, Halabi S, Sandberg J, Jones R, Larson D, Langlotz C, Patel B, Lungren M, Ng A"
+      journal: "Radiology"
+      volume: "294"
+      pages: "421-431"
+      date: "2020"
+      doi: "10.1148/radiol.2019191293"
+      type: "journal"
+
+- year: 2019
+  publications:
+    - title: "MIMIC-III, a freely accessible critical care database"
+      authors: "Johnson A, Pollard T, Shen L, Lehman L, Feng M, Ghassemi M, Moody B, Szolovits P, Celi LA, Mark R"
+      journal: "Scientific Data"
+      volume: "3"
+      pages: "160035"
+      date: "2019"
+      doi: "10.1038/sdata.2016.35"
+      type: "journal"
+
+- year: 2018
+  publications:
+    - title: "PhysioNet, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals"
+      authors: "Goldberger A, Amaral L, Glass L, Hausdorff J, Ivanov P, Mark R, Mietus J, Moody G, Peng C, Stanley H"
+      journal: "Circulation"
+      volume: "101"
+      pages: "e215-e220"
+      date: "2018"
+      doi: "10.1161/01.CIR.101.23.e215"
+      type: "journal"
+
+- year: 2017
+  publications:
+    - title: "A database of multi-channel intracranial EEG from epilepsy patients"
+      authors: "Ihle M, Feldwisch-Drentrup H, Teixeira C, Witon A, Schelter B, Timmer J, Schulze-Bonhage A"
+      journal: "Scientific Data"
+      volume: "4"
+      pages: "170047"
+      date: "2017"
+      doi: "10.1038/sdata.2017.47"
+      type: "journal"
+
+- year: 2016
+  publications:
+    - title: "PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals"
+      authors: "Goldberger A, Amaral L, Glass L, Hausdorff J, Ivanov P, Mark R, Mietus J, Moody G, Peng C, Stanley H"
+      journal: "Circulation"
+      volume: "101"
+      pages: "e215-e220"
+      date: "2016"
+      doi: "10.1161/01.CIR.101.23.e215"
+      type: "journal" 

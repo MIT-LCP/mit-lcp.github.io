@@ -1,0 +1,72 @@
+# Google Scholar Profiles Configuration
+# Add the Google Scholar profile URLs for lab members
+# The script will fetch publications from these profiles
+
+profiles:
+    
+  - name: "Tom Pollard"
+    url: "https://scholar.google.com/citations?user=kd2pMFYAAAAJ"
+    role: "Research Scientist"
+    active: true
+    year_range:
+      start: 2015
+      end: null  # null means current year
+    
+  - name: "Alistair Johnson"
+    url: "https://scholar.google.com/citations?user=66GCSz8AAAAJ"
+    role: "Research Scientist"
+    active: true
+    year_range:
+      start: 2015
+      end: 2021
+
+  - name: "Li-wei Lehman"
+    url: "https://scholar.google.com/citations?user=it0h7rMAAAAJ"
+    role: "Research Scientist"
+    active: true
+    year_range:
+      start: 2015
+      end: null  # null means current year
+
+  - name: "Leo Anthony Celi"
+    url: "https://scholar.google.com/citations?user=kssA7YwAAAAJ"
+    role: "Principal Investigator"
+    active: true
+    year_range:
+      start: 2010
+      end: null  # null means current year
+
+  - name: "Jesse Raffa"
+    url: "https://scholar.google.com/citations?user=zh0v7EYAAAAJ"
+    role: "Research Scientist"
+    active: true
+    year_range:
+      start: 2015
+      end: null  # null means current year
+
+# Configuration options
+settings:
+  # Maximum number of publications to fetch per profile
+  max_publications_per_profile: 30
+  
+  # Minimum year to include (older publications will be filtered out)
+  min_year: 2010
+  
+  # Publication types to include
+  include_types:
+    - "journal"
+    - "conference"
+    - "book"
+  
+  # Keywords to filter publications (optional)
+  # Publications containing these keywords will be prioritized
+  priority_keywords:
+    - "MIMIC"
+    - "PhysioNet"
+    - "critical care"
+    - "ICU"
+    - "machine learning"
+    - "artificial intelligence"
+    - "healthcare"
+    - "medical"
+    - "clinical" 

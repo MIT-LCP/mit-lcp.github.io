@@ -1,0 +1,73 @@
+# Example Google Scholar Profiles Configuration
+# This file shows different year range scenarios for lab members
+
+profiles:
+  # Current lab member (still active)
+  - name: "Current PI"
+    url: "https://scholar.google.com/citations?user=EXAMPLE_USER_ID_1"
+    role: "Principal Investigator"
+    active: true
+    year_range:
+      start: 2010  # Joined the lab in 2010
+      end: null    # Still in the lab (current year)
+  
+  # Current lab member (joined more recently)
+  - name: "Current Postdoc"
+    url: "https://scholar.google.com/citations?user=EXAMPLE_USER_ID_2"
+    role: "Postdoctoral Researcher"
+    active: true
+    year_range:
+      start: 2020  # Joined the lab in 2020
+      end: null    # Still in the lab
+  
+  # Former lab member (left the lab)
+  - name: "Former PhD Student"
+    url: "https://scholar.google.com/citations?user=EXAMPLE_USER_ID_3"
+    role: "PhD Student"
+    active: true
+    year_range:
+      start: 2015  # Joined the lab in 2015
+      end: 2022    # Left the lab in 2022
+  
+  # Former lab member (short stay)
+  - name: "Former Visiting Scholar"
+    url: "https://scholar.google.com/citations?user=EXAMPLE_USER_ID_4"
+    role: "Visiting Scholar"
+    active: true
+    year_range:
+      start: 2018  # Joined the lab in 2018
+      end: 2019    # Left the lab in 2019
+  
+  # Lab member with no year range (uses global min_year)
+  - name: "Legacy Member"
+    url: "https://scholar.google.com/citations?user=EXAMPLE_USER_ID_5"
+    role: "Research Scientist"
+    active: true
+    # No year_range specified - will use global min_year setting
+
+# Configuration options
+settings:
+  # Maximum number of publications to fetch per profile
+  max_publications_per_profile: 50
+  
+  # Minimum year to include (fallback for profiles without year_range)
+  min_year: 2010
+  
+  # Publication types to include
+  include_types:
+    - "journal"
+    - "conference"
+    - "book"
+  
+  # Keywords to filter publications (optional)
+  # Publications containing these keywords will be prioritized
+  priority_keywords:
+    - "MIMIC"
+    - "PhysioNet"
+    - "critical care"
+    - "ICU"
+    - "machine learning"
+    - "artificial intelligence"
+    - "healthcare"
+    - "medical"
+    - "clinical" 
