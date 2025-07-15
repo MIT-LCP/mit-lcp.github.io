@@ -1,119 +1,2362 @@
+- year: 2025
+  publications:
+  - title: 'BioClinical ModernBERT: A State-of-the-Art Long-Context Encoder for Biomedical
+      and Clinical NLP'
+    authors: T Sounack, J Davis, B Durieux, A Chaffin, TJ Pollard, E Lehman, ...
+    journal: arXiv preprint arXiv:2506.10896, 2025
+    year: 2025
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:dTyEYWd-f8wC
+  - title: 'MIMIC-IV, a freely accessible electronic health record dataset. Sci Data.
+      2023; 10: 1'
+    authors: AEW Johnson, L Bulgarelli, L Shen, A Gayles, A Shammout, S Horng, ...
+    journal: ''
+    year: 2025
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:uLbwQdceFCQC
+  - title: "Physical Restraint Use in a US Intensive Care Setting\u2013Protocol for\
+      \ a retrospective cross-sectional analysis using the MIMIC-IV repository"
+    authors: "M Lange, LA Celi, B Carter, JD Raffa, SC O\u2019Donoghue, TJ Pollard"
+    journal: medRxiv, 2025.04. 23.25326294, 2025
+    year: 2025
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:JoZmwDi-zQgC
+  - title: "882: PERFORMANCE OF THE GLOBAL OPEN SOURCE SEVERITY OF ILLNESS SCORE AT\
+      \ A QUATERNARY CHILDREN\u2019S HOSPITAL"
+    authors: S Nutman, J Klug, C Bitler, H Hochheiser, J Raffa, T Pollard, LA Celi,
+      ...
+    journal: Critical Care Medicine 53 (1), 2025
+    year: 2025
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:XiVPGOgt02cC
+  - title: '1351: EARLY USE OF CRITICAL CARE DIGITAL QUALITY MEASURES ARE ASSOCIATED
+      WITH DECREASED VENTILATOR DAYS'
+    authors: C Horvat, J Klug, R Li, J Raffa, T Pollard, L Celi, M Plovock, K Emanuele,
+      ...
+    journal: Critical Care Medicine 53 (1), 2025
+    year: 2025
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:bnK-pcrLprsC
+  - title: 'Tackling algorithmic bias and promoting transparency in health datasets:
+      the STANDING Together consensus recommendations'
+    authors: JE Alderman, J Palmer, E Laws, MD McCradden, J Ordish, M Ghassemi, ...
+    journal: The Lancet Digital Health 7 (1), e64-e88, 2025
+    year: 2025
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:eflP2zaiRacC
+  - title: 'Health Data Nexus: an open data platform for AI research and education
+      in medicine'
+    authors: J Adams, R Cymerys, K Szuster, D Hekman, Z Salo, R Solanki, ...
+    journal: GigaScience 14, giaf050, 2025
+    year: 2025
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:t6usbXjVLHcC
+  - title: 'Center for Open Science NSF 21-511 AccelNet-Implementation: Community
+      of Open Science Grassroots Networks (COSGN) Project Summary'
+    authors: BA Nosek, KS Corker, T Krall, FL Grasty, REB Iii, DT Mellor, S van Tuyl,
+      ...
+    journal: ''
+    year: 2025
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:HE397vMXCloC
+  - title: Deep learning-enabled electrocardiogram assessment of valvular heart disease
+    authors: A Cinq-Mars, T Carbonati, L Fiorina, A Neylon, P Porquet, A Nguyen, ...
+    journal: European Heart Journal-Cardiovascular Imaging 26 (Supplement_1), jeae333.
+      001, 2025
+    year: 2025
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:wbdj-CoPYUoC
+- year: 2024
+  publications:
+  - title: 'TRIPOD+ AI statement: updated guidance for reporting clinical prediction
+      models that use regression or machine learning methods'
+    authors: GS Collins, KGM Moons, P Dhiman, RD Riley, AL Beam, B Van Calster, ...
+    journal: bmj 385, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:E7VqQtBCVmcC
+  - title: Mimic-cxr database
+    authors: A Johnson, T Pollard, R Mark, S Berkowitz, S Horng
+    journal: PhysioNet10 13026, C2JT1Q, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:J_g5lzvAfSwC
+  - title: 'Medical event data standard (MEDS): Facilitating machine learning for
+      health'
+    authors: B Arnrich, E Choi, JA Fries, MBA McDermott, J Oh, T Pollard, N Shah,
+      ...
+    journal: ICLR 2024 Workshop on Learning from Time Series For Health, 03-08, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:xtRiw3GOFMkC
+  - title: 'Raising awareness of potential biases in medical machine learning: Experience
+      from a Datathon'
+    authors: H Hochheiser, J Klug, T Mathie, TJ Pollard, JD Raffa, SL Ballard, ...
+    journal: medRxiv, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:LPZeul_q3PIC
+  - title: 'Use of artificial intelligence in improving outcomes in heart disease:
+      a scientific statement from the American Heart Association'
+    authors: AA Armoundas, SM Narayan, DK Arnett, K Spector-Bagdady, DA Bennett, ...
+    journal: Circulation 149 (14), e1028-e1050, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:Vno172sVVMwC
+  - title: 'G-transformer: Counterfactual outcome prediction under dynamic and time-varying
+      treatment regimes'
+    authors: H Xiong, F Wu, L Deng, M Su, Z Shahn, LH Lehman
+    journal: "Proceedings of machine learning research 252, https://proceedings. mlr\_\
+      \u2026, 2024"
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:5Ul4iDaHHb8C
+  - title: 'Meds decentralized, extensible validation (meds-dev) benchmark: Establishing
+      reproducibility and comparability in ml for health'
+    authors: A Kolo, C Pang, E Choi, E Steinberg, H Jeong, J Gallifant, JA Fries,
+      ...
+    journal: Machine Learning For Health Confernce, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:V3AGJWp-ZtQC
+  - title: Deep neural networks detect regional wall motion abnormalities and preclinical
+      cardiovascular disease from 12-lead ECGs
+    authors: T Carbonati, P Eslami, JW Waks, L Fiorina, A Chaudhari, C Henry, ...
+    journal: medRxiv, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:CHSYGLWDkRkC
+  - title: 'MIMIC-IV-ECG & MIMIC-IV-ECHO: DETECTION OF REGIONAL WALL MOTION ABNORMALITIES
+      FROM ELECTROCARDIOGRAM USING DEEP LEARNING'
+    authors: T Carbonati, P Eslami, A Chaudhari, E Herbst, L Fiorina, P Porquet, ...
+    journal: Journal of the American College of Cardiology 83 (13_Supplement), 1172-1172,
+      2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:XiSMed-E-HIC
+  - title: 'Assessing the potential of GPT-4 to perpetuate racial and gender biases
+      in health care: a model evaluation study'
+    authors: T Zack, E Lehman, M Suzgun, JA Rodriguez, LA Celi, J Gichoya, ...
+    journal: The Lancet Digital Health 6 (1), e12-e22, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:yeL6HyUMUGUC
+  - title: The effect of using a large language model to respond to patient messages
+    authors: S Chen, M Guevara, S Moningi, F Hoebers, H Elhalawani, BH Kann, ...
+    journal: The Lancet Digital Health 6 (6), e379-e381, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:XAp-VaTZjjwC
+  - title: Peer review of GPT-4 technical report and systems card
+    authors: J Gallifant, A Fiske, YA Levites Strekalova, JS Osorio-Valencia, R Parke,
+      ...
+    journal: PLOS digital health 3 (1), e0000417, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:natZJ_-F0IUC
+  - title: INSPIRE, a publicly available research dataset for perioperative medicine
+    authors: L Lim, H Lee, CW Jung, D Sim, X Borrat, TJ Pollard, LA Celi, RG Mark,
+      ...
+    journal: Scientific Data 11 (1), 655, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:1sJd4Hv_s6UC
+  - title: 'EHRCon: Dataset for checking consistency between unstructured notes and
+      structured tables in electronic health records'
+    authors: Y Kwon, J Kim, G Lee, S Bae, D Kyung, W Cha, T Pollard, A Johnson, ...
+    journal: Advances in Neural Information Processing Systems 37, 89334-89345, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:P5F9QuxV20EC
+  - title: 'A reinforcement learning model for optimal treatment strategies in intensive
+      care: assessment of the role of cardiorespiratory features'
+    authors: C Drudi, M Mollura, HL Li-wei, R Barbieri
+    journal: IEEE Open Journal of Engineering in Medicine and Biology 5, 806-815,
+      2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:B3FOqHPlNUQC
+  - title: Conference on Health, Inference, and Learning (CHIL) 2024
+    authors: T Pollard, E Choi, P Singhal, M Hughes, E Sizikova, B Mortazavi, I Chen,
+      ...
+    journal: Conference on Health, Inference, and Learning, 1-6, 2024
+    year: 2024
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:OU6Ihb5iCvQC
+- year: 2023
+  publications:
+  - title: Generalized image embeddings for the mimic chest x-ray dataset
+    authors: A Sellergren, A Kiraly, T Pollard, WH Weng, Y Liu, A Uddin, C Chen
+    journal: PhysioNet, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:zA6iFVUQeVQC
+  - title: Creation and Expansion of a Mixed Patient Intermediate Care Unit to Improve
+      ICU Capacity
+    authors: EA Kistler, E Klatt, JD Raffa, P West, JA Fitzgerald, J Barsamian, S
+      Rollins, ...
+    journal: Critical Care Explorations 5 (10), e0994, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:BqipwSGYUEgC
+  - title: MIMIC-IV, a freely accessible electronic health record dataset
+    authors: AEW Johnson, L Bulgarelli, L Shen, A Gayles, A Shammout, S Horng, ...
+    journal: Scientific data 10 (1), 1, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:pqnbT2bcN3wC
+  - title: MIMIC-IV, a freely accessible electronic health record dataset
+    authors: AEW Johnson, L Bulgarelli, L Shen, A Gayles, A Shammout, S Horng, ...
+    journal: Scientific data 10 (1), 1, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&citation_for_view=it0h7rMAAAAJ:p2g8aNsByqUC
+  - title: MIMIC-IV, a freely accessible electronic health record dataset
+    authors: AEW Johnson, L Bulgarelli, L Shen, A Gayles, A Shammout, S Horng, ...
+    journal: Scientific data 10 (1), 1, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:-6RzNnnwWf8C
+  - title: Ethics of large language models in medicine and medical research
+    authors: H Li, JT Moon, S Purkayastha, LA Celi, H Trivedi, JW Gichoya
+    journal: The Lancet Digital Health 5 (6), e333-e335, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:SxCCDk4iOpsC
+  - title: ChatGPT passing USMLE shines a spotlight on the flaws of medical education
+    authors: AB Mbakwe, I Lourentzou, LA Celi, OJ Mechanic, A Dagan
+    journal: PLOS digital health 2 (2), e0000205, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:-yGd096yOn8C
+  - title: The promise of digital healthcare technologies
+    authors: AWK Yeung, A Torkamani, AJ Butte, BS Glicksberg, B Schuller, ...
+    journal: Frontiers in Public Health 11, 1196596, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:4Yq6kJLCcecC
+  - title: 'Artificial intelligence in cancer research and precision medicine: Applications,
+      limitations and priorities to drive transformation in the delivery of equitable
+      and unbiased care'
+    authors: C Corti, M Cobanaj, EC Dee, C Criscitiello, SM Tolaney, LA Celi, ...
+    journal: Cancer Treatment Reviews 112, 102498, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:L_l9e5I586QC
+  - title: 'Mimic-iv-ecg: Diagnostic electrocardiogram matched subset'
+    authors: B Gow, T Pollard, LA Nathanson, A Johnson, B Moody, C Fernandes, ...
+    journal: 'Type: dataset 6, 13-14, 2023'
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:g5m5HwL7SMYC
+  - title: The impact of commercial health datasets on medical research and health-care
+      algorithms
+    authors: IRI Alberto, NRI Alberto, AK Ghosh, B Jain, S Jayakumar, ...
+    journal: The Lancet Digital Health 5 (5), e288-e294, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:RtRctb2lSbAC
+  - title: MIMIC-IV, a freely accessible electronic health record dataset, Sci
+    authors: AEW Johnson, L Bulgarelli, L Shen, A Gayles, A Shammout, S Horng, ...
+    journal: Data 1 (0), 1, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:UHK10RUVsp4C
+  - title: 'In the name of fairness: assessing the bias in clinical record de-identification'
+    authors: Y Xiao, S Lim, TJ Pollard, M Ghassemi
+    journal: "Proceedings of the 2023 ACM Conference on Fairness, Accountability,\
+      \ and\_\u2026, 2023"
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:dfsIfKJdRG4C
+  - title: Forecasting treatment outcomes over time using alternating deep sequential
+      models
+    authors: F Wu, G Zhao, Y Zhou, X Qian, BK Elias, LH Lehman
+    journal: IEEE Transactions on Biomedical Engineering 71 (4), 1237-1246, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:vRqMK49ujn8C
+  - title: A Diffusion Model with Contrastive Learning for ICU False Arrhythmia Alarm
+      Reduction.
+    authors: F Wu, G Zhao, X Qian, LWH Lehman
+    journal: IJCAI, 4912-4920, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:tOudhMTPpwUC
+  - title: Effects of aggressive and conservative strategies for mechanical ventilation
+      liberation
+    authors: Z Shahn, A Choudhri, B Jung, D Talmor, LH Lehman, E Baedorf-Kassis
+    journal: Journal of Critical Care 76, 154275, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:1sJd4Hv_s6UC
+  - title: 'VTaC: A benchmark dataset of ventricular tachycardia alarms from ICU monitors'
+    authors: L Lehman, B Moody, H Deep, F Wu, H Saeed, L McCullum, D Perry, ...
+    journal: Advances in Neural Information Processing Systems 36, 38827-38843, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:4fKUyHm3Qg0C
+  - title: SNOMED CT Entity Linking Challenge
+    authors: W Hardman, M Banks, R Davidson, D Truran, NW Ayuningtyas, H Ngo, ...
+    journal: PhysioNet. Version 1 (0), 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:_xSYboBqXhAC
+  - title: A Knowledge Distillation Approach for Sepsis Outcome Prediction from Multivariate
+      Clinical Time Series
+    authors: A Wong, S Ge, N Oufattole, A Dejl, M Su, A Saeedi, LH Lehman
+    journal: arXiv preprint arXiv:2311.09566, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:tS2w5q8j5-wC
+  - title: Evaluating the Impact of Social Determinants on Health Prediction
+    authors: MG Ming Ying Yang, Gloria Hyunjung Kwak, Tom Pollard, Leo Anthony Celi
+    journal: ACM Conference on Artificial Intelligence, Ethics and Society (AIES),
+      2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:fPk4N6BV_jEC
+  - title: 'In the Name of Fairness: Assessing the Bias in Clinical Record De-identification'
+    authors: MG Yuxin Xiao, Shulammite Lim, Tom Joseph Pollard
+    journal: ACM Conference on Fairness, Accountability, and Transparency (ACM FAccT),
+      2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:u_35RYKgDlwC
+  - title: 'AI pitfalls and what not to do: mitigating bias in AI'
+    authors: JW Gichoya, K Thomas, LA Celi, N Safdar, I Banerjee, JD Banja, ...
+    journal: The British Journal of Radiology 96 (1150), 20230023, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:1r-w4gtu6w8C
+  - title: 'Digital literacy as a new determinant of health: a scoping review'
+    authors: "MP Arias L\xF3pez, BA Ong, X Borrat Frigola, AL Fern\xE1ndez, RS Hicklent,\
+      \ ..."
+    journal: PLOS Digital Health 2 (10), e0000279, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:QsKbpXNoaWkC
+  - title: Evaluating the impact of social determinants on health prediction in the
+      intensive care unit
+    authors: MY Yang, GH Kwak, T Pollard, LA Celi, M Ghassemi
+    journal: Proceedings of the 2023 AAAI/ACM Conference on AI, Ethics, and Society,
+      333-350, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:pyW8ca7W8N0C
+  - title: Titration of ventilator settings to target driving pressure and mechanical
+      power
+    authors: EN Baedorf Kassis, S Hu, MY Lu, AEW Johnson, S Bose, MS Schaefer, ...
+    journal: Respiratory Care 68 (2), 199-207, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=40&citation_for_view=it0h7rMAAAAJ:xtRiw3GOFMkC
+  - title: Organ Retrieval and Collection of Health Information for Donation (ORCHID)
+    authors: H Adam, V Suriyakumar, T Pollard, B Moody, J Erickson, G Segal, ...
+    journal: ''
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:D03iK_w7-QYC
+  - title: Evaluating the impact of social determinants on health prediction
+    authors: MY Yang, GH Kwak, T Pollard, LA Celi, M Ghassemi
+    journal: arXiv preprint arXiv 2305, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:4OULZ7Gr8RgC
+  - title: Evaluation of evolving sepsis screening criteria in discriminating suspected
+      sepsis and mortality among adult patients admitted to the intensive care unit
+    authors: TA Rincon, J Raffa, LA Celi, O Badawi, AEW Johnson, T Pollard, ...
+    journal: International journal of nursing studies 145, 104529, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:3s1wT3WcHBgC
+  - title: Evaluation of evolving sepsis screening criteria in discriminating suspected
+      sepsis and mortality among adult patients admitted to the intensive care unit
+    authors: TA Rincon, J Raffa, LA Celi, O Badawi, AEW Johnson, T Pollard, ...
+    journal: International Journal of Nursing Studies 145, 104529, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:YFjsv_pBGBYC
+  - title: 'Characterizing the Progression of Pulmonary Edema Severity: Can Pairwise
+      Comparisons in Radiology Reports Help?'
+    authors: SM Hu, S Horng, SJ Berkowitz, R Liao, RG Krishnan, LH Lehman, ...
+    journal: 2023 Computing in Cardiology (CinC) 50, 1-4, 2023
+    year: 2023
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:yD5IFk8b50cC
 - year: 2022
   publications:
-    - title: "Delirium prediction in the ICU: designing a screening tool for preventive interventions"
-      authors: "Bhattacharyya A, Sheikhalishahi S, Torbic H, Yeung W, Wang T, Birst J, Duggal A, Celi LA, Osmani V"
-      journal: "JAMIA Open"
-      volume: "5(2)"
-      pages: "ooac048"
-      date: "June 2022"
-      doi: "10.1093/jamiaopen/ooac048"
-      pmid: "35702626"
-      url: "https://pubmed.ncbi.nlm.nih.gov/35702626/"
-      pdf: "/assets/pdf/research-opportunities.pdf"
-      type: "journal"
-    
-    - title: "A novel Vascular Leak Index identifies sepsis patients with a higher risk for in-hospital death and fluid accumulation"
-      authors: "Chandra J, Armengol de la Hoz MÁ, Lee G, Lee A, Thoral P, Elbers P, Lee HC, Munger JS, Celi LA, Kaufman DA"
-      journal: "Crit Care"
-      volume: "26(1)"
-      pages: "103"
-      date: "Apr. 2022"
-      doi: "10.1186/s13054-022-03968-4"
-      pmid: "35410278"
-      url: "https://pubmed.ncbi.nlm.nih.gov/35410278/"
-      type: "journal"
-    
-    - title: "Artificial intelligence for prediction of treatment outcomes in breast cancer: Systematic review of design, reporting standards, and bias"
-      authors: "Corti C, Cobanaj M, Marian F, Dee EC, Lloyd MR, Marcu S, Dombrovschi A, Biondetti GP, Batalini F, Celi LA, Curigliano G"
-      journal: "Cancer Treat Rev"
-      volume: "108"
-      pages: "102410"
-      date: "July 2022"
-      doi: "10.1016/j.ctrv.2022.102410"
-      pmid: "35609495"
-      url: "https://pubmed.ncbi.nlm.nih.gov/35609495/"
-      type: "journal"
-
+  - title: 'Clinical artificial intelligence quality improvement: towards continual
+      monitoring and updating of AI algorithms in healthcare'
+    authors: J Feng, RV Phillips, I Malenica, A Bishara, AE Hubbard, LA Celi, ...
+    journal: NPJ digital medicine 5 (1), 66, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:wvYxNZNCP7wC
+  - title: "Sources of bias in artificial intelligence that perpetuate healthcare\
+      \ disparities\u2014A global review"
+    authors: LA Celi, J Cellini, ML Charpignon, EC Dee, F Dernoncourt, R Eber, ...
+    journal: PLOS digital health 1 (3), e0000022, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:kzcSZmkxUKAC
+  - title: "Systematic review and comparison of publicly available ICU data sets\u2014\
+      a decision guide for clinicians and data scientists"
+    authors: CM Sauer, TA Dam, LA Celi, M Faltys, MAA de la Hoz, L Adhikari, ...
+    journal: Critical care medicine 50 (6), e581-e588, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:raTqNPD5sRQC
+  - title: 'Artificial intelligence in the clinical setting: towards actual implementation
+      of reliable outcome predictions'
+    authors: ST Vistisen, TJ Pollard, S Harris, SM Lauritsen
+    journal: European Journal of Anaesthesiology| EJA 39 (9), 729-732, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:hMod-77fHWUC
+  - title: 'International Comparisons of ICU Performance: A Proposed Approach to Severity
+      Scoring Systems Reply'
+    authors: JD Raffa, AEW Johnson, Z O'Brien, TJ Pollard, RG Mark, LA Celi, ...
+    journal: CRITICAL CARE MEDICINE 50 (11), E801-E802, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:ldfaerwXgEUC
+  - title: 'International Comparisons of ICU Performance: A Proposed Approach to Severity
+      Scoring Systems Reply'
+    authors: JD Raffa, AEW Johnson, Z O'Brien, TJ Pollard, RG Mark, LA Celi, ...
+    journal: CRITICAL CARE MEDICINE 50 (11), E801-E802, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=40&citation_for_view=zh0v7EYAAAAJ:NMxIlDl6LWMC
+  - title: 'AI recognition of patient race in medical imaging: a modelling study'
+    authors: JW Gichoya, I Banerjee, AR Bhimireddy, JL Burns, LA Celi, LC Chen, ...
+    journal: The Lancet Digital Health 4 (6), e406-e414, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:pS0ncopqnHgC
+  - title: 'Global healthcare fairness: We should be sharing more, not less, data'
+    authors: "KP Seastedt, P Schwab, Z O\u2019Brien, E Wakida, K Herrera, PGF Marcelo,\
+      \ ..."
+    journal: PLOS Digital Health 1 (10), e0000102, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:27LrP4qxOz0C
+  - title: A systematic review of federated learning applications for biomedical data
+    authors: "MG Crowson, D Moukheiber, AR Ar\xE9valo, BD Lam, S Mantena, A Rana,\
+      \ ..."
+    journal: PLOS Digital Health 1 (5), e0000033, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:SnGPuo6Feq8C
+  - title: Waveform database software package (wfdb) for python
+    authors: C Xie, L McCullum, A Johnson, T Pollard, B Gow, B Moody
+    journal: PhysioNet, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:u9iWguZQMMsC
+  - title: The global open source severity of illness score (GOSSIS)
+    authors: "JD Raffa, AEW Johnson, Z O\u2019Brien, TJ Pollard, RG Mark, LA Celi,\
+      \ ..."
+    journal: Critical care medicine 50 (7), 1040-1050, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:Tyk-4Ss8FVUC
+  - title: The Global Open Source Severity of Illness Score (GOSSIS)
+    authors: "JD Raffa, AEW Johnson, Z O\u2019Brien, TJ Pollard, RG Mark, LA Celi,\
+      \ ..."
+    journal: Critical Care Medicine 50 (7), 1040-1050, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:hMod-77fHWUC
+  - title: A contrastive learning approach for ICU false arrhythmia alarm reduction
+    authors: Y Zhou, G Zhao, J Li, G Sun, X Qian, B Moody, RG Mark, LH Lehman
+    journal: Scientific reports 12 (1), 4689, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=40&citation_for_view=it0h7rMAAAAJ:EUQCXRtRnyEC
+  - title: A reinforcement learning application for optimal fluid and vasopressor
+      interventions in septic icu patients
+    authors: M Mollura, C Drudi, LW Lehman, R Barbieri
+    journal: "2022 44th Annual International Conference of the IEEE Engineering in\_\
+      \u2026, 2022"
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=40&citation_for_view=it0h7rMAAAAJ:P5F9QuxV20EC
+  - title: Knowledge distillation via constrained variational inference
+    authors: A Saeedi, Y Utsumi, L Sun, K Batmanghelich, L Lehman
+    journal: Proceedings of the AAAI Conference on Artificial Intelligence 36 (7),
+      8132-8140, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:4OULZ7Gr8RgC
+  - title: Optimal fluid and vasopressor interventions in septic icu patients through
+      reinforcement learning model
+    authors: M Mollura, C Drudi, L Lehman, R Barbieri
+    journal: 2022 Computing in Cardiology (CinC) 498, 1-4, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:UxriW0iASnsC
+  - title: Evaluation of individual and ensemble probabilistic forecasts of COVID-19
+      mortality in the United States
+    authors: EY Cramer, EL Ray, VK Lopez, J Bracher, A Brennen, ...
+    journal: Proceedings of the National Academy of Sciences 119 (15), e2113561119,
+      2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:buQ7SEKw-1sC
+  - title: FAIR principles for research software (FAIR4RS principles)
+    authors: NP Chue Hong, DS Katz, M Barker, AL Lamprecht, C Martinez, ...
+    journal: Zenodo, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:k_IJM867U9cC
+  - title: Assessment of racial and ethnic differences in oxygen supplementation among
+      patients in the intensive care unit
+    authors: ER Gottlieb, J Ziegler, K Morley, B Rush, LA Celi
+    journal: JAMA internal medicine 182 (8), 849-858, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:k_7cPK9k7w8C
+  - title: 'Leveraging electronic health records for data science: common pitfalls
+      and how to avoid them'
+    authors: CM Sauer, LC Chen, SL Hyland, A Girbes, P Elbers, LA Celi
+    journal: The Lancet Digital Health 4 (12), e893-e898, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:-DxkuPiZhfEC
+  - title: BRAX, Brazilian labeled chest x-ray dataset
+    authors: EP Reis, JPQ De Paiva, MCB Da Silva, GAS Ribeiro, VF Paiva, ...
+    journal: Scientific Data 9 (1), 487, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:4DMP91E08xMC
+  - title: Characterization of physiologic patients' response to fluid interventions
+      in the intensive care unit
+    authors: M Mollura, C Salerni, L Lehman, R Barbieri
+    journal: "2022 44th Annual International Conference of the IEEE Engineering in\_\
+      \u2026, 2022"
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:nb7KW1ujOQ8C
+  - title: 'PhysioTag: An open-source platform for collaborative annotation of physiological
+      waveforms'
+    authors: L McCullum, H Saeed, B Moody, D Perry, E Gottlieb, T Pollard, XB Frigola,
+      ...
+    journal: 2022 Computing in Cardiology (CinC) 498, 1-4, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:rO6llkc54NcC
+  - title: 'Treatment-RSPN: recurrent sum-product networks for sequential treatment
+      regimes'
+    authors: A Dejl, H Deep, J Fei, A Saeedi, LH Lehman
+    journal: arXiv preprint arXiv:2211.07052, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:OU6Ihb5iCvQC
+  - title: 'PhysioTag: An open-source platform for collaborative annotation of physiological
+      waveforms'
+    authors: L McCullum, H Saeed, B Moody, D Perry, E Gottlieb, T Pollard, XB Frigola,
+      ...
+    journal: 2022 Computing in Cardiology (CinC) 498, 1-4, 2022
+    year: 2022
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:XiSMed-E-HIC
 - year: 2021
   publications:
-    - title: "Clinical artificial intelligence: a systematic review of methods and data quality"
-      authors: "Feng J, Phillips RV, Malenica I, Bishara A, Hubbard AE, Celi LA, Pirracchio R"
-      journal: "Nature Medicine"
-      volume: "27"
-      pages: "1660-1671"
-      date: "2021"
-      doi: "10.1038/s41591-021-01508-1"
-      type: "journal"
-    
-    - title: "MIMIC-IV: A freely accessible electronic health record dataset"
-      authors: "Johnson A, Bulgarelli L, Pollard T, Horng S, Celi LA, Mark R"
-      journal: "Scientific Data"
-      volume: "10"
-      pages: "1"
-      date: "2021"
-      doi: "10.1038/s41597-021-00935-6"
-      type: "journal"
-
+  - title: Mimic-iv (version 1.0)
+    authors: A Johnson, L Bulgarelli, T Pollard, S Horng, LA Celi, R Mark
+    journal: PhysioNet 101, e215-e220, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:Y5dfb0dijaUC
+  - title: Mimic-iv (version 1.0)
+    authors: A Johnson, L Bulgarelli, T Pollard, S Horng, LA Celi, R Mark
+    journal: PhysioNet 101, e215-e220, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:PaBasH6fAo0C
+  - title: Mimic-iv (version 1.0)
+    authors: A Johnson, L Bulgarelli, T Pollard, S Horng, LA Celi, R Mark
+    journal: PhysioNet 101, e215-e220, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:u0Mu_IsstPMC
+  - title: Mimic-iv-ed
+    authors: A Johnson, L Bulgarelli, T Pollard, LA Celi, R Mark, S Horng IV
+    journal: PhysioNet, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:eq2jaN3J8jMC
+  - title: Mimic-iv-ed
+    authors: A Johnson, L Bulgarelli, T Pollard, LA Celi, R Mark, S Horng IV
+    journal: PhysioNet, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:WHdLCjDvYFkC
+  - title: Mimic-iv-ed
+    authors: A Johnson, L Bulgarelli, T Pollard, LA Celi, R Mark, S Horng IV
+    journal: PhysioNet, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:feST4K8J0scC
+  - title: MIMIC-IV (version 1.0). PhysioNet. 2021
+    authors: A Johnson, L Bulgarelli, T Pollard, S Horng, LA Celi, R Mark IV
+    journal: 'DOI: https://doi. org/10.13026/s6n6-xd98, 2021'
+    year: 2021
+    type: journal
+    doi: 10.13026/s6n6-xd98
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:yD5IFk8b50cC
+  - title: MIMIC-IV (version 1.0). PhysioNet. 2021
+    authors: A Johnson, L Bulgarelli, T Pollard, S Horng, LA Celi, R Mark IV
+    journal: 'DOI: https://doi. org/10.13026/s6n6-xd98, 2021'
+    year: 2021
+    type: journal
+    doi: 10.13026/s6n6-xd98
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:HtS1dXgVpQUC
+  - title: MIMIC-IV (version 1.0). PhysioNet. 2021
+    authors: A Johnson, L Bulgarelli, T Pollard, S Horng, LA Celi, R Mark IV
+    journal: 'DOI: https://doi. org/10.13026/s6n6-xd98, 2021'
+    year: 2021
+    type: journal
+    doi: 10.13026/s6n6-xd98
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:c59VksA5Vz4C
+  - title: 'Equity in essence: a call for operationalising fairness in machine learning
+      for healthcare'
+    authors: JW Gichoya, LG McCoy, LA Celi, M Ghassemi
+    journal: BMJ health & care informatics 28 (1), e100289, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:MpfHP-DdYjUC
+  - title: Development and validation of a reinforcement learning algorithm to dynamically
+      optimize mechanical ventilation in critical care
+    authors: A Peine, A Hallawa, J Bickenbach, G Dartmann, LB Fazlic, A Schmeink,
+      ...
+    journal: NPJ digital medicine 4 (1), 32, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:ALROH1vI_8AC
+  - title: Chest imagenome dataset for clinical reasoning
+    authors: JT Wu, NN Agu, I Lourentzou, A Sharma, JA Paguio, JS Yao, EC Dee, ...
+    journal: arXiv preprint arXiv:2108.00316, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:7wO8s98CvbsC
+  - title: 'Reading race: AI recognises patient''s racial identity in medical images'
+    authors: I Banerjee, AR Bhimireddy, JL Burns, LA Celi, LC Chen, R Correa, ...
+    journal: arXiv preprint arXiv:2107.10356, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:L1USKYWJimsC
+  - title: 'G-net: a recurrent network approach to g-computation for counterfactual
+      prediction under a dynamic treatment regime'
+    authors: R Li, S Hu, M Lu, Y Utsumi, P Chakraborty, DM Sow, P Madan, J Li, ...
+    journal: Machine Learning for Health, 282-299, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:rO6llkc54NcC
+  - title: 'A novel artificial intelligence based intensive care unit monitoring system:
+      using physiological waveforms to identify sepsis'
+    authors: M Mollura, LWH Lehman, RG Mark, R Barbieri
+    journal: Philosophical Transactions of the Royal Society A 379 (2212), 20200252,
+      2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:ZHo1McVdvXMC
+  - title: Is deep reinforcement learning ready for practical applications in healthcare?
+      A sensitivity analysis of duel-DDQN for hemodynamic management in sepsis patients
+    authors: MY Lu, Z Shahn, D Sow, F Doshi-Velez, LH Lehman
+    journal: AMIA annual symposium proceedings 2020, 773, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:ldfaerwXgEUC
+  - title: "Impact of sex on use of low tidal volume ventilation in invasively ventilated\
+      \ ICU patients\u2014a mediation analysis using two observational cohorts"
+    authors: P Swart, RO Deliberato, AEW Johnson, TJ Pollard, L Bulgarelli, P Pelosi,
+      ...
+    journal: PLoS One 16 (7), e0253933, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:mB3voiENLucC
+  - title: "Impact of sex on use of low tidal volume ventilation in invasively ventilated\
+      \ ICU patients\u2014a mediation analysis using two observational cohorts"
+    authors: P Swart, RO Deliberato, AEW Johnson, TJ Pollard, L Bulgarelli, P Pelosi,
+      ...
+    journal: PLoS One 16 (7), e0253933, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:TIZ-Mc8IlK0C
+  - title: Predicting mortality, thrombus recurrence and persistence in patients with
+      post-acute myocardial infarction left ventricular thrombus
+    authors: W Yeung, CH Sia, T Pollard, AST Leow, BYQ Tan, R Kaur, TC Yeo, ...
+    journal: Journal of Thrombosis and Thrombolysis 52 (2), 654-661, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:JV2RwH3_ST0C
+  - title: MIMIC-IV demo data in the OMOP Common Data Model
+    authors: M Kallfelz, A Tsvetkova, T Pollard, M Kwong, G Lipori, V Huser, J Osborn,
+      ...
+    journal: object Object]. doi 10, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:iH-uZ7U-co4C
+  - title: Assessment of sepsis in the ICU by linear and complex characterization
+      of cardiovascular dynamics
+    authors: M Mollura, LW Lehman, R Barbieri
+    journal: "2021 43rd Annual International Conference of the IEEE Engineering in\_\
+      \u2026, 2021"
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:zA6iFVUQeVQC
+  - title: Acute Physiology and Chronic Health Evaluation IV in septic patients with
+      and without cancer
+    authors: L Neumann, L Bulgarelli, JAS Barnes, H Nabulsi, T Pollard, M Schallom,
+      ...
+    journal: Critical Care Medicine 49 (1), 640, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:maZDTaKrznsC
+  - title: Multi-view spatial-temporal graph convolutional networks with domain generalization
+      for sleep stage classification
+    authors: Z Jia, Y Lin, J Wang, X Ning, Y He, R Zhou, Y Zhou, LH Lehman
+    journal: IEEE Transactions on Neural Systems and Rehabilitation Engineering 29,
+      1977-1986, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&citation_for_view=it0h7rMAAAAJ:pqnbT2bcN3wC
+  - title: Analysis of discrepancies between pulse oximetry and arterial oxygen saturation
+      measurements by race and ethnicity and association with organ dysfunction and
+      mortality
+    authors: AKI Wong, M Charpignon, H Kim, C Josef, AAH De Hond, JJ Fojas, ...
+    journal: JAMA network open 4 (11), e2131674-e2131674, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:DBa1UEJaJKAC
+  - title: Evaluation of individual and ensemble probabilistic forecasts of COVID-19
+      mortality in the US
+    authors: EY Cramer, EL Ray, VK Lopez, J Bracher, A Brennen, ...
+    journal: Medrxiv, 2021.02. 03.21250974, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:9NZAP19TdFAC
+  - title: Real-time prediction of COVID-19 related mortality using electronic health
+      records
+    authors: "P Schwab, A Mehrjou, S Parbhoo, LA Celi, J Hetzel, M Hofer, B Sch\xF6\
+      lkopf, ..."
+    journal: Nature communications 12 (1), 1058, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:nVrZBo8bIpAC
+  - title: Data-driven curation process for describing the blood glucose management
+      in the intensive care unit
+    authors: "A Robles Ar\xE9valo, JH Maley, L Baker, SM da Silva Vieira, ..."
+    journal: Scientific Data 8 (1), 1-13, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:TFP_iSt0sucC
+  - title: Recalibration of deep learning models for abnormality detection in smartphone-captured
+      chest radiograph
+    authors: "PC Kuo, CC Tsai, DM L\xF3pez, A Karargyris, TJ Pollard, AEW Johnson,\
+      \ ..."
+    journal: NPJ digital medicine 4 (1), 25, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:TQgYirikUcIC
+  - title: Recalibration of deep learning models for abnormality detection in smartphone-captured
+      chest radiograph
+    authors: "PC Kuo, CC Tsai, DM L\xF3pez, A Karargyris, TJ Pollard, AEW Johnson,\
+      \ ..."
+    journal: NPJ digital medicine 4 (1), 25, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:ILKRHgRFtOwC
+  - title: 'VitalDB: fostering collaboration in anaesthesia research'
+    authors: ST Vistisen, TJ Pollard, J Enevoldsen, TWL Scheeren
+    journal: British Journal of Anaesthesia 127 (2), 184-187, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:HDshCWvjkbEC
+  - title: Comparing COVID-19 and influenza presentation and trajectory
+    authors: A Reiner Benaim, JA Sobel, R Almog, S Lugassy, T Ben Shabbat, ...
+    journal: Frontiers in Medicine 8, 656405, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=80&citation_for_view=66GCSz8AAAAJ:EYYDruWGBe4C
+  - title: "Long-term overall survival and predictors in Anti\u2013PD-1-naive melanoma\
+      \ patients with brain metastases treated with immune checkpoint inhibitors in\
+      \ the real-world setting: a\_\u2026"
+    authors: GS Naik, EI Buchbinder, JV Cohen, MP Manos, AEW Johnson, P Bowling, ...
+    journal: Journal of Immunotherapy 44 (8), 307-318, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=80&citation_for_view=66GCSz8AAAAJ:gsN89kCJA0AC
+  - title: Delaying initiation of diuretics in critically ill patients with recent
+      vasopressor use and high positive fluid balance
+    authors: Z Shahn, LWH Lehman, RG Mark, D Talmor, S Bose
+    journal: British Journal of Anaesthesia 127 (4), 569-576, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:M05iB0D1s5AC
+  - title: Learning to treat hypotensive episodes in sepsis patients using a counterfactual
+      reasoning framework
+    authors: R Jeter, LW Lehman, C Josef, S Shashikumar, S Nemati
+    journal: medRxiv, 2021.03. 03.21252863, 2021
+    year: 2021
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:2P1L_qKh6hAC
 - year: 2020
   publications:
-    - title: "MIMIC-IV, a freely accessible electronic health record dataset"
-      authors: "Johnson A, Bulgarelli L, Pollard T, Horng S, Celi LA, Mark R"
-      journal: "Scientific Data"
-      volume: "10"
-      pages: "1"
-      date: "2020"
-      doi: "10.1038/s41597-020-0495-7"
-      type: "journal"
-    
-    - title: "Chest radiograph interpretation with deep learning models: assessment with radiologist-adjudicated reference standards and population-adjusted evaluation"
-      authors: "Irvin J, Rajpurkar P, Ko M, Yu Y, Ciurea-Ilcus S, Chute C, Marklund H, Haghgoo B, Ball R, Shpanskaya K, Seekins J, Mong D, Halabi S, Sandberg J, Jones R, Larson D, Langlotz C, Patel B, Lungren M, Ng A"
-      journal: "Radiology"
-      volume: "294"
-      pages: "421-431"
-      date: "2020"
-      doi: "10.1148/radiol.2019191293"
-      type: "journal"
-
+  - title: 'Reinforcement learning for clinical decision support in critical care:
+      comprehensive review'
+    authors: S Liu, KC See, KY Ngiam, LA Celi, X Sun, M Feng
+    journal: Journal of medical Internet research 22 (7), e18477, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:a3BOlSfXSfwC
+  - title: Mimic-iv
+    authors: A Johnson, L Bulgarelli, T Pollard, S Horng, LA Celi, R Mark
+    journal: "PhysioNet. Available online at: https://physionet. org/content/mimiciv/1.0\_\
+      \u2026, 2020"
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:hqOjcs7Dif8C
+  - title: Mimic-iv
+    authors: A Johnson, L Bulgarelli, T Pollard, S Horng, LA Celi, R Mark
+    journal: "PhysioNet. Available online at: https://physionet. org/content/mimiciv/1.0\_\
+      \u2026, 2020"
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:kz9GbA2Ns4gC
+  - title: Mimic-iv
+    authors: A Johnson, L Bulgarelli, T Pollard, S Horng, LA Celi, R Mark
+    journal: "PhysioNet. Available online at: https://physionet. org/content/mimiciv/1.0\_\
+      \u2026, 2020"
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:HGTzPopzzJcC
+  - title: The myth of generalisability in clinical research and machine learning
+      in health care
+    authors: J Futoma, M Simons, T Panch, F Doshi-Velez, LA Celi
+    journal: The Lancet Digital Health 2 (9), e489-e492, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:fbc8zXXH2BUC
+  - title: What do medical students actually need to know about artificial intelligence?
+    authors: LG McCoy, S Nagaraj, F Morgado, V Harish, S Das, LA Celi
+    journal: NPJ digital medicine 3 (1), 86, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:ODE9OILHJdcC
+  - title: 'Fluid-limiting treatment strategies among sepsis patients in the ICU:
+      a retrospective causal analysis'
+    authors: Z Shahn, NI Shapiro, PD Tyler, D Talmor, LH Lehman
+    journal: Critical Care 24 (1), 1-9, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:M3NEmzRMIkIC
+  - title: Mimic-iv (version 0.4)
+    authors: J Alistair, B Lucas, P Tom, H Steven, CL Anthony, M R IV
+    journal: PhysioNet https://doi. org/10 13026, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:WbkHhVStYXYC
+  - title: Mimic-iv
+    authors: J Alistair, B Lucas, P Tom, H Steven, CL Anthony, M Roger
+    journal: PhysioNet, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:AXPGKjj_ei8C
+  - title: Deidentification of free-text medical records using pre-trained bidirectional
+      transformers
+    authors: AEW Johnson, L Bulgarelli, TJ Pollard
+    journal: Proceedings of the ACM conference on health, inference, and learning,
+      214-221, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:Zph67rFs4hoC
+  - title: Deidentification of free-text medical records using pre-trained bidirectional
+      transformers
+    authors: AEW Johnson, L Bulgarelli, TJ Pollard
+    journal: Proceedings of the ACM conference on health, inference, and learning,
+      214-221, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:vDijr-p_gm4C
+  - title: Predicting Intensive Care Unit admission among patients presenting to the
+      emergency department using machine learning and natural language processing
+    authors: M Fernandes, R Mendes, SM Vieira, F Leite, C Palos, A Johnson, ...
+    journal: PloS one 15 (3), e0229331, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:epqYDVWIO7EC
+  - title: Predicting Intensive Care Unit admission among patients presenting to the
+      emergency department using machine learning and natural language processing
+    authors: M Fernandes, R Mendes, SM Vieira, F Leite, C Palos, A Johnson, ...
+    journal: PloS one 15 (3), e0229331, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:_5tno0g5mFcC
+  - title: Interpretable off-policy evaluation in reinforcement learning by highlighting
+      influential transitions
+    authors: O Gottesman, J Futoma, Y Liu, S Parbhoo, L Celi, E Brunskill, ...
+    journal: International Conference on Machine Learning, 3658-3667, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:4xDN1ZYqzskC
+  - title: Risk of mortality and cardiopulmonary arrest in critical patients presenting
+      to the emergency department using machine learning and natural language processing
+    authors: M Fernandes, R Mendes, SM Vieira, F Leite, C Palos, A Johnson, ...
+    journal: PLoS One 15 (4), e0230876, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=40&citation_for_view=66GCSz8AAAAJ:URolC5Kub84C
+  - title: Robust Low-Rank Discovery of Data-Driven Partial Differential Equations
+    authors: J Li, G Sun, G Zhao, LH Lehman
+    journal: Proceedings of the AAAI Conference on Artificial Intelligence 34 (01),
+      767-774, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:hMod-77fHWUC
+  - title: "Prediction on critically ill patients: the role of \u201Cbig data\u201D"
+    authors: L Bulgarelli, RO Deliberato, AEW Johnson
+    journal: Journal of critical care 60, 64-68, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:ML0RJ9NH7IQC
+  - title: "\u201CYes, but will it work formypatients?\u201D Driving clinically relevant\
+      \ research with benchmark datasets"
+    authors: T Panch, TJ Pollard, H Mattie, E Lindemer, PA Keane, LA Celi
+    journal: NPJ digital medicine 3 (1), 87, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:7PzlFSSx8tAC
+  - title: Prediction of Septic Shock Onset in ICU by Instantaneous Monitoring of
+      Vital Signs*
+    authors: M Mollura, S Romano, G Mantoan, L Lehman, R Barbieri
+    journal: "2020 42nd Annual International Conference of the IEEE Engineering in\_\
+      \u2026, 2020"
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=40&citation_for_view=it0h7rMAAAAJ:ns9cj8rnVeAC
+  - title: Smartphone-captured chest X-ray photographs
+    authors: PC Kuo, C Tsai, DM Lopez, A Karargyris, T Pollard, A Johnson, LA Celi
+    journal: PhysioNet, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=80&citation_for_view=kd2pMFYAAAAJ:RYcK_YlVTxYC
+  - title: An embedded ethics approach for AI development
+    authors: "S McLennan, A Fiske, LA Celi, R M\xFCller, J Harder, K Ritt, S Haddadin,\
+      \ ..."
+    journal: Nature Machine Intelligence 2 (9), 488-490, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:P7Ujq4OLJYoC
+  - title: 'The minimal effect of zinc on the survival of hospitalized patients with
+      COVID-19: an observational study'
+    authors: JS Yao, JA Paguio, EC Dee, HC Tan, A Moulick, C Milazzo, J Jurado, ...
+    journal: Chest 159 (1), 108, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:F9fV5C73w3QC
+  - title: Data sharing in the era of COVID-19
+    authors: CV Cosgriff, DK Ebner, LA Celi
+    journal: The Lancet Digital Health 2 (5), e224, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:QYdC8u9Cj1oC
+  - title: 'G-Net: a deep learning approach to G-computation for counterfactual outcome
+      prediction under dynamic treatment regimes'
+    authors: R Li, Z Shahn, J Li, M Lu, P Chakraborty, D Sow, M Ghalwash, ...
+    journal: arXiv preprint arXiv:2003.10551, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:blknAaTinKkC
+  - title: Rule-based rough-refined two-step-procedure for real-time premature beat
+      detection in single-lead ECG
+    authors: Z Cai, J Li, AEW Johnson, X Zhang, Q Shen, J Zhang, C Liu
+    journal: Physiological Measurement 41 (5), 054004, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=80&citation_for_view=66GCSz8AAAAJ:AvfA0Oy_GE0C
+  - title: "Use of a modified tibial plateau levelling osteotomy with double cut and\
+      \ medial crescentic closing wedge osteotomy to treat dogs with cranial cruciate\
+      \ ligament rupture and\_\u2026"
+    authors: L Vezzoni, S Bazzo, S Boiocchi, A Vezzoni
+    journal: Veterinary and Comparative Orthopaedics and Traumatology 33 (01), 059-065,
+      2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=80&citation_for_view=66GCSz8AAAAJ:nZcligLrVowC
+  - title: The role of waveform monitoring in sepsis identification within the first
+      hour of intensive care unit stay
+    authors: M Mollura, G Mantoan, S Romano, LW Lehman, RG Mark, R Barbieri
+    journal: "2020 11th conference of the European study group on cardiovascular\_\
+      \u2026, 2020"
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=40&citation_for_view=it0h7rMAAAAJ:O3NaXMp0MMsC
+  - title: Vasopressin administration is associated with rising serum lactate levels
+      in patients with sepsis
+    authors: KA Severson, L Ritter-Cox, JD Raffa, LA Celi, WJ Gordon
+    journal: Journal of intensive care medicine 35 (9), 881-888, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:RHpTSmoSYBkC
+  - title: Is deep reinforcement learning ready for practical applications in health-care?
+      A sensitivity analysis of duel-DDQN for sepsis treatment
+    authors: MY Lu, Z Shahn, D Sow, F Doshi-Velez, LWH Lehman
+    journal: arXiv preprint arXiv:2005.04301, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:NMxIlDl6LWMC
+  - title: 'NSF 19-501 AccelNet Proposal: Community of Open Scholarship Grassroots
+      Networks (COSGN)'
+    authors: BA Nosek, M Difranco, F Fidler, L Helal, AA Chawaf, D Rutten, ...
+    journal: ''
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:ufrVoPGSRksC
+  - title: Assessment of heart rate variability derived from blood pressure pulse
+      recordings in intensive care unit patients
+    authors: M Mollura, EM Polo, HL Li-wei, R Barbieri
+    journal: 2020 Computing in Cardiology, 1-4, 2020
+    year: 2020
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:NaGl4SEjCO4C
 - year: 2019
   publications:
-    - title: "MIMIC-III, a freely accessible critical care database"
-      authors: "Johnson A, Pollard T, Shen L, Lehman L, Feng M, Ghassemi M, Moody B, Szolovits P, Celi LA, Mark R"
-      journal: "Scientific Data"
-      volume: "3"
-      pages: "160035"
-      date: "2019"
-      doi: "10.1038/sdata.2016.35"
-      type: "journal"
-
+  - title: Intensive care unit telemedicine in the era of big data, artificial intelligence,
+      and computer clinical decision support systems
+    authors: RD Kindle, O Badawi, LA Celi, S Sturland
+    journal: Critical care clinics 35 (3), 483-495, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:ZuybSZzF8UAC
+  - title: Predicting vital sign deterioration with artificial intelligence or machine
+      learning
+    authors: ST Vistisen, AEW Johnson, TWL Scheeren
+    journal: Journal of clinical monitoring and computing 33 (6), 949-951, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=40&citation_for_view=66GCSz8AAAAJ:VLnqNzywnoUC
+  - title: Applying machine learning to continuously monitored physiological data
+    authors: B Rush, LA Celi, DJ Stone
+    journal: Journal of clinical monitoring and computing 33 (5), 887-893, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:eQOLeE2rZwMC
+  - title: Mimic-cxr-jpg-chest radiographs with structured labels
+    authors: A Johnson, M Lungren, Y Peng, Z Lu, R Mark, S Berkowitz, S Horng
+    journal: PhysioNet 101, 215-220, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:BUYA1_V_uYcC
+  - title: eICU Collaborative Research Database (version 2.0)
+    authors: T Pollard, A Johnson, J Raffa, LA Celi, O Badawi, R Mark
+    journal: PhysioNet. Published online, 2019
+    year: 2019
+    type: journal
+    doi: 10.13026/C2WM1R},
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&citation_for_view=zh0v7EYAAAAJ:M3NEmzRMIkIC
+  - title: 'Big data and machine learning in critical care: Opportunities for collaborative
+      research'
+    authors: "OC of the Madrid, AN Reiz, FM Sagasti, M\xC1 Gonz\xE1lez, AB Malpica,\
+      \ ..."
+    journal: Medicina intensiva 43 (1), 52-57, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:r0BpntZqJG4C
+  - title: 'Big data and machine learning in critical care: opportunities for collaborative
+      research'
+    authors: "OC of the Madrid, AN Reiz, FM Sagasti, M\xC1 Gonz\xE1lez, AB Malpica,\
+      \ ..."
+    journal: Medicina intensiva 43 (1), 52-57, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&citation_for_view=zh0v7EYAAAAJ:isC4tDSrTZIC
+  - title: ICU Collaborative Research Database (Version 2.0)
+    authors: T Pollard, A Johnson, J Raffa, LA Celi, O Badawi, R Mark
+    journal: PhysioNet. Published online 10, C2WM1R, 2019
+    year: 2019
+    type: journal
+    doi: 10.13026/C2WM1R},
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:SdhP9T11ey4C
+  - title: ICU Collaborative Research Database (Version 2.0)
+    authors: T Pollard, A Johnson, J Raffa, LA Celi, O Badawi, R Mark
+    journal: PhysioNet. Published online 10, C2WM1R, 2019
+    year: 2019
+    type: journal
+    doi: 10.13026/C2WM1R},
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=40&citation_for_view=66GCSz8AAAAJ:MhiOAD_qIWkC
+  - title: eICU Collaborative Research Database (version 2.0). PhysioNet
+    authors: T Pollard, A Johnson, J Raffa, LA Celi, O Badawi, R Mark
+    journal: ''
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:olpn-zPbct0C
+  - title: eICU Collaborative Research Database (version 2.0). PhysioNet
+    authors: T Pollard, A Johnson, J Raffa, LA Celi, O Badawi, R Mark
+    journal: ''
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=80&citation_for_view=66GCSz8AAAAJ:LdasjJ6CEcoC
+  - title: MIMIC-CXR, a de-identified publicly available database of chest radiographs
+      with free-text reports
+    authors: AEW Johnson, TJ Pollard, SJ Berkowitz, NR Greenbaum, MP Lungren, ...
+    journal: Scientific data 6 (1), 317, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:uc_IGeMz5qoC
+  - title: MIMIC-CXR, a de-identified publicly available database of chest radiographs
+      with free-text reports
+    authors: AEW Johnson, TJ Pollard, SJ Berkowitz, NR Greenbaum, MP Lungren, ...
+    journal: Scientific data 6 (1), 317, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:UeHWp8X0CEIC
+  - title: MIMIC-CXR-JPG, a large publicly available database of labeled chest radiographs
+    authors: AEW Johnson, TJ Pollard, NR Greenbaum, MP Lungren, C Deng, Y Peng, ...
+    journal: arXiv preprint arXiv:1901.07042, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:BqipwSGYUEgC
+  - title: MIMIC-CXR-JPG, a large publicly available database of labeled chest radiographs
+    authors: AEW Johnson, TJ Pollard, NR Greenbaum, MP Lungren, C Deng, Y Peng, ...
+    journal: arXiv preprint arXiv:1901.07042, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:_Ybze24A_UAC
+  - title: Guidelines for reinforcement learning in healthcare
+    authors: O Gottesman, F Johansson, M Komorowski, A Faisal, D Sontag, ...
+    journal: Nature medicine 25 (1), 16-18, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:ufrVoPGSRksC
+  - title: "The \u201Cinconvenient truth\u201D about AI in healthcare"
+    authors: T Panch, H Mattie, LA Celi
+    journal: NPJ digital medicine 2 (1), 77, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:Ug5p-4gJ2f0C
+  - title: 'The PLOS ONE collection on machine learning in health and biomedicine:
+      Towards open code and open data'
+    authors: LA Celi, L Citi, M Ghassemi, TJ Pollard
+    journal: PloS one 14 (1), e0210232, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:M3ejUd6NZC8C
+  - title: 'Prolonged elevated heart rate and 90-day survival in acutely ill patients:
+      data from the MIMIC-III database'
+    authors: V Sandfort, AEW Johnson, LM Kunz, JD Vargas, DR Rosing
+    journal: Journal of intensive care medicine 34 (8), 622-629, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=40&citation_for_view=66GCSz8AAAAJ:wbdj-CoPYUoC
+  - title: 'SEVERITAS: an externally validated mortality prediction for critically
+      ill patients in low and middle-income countries'
+    authors: RO Deliberato, GG Escudero, L Bulgarelli, AS Neto, SQ Ko, NS Campos,
+      ...
+    journal: International journal of medical informatics 131, 103959, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:j8SEvjWlNXcC
+  - title: 'Turning the crank for machine learning: ease, at what expense?'
+    authors: TJ Pollard, I Chen, J Wiens, S Horng, D Wong, M Ghassemi, H Mattie, ...
+    journal: The Lancet Digital Health 1 (5), e198-e199, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:isC4tDSrTZIC
+  - title: An evaluation of the influence of body mass index on severity scoring
+    authors: RO Deliberato, AS Neto, M Komorowski, DJ Stone, SQ Ko, L Bulgarelli,
+      ...
+    journal: Critical care medicine 47 (2), 247-253, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:1yQoGdGgb4wC
+  - title: Predicting Blood Pressure Response to Fluid Bolus Therapy Using Neural
+      Networks with Clinical Interpretability
+    authors: U Girkar, R Uchimido, LH Lehman, P Szolovits, L Celi, WH Weng
+    journal: Circulation Research 125 (Suppl_1), A448-A448, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:Wp0gIr-vW9MC
+  - title: 'Complex inter-relationship of body mass index, gender and serum creatinine
+      on survival: exploring the obesity paradox in melanoma patients treated with
+      checkpoint inhibition'
+    authors: GS Naik, SS Waikar, AEW Johnson, EI Buchbinder, R Haq, FS Hodi, ...
+    journal: Journal for immunotherapy of cancer 7 (1), 89, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:7T2F9Uy0os0C
+  - title: The reproducibility crisis in the age of digital medicine
+    authors: A Stupple, D Singerman, LA Celi
+    journal: NPJ digital medicine 2 (1), 2, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:SP6oXDckpogC
+  - title: 'Impact of intensive care unit discharge delays on patient outcomes: a
+      retrospective cohort study'
+    authors: S Bose, AEW Johnson, A Moskowitz, LA Celi, JD Raffa
+    journal: Journal of Intensive Care Medicine 34 (11-12), 924-929, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:N5tVd3kTz84C
+  - title: Retaining Privileged Information for Multi-Task Learning
+    authors: F Tang, C Xiao, F Wang, J Zhou, LH Lehman
+    journal: "Proceddings of the 25th ACM SIGKDD Conference on Knowledge Discovery\
+      \ and\_\u2026, 2019"
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:iH-uZ7U-co4C
+  - title: 'Impact of intensive care unit discharge delays on patient outcomes: a
+      retrospective cohort study'
+    authors: S Bose, AEW Johnson, A Moskowitz, LA Celi, JD Raffa
+    journal: Journal of intensive care medicine 34 (11-12), 924-929, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:j3f4tGmQtD8C
+  - title: 'Normalization of mechanical power to anthropometric indices: impact on
+      its association with mortality in critically ill patients'
+    authors: A Serpa Neto, RO Deliberato, AEW Johnson, TJ Pollard, LA Celi, P Pelosi,
+      ...
+    journal: Intensive Care Medicine 45 (12), 1835-1837, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:KlAtU1dfN6UC
+  - title: 'Normalization of mechanical power to anthropometric indices: impact on
+      its association with mortality in critically ill patients'
+    authors: A Serpa Neto, RO Deliberato, AEW Johnson, TJ Pollard, LA Celi, P Pelosi,
+      ...
+    journal: Intensive Care Medicine 45 (12), 1835-1837, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=80&citation_for_view=66GCSz8AAAAJ:uJ-U7cs_P_0C
+  - title: Software citation checklist for developers
+    authors: NP Chue Hong, A Allen, A Gonzalez-Beltran, A de Waard, AM Smith, ...
+    journal: FORCE11 Software Citation Implementation Working Group, 2019
+    year: 2019
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:8k81kl-MbHgC
 - year: 2018
   publications:
-    - title: "PhysioNet, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals"
-      authors: "Goldberger A, Amaral L, Glass L, Hausdorff J, Ivanov P, Mark R, Mietus J, Moody G, Peng C, Stanley H"
-      journal: "Circulation"
-      volume: "101"
-      pages: "e215-e220"
-      date: "2018"
-      doi: "10.1161/01.CIR.101.23.e215"
-      type: "journal"
-
+  - title: 'The MIMIC Code Repository: enabling reproducibility in critical care research'
+    authors: AEW Johnson, DJ Stone, LA Celi, TJ Pollard
+    journal: Journal of the American Medical Informatics Association 25 (1), 32-39,
+      2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:M3NEmzRMIkIC
+  - title: 'The MIMIC Code Repository: enabling reproducibility in critical care research'
+    authors: AEW Johnson, DJ Stone, LA Celi, TJ Pollard
+    journal: Journal of the American Medical Informatics Association 25 (1), 32-39,
+      2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:fPk4N6BV_jEC
+  - title: 'The MIMIC Code Repository: enabling reproducibility in critical care research'
+    authors: AEW Johnson, DJ Stone, LA Celi, TJ Pollard
+    journal: Journal of the American Medical Informatics Association 25 (1), 32-39,
+      2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:UebtZRa9Y70C
+  - title: Predicting and understanding unexpected respiratory decompensation in critical
+      care using sparse and heterogeneous clinical data
+    authors: O Ren, AEW Johnson, EP Lehman, M Komorowski, J Aboab, F Tang, ...
+    journal: 2018 IEEE International Conference on Healthcare Informatics (ICHI),
+      144-151, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:5awf1xo2G04C
+  - title: Predicting and understanding unexpected respiratory decompensation in critical
+      care using sparse and heterogeneous clinical data
+    authors: O Ren, AEW Johnson, EP Lehman, M Komorowski, J Aboab, F Tang, ...
+    journal: 2018 IEEE International Conference on Healthcare Informatics (ICHI),
+      144-151, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:LkGwnXOMwfcC
+  - title: The eICU Collaborative Research Database, a freely available multi-center
+      database for critical care research
+    authors: TJ Pollard, AEW Johnson, JD Raffa, LA Celi, RG Mark, O Badawi
+    journal: Scientific data 5 (1), 1-13, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:-f6ydRqryjwC
+  - title: The eICU Collaborative Research Database, a freely available multi-center
+      database for critical care research
+    authors: TJ Pollard, AEW Johnson, JD Raffa, LA Celi, RG Mark, O Badawi
+    journal: Scientific data 5 (1), 1-13, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:VL0QpB8kHFEC
+  - title: The eICU Collaborative Research Database, a freely available multi-center
+      database for critical care research
+    authors: TJ Pollard, AEW Johnson, JD Raffa, LA Celi, RG Mark, O Badawi
+    journal: Scientific data 5 (1), 1-13, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:wbdj-CoPYUoC
+  - title: The eICU Collaborative Research Database, a freely available multi-center
+      database for critical care research
+    authors: TJ Pollard, AEW Johnson, JD Raffa, LA Celi, RG Mark, O Badawi
+    journal: Scientific data 5 (1), 1-13, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&citation_for_view=zh0v7EYAAAAJ:4JMBOYKVnBMC
+  - title: A Model-Based Machine Learning Approach to Probing Autonomic Regulation
+      from Nonstationary Vital-Sign Time Series
+    authors: LH Lehman, RG Mark, S Nemati
+    journal: IEEE Journal of Biomedical and Health Informatics 22 (1), 56-66, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:r0BpntZqJG4C
+  - title: '16: APACHE outcomes across venues: Predicting inpatient mortality using
+      electronic medical record data'
+    authors: C Bryant, A Johnson, K Henson, L Freeseman-Freeman, M Stark, ...
+    journal: Critical Care Medicine 46 (1), 8, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=80&citation_for_view=66GCSz8AAAAJ:eJXPG6dFmWUC
+  - title: The artificial intelligence clinician learns optimal treatment strategies
+      for sepsis in intensive care
+    authors: M Komorowski, LA Celi, O Badawi, AC Gordon, AA Faisal
+    journal: Nature medicine 24 (11), 1716-1720, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:HoB7MX3m0LUC
+  - title: Comparing deep learning and concept extraction based methods for patient
+      phenotyping from clinical narratives
+    authors: S Gehrmann, F Dernoncourt, Y Li, ET Carlson, JT Wu, J Welt, J Foote Jr,
+      ...
+    journal: PloS one 13 (2), e0192360, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:_kc_bZDykSQC
+  - title: 'You snooze, you win: the physionet/computing in cardiology challenge 2018'
+    authors: MM Ghassemi, BE Moody, LH Lehman, C Song, Q Li, H Sun, RG Mark, ...
+    journal: 2018 Computing in Cardiology Conference (CinC) 45, 1-4, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&citation_for_view=it0h7rMAAAAJ:eQOLeE2rZwMC
+  - title: 'You Snooze, You Win: the PhysioNet'
+    authors: MM Ghassemi, BE Moody, LH Lehman, C Song, Q Li, H Sun, RG Mark, ...
+    journal: Computing in Cardiology Challenge 2018, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&citation_for_view=it0h7rMAAAAJ:7PzlFSSx8tAC
+  - title: 'Transthoracic echocardiography and mortality in sepsis: analysis of the
+      MIMIC-III database'
+    authors: M Feng, JI McSparron, DT Kien, DJ Stone, DH Roberts, RM Schwartzstein,
+      ...
+    journal: Intensive care medicine 44 (6), 884-892, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:WqliGbK-hY8C
+  - title: A comparative analysis of sepsis identification methods in an electronic
+      database
+    authors: AEW Johnson, J Aboab, JD Raffa, TJ Pollard, RO Deliberato, LA Celi, ...
+    journal: Critical care medicine 46 (4), 494-499, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:blknAaTinKkC
+  - title: A comparative analysis of sepsis identification methods in an electronic
+      database
+    authors: AEW Johnson, J Aboab, JD Raffa, TJ Pollard, RO Deliberato, LA Celi, ...
+    journal: Critical care medicine 46 (4), 494-499, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:q3oQSFYPqjQC
+  - title: A comparative analysis of sepsis identification methods in an electronic
+      database
+    authors: AEW Johnson, J Aboab, JD Raffa, TJ Pollard, RO Deliberato, LA Celi, ...
+    journal: Critical care medicine 46 (4), 494-499, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:ipzZ9siozwsC
+  - title: A Comparative Analysis of Sepsis Identification Methods in an Electronic
+      Database
+    authors: AEW Johnson, J Aboab, JD Raffa, TJ Pollard, RO Deliberato, LA Celi, ...
+    journal: Critical care medicine 46 (4), 494-499, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&citation_for_view=zh0v7EYAAAAJ:R3hNpaxXUhUC
+  - title: Representation Learning Approaches to Detect False Arrhythmia Alarms from
+      ECG Dynamics
+    authors: EP Lehman, RG Krishnan, X Zhao, RG Mark, LH Lehman
+    journal: Proceedings of machine learning research 85, 571-586, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:UeHWp8X0CEIC
+  - title: Severity of illness scores may misclassify critically ill obese patients
+    authors: RO Deliberato, S Ko, M Komorowski, MAA de La Hoz, MP Frushicheva, ...
+    journal: Critical care medicine 46 (3), 394-400, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:08ZZubdj9fEC
+  - title: Severity of illness scores may misclassify critically ill obese patients
+    authors: RO Deliberato, S Ko, M Komorowski, MA Armengol de La Hoz, ...
+    journal: Critical care medicine 46 (3), 394-400, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:TQgYirikUcIC
+  - title: How is the Doctor Feeling? ICU Provider Sentiment is Associated with Diagnostic
+      Imaging Utilization
+    authors: MM Ghassemi, T Al-Hanai, JD Raffa, RG Mark, S Nemati, FH Chokshi
+    journal: "2018 40th Annual International Conference of the IEEE Engineering in\_\
+      \u2026, 2018"
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:r0BpntZqJG4C
+  - title: Predicting blood pressure response to fluid bolus therapy using attention-based
+      neural networks for clinical interpretability
+    authors: UM Girkar, R Uchimido, LWH Lehman, P Szolovits, L Celi, WH Weng
+    journal: arXiv preprint arXiv:1812.00699, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=40&citation_for_view=it0h7rMAAAAJ:hFOr9nPyWt4C
+  - title: First Brazilian datathon in critical care
+    authors: "A Serpa Neto, G Kugener, L Bulgarelli, R Rabello Filho, M\xC1A Hoz,\
+      \ ..."
+    journal: Revista Brasileira de terapia intensiva 30, 6-8, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=80&citation_for_view=66GCSz8AAAAJ:olpn-zPbct0C
+  - title: 'Mechanical power of ventilation is associated with mortality in critically
+      ill patients: an analysis of patients in two observational cohorts'
+    authors: A Serpa Neto, RO Deliberato, AEW Johnson, LD Bos, P Amorim, ...
+    journal: Intensive care medicine 44 (11), 1914-1922, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:RHpTSmoSYBkC
+  - title: 'Mechanical power of ventilation is associated with mortality in critically
+      ill patients: an analysis of patients in two observational cohorts'
+    authors: A Serpa Neto, RO Deliberato, AEW Johnson, LD Bos, P Amorim, ...
+    journal: Intensive care medicine 44 (11), 1914-1922, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:ZuybSZzF8UAC
+  - title: 'Mechanical power of ventilation is associated with mortality in critically
+      ill patients: an analysis of patients in two observational cohorts'
+    authors: A Serpa Neto, RO Deliberato, AEW Johnson, LD Bos, P Amorim, ...
+    journal: Intensive care medicine 44 (11), 1914-1922, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:dfsIfKJdRG4C
+  - title: 'tableone: An open source Python package for producing summary statistics
+      for research papers'
+    authors: TJ Pollard, AEW Johnson, JD Raffa, RG Mark
+    journal: JAMIA open 1 (1), 26-31, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:ULOm3_A8WrAC
+  - title: 'tableone: An open source Python package for producing summary statistics
+      for research papers'
+    authors: TJ Pollard, AEW Johnson, JD Raffa, RG Mark
+    journal: JAMIA open 1 (1), 26-31, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:AXPGKjj_ei8C
+  - title: 'tableone: An open source Python package for producing summary statistics
+      for research papers'
+    authors: TJ Pollard, AEW Johnson, JD Raffa, RG Mark
+    journal: JAMIA Open 1 (1), 26-31, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&citation_for_view=zh0v7EYAAAAJ:_Qo2XoVZTnwC
+  - title: Evaluating reinforcement learning algorithms in observational health settings
+    authors: O Gottesman, F Johansson, J Meier, J Dent, D Lee, S Srinivasan, L Zhang,
+      ...
+    journal: arXiv preprint arXiv:1805.12298, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&citation_for_view=it0h7rMAAAAJ:mVmsd5A6BfQC
+  - title: Evaluating reinforcement learning algorithms in observational health settings
+    authors: O Gottesman, F Johansson, J Meier, J Dent, D Lee, S Srinivasan, L Zhang,
+      ...
+    journal: arXiv preprint arXiv:1805.12298, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:a0OBvERweLwC
+  - title: Improving sepsis treatment strategies by combining deep and kernel-based
+      reinforcement learning
+    authors: X Peng, Y Ding, D Wihl, O Gottesman, M Komorowski, LH Lehman, ...
+    journal: AMIA Annual Symposium Proceedings 2018, 887, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&citation_for_view=it0h7rMAAAAJ:ULOm3_A8WrAC
+  - title: Real-time mortality prediction in the Intensive Care Unit
+    authors: AEW Johnson, RG Mark
+    journal: AMIA Annual Symposium Proceedings 2017, 994, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:mvPsJ3kp5DgC
+  - title: 'PROVE Network Investigators: Mechanical power of ventilation is associated
+      with mortality in critically ill patients: An analysis of patients in two observational
+      cohorts'
+    authors: A Serpa Neto, RO Deliberato, AEW Johnson, LD Bos, P Amorim, ...
+    journal: Intensive Care Med 44 (11), 1914-1922, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:BrmTIyaxlBUC
+  - title: 'PROVE Network Investigators: Mechanical power of ventilation is associated
+      with mortality in critically ill patients: An analysis of patients in two observational
+      cohorts'
+    authors: A Serpa Neto, RO Deliberato, AEW Johnson, LD Bos, P Amorim, ...
+    journal: Intensive Care Med 44 (11), 1914-1922, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=40&citation_for_view=66GCSz8AAAAJ:zCSUwVk65WsC
+  - title: Generalizability of predictive models for intensive care unit patients
+    authors: AEW Johnson, TJ Pollard, T Naumann
+    journal: arXiv preprint arXiv:1812.02275, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:hFOr9nPyWt4C
+  - title: Generalizability of predictive models for intensive care unit patients
+    authors: AEW Johnson, TJ Pollard, T Naumann
+    journal: arXiv preprint arXiv:1812.02275, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:PR6Y55bgFSsC
+  - title: Bayesian fusion of physiological measurements using a signal quality extension
+    authors: T Zhu, AEW Johnson, Y Yang, GD Clifford, DA Clifton
+    journal: Physiological measurement 39 (6), 065008, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=80&citation_for_view=66GCSz8AAAAJ:eMMeJKvmdy0C
+  - title: 2018 Computing in Cardiology Conference (CinC)
+    authors: MM Ghassemi, BE Moody, LH Lehman, C Song, Q Li, H Sun
+    journal: Maastricht, Netherlands, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:PR6Y55bgFSsC
+  - title: Visualizing patient timelines in the intensive care unit
+    authors: D Levy-Lambert, JJ Gong, T Naumann, TJ Pollard, JV Guttag
+    journal: arXiv preprint arXiv:1806.00397, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:YsMSGLbcyi4C
+  - title: The role of baroreflex sensitivity in acute hypotensive episodes prediction
+      in the intensive care unit
+    authors: G Angelotti, P Morandini, LH Lehman, RG Mark, R Barbieri
+    journal: "2018 40th Annual International Conference of the IEEE Engineering in\_\
+      \u2026, 2018"
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:2osOgNQ5qMEC
+  - title: Focus on detection of arrhythmia and noise from cardiovascular data
+    authors: C Liu, L Lehman, B Moody, Q Li, G Clifford
+    journal: Physiol. Meas, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:l7t_Zn2s7bgC
+  - title: "Authors\u2019 Response to the Intensive Care Unit Discharge Delay and\
+      \ In-Hospital Mortality"
+    authors: S Bose, AEW Johnson, A Moskowitz, LA Celi, JD Raffa
+    journal: Journal of intensive care medicine, 0885066618816686, 2018
+    year: 2018
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:JV2RwH3_ST0C
 - year: 2017
   publications:
-    - title: "A database of multi-channel intracranial EEG from epilepsy patients"
-      authors: "Ihle M, Feldwisch-Drentrup H, Teixeira C, Witon A, Schelter B, Timmer J, Schulze-Bonhage A"
-      journal: "Scientific Data"
-      volume: "4"
-      pages: "170047"
-      date: "2017"
-      doi: "10.1038/sdata.2017.47"
-      type: "journal"
-
+  - title: 'Reproducibility in critical care: a mortality prediction case study'
+    authors: AEW Johnson, TJ Pollard, RG Mark
+    journal: Machine learning for healthcare conference, 361-376, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:roLk4NBRz8UC
+  - title: 'Reproducibility in critical care: a mortality prediction case study'
+    authors: AEW Johnson, TJ Pollard, RG Mark
+    journal: Machine learning for healthcare conference, 361-376, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:rO6llkc54NcC
+  - title: Clinical Intervention Prediction and Understanding with Deep Neural Networks
+    authors: H Suresh, N Hunt, AEW Johnson, LA Celi, P Szolovits, M Ghassemi
+    journal: Machine Learning for Healthcare Conference, 322-337, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:3s1wT3WcHBgC
+  - title: Clinical intervention prediction and understanding with deep neural networks
+    authors: H Suresh, N Hunt, A Johnson, LA Celi, P Szolovits, M Ghassemi
+    journal: Machine learning for healthcare conference, 322-337, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:N5tVd3kTz84C
+  - title: 'Continuous state-space models for optimal sepsis treatment: a deep reinforcement
+      learning approach'
+    authors: A Raghu, M Komorowski, LA Celi, P Szolovits, M Ghassemi
+    journal: Machine Learning for Healthcare Conference, 147-163, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:NJ774b8OgUMC
+  - title: 'Understanding vasopressor intervention and weaning: risk prediction in
+      a public heterogeneous clinical time series database'
+    authors: M Wu, M Ghassemi, M Feng, LA Celi, P Szolovits, F Doshi-Velez
+    journal: Journal of the American Medical Informatics Association 24 (3), 488-495,
+      2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:dTyEYWd-f8wC
+  - title: Estimating patient's health state using latent structure inferred from
+      clinical time series and text
+    authors: A Zalewski, W Long, AEW Johnson, RG Mark, LH Lehman
+    journal: "2017 IEEE EMBS International Conference on Biomedical & Health Informatics\_\
+      \u2026, 2017"
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:vV6vV6tmYwMC
+  - title: Phenotyping hypotensive patients in critical care using hospital discharge
+      summaries
+    authors: Y Dai, S Lokhandwala, W Long, R Mark, LH Lehman
+    journal: "2017 IEEE EMBS International Conference on Biomedical & Health Informatics\_\
+      \u2026, 2017"
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:e5wmG9Sq2KIC
+  - title: 'AF classification from a short single lead ECG recording: The PhysioNet/computing
+      in cardiology challenge 2017'
+    authors: GD Clifford, C Liu, B Moody, LH Lehman, I Silva, Q Li, AE Johnson, ...
+    journal: 2017 computing in cardiology (CinC), 1-4, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:P5F9QuxV20EC
+  - title: 'AF Classification from a short single lead ECG recording: the PhysioNet/Computing
+      in Cardiology Challenge 2017'
+    authors: GD Clifford, C Liu, B Moody, LH Lehman, I Silva, Q Li, AE Johnson, ...
+    journal: 2017 Computing in Cardiology (CinC), 1-4, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&citation_for_view=it0h7rMAAAAJ:4JMBOYKVnBMC
+  - title: 'Breathing rate estimation from the electrocardiogram and photoplethysmogram:
+      A review'
+    authors: PH Charlton, DA Birrenkott, T Bonnici, MAF Pimentel, AEW Johnson, ...
+    journal: IEEE reviews in biomedical engineering 11, 2-20, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:u_35RYKgDlwC
+  - title: Clinical intervention prediction and understanding using deep networks
+    authors: H Suresh, N Hunt, A Johnson, LA Celi, P Szolovits, M Ghassemi
+    journal: arXiv preprint arXiv:1705.08498, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:70eg2SAEIzsC
+  - title: Clinical intervention prediction and understanding using deep networks
+    authors: H Suresh, N Hunt, A Johnson, LA Celi, P Szolovits, M Ghassemi
+    journal: arXiv preprint arXiv:1705.08498, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:tuHXwOkdijsC
+  - title: Right ventricular function, peripheral edema, and acute kidney injury in
+      critical illness
+    authors: C Chen, J Lee, AEW Johnson, RG Mark, LA Celi, J Danziger
+    journal: Kidney International Reports, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=40&citation_for_view=66GCSz8AAAAJ:2P1L_qKh6hAC
+  - title: 'Promoting secondary analysis of electronic medical records in China: summary
+      of the PLAGH-MIT critical data conference and health datathon'
+    authors: P Li, C Xie, T Pollard, AEW Johnson, D Cao, H Kang, H Liang, Y Zhang,
+      ...
+    journal: JMIR Medical Informatics 5 (4), e7380, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:aqlVkmm33-oC
+  - title: 'Promoting secondary analysis of electronic medical records in China: summary
+      of the PLAGH-MIT critical data conference and health datathon'
+    authors: P Li, C Xie, T Pollard, AEW Johnson, D Cao, H Kang, H Liang, Y Zhang,
+      ...
+    journal: JMIR Medical Informatics 5 (4), e7380, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:uLbwQdceFCQC
+  - title: Analyzing the eICU collaborative research database
+    authors: AEW Johnson, TJ Pollard, LA Celi, RG Mark
+    journal: "Proceedings of the 8th ACM International Conference on Bioinformatics\_\
+      \u2026, 2017"
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:dhFuZR0502QC
+  - title: The PhysioNet/Computing in Cardiology Challenge
+    authors: GD Clifford, C Liu, B Moody, LH Lehman, I Silva, Q Li, AE Johnson, ...
+    journal: IEEE, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:hkOj_22Ku90C
+  - title: Predicting medical nonadherence using natural language processing
+    authors: H Elahinia, JD Raffa, JT Wu, MM Ghassemi
+    journal: 2017 IEEE MIT Undergraduate Research Technology Conference (URTC), 1-4,
+      2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:e5wmG9Sq2KIC
+  - title: Dynamics of multivariate vital sign time series and severe sepsis among
+      patients in critical care
+    authors: LH Lehman, A Johnson, C Sudduth, R Mark, S Nemati
+    journal: Journal of Critical Care 38, 365, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:u-x6o8ySG0sC
+  - title: Deep reinforcement learning for sepsis treatment
+    authors: A Raghu, M Komorowski, I Ahmed, L Celi, P Szolovits, M Ghassemi
+    journal: arXiv preprint arXiv:1711.09602, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:yB1At4FlUx8C
+  - title: 'Use of palliative care in patients with end-stage COPD and receiving home
+      oxygen: national trends and barriers to care in the United States'
+    authors: B Rush, P Hertz, A Bond, RC McDermid, LA Celi
+    journal: Chest 151 (1), 41-46, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:abG-DnoFyZgC
+  - title: "Palliative care access for hospitalized patients with end\u2010stage liver\
+      \ disease across the United States"
+    authors: B Rush, KR Walley, LA Celi, N Rajoriya, M Brahmania
+    journal: Hepatology 66 (5), 1585-1591, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:J-pR_7NvFogC
+  - title: Acute respiratory distress syndrome in pregnant women
+    authors: B Rush, P Martinka, B Kilb, RC McDermid, JH Boyd, LA Celi
+    journal: Obstetrics & Gynecology 129 (3), 530-535, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:IjCSPb-OGe4C
+  - title: Big data analyses in health and opportunities for research in radiology
+    authors: Y Aphinyanaphongs
+    journal: Seminars in Musculoskeletal Radiology 21 (01), 032-036, 2017
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:EUQCXRtRnyEC
+  - title: Computing in Cardiology (CinC)
+    authors: GD Clifford, C Liu, B Moody, LH Lehman, I Silva, Q Li, AE Johnson, ...
+    journal: 'Piscataway, NJ, USA: IEEE. p, 1-4, 2017'
+    year: 2017
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=40&citation_for_view=it0h7rMAAAAJ:_Ybze24A_UAC
 - year: 2016
   publications:
-    - title: "PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals"
-      authors: "Goldberger A, Amaral L, Glass L, Hausdorff J, Ivanov P, Mark R, Mietus J, Moody G, Peng C, Stanley H"
-      journal: "Circulation"
-      volume: "101"
-      pages: "e215-e220"
-      date: "2016"
-      doi: "10.1161/01.CIR.101.23.e215"
-      type: "journal" 
+  - title: MIMIC-III clinical database (version 1.4)
+    authors: A Johnson, T Pollard, R Mark
+    journal: PhysioNet 10 (C2XW26), 2, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:zYLM7Y9cAGgC
+  - title: MIMIC-III clinical database (version 1.4)
+    authors: A Johnson, T Pollard, R Mark
+    journal: PhysioNet 10 (C2XW26), 2, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:YohjEiUPhakC
+  - title: MIMIC-III, a freely accessible critical care database
+    authors: AEW Johnson, TJ Pollard, L Shen, LH Lehman, M Feng, M Ghassemi, ...
+    journal: Scientific data 3, 160035, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&citation_for_view=it0h7rMAAAAJ:3fE2CSJIrl8C
+  - title: MIMIC-III, a freely accessible critical care database
+    authors: AEW Johnson, TJ Pollard, L Shen, LH Lehman, M Feng, M Ghassemi, ...
+    journal: Scientific data 3 (1), 1-9, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:qjMakFHDy7sC
+  - title: MIMIC-III, a freely accessible critical care database
+    authors: AEW Johnson, TJ Pollard, L Shen, LH Lehman, M Feng, M Ghassemi, ...
+    journal: Scientific data 3, 160035, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:blknAaTinKkC
+  - title: MIMIC-III, a freely accessible critical care database
+    authors: AEW Johnson, TJ Pollard, L Shen, LH Lehman, M Feng, M Ghassemi, ...
+    journal: Scientific data 3 (1), 1-9, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:u5HHmVD_uO8C
+  - title: Machine learning and decision support in critical care
+    authors: AEW Johnson, MM Ghassemi, S Nemati, KE Niehaus, DA Clifton, ...
+    journal: Proceedings of the IEEE 104 (2), 444-466, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:isC4tDSrTZIC
+  - title: MIMIC-III, a freely accessible critical care database, Sci
+    authors: AE Johnson, TJ Pollard, L Shen, LH Lehman, M Feng, M Ghassemi, ...
+    journal: Data 3 (1), 1-9, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:ns9cj8rnVeAC
+  - title: MIMIC-III, a freely accessible critical care database, Sci
+    authors: AE Johnson, TJ Pollard, L Shen, LH Lehman, M Feng, M Ghassemi, ...
+    journal: Data 3 (1), 1-9, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:rmuvC79q63oC
+  - title: MIMIC-III, a freely accessible critical care database, Sci
+    authors: AE Johnson, TJ Pollard, L Shen, LH Lehman, M Feng, M Ghassemi, ...
+    journal: Data 3 (1), 1-9, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&citation_for_view=it0h7rMAAAAJ:WqliGbK-hY8C
+  - title: MIMIC-III, a freely accessible critical care database, Sci
+    authors: AE Johnson, TJ Pollard, L Shen, LH Lehman, M Feng, M Ghassemi, ...
+    journal: Data 3 (1), 1-9, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:zGdJYJv2LkUC
+  - title: 'MIMIC-III, a freely accessible critical care database. Sci Data. 2016;
+      3: 160035'
+    authors: AE Johnson, TJ Pollard, L Shen, LW Lehman, M Feng, M Ghassemi, ...
+    journal: ''
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:qxL8FJ1GzNcC
+  - title: 'MIMIC-III, a freely accessible critical care database. Sci Data. 2016;
+      3: 160035'
+    authors: AE Johnson, TJ Pollard, L Shen, LW Lehman, M Feng, M Ghassemi, ...
+    journal: ''
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:PVjk1bu6vJQC
+  - title: 'MIMIC-III, a freely accessible critical care database. Sci Data. 2016;
+      3: 160035'
+    authors: AE Johnson, TJ Pollard, L Shen, LW Lehman, M Feng, M Ghassemi, ...
+    journal: ''
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&citation_for_view=it0h7rMAAAAJ:RGFaLdJalmkC
+  - title: 'MIMIC-III, a freely accessible critical care database. Sci Data. 2016;
+      3: 160035'
+    authors: AE Johnson, TJ Pollard, L Shen, LW Lehman, M Feng, M Ghassemi, ...
+    journal: ''
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:rbm3iO8VlycC
+  - title: Predicting ICU mortality risk by grouping temporal trends from a multivariate
+      panel of physiologic measurements
+    authors: Y Luo, Y Xin, R Joshi, L Celi, P Szolovits
+    journal: Proceedings of the AAAI Conference on Artificial Intelligence 30 (1),
+      2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:g5m5HwL7SMYC
+  - title: MIMIC-III, a freely accessible critical care database. Sci. Data 3, 160035
+      (2016)
+    authors: A Johnson, T Pollard, L Shen, LW Lehman, M Feng, M Ghassemi, ...
+    journal: Crossref, Web of Science, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:eMMeJKvmdy0C
+  - title: MIMIC-III, a freely accessible critical care database. Sci. Data 3, 160035
+      (2016)
+    authors: A Johnson, T Pollard, L Shen, LW Lehman, M Feng, M Ghassemi, ...
+    journal: Crossref, Web of Science, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:MpfHP-DdYjUC
+  - title: MIMIC-III, a freely accessible critical care database. Sci. Data 3, 160035
+      (2016)
+    authors: A Johnson, T Pollard, L Shen, LW Lehman, M Feng, M Ghassemi, ...
+    journal: Crossref, Web of Science, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:B2rIPIGFPLEC
+  - title: The MIMIC-III clinical database
+    authors: TJ Pollard, AEW Johnson
+    journal: The MIMIC-III Clinical Database, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:tkaPQYYpVKoC
+  - title: The MIMIC-III clinical database
+    authors: TJ Pollard, AEW Johnson
+    journal: The MIMIC-III Clinical Database, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=40&citation_for_view=66GCSz8AAAAJ:nRpfm8aw39MC
+  - title: 'MIMIC-III, a freely accessible critical care database. Sci Data 3: 160035'
+    authors: AEW Johnson, TJ Pollard, L Shen, LWH Lehman, M Feng, M Ghassemi, ...
+    journal: ''
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:BqipwSGYUEgC
+  - title: MIMIC-III, a freely accessible critical care database. Sci Data. 2016;
+      3
+    authors: AEW Johnson, TJ Pollard, L Shen, L Lehman, M Feng, M Ghassemi, ...
+    journal: Nature Publishing Group 1, 160035, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:RYcK_YlVTxYC
+  - title: 'MIMIC-III, a freely accessible critical care database. Scientific data.
+      2016; 3: 160035'
+    authors: AE Johnson, TJ Pollard, L Shen, HL Li-wei, M Feng, M Ghassemi
+    journal: ''
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=20&citation_for_view=it0h7rMAAAAJ:pyW8ca7W8N0C
+  - title: MIMIC-III, a freely accessible critical care database, Sci. Data 3 (2016)
+      160035
+    authors: AEW Johnson, TJ Pollard, L Shen, LH Lehman, M Feng, M Ghassemi, ...
+    journal: ''
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=40&citation_for_view=it0h7rMAAAAJ:35N4QoGY0k4C
+  - title: MIMIC-III, a freely accessible critical care database. Sci. Data 3 (1),
+      160035 (2016)
+    authors: AE Johnson, TJ Pollard, L Shen, LH Lehman, M Feng
+    journal: ''
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=40&citation_for_view=it0h7rMAAAAJ:ZuybSZzF8UAC
+  - title: MIMIC-III, a freely accessible critical care database. Scientific data
+      3, 160035 (2016)
+    authors: AEW Johnson, TJ Pollard, L Shen, HL Li-wei, M Feng, M Ghassemi, ...
+    journal: ''
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:VL0QpB8kHFEC
+  - title: "MIMIC-III, a freely accessible critical care database. Scientific data.\
+      \ 2016; 3 (1): 1\u20139"
+    authors: AE Johnson, TJ Pollard, L Shen, HL Li-Wei, M Feng, M Ghassemi
+    journal: ''
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:ye4kPcJQO24C
+  - title: '& Mark, RG (2016). MIMIC-III, a freely accessible critical care database.
+      Scientific Data, 3, 160035'
+    authors: AEW Johnson, TJ Pollard, L Shen, LH Lehman, M Feng, M Ghassemi
+    journal: ''
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:JQOojiI6XY0C
+  - title: 'MIMIC-III, a freely accessible critical care database. Sci Data. 2016
+      May 24; 3 (1): 160035'
+    authors: AEW Johnson, TJ Pollard, L Shen, LH Lehman, M Feng, M Ghassemi
+    journal: ''
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:LjlpjdlvIbIC
+  - title: Anthony Celi Leo, and Mark Roger G. 2016
+    authors: EW Johnson Alistair, J Pollard Tom, LWHL Shen Lu, GM Feng Mengling, ...
+    journal: "MIMIC-III, a freely accessible critical care database. Scientific data\
+      \ 3 (1\_\u2026, 2016"
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:u9iWguZQMMsC
+  - title: Toward a robust estimation of respiratory rate from pulse oximeters
+    authors: MAF Pimentel, AEW Johnson, PH Charlton, D Birrenkott, PJ Watkinson, ...
+    journal: IEEE Transactions on Biomedical Engineering 64 (8), 1914-1923, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:ns9cj8rnVeAC
+  - title: Obesity, acute kidney injury, and mortality in critical illness
+    authors: J Danziger, KP Chen, J Lee, M Feng, RG Mark, LA Celi, KJ Mukamal
+    journal: Critical care medicine 44 (2), 328-334, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:JQOojiI6XY0C
+  - title: Peripheral edema, central venous pressure, and risk of AKI in critical
+      illness
+    authors: KP Chen, S Cavender, J Lee, M Feng, RG Mark, LA Celi, KJ Mukamal, ...
+    journal: Clinical Journal of the American Society of Nephrology 11 (4), 602-608,
+      2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:B3FOqHPlNUQC
+  - title: 'Markov Models and Cost Effectiveness Analysis: Applications in Medical
+      Research'
+    authors: M Komorowski, J Raffa
+    journal: Secondary Analysis of Electronic Health Records, 351-367, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&citation_for_view=zh0v7EYAAAAJ:-f6ydRqryjwC
+  - title: Li wei H. Lehman, Mengling Feng, Mohammad Ghassemi
+    authors: AEW Johnson, TJ Pollard, L Shen
+    journal: "Benjamin Moody, Peter Szolovits, Leo A. Celi, and Roger G. Mark,\u2018\
+      MIMIC-III\_\u2026, 2016"
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:f2IySw72cVMC
+  - title: Li wei H. Lehman, Mengling Feng, Mohammad Ghassemi
+    authors: AEW Johnson, TJ Pollard, L Shen
+    journal: "Benjamin Moody, Peter Szolovits, Leo A. Celi, and Roger G. Mark,\u2018\
+      MIMIC-III\_\u2026, 2016"
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:r_AWSJRzSzQC
+  - title: The hackathon model to spur innovation around global mHealth
+    authors: P Angelidis, L Berman, ML Casas-Perez, LA Celi, GE Dafoulas, A Dagan,
+      ...
+    journal: Journal of medical engineering & technology 40 (7-8), 392-399, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:BUYA1_V_uYcC
+  - title: Bridging the health data divide
+    authors: LA Celi, G Davidzon, AEW Johnson, M Komorowski, DC Marshall, ...
+    journal: Journal of medical Internet research 18 (12), e325, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:W7OEmFMy1HYC
+  - title: Bridging the health data divide
+    authors: LA Celi, G Davidzon, AEW Johnson, M Komorowski, DC Marshall, ...
+    journal: Journal of medical Internet research 18 (12), e325, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=40&citation_for_view=66GCSz8AAAAJ:NaGl4SEjCO4C
+  - title: Bridging the health data divide
+    authors: LA Celi, G Davidzon, AEW Johnson, M Komorowski, DC Marshall, ...
+    journal: Journal of medical Internet research 18 (12), e6400, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&citation_for_view=zh0v7EYAAAAJ:hC7cP41nSMkC
+  - title: 'Closing the data loop: An integrated open access analysis platform for
+      the mimic database'
+    authors: M Adibuzzaman, K Musselman, A Johnson, P Brown, Z Pitluk, A Grama
+    journal: 2016 Computing in Cardiology Conference (CinC), 137-140, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:BqipwSGYUEgC
+  - title: Classification of heart sound recordings-the physionet computing in cardiology
+      challenge 2016
+    authors: C Liu, D Springer, B Moody, I Silva, A Johnson, M Samieinasab, ...
+    journal: PhysioNet, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=60&citation_for_view=66GCSz8AAAAJ:ClCfbGk0d_YC
+  - title: Datathons and software to promote reproducible research
+    authors: LA Celi, S Lokhandwala, R Montgomery, C Moses, T Naumann, T Pollard,
+      ...
+    journal: Journal of Medical Internet Research 18 (8), e6365, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:GnPB-g6toBAC
+  - title: '18: EXTERNAL VALIDATION OF THE SEPSIS-3 GUIDELINES'
+    authors: A Johnson, LA Celi, J Raffa, T Pollard, D Stone
+    journal: Critical Care Medicine 44 (12), 91, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:ZeXyd9-uunAC
+  - title: 'Blood Pressure and the Risk of Acute Kidney Injury in the ICU: Case-Control
+      Versus Case-Crossover Designs'
+    authors: LH Lehman, M Feng, Y Yang, RG Mark
+    journal: Secondary Analysis of Electronic Health Records, 369-375, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=80&citation_for_view=it0h7rMAAAAJ:4DMP91E08xMC
+  - title: An open access database for the evaluation of heart sound algorithms
+    authors: C Liu, D Springer, Q Li, B Moody, RA Juan, FJ Chorro, F Castells, JM
+      Roig, ...
+    journal: Physiological measurement 37 (12), 2181, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&citation_for_view=66GCSz8AAAAJ:GnPB-g6toBAC
+  - title: Ten simple rules for taking advantage of Git and GitHub
+    authors: Y Perez-Riverol, L Gatto, R Wang, T Sachsenberg, J Uszkoreit, ...
+    journal: PLoS computational biology 12 (7), e1004947, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:YOwf2qJgpHMC
+  - title: 'Time-limited trials of intensive care for critically ill patients with
+      cancer: how long is long enough?'
+    authors: MG Shrime, BS Ferket, DJ Scott, J Lee, D Barragan-Bradford, T Pollard,
+      ...
+    journal: JAMA oncology 2 (1), 76-83, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:O3NaXMp0MMsC
+  - title: 'Time-limited trials of intensive care for critically ill patients with
+      cancer: how long is long enough?'
+    authors: MG Shrime, BS Ferket, DJ Scott, J Lee, D Barragan-Bradford, T Pollard,
+      ...
+    journal: JAMA oncology 2 (1), 76-83, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:KUbvn5osdkgC
+  - title: L. wei H
+    authors: AE Johnson, TJ Pollard, L Shen
+    journal: Lehman, L, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:_axFR9aDTf0C
+  - title: "A \u201Cdatathon\u201D model to support cross-disciplinary collaboration"
+    authors: J Aboab, LA Celi, P Charlton, M Feng, M Ghassemi, DC Marshall, ...
+    journal: Science Translational Medicine 8 (333), 333ps8-333ps8, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:NMxIlDl6LWMC
+  - title: "A \u201Cdatathon\u201D model to support cross-disciplinary collaboration"
+    authors: J Aboab, LA Celi, P Charlton, M Feng, M Ghassemi, DC Marshall, ...
+    journal: Science Translational Medicine 8 (333), 333ps8-333ps8, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:ML0RJ9NH7IQC
+  - title: Scalable predictive analysis in critically ill patients using a visual
+      open data analysis platform
+    authors: SV Poucke, Z Zhang, M Schmitz, M Vukicevic, MV Laenen, LA Celi, ...
+    journal: PloS one 11 (1), e0145791, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:5nxA0vEk-isC
+  - title: Secondary analysis of electronic health records
+    authors: MIT Critical Data
+    journal: Springer Nature, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&citation_for_view=zh0v7EYAAAAJ:GnPB-g6toBAC
+  - title: Software vs. data in the context of citation
+    authors: DS Katz, KE Niemeyer, AM Smith, WL Anderson, C Boettiger, K Hinsen, ...
+    journal: PeerJ Preprints 4, e2630v1, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=20&citation_for_view=kd2pMFYAAAAJ:hC7cP41nSMkC
+  - title: Power and Effective Study Size in Heritability Studies
+    authors: JD Raffa, EA Thompson
+    journal: "Statistics in Biosciences 8 (2), 264\u2013283, 2016"
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:dhFuZR0502QC
+  - title: Data preparation
+    authors: T Pollard, F Dernoncourt, S Finlayson, A Velasquez
+    journal: Secondary Analysis of Electronic Health Records, 101-114, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=40&citation_for_view=kd2pMFYAAAAJ:UebtZRa9Y70C
+  - title: 'Outcome prediction for patients with traumatic brain injury with dynamic
+      features from intracranial pressure and arterial blood pressure signals: a Gaussian
+      process approach'
+    authors: MAF Pimentel, T Brennan, L Lehman, NKK King, BT Ang, M Feng
+    journal: Intracranial Pressure and Brain Monitoring XV, 85-91, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=40&citation_for_view=it0h7rMAAAAJ:Tyk-4Ss8FVUC
+  - title: Data Analysis
+    authors: JD Raffa, M Ghassemi, T Naumann, M Feng, D Hsu
+    journal: Secondary Analysis of Electronic Health Records, 205-261, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:L8Ckcad2t8MC
+  - title: Estimating relationships between phenotypes and subjects drawn from admixed
+      families
+    authors: EM Blue, LA Brown, MP Conomos, JL Kirk, AQ Nato, AB Popejoy, J Raffa,
+      ...
+    journal: BMC proceedings 10 (7), 357-362, 2016
+    year: 2016
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:HDshCWvjkbEC
+- year: 2015
+  publications:
+  - title: Semisupervised ECG ventricular beat classification with novelty detection
+      based on switching Kalman filters
+    authors: J Oster, J Behar, O Sayadi, S Nemati, AEW Johnson, GD Clifford
+    journal: IEEE Transactions on Biomedical Engineering 62 (9), 2125-2134, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:TQgYirikUcIC
+  - title: Hyperdynamic left ventricular ejection fraction in the intensive care unit
+    authors: JR Paonessa, T Brennan, M Pimentel, D Steinhaus, M Feng, LA Celi
+    journal: Critical Care 19 (1), 288, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:4DMP91E08xMC
+  - title: '11 Bayesian nonparametric learning of switching dynamics in cohort physiological
+      time series: application in critical care patient monitoring'
+    authors: LH Lehman, MJ Johnson, S Nemati, RP Adams, RG Mark
+    journal: Advanced State Space Methods for Neural and Clinical Data, 257, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:ufrVoPGSRksC
+  - title: 'The association between the neutrophil-to-lymphocyte ratio and mortality
+      in critical illness: an observational cohort study'
+    authors: JD Salciccioli, DC Marshall, MAF Pimentel, MD Santos, T Pollard, LA Celi,
+      ...
+    journal: Critical care 19 (1), 13, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&citation_for_view=kd2pMFYAAAAJ:qUcmZB5y_30C
+  - title: 'The association between the neutrophil-to-lymphocyte ratio and mortality
+      in critical illness: an observational cohort study'
+    authors: JD Salciccioli, DC Marshall, MAF Pimentel, MD Santos, T Pollard, LA Celi,
+      ...
+    journal: Critical care 19 (1), 13, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:BrmTIyaxlBUC
+  - title: 'State of the art review: the data revolution in critical care'
+    authors: M Ghassemi, LA Celi, DJ Stone
+    journal: Critical Care 19 (1), 118, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:738O_yMBCRsC
+  - title: A Physiological Time Series Dynamics-Based Approach to Patient Monitoring
+      and Outcome Prediction
+    authors: LH Lehman, RP Adams, L Mayaud, GB Moody, A Malhotra, RG Mark, ...
+    journal: IEEE Journal of Biomedical and Health Informatics 19 (3), 1068-1076,
+      2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&citation_for_view=it0h7rMAAAAJ:j3f4tGmQtD8C
+  - title: 'Effect of protocolized sedation on clinical outcomes in mechanically ventilated
+      intensive care unit patients: a systematic review and meta-analysis of randomized
+      controlled trials'
+    authors: MA Minhas, AG Velasquez, A Kaul, PD Salinas, LA Celi
+    journal: Mayo Clinic Proceedings 90 (5), 613-623, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:t6usbXjVLHcC
+  - title: 'Big data in global health: improving health in low-and middle-income countries'
+    authors: R Wyber, S Vaillancourt, W Perry, P Mannava, T Folaranmi, LA Celi
+    journal: Bulletin of the World Health Organization 93, 203-208, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:L7CI7m0gUJcC
+  - title: Association between fluid balance and survival in critically ill patients
+    authors: J Lee, E de Louw, M Niemi, R Nelson, RG Mark, LA Celi, KJ Mukamal, ...
+    journal: Journal of internal medicine 277 (4), 468-477, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:YsMSGLbcyi4C
+  - title: Multimodal heart beat detection using signal quality indices
+    authors: AEW Johnson, J Behar, F Andreotti, GD Clifford, J Oster
+    journal: Physiological measurement 36 (8), 1665, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=20&citation_for_view=66GCSz8AAAAJ:r0BpntZqJG4C
+  - title: Robust detection of heart beats in multimodal data
+    authors: I Silva, B Moody, J Behar, A Johnson, J Oster, GD Clifford, GB Moody
+    journal: Physiological measurement 36 (8), 1629, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=66GCSz8AAAAJ&cstart=40&citation_for_view=66GCSz8AAAAJ:j3f4tGmQtD8C
+  - title: Multivariate longitudinal data analysis with mixed effects hidden Markov
+      models
+    authors: JD Raffa, JA Dubin
+    journal: Biometrics 71 (3), 821-831, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zh0v7EYAAAAJ&cstart=20&citation_for_view=zh0v7EYAAAAJ:9ZlFYXVOiuMC
+  - title: Hemodynamic monitoring using switching autoregressive dynamics of multivariate
+      vital sign time series
+    authors: LH Lehman, S Nemati, RG Mark
+    journal: 2015 Computing in Cardiology Conference (CinC), 1065-1068, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=40&citation_for_view=it0h7rMAAAAJ:KlAtU1dfN6UC
+  - title: 'Patient prognosis from vital sign time series: Combining convolutional
+      neural networks with a dynamical systems approach'
+    authors: LH Lehman, M Ghassemi, J Snoek, S Nemati
+    journal: 2015 Computing in Cardiology Conference (CinC), 1069-1072, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=it0h7rMAAAAJ&cstart=60&citation_for_view=it0h7rMAAAAJ:_FxGoFyzp5QC
+  - title: Time-Limited Trials of Intensive Care for Critically Ill Patients With
+      Cancer How Long Is Long Enough?
+    authors: MG Shrime, BS Ferket, DJ Scott, J Lee, D Barragan-Bradford, T Pollard,
+      ...
+    journal: medicine 19, 20, 2015
+    year: 2015
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kd2pMFYAAAAJ&cstart=60&citation_for_view=kd2pMFYAAAAJ:9ZlFYXVOiuMC
+- year: 2014
+  publications:
+  - title: 'Making big data useful for health care: a summary of the inaugural mit
+      critical data conference'
+    authors: O Badawi, T Brennan, LA Celi, M Feng, M Ghassemi, A Ippolito, ...
+    journal: JMIR medical informatics 2 (2), e3447, 2014
+    year: 2014
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:SpbeaW3--B0C
+  - title: Trends in severity of illness on ICU admission and mortality among the
+      elderly
+    authors: L Fuchs, V Novack, S McLennan, LA Celi, Y Baumfeld, S Park, MD Howell,
+      ...
+    journal: PloS one 9 (4), e93234, 2014
+    year: 2014
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:S16KYo8Pm5AC
+  - title: 'A data-driven approach to optimized medication dosing: a focus on heparin'
+    authors: MM Ghassemi, SE Richter, IM Eche, TW Chen, J Danziger, LA Celi
+    journal: Intensive care medicine 40 (9), 1332-1339, 2014
+    year: 2014
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=60&citation_for_view=kssA7YwAAAAJ:M3NEmzRMIkIC
+- year: 2013
+  publications:
+  - title: Reducing unnecessary lab testing in the ICU with artificial intelligence
+    authors: F Cismondi, LA Celi, AS Fialho, SM Vieira, SR Reti, JMC Sousa, ...
+    journal: International journal of medical informatics 82 (5), 345-358, 2013
+    year: 2013
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=40&citation_for_view=kssA7YwAAAAJ:u-x6o8ySG0sC
+  - title: Accessing the public MIMIC-II intensive care relational database for clinical
+      research
+    authors: DJ Scott, J Lee, I Silva, S Park, GB Moody, LA Celi, RG Mark
+    journal: BMC medical informatics and decision making 13 (1), 9, 2013
+    year: 2013
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:hqOjcs7Dif8C
+  - title: "\u201CBig data\u201D in the intensive care unit. Closing the data loop"
+    authors: LA Celi, RG Mark, DJ Stone, RA Montgomery
+    journal: American journal of respiratory and critical care medicine 187 (11),
+      1157, 2013
+    year: 2013
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:08ZZubdj9fEC
+  - title: Dynamic data during hypotensive episode improves mortality predictions
+      among patients with sepsis and hypotension
+    authors: L Mayaud, PS Lai, GD Clifford, L Tarassenko, LA Celi, D Annane
+    journal: Critical care medicine 41 (4), 954-962, 2013
+    year: 2013
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:UeHWp8X0CEIC
+  - title: Proton-pump inhibitor use is associated with low serum magnesium concentrations
+    authors: J Danziger, JH William, DJ Scott, J Lee, L Lehman, RG Mark, MD Howell,
+      ...
+    journal: Kidney international 83 (4), 692-699, 2013
+    year: 2013
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:O3NaXMp0MMsC
+- year: 2012
+  publications:
+  - title: 'Predicting in-hospital mortality of icu patients: The physionet/computing
+      in cardiology challenge 2012'
+    authors: I Silva, G Moody, DJ Scott, LA Celi, RG Mark
+    journal: 2012 computing in cardiology, 245-248, 2012
+    year: 2012
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:mVmsd5A6BfQC
+  - title: ICU admission characteristics and mortality rates among elderly and very
+      elderly patients
+    authors: L Fuchs, CE Chronaki, S Park, V Novack, Y Baumfeld, D Scott, ...
+    journal: Intensive care medicine 38 (10), 1654-1661, 2012
+    year: 2012
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&citation_for_view=kssA7YwAAAAJ:WZBGuue-350C
+  - title: Red cell distribution width improves the simplified acute physiology score
+      for risk prediction in unselected critically ill patients
+    authors: S Hunziker, LA Celi, J Lee, MD Howell
+    journal: Critical care 16 (3), R89, 2012
+    year: 2012
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:9vf0nzSNQJEC
+  - title: 'A database-driven decision support system: customized mortality prediction'
+    authors: LA Celi, S Galvin, G Davidzon, J Lee, D Scott, R Mark
+    journal: Journal of personalized medicine 2 (4), 138-148, 2012
+    year: 2012
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=80&citation_for_view=kssA7YwAAAAJ:yD5IFk8b50cC
+- year: 2011
+  publications:
+  - title: 'Improving the quality of ECGs collected using mobile phones: The Physionet/Computing
+      in Cardiology Challenge 2011'
+    authors: I Silva, GB Moody, L Celi
+    journal: 2011 computing in Cardiology, 273-276, 2011
+    year: 2011
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:tkaPQYYpVKoC
+- year: 2010
+  publications:
+  - title: Early intervention with erythropoietin does not affect the outcome of acute
+      kidney injury (the EARLYARF trial)
+    authors: ZH Endre, RJ Walker, JW Pickering, GM Shaw, CM Frampton, ...
+    journal: Kidney international 77 (11), 1020-1030, 2010
+    year: 2010
+    type: journal
+    url: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kssA7YwAAAAJ&cstart=20&citation_for_view=kssA7YwAAAAJ:k_IJM867U9cC
