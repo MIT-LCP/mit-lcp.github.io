@@ -1,30 +1,39 @@
-# Example people data
-- name: Roger Mark
+- name: Roger Mark, MD, PhD
   role: Director & Distinguished Professor
   bio: "Distinguished Professor of Health Sciences and Technology at MIT. Leads research on improving healthcare through new approaches to interpreting data and generating predictive models."
   image: "roger_mark.png"
 
-- name: Leo Celi
+- name: Leo Celi, MD, MPH
   role: Principal Research Scientist
-  bio: "Physician and data scientist. Leads interdisciplinary clinical research and mentors young clinicians collaborating with engineering staff on research projects."
+  bio: "Physician and data scientist. Conducts interdisciplinary clinical research with a focus on collaborative learning and bias."
   image: "leo.jpg"
 
-- name: Li-wei Lehman
+- name: Brian Gow
+  role: Research Engineer
+  bio: "Focuses on computational physiology and machine learning applications in healthcare. Contributes to the development of predictive models for clinical decision support."
+  image: "briangow.jpeg"
+
+- name: Li-wei Lehman, PhD
   role: Research Scientist
-  bio: "Focuses on machine learning for physiological dynamics modeling and informed clinical decision making. Member of the PhysioNet team."
+  bio: "Focuses on machine learning for physiological dynamics modeling and informed clinical decision making."
   image: "li-wei_lehman.png"
 
-- name: Kenneth Paik
+- name: Benjamin Moody
+  role: Research Engineer
+  bio: "Specializes in physiological signal processing and clinical informatics. Works on developing computational methods for analyzing patient data and improving healthcare outcomes."
+  image: "missing.jpg"
+
+- name: Kenneth Paik, MD, MBA
   role: Research Scientist
   bio: "Clinical informatician focused on quality improvement through technology innovation. Combines medicine, machine learning, and business management expertise."
   image: "kepaik.png"
 
-- name: Tom Pollard
+- name: Tom Pollard, PhD
   role: Research Scientist
-  bio: "Technical Director of PhysioNet. Expert in critical care databases including MIMIC and eICU. Conducts retrospective studies and develops software used internationally."
+  bio: "Works at the intersection of medicine and engineering. Focuses on development of databases and software for machine learning in health."
   image: "tpollard.jpg"
 
-- name: Jesse Raffa
+- name: Jesse Raffa, PhD
   role: Research Scientist
   bio: "Biostatistician providing statistical and epidemiological expertise. Specializes in analysis of complex longitudinal data relevant to critical care settings."
   image: "jraffa.jpg" 
