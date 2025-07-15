@@ -89,22 +89,21 @@ p {
 }
 
 a {
-  color: var(--mit-red);
+  color: var(--text-dark);
   text-decoration: none;
   transition: color 0.2s ease;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid var(--mit-red);
 }
 
 a:hover {
-  color: var(--mit-red-light);
-  border-bottom-color: var(--mit-red-light);
+  color: var(--mit-red);
+  border-bottom-color: var(--mit-red);
 }
 
 /* Key terms highlighting - MIT style */
 .key-term {
-  color: var(--mit-red);
-  font-weight: 500;
-  border-bottom: 1px solid var(--mit-red);
+  color: var(--text-dark);
+  font-weight: 400;
 }
 
 /* Header - Clean MIT style */
