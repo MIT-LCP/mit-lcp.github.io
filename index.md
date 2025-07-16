@@ -12,13 +12,21 @@ title: Home
       <span class="title-line-2">MIT-LCP</span>
     </h2>
     
-    <p>
-      The MIT Laboratory for Computational Physiology (MIT-LCP), under the direction of Professor Roger Mark, conducts research at the intersection of <span class="key-term">medicine</span>, <span class="key-term">engineering</span>, and <span class="key-term">data science</span>.
-    </p>
-    
-    <p>
-      Our laboratory focuses on developing computational methods and tools for analyzing physiological signals and clinical data, with particular emphasis on critical care medicine and patient monitoring systems.
-    </p>
+    <div style="display: flex; gap: 2rem; margin-bottom: 2rem; align-items: flex-start;">
+      <div style="flex: 1;">
+        <p>
+          The MIT Laboratory for Computational Physiology (MIT-LCP), under the direction of Professor Roger Mark, conducts research at the intersection of <span class="key-term">medicine</span>, <span class="key-term">engineering</span>, and <span class="key-term">data science</span>.
+        </p>
+        
+        <p>
+          Our laboratory focuses on developing computational methods and tools for analyzing physiological signals and clinical data, with particular emphasis on critical care medicine and patient monitoring systems.
+        </p>
+      </div>
+      
+      <div style="flex-shrink: 0; width: 300px; margin-top: 0; padding-top: 0;">
+        <img src="{{ '/assets/images/lab1.jpg' | relative_url }}" alt="MIT LCP Laboratory" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.15); display: block; margin: 0; padding: 0;">
+      </div>
+    </div>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
       <div class="card">

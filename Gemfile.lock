@@ -71,6 +71,7 @@ DEPENDENCIES
   http_parser.rb (~> 0.6.0)
   jekyll (~> 3.9.5)
   jekyll-feed (~> 0.6)
+  jekyll-seo-tag (~> 2.0)
   kramdown-parser-gfm
   minima (~> 2.0)
   tzinfo (>= 1, < 3)
