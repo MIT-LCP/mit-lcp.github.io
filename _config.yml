@@ -1,7 +1,7 @@
 title: "MIT Laboratory for Computational Physiology"
 description: "Advancing healthcare through computational physiology and machine learning."
 baseurl: ""
-url: "https://mit-lcp.github.io"
+url: "https://lcp.mit.edu"
 theme: minima
 plugins:
   - jekyll-feed
