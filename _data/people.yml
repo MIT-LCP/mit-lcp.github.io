@@ -36,4 +36,9 @@
 - name: Jesse Raffa, PhD
   role: Research Scientist
   bio: "Biostatistician providing statistical and epidemiological expertise. Specializes in analysis of complex longitudinal data relevant to critical care settings."
-  image: "jraffa.jpg" 
+  image: "jraffa.jpg"
+
+- name: Emmy Thamakaison
+  role: Student Researcher
+  bio: "Studies Computer Science + AI at Stanford University, develops software for datasets and machine learning in health."
+  image: "emmyt.jpg"
